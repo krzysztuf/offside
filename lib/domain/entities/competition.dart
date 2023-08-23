@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'match.dart';
 
 part 'competition.freezed.dart';
+part 'competition.g.dart';
 
 @freezed
 class Competition with _$Competition {

@@ -5,6 +5,7 @@ import 'team.dart';
 import 'user.dart';
 
 part 'bet.freezed.dart';
+part 'bet.g.dart';
 
 @freezed
 class Bet with _$Bet {

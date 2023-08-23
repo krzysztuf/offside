@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'match.dart';
 
 part 'match_result.freezed.dart';
+part 'match_result.g.dart';
 
 @freezed
 class MatchResult with _$MatchResult {

@@ -4,6 +4,7 @@ import 'match_result.dart';
 import 'team.dart';
 
 part 'match.freezed.dart';
+part 'match.g.dart';
 
 @freezed
 class Match with _$Match {
