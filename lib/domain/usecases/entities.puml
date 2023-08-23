@@ -1,0 +1,52 @@
+@startuml
+
+scale 4.0
+skinparam Monochrome true
+skinparam DefaultFontName Iosevka
+skinparam DefaultFontSize 8
+skinparam BoxPadding 8
+skinparam SequenceBoxBackgroundColor #EEEEEE
+
+class "User" {
+  + userId: String
+  + username: String
+}
+
+class "Team" {
+  + teamId: String
+  + teamName: String
+}
+
+class "Competition" {
+  + competitionId: String
+  + name: String
+}
+
+class "Bet" {
+  + betId: String
+  + userId: String
+  + matchId: String
+  + chosenTeamId: String
+  + amount: Double
+}
+
+class "Match" {
+  + matchId: String
+  + team1Id: String
+  + team2Id: String
+  + competitionId: String
+  + date: Date
+}
+
+class "MatchResult" {
+  + matchId: String
+  + winningTeamId: String
+}
+
+User "1" -- "*" Bet : places
+Team "2" -- "1..*" Match : competes
+Competition "1" -- "*" Match : organizes
+Bet "1" -- "1" Match : is for
+Match "1" -- "1" MatchResult : has
+
+@enduml
