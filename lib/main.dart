@@ -19,7 +19,6 @@ class OffsideApp extends ConsumerWidget {
     final router = ref.watch(offsideRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData.light(useMaterial3: true).copyWith(
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
