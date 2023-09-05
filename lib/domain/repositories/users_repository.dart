@@ -1,7 +1,4 @@
 import 'package:offside/domain/models/user.dart';
+import 'package:offside/domain/repositories/repository.dart';
 
-abstract class UsersRepository {
-  Future<List<User>> all();
-
-  Future<User> getById({required String id});
-}
+abstract class UsersRepository extends Repository<User> {}

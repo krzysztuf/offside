@@ -1,7 +1,7 @@
 abstract class Repository<T> {
   Future<List<T>> all();
 
-  Future<T> byId({required String id});
+  Future<T> byId({required int id});
 
   Future<void> add(T item);
 

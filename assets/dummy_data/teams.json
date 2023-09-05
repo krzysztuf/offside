@@ -1,0 +1,12 @@
+[
+  {
+    "id": 0,
+    "name": "Manchester United",
+    "logo": "assets/images/manchester-united.png"
+  },
+  {
+    "id": 1,
+    "name": "Manchester City",
+    "logo": "assets/images/manchester-city.png"
+  }
+]

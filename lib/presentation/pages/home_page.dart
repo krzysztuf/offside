@@ -10,8 +10,12 @@ class HomePage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: const Center(
-        child: Text('Offside'),
+      body: Center(
+        child: Image.asset(
+          'assets/images/teams/manchester-united.png',
+          width: 48,
+          height: 48,
+        ),
       ),
     );
   }
