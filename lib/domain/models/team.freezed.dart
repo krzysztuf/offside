@@ -20,8 +20,9 @@ Team _$TeamFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Team {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get logo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $TeamCopyWith<$Res> {
   factory $TeamCopyWith(Team value, $Res Function(Team) then) =
       _$TeamCopyWithImpl<$Res, Team>;
   @useResult
-  $Res call({String id, String name});
+  $Res call({int id, String name, String logo});
 }
 
 /// @nodoc
@@ -51,15 +52,20 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? logo = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      logo: null == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -71,7 +77,7 @@ abstract class _$$_TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
       __$$_TeamCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name});
+  $Res call({int id, String name, String logo});
 }
 
 /// @nodoc
@@ -85,15 +91,20 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? logo = null,
   }) {
     return _then(_$_Team(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      logo: null == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -102,18 +113,20 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
 /// @nodoc
 @JsonSerializable()
 class _$_Team implements _Team {
-  const _$_Team({required this.id, required this.name});
+  const _$_Team({required this.id, required this.name, required this.logo});
 
   factory _$_Team.fromJson(Map<String, dynamic> json) => _$$_TeamFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
+  @override
+  final String logo;
 
   @override
   String toString() {
-    return 'Team(id: $id, name: $name)';
+    return 'Team(id: $id, name: $name, logo: $logo)';
   }
 
   @override
@@ -122,12 +135,13 @@ class _$_Team implements _Team {
         (other.runtimeType == runtimeType &&
             other is _$_Team &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.logo, logo) || other.logo == logo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, logo);
 
   @JsonKey(ignore: true)
   @override
@@ -144,15 +158,19 @@ class _$_Team implements _Team {
 }
 
 abstract class _Team implements Team {
-  const factory _Team({required final String id, required final String name}) =
-      _$_Team;
+  const factory _Team(
+      {required final int id,
+      required final String name,
+      required final String logo}) = _$_Team;
 
   factory _Team.fromJson(Map<String, dynamic> json) = _$_Team.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get name;
+  @override
+  String get logo;
   @override
   @JsonKey(ignore: true)
   _$$_TeamCopyWith<_$_Team> get copyWith => throw _privateConstructorUsedError;

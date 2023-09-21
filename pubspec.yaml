@@ -36,4 +36,5 @@ flutter:
   assets:
     - assets/images/teams/manchester-united.png
     - assets/images/teams/manchester-city.png
+    - assets/dummy/teams.json
   uses-material-design: true
