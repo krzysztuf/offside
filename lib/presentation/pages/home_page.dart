@@ -1,54 +1,32 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:offside/presentation/pages/providers/teams_provider.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: Card(
-        child: SizedBox(
-          height: 200,
-          child: ref.watch(teamsProvider).when(
-                data: (teams) {
-                  log('teams: ${teams.length}');
-                  return Column(
-                    children: teams.map(
-                      (t) {
-                        log('loaded: ${t.logo}');
-                        return Row(
-                          children: [
-                            Image.asset(
-                              t.logo,
-                              width: 48,
-                              height: 48,
-                            ),
-                          ],
-                        );
-                      },
-                    ).toList(),
-                  );
-                },
-                error: (error, stackTrace) => Container(),
-                loading: () => Container(),
-              ),
-        ),
-      ),
+  ConsumerState<ConsumerStatefulWidget> createState() {
+    return _HomePageState();
+  }
+}
 
-      // body: Center(
-      //   child: Image.asset(
-      //     'assets/images/teams/manchester-united.png',
-      //     width: 48,
-      //     height: 48,
-      //   ),
-      // ),
+class _HomePageState extends ConsumerState<HomePage> {
+  late ScrollController scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeScrollController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(),
     );
+  }
+
+  void initializeScrollController() {
+    scrollController = ScrollController()..addListener(() {});
   }
 }

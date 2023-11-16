@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:offside/domain/models/team.dart';
-import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/repositories/teams_repository.dart';
 
 class TeamsInMemoryRepository extends TeamsRepository {

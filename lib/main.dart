@@ -20,10 +20,10 @@ class OffsideApp extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(useMaterial3: true).copyWith(
-        textTheme: GoogleFonts.robotoTextTheme(),
+        textTheme: GoogleFonts.openSansTextTheme(),
       ),
       darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-        textTheme: GoogleFonts.robotoTextTheme(
+        textTheme: GoogleFonts.openSansTextTheme(
           ThemeData.dark().textTheme,
         ),
       ),

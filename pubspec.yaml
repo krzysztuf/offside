@@ -21,6 +21,10 @@ dependencies:
   flutter_riverpod: ^2.3.7
   google_fonts: ^5.1.0
   json_annotation: ^4.8.1
+  get_it: ^7.6.4
+  shared_preferences: ^2.2.1
+  chopper: ^7.0.6
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -36,5 +40,6 @@ flutter:
   assets:
     - assets/images/teams/manchester-united.png
     - assets/images/teams/manchester-city.png
+    - assets/images/profile.jpg
     - assets/dummy/teams.json
   uses-material-design: true
