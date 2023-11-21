@@ -1,13 +1,12 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/services.dart';
 import 'package:offside/domain/models/team.dart';
 import 'package:offside/domain/repositories/teams_repository.dart';
 
 class TeamsInMemoryRepository extends TeamsRepository {
-  late final List<Team>? _teams;
-
-  List<Team> get teams => _teams!;
+  var teams = <Team>[];
 
   @override
   Future<void> add(Team item) {
@@ -17,7 +16,11 @@ class TeamsInMemoryRepository extends TeamsRepository {
 
   @override
   Future<List<Team>> all() async {
-    await _maybeLoadFromAssets();
+    try {
+      await _maybeLoadFromAssets();
+    } catch (e, s) {
+      log(e.toString(), stackTrace: s);
+    }
     return teams;
   }
 
@@ -40,13 +43,8 @@ class TeamsInMemoryRepository extends TeamsRepository {
   }
 
   Future<void> _maybeLoadFromAssets() async {
-    if (_teams == null) {
-      return;
-    }
-
-    final teamsJson = await rootBundle.load('assets/dummy/teams.json');
-    final teamsDecoded = jsonDecode(teamsJson.toString()) as List<dynamic>;
-
-    _teams = teamsDecoded.map((t) => Team.fromJson(t)).toList();
+    final teamsJson = await rootBundle.loadString('assets/dummy/teams.json');
+    final teamsDecoded = jsonDecode(teamsJson) as List<dynamic>;
+    teams = teamsDecoded.map((t) => Team.fromJson(t)).toList();
   }
 }

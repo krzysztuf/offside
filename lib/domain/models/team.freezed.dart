@@ -22,7 +22,7 @@ Team _$TeamFromJson(Map<String, dynamic> json) {
 mixin _$Team {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get logo => throw _privateConstructorUsedError;
+  String? get logo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $TeamCopyWith<$Res> {
   factory $TeamCopyWith(Team value, $Res Function(Team) then) =
       _$TeamCopyWithImpl<$Res, Team>;
   @useResult
-  $Res call({int id, String name, String logo});
+  $Res call({int id, String name, String? logo});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? logo = null,
+    Object? logo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -63,10 +63,10 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      logo: null == logo
+      logo: freezed == logo
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -77,7 +77,7 @@ abstract class _$$_TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
       __$$_TeamCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String logo});
+  $Res call({int id, String name, String? logo});
 }
 
 /// @nodoc
@@ -91,7 +91,7 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? logo = null,
+    Object? logo = freezed,
   }) {
     return _then(_$_Team(
       id: null == id
@@ -102,10 +102,10 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      logo: null == logo
+      logo: freezed == logo
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -113,7 +113,7 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
 /// @nodoc
 @JsonSerializable()
 class _$_Team implements _Team {
-  const _$_Team({required this.id, required this.name, required this.logo});
+  const _$_Team({required this.id, required this.name, this.logo});
 
   factory _$_Team.fromJson(Map<String, dynamic> json) => _$$_TeamFromJson(json);
 
@@ -122,7 +122,7 @@ class _$_Team implements _Team {
   @override
   final String name;
   @override
-  final String logo;
+  final String? logo;
 
   @override
   String toString() {
@@ -161,7 +161,7 @@ abstract class _Team implements Team {
   const factory _Team(
       {required final int id,
       required final String name,
-      required final String logo}) = _$_Team;
+      final String? logo}) = _$_Team;
 
   factory _Team.fromJson(Map<String, dynamic> json) = _$_Team.fromJson;
 
@@ -170,7 +170,7 @@ abstract class _Team implements Team {
   @override
   String get name;
   @override
-  String get logo;
+  String? get logo;
   @override
   @JsonKey(ignore: true)
   _$$_TeamCopyWith<_$_Team> get copyWith => throw _privateConstructorUsedError;
