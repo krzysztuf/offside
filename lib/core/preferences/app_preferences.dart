@@ -12,6 +12,8 @@ class AppPreferences {
   static late final SharedPreference<String> languageCode;
   static late final SharedPreference<ThemeMode> themeMode;
 
+  static late final SharedPreference<int?> currentUserId;
+
   AppPreferences._();
 
   static Future<void> initialize() async {
@@ -19,6 +21,7 @@ class AppPreferences {
 
     languageCode = SharedPreference('languageCode', 'de', _preferences);
     themeMode = SharedPreference('themeMode', ThemeMode.system, _preferences);
+    currentUserId = SharedPreference('currentUserId', null, _preferences);
   }
 }
 

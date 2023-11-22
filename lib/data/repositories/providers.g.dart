@@ -6,11 +6,11 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$teamsRepositoryHash() => r'7dc224c7dae145d2d3043be21475ce25c19bcd49';
+String _$teamsRepositoryHash() => r'e0bebeeff889fe2242eaf25e3343f3403dfbc02f';
 
 /// See also [teamsRepository].
 @ProviderFor(teamsRepository)
-final teamsRepositoryProvider = AutoDisposeProvider<TeamsRepository>.internal(
+final teamsRepositoryProvider = AutoDisposeProvider<Repository<Team>>.internal(
   teamsRepository,
   name: r'teamsRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -20,6 +20,6 @@ final teamsRepositoryProvider = AutoDisposeProvider<TeamsRepository>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef TeamsRepositoryRef = AutoDisposeProviderRef<TeamsRepository>;
+typedef TeamsRepositoryRef = AutoDisposeProviderRef<Repository<Team>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

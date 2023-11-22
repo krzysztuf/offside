@@ -1,9 +1,10 @@
-import 'package:offside/domain/repositories/teams_repository.dart';
+import 'package:offside/domain/models/team.dart';
+import 'package:offside/domain/repositories/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
 
 @riverpod
-TeamsRepository teamsRepository(TeamsRepositoryRef ref) {
+Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
   throw UnimplementedError('teamsRepository');
 }

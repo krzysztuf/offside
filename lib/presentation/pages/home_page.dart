@@ -47,7 +47,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     label: 'Tabela',
                   ),
                   BottomNavigationBarItem(
-                    icon: user.avatar(borderColor: Theme.of(context).colorScheme.outline!),
+                    icon: user.avatar(borderColor: Theme.of(context).colorScheme.outline),
                     label: 'Profil',
                   ),
                 ],

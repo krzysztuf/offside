@@ -112,8 +112,8 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Team implements _Team {
-  const _$_Team({required this.id, required this.name, this.logo});
+class _$_Team extends _Team {
+  const _$_Team({required this.id, required this.name, this.logo}) : super._();
 
   factory _$_Team.fromJson(Map<String, dynamic> json) => _$$_TeamFromJson(json);
 
@@ -157,11 +157,12 @@ class _$_Team implements _Team {
   }
 }
 
-abstract class _Team implements Team {
+abstract class _Team extends Team {
   const factory _Team(
       {required final int id,
       required final String name,
       final String? logo}) = _$_Team;
+  const _Team._() : super._();
 
   factory _Team.fromJson(Map<String, dynamic> json) = _$_Team.fromJson;
 

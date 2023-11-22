@@ -15,7 +15,7 @@ class UsersInMemory extends Repository<User> {
   }
 
   @override
-  Future<User> byId({required int id}) {
+  Future<User> byId(int id) {
     // TODO: implement byId
     throw UnimplementedError();
   }

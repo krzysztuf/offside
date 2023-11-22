@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:offside/domain/models/identifiable.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
-class User with _$User {
+class User with _$User implements Identifiable {
   const factory User({
     required int id,
     required String name,
@@ -14,13 +15,18 @@ class User with _$User {
     String? image,
   }) = _User;
 
+  User._();
+
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  @override
+  int get identifier => id;
 }
 
 extension UserAvatar on User {
-  Widget avatar({required Color borderColor}) {
+  Widget avatar({Color? borderColor}) {
     return Container(
-      padding: const EdgeInsets.all(1.5),
+      padding: EdgeInsets.all(borderColor != null ? 1 : 0),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: borderColor,
