@@ -24,6 +24,7 @@ mixin _$User {
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
   String? get nickname => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,8 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({int id, String name, String surname, String? nickname});
+  $Res call(
+      {int id, String name, String surname, String? nickname, String? image});
 }
 
 /// @nodoc
@@ -55,6 +57,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? name = null,
     Object? surname = null,
     Object? nickname = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,6 +76,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -83,7 +90,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$_UserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String surname, String? nickname});
+  $Res call(
+      {int id, String name, String surname, String? nickname, String? image});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? name = null,
     Object? surname = null,
     Object? nickname = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$_User(
       id: null == id
@@ -117,6 +126,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -128,7 +141,8 @@ class _$_User implements _User {
       {required this.id,
       required this.name,
       required this.surname,
-      this.nickname});
+      this.nickname,
+      this.image});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -140,10 +154,12 @@ class _$_User implements _User {
   final String surname;
   @override
   final String? nickname;
+  @override
+  final String? image;
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, surname: $surname, nickname: $nickname)';
+    return 'User(id: $id, name: $name, surname: $surname, nickname: $nickname, image: $image)';
   }
 
   @override
@@ -155,12 +171,14 @@ class _$_User implements _User {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.nickname, nickname) ||
-                other.nickname == nickname));
+                other.nickname == nickname) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, surname, nickname);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, surname, nickname, image);
 
   @JsonKey(ignore: true)
   @override
@@ -181,7 +199,8 @@ abstract class _User implements User {
       {required final int id,
       required final String name,
       required final String surname,
-      final String? nickname}) = _$_User;
+      final String? nickname,
+      final String? image}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -193,6 +212,8 @@ abstract class _User implements User {
   String get surname;
   @override
   String? get nickname;
+  @override
+  String? get image;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
