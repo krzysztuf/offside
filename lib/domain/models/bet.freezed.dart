@@ -20,7 +20,7 @@ Bet _$BetFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Bet {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
   Match get match => throw _privateConstructorUsedError;
   Team get chosenTeam => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $BetCopyWith<$Res> {
   factory $BetCopyWith(Bet value, $Res Function(Bet) then) =
       _$BetCopyWithImpl<$Res, Bet>;
   @useResult
-  $Res call({String id, User user, Match match, Team chosenTeam});
+  $Res call({int id, User user, Match match, Team chosenTeam});
 
   $UserCopyWith<$Res> get user;
   $MatchCopyWith<$Res> get match;
@@ -63,7 +63,7 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ abstract class _$$_BetCopyWith<$Res> implements $BetCopyWith<$Res> {
       __$$_BetCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, User user, Match match, Team chosenTeam});
+  $Res call({int id, User user, Match match, Team chosenTeam});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -138,7 +138,7 @@ class __$$_BetCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$_Bet>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ class _$_Bet implements _Bet {
   factory _$_Bet.fromJson(Map<String, dynamic> json) => _$$_BetFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final User user;
   @override
@@ -212,7 +212,7 @@ class _$_Bet implements _Bet {
 
 abstract class _Bet implements Bet {
   const factory _Bet(
-      {required final String id,
+      {required final int id,
       required final User user,
       required final Match match,
       required final Team chosenTeam}) = _$_Bet;
@@ -220,7 +220,7 @@ abstract class _Bet implements Bet {
   factory _Bet.fromJson(Map<String, dynamic> json) = _$_Bet.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   User get user;
   @override

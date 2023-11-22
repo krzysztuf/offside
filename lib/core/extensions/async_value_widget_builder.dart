@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:inspection_sidecar/presentation/widgets/if.dart';
+import 'package:offside/presentation/widgets/if.dart';
 
 class DataStore<T> {
   T value;

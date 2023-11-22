@@ -1,5 +1,5 @@
 import 'package:chopper/chopper.dart';
-import 'package:inspection_sidecar/data/sources/remote/chopper_error.dart';
+import 'package:offside/core/exceptions/chopper_error.dart';
 
 extension BodyUnwrapper<T> on Response<T> {
   T unwrap() {

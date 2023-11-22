@@ -10,7 +10,7 @@ part 'bet.g.dart';
 @freezed
 class Bet with _$Bet {
   const factory Bet({
-    required String id,
+    required int id,
     required User user,
     required Match match,
     required Team chosenTeam, // Chosen team for the bet

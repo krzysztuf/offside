@@ -8,7 +8,7 @@ part 'match_result.g.dart';
 @freezed
 class MatchResult with _$MatchResult {
   const factory MatchResult({
-    required String id,
+    required int id,
     required Match match,
     required int homeScore,
     required int awayScore,

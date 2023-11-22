@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:inspection_sidecar/presentation/providers/app_messages_provider.dart';
+import 'package:offside/core/utils/app_message.dart';
 
 extension AppMessageToSnackBar on AppMessage {
   IconData get icon {

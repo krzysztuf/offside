@@ -8,7 +8,7 @@ part of 'match_result.dart';
 
 _$_MatchResult _$$_MatchResultFromJson(Map<String, dynamic> json) =>
     _$_MatchResult(
-      id: json['id'] as String,
+      id: json['id'] as int,
       match: Match.fromJson(json['match'] as Map<String, dynamic>),
       homeScore: json['homeScore'] as int,
       awayScore: json['awayScore'] as int,

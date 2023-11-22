@@ -20,7 +20,7 @@ MatchResult _$MatchResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MatchResult {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   Match get match => throw _privateConstructorUsedError;
   int get homeScore => throw _privateConstructorUsedError;
   int get awayScore => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $MatchResultCopyWith<$Res> {
           MatchResult value, $Res Function(MatchResult) then) =
       _$MatchResultCopyWithImpl<$Res, MatchResult>;
   @useResult
-  $Res call({String id, Match match, int homeScore, int awayScore});
+  $Res call({int id, Match match, int homeScore, int awayScore});
 
   $MatchCopyWith<$Res> get match;
 }
@@ -64,7 +64,7 @@ class _$MatchResultCopyWithImpl<$Res, $Val extends MatchResult>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       match: null == match
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ abstract class _$$_MatchResultCopyWith<$Res>
       __$$_MatchResultCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, Match match, int homeScore, int awayScore});
+  $Res call({int id, Match match, int homeScore, int awayScore});
 
   @override
   $MatchCopyWith<$Res> get match;
@@ -123,7 +123,7 @@ class __$$_MatchResultCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       match: null == match
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ class _$_MatchResult implements _MatchResult {
       _$$_MatchResultFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final Match match;
   @override
@@ -199,7 +199,7 @@ class _$_MatchResult implements _MatchResult {
 
 abstract class _MatchResult implements MatchResult {
   const factory _MatchResult(
-      {required final String id,
+      {required final int id,
       required final Match match,
       required final int homeScore,
       required final int awayScore}) = _$_MatchResult;
@@ -208,7 +208,7 @@ abstract class _MatchResult implements MatchResult {
       _$_MatchResult.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   Match get match;
   @override

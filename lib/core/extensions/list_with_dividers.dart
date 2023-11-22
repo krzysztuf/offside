@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inspection_sidecar/core/extensions/expand_with.dart';
+import 'package:offside/core/extensions/expand_with.dart';
 
 extension ListWithDividers on Iterable<Widget> {
   Iterable<Widget> withDividers(BuildContext context, {bool horizontal = true}) {
