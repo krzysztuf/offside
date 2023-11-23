@@ -36,9 +36,15 @@ class MatchesSubPage extends ConsumerWidget {
                             children: [
                               Text('Polska', style: context.textTheme.titleMedium),
                               const Gap(8),
-                              const CircleAvatar(
-                                backgroundColor: Colors.red,
-                                child: Text('PL'),
+                              Square(
+                                size: 40,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.red,
+                                  child: Text(
+                                    'PL',
+                                    style: context.textTheme.bodySmall,
+                                  ),
+                                ),
                               )
                             ],
                           ),
