@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:offside/core/preferences/app_preferences.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/data/repositories/teams_in_memory_repository.dart';
 import 'package:offside/offside_router.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppPreferences.initialize();
+
   runApp(
     ProviderScope(
       overrides: [

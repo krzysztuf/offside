@@ -7,7 +7,7 @@ part 'user.g.dart';
 
 @freezed
 class User with _$User implements Identifiable {
-  const factory User({
+  factory User({
     required int id,
     required String name,
     required String surname,

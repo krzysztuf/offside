@@ -27,6 +27,7 @@ dependencies:
   gap: ^3.0.1
   intl: ^0.18.1
   supercharged: ^2.1.1
+  skeletonizer: ^0.8.0
 
 dev_dependencies:
   flutter_test:

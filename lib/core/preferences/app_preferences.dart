@@ -12,7 +12,7 @@ class AppPreferences {
   static late final SharedPreference<String> languageCode;
   static late final SharedPreference<ThemeMode> themeMode;
 
-  static late final SharedPreference<int?> currentUserId;
+  static late final SharedPreference<int> currentUserId;
 
   AppPreferences._();
 
@@ -21,7 +21,7 @@ class AppPreferences {
 
     languageCode = SharedPreference('languageCode', 'de', _preferences);
     themeMode = SharedPreference('themeMode', ThemeMode.system, _preferences);
-    currentUserId = SharedPreference('currentUserId', null, _preferences);
+    currentUserId = SharedPreference('currentUserId', 1, _preferences);
   }
 }
 

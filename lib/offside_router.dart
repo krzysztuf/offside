@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'presentation/pages/home_page.dart';
+import 'presentation/pages/home_page/home_page.dart';
 
 part 'offside_router.g.dart';
 

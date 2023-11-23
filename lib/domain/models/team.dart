@@ -6,7 +6,7 @@ part 'team.g.dart';
 
 @freezed
 class Team with _$Team implements Identifiable {
-  const factory Team({
+  factory Team({
     required int id,
     required String name,
     String? logo,

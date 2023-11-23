@@ -2,7 +2,11 @@ import 'package:offside/domain/models/identifiable.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
 class MemoryRepository<T extends Identifiable> extends Repository<T> {
-  var items = <T>[];
+  List<T> items;
+
+  MemoryRepository({
+    this.items = const [],
+  });
 
   @override
   Future<void> add(T item) {
