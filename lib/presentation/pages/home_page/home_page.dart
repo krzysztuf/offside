@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/domain/models/user.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/square.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         index: currentIndex,
         children: [
           const TableSubPage(),
-          Container(color: Colors.deepPurple),
+          const MatchesSubPage(),
           Container(color: Colors.blueAccent),
         ],
       ),

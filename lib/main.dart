@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:offside/core/preferences/app_preferences.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/data/repositories/teams_in_memory_repository.dart';
@@ -9,6 +10,8 @@ import 'package:offside/offside_router.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPreferences.initialize();
+
+  initializeDateFormatting('pl', null);
 
   runApp(
     ProviderScope(
@@ -36,6 +39,7 @@ class OffsideApp extends ConsumerWidget {
           ThemeData.dark().textTheme,
         ),
       ),
+      locale: const Locale('pl', 'PL'),
       themeMode: ThemeMode.system,
       routerDelegate: router.routerDelegate,
       routeInformationProvider: router.routeInformationProvider,
