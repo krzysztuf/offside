@@ -20,7 +20,7 @@ Match _$MatchFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Match {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   Team get homeTeam => throw _privateConstructorUsedError;
   Team get awayTeam => throw _privateConstructorUsedError;
   MatchResult? get result => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $MatchCopyWith<$Res> {
   factory $MatchCopyWith(Match value, $Res Function(Match) then) =
       _$MatchCopyWithImpl<$Res, Match>;
   @useResult
-  $Res call({String id, Team homeTeam, Team awayTeam, MatchResult? result});
+  $Res call({int id, Team homeTeam, Team awayTeam, MatchResult? result});
 
   $TeamCopyWith<$Res> get homeTeam;
   $TeamCopyWith<$Res> get awayTeam;
@@ -64,7 +64,7 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       homeTeam: null == homeTeam
           ? _value.homeTeam
           : homeTeam // ignore: cast_nullable_to_non_nullable
@@ -115,7 +115,7 @@ abstract class _$$_MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
       __$$_MatchCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, Team homeTeam, Team awayTeam, MatchResult? result});
+  $Res call({int id, Team homeTeam, Team awayTeam, MatchResult? result});
 
   @override
   $TeamCopyWith<$Res> get homeTeam;
@@ -143,7 +143,7 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       homeTeam: null == homeTeam
           ? _value.homeTeam
           : homeTeam // ignore: cast_nullable_to_non_nullable
@@ -162,18 +162,19 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Match implements _Match {
+class _$_Match extends _Match {
   const _$_Match(
       {required this.id,
       required this.homeTeam,
       required this.awayTeam,
-      this.result});
+      this.result})
+      : super._();
 
   factory _$_Match.fromJson(Map<String, dynamic> json) =>
       _$$_MatchFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final Team homeTeam;
   @override
@@ -217,17 +218,18 @@ class _$_Match implements _Match {
   }
 }
 
-abstract class _Match implements Match {
+abstract class _Match extends Match {
   const factory _Match(
-      {required final String id,
+      {required final int id,
       required final Team homeTeam,
       required final Team awayTeam,
       final MatchResult? result}) = _$_Match;
+  const _Match._() : super._();
 
   factory _Match.fromJson(Map<String, dynamic> json) = _$_Match.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   Team get homeTeam;
   @override

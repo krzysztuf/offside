@@ -6,6 +6,22 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$matchesRepositoryHash() => r'3dfa40deccabf508b40eeac5f8765ef98f85a900';
+
+/// See also [matchesRepository].
+@ProviderFor(matchesRepository)
+final matchesRepositoryProvider =
+    AutoDisposeProvider<Repository<Match>>.internal(
+  matchesRepository,
+  name: r'matchesRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$matchesRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef MatchesRepositoryRef = AutoDisposeProviderRef<Repository<Match>>;
 String _$teamsRepositoryHash() => r'e0bebeeff889fe2242eaf25e3343f3403dfbc02f';
 
 /// See also [teamsRepository].
