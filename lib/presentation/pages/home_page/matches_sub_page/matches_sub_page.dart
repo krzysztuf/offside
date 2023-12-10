@@ -16,12 +16,12 @@ class MatchesSubPage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Gap(32),
+            const Gap(64),
             Text(
               DateFormat('d MMMM yyyy', 'pl').format(DateTime(2023, 6, 6)),
               style: context.textTheme.titleLarge,
             ),
-            const Gap(8),
+            const Gap(32),
             MatchBetCard(),
           ],
         ),

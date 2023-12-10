@@ -15,12 +15,14 @@ class TeamBadge extends StatelessWidget {
       children: [
         Square(
           size: 40,
-          child: Container(
-            padding: const EdgeInsets.all(1),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: context.colorScheme.onTertiaryContainer,
+          child: Material(
+            elevation: 2,
+            shape: CircleBorder(
+              side: BorderSide(
+                color: context.colorScheme.outline.withOpacity(0.2),
+              ),
             ),
+            color: Colors.transparent,
             child: CircleAvatar(
               backgroundColor: context.colorScheme.tertiaryContainer,
               child: Text(

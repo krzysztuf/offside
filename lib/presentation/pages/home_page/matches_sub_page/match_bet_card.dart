@@ -8,7 +8,9 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 
 class MatchBetCard extends ConsumerWidget {
-  MatchBetCard({super.key});
+  final Match? match;
+
+  MatchBetCard({super.key, this.match});
 
   final homeTeam = Team(
     id: 0,

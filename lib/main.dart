@@ -38,6 +38,10 @@ class OffsideApp extends ConsumerWidget {
         textTheme: GoogleFonts.robotoFlexTextTheme(),
       ),
       darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.dark,
+        ),
         textTheme: GoogleFonts.openSansTextTheme(
           ThemeData.dark().textTheme,
         ),
