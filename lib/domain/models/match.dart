@@ -16,7 +16,7 @@ class Match with _$Match implements Identifiable {
     MatchResult? result,
   }) = _Match;
 
-  Match._();
+  const Match._();
 
   factory Match.fromJson(Map<String, dynamic> json) => _$MatchFromJson(json);
 

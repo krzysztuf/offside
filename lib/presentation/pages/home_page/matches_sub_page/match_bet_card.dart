@@ -3,28 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/models/team.dart';
+import 'package:offside/domain/models/match.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 
 class MatchBetCard extends ConsumerWidget {
-  final Match? match;
+  final Match match;
 
-  MatchBetCard({super.key, this.match});
-
-  final homeTeam = Team(
-    id: 0,
-    name: 'Polska',
-    abbreviation: 'POL',
-    kickOffDate: DateTime.now(),
-  );
-
-  final awayTeam = Team(
-    id: 0,
-    name: 'Niemcy',
-    abbreviation: 'GER',
-    kickOffDate: DateTime.now(),
-  );
+  MatchBetCard(this.match, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,9 +39,9 @@ class MatchBetCard extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TeamBadge(team: homeTeam),
+                  TeamBadge(team: match.homeTeam),
                   Text('-', style: context.textTheme.titleMedium),
-                  TeamBadge(team: awayTeam),
+                  TeamBadge(team: match.awayTeam),
                 ],
               ),
               const Gap(16),

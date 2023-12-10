@@ -7,7 +7,7 @@ part 'user.g.dart';
 
 @freezed
 class User with _$User implements Identifiable {
-  factory User({
+  const factory User({
     required int id,
     required String name,
     required String surname,
@@ -15,7 +15,7 @@ class User with _$User implements Identifiable {
     String? image,
   }) = _User;
 
-  User._();
+  const User._();
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
