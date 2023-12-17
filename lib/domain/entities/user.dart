@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:offside/domain/models/identifiable.dart';
+import 'package:offside/domain/entities/identifiable.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';

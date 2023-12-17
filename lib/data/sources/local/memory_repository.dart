@@ -1,4 +1,4 @@
-import 'package:offside/domain/models/identifiable.dart';
+import 'package:offside/domain/entities/identifiable.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
 class MemoryRepository<T extends Identifiable> extends Repository<T> {

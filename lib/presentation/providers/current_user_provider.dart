@@ -1,4 +1,4 @@
-import 'package:offside/domain/models/user.dart';
+import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/users/user_use_cases.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supercharged/supercharged.dart';

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:offside/domain/models/identifiable.dart';
+import 'package:offside/domain/entities/identifiable.dart';
 
 part 'team.freezed.dart';
 part 'team.g.dart';

@@ -1,4 +1,4 @@
-import 'package:offside/domain/models/user.dart';
+import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
 class UsersInMemory extends Repository<User> {

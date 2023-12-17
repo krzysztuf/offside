@@ -1,4 +1,4 @@
-import 'package:offside/domain/models/match.dart';
+import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/usecases/matches/matches_use_cases.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

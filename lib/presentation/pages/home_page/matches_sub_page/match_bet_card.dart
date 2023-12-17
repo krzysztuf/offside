@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/models/match.dart';
+import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 

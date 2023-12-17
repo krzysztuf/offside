@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:offside/domain/models/identifiable.dart';
+import 'package:offside/domain/entities/identifiable.dart';
 
 import 'match_result.dart';
 import 'team.dart';

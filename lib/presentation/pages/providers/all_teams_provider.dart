@@ -1,4 +1,4 @@
-import 'package:offside/domain/models/team.dart';
+import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/usecases/teams/team_use_cases.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -1,7 +1,7 @@
 library matches_use_cases;
 
 import 'package:offside/data/repositories/providers.dart';
-import 'package:offside/domain/models/match.dart';
+import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

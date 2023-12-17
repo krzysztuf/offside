@@ -1,7 +1,7 @@
 library teams_use_cases;
 
 import 'package:offside/data/repositories/providers.dart';
-import 'package:offside/domain/models/team.dart';
+import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

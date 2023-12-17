@@ -1,0 +1,4 @@
+enum AppSetting {
+  currentUserId,
+  themeMode,
+}

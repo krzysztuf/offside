@@ -1,8 +1,11 @@
+import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/sources/local/memory_repository.dart';
-import 'package:offside/domain/models/match.dart';
-import 'package:offside/domain/models/team.dart';
-import 'package:offside/domain/models/user.dart';
+import 'package:offside/data/sources/local/shared_preferences_holder.dart';
+import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/team.dart';
+import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/repository.dart';
+import 'package:offside/domain/repositories/settings_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
@@ -31,7 +34,7 @@ Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
 @riverpod
 Repository<User> usersRepository(UsersRepositoryRef ref) {
   return MemoryRepository<User>(
-    items: [
+    items: const [
       User(
         id: 1,
         name: 'Krzysztof',
@@ -50,4 +53,9 @@ Repository<User> usersRepository(UsersRepositoryRef ref) {
       ),
     ],
   );
+}
+
+@riverpod
+SettingsRepository settingsRepository(SettingsRepositoryRef ref) {
+  return SharedPreferencesRepository(SharedPreferencesHolder.preferences);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/models/team.dart';
+import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/widgets/square.dart';
 
 class TeamBadge extends StatelessWidget {

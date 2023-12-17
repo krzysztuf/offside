@@ -2,7 +2,7 @@
 //
 // import 'package:flutter/services.dart';
 // import 'package:offside/core/extensions/iterable_extensions.dart';
-// import 'package:offside/domain/models/team.dart';
+// import 'package:offside/domain/entities/team.dart';
 // import 'package:offside/domain/repositories/teams_repository.dart';
 //
 // class TeamsInMemory {
