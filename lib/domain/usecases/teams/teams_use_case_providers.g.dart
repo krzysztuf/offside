@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'team_use_cases.dart';
+part of 'teams_use_case_providers.dart';
 
 // **************************************************************************
 // RiverpodGenerator

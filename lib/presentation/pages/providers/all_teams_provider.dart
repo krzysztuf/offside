@@ -1,5 +1,5 @@
 import 'package:offside/domain/entities/team.dart';
-import 'package:offside/domain/usecases/teams/team_use_cases.dart';
+import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'all_teams_provider.g.dart';
