@@ -5,7 +5,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/data/repositories/teams_in_memory_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
-import 'package:offside/domain/usecases/repository_use_case.dart';
 import 'package:offside/offside_router.dart';
 
 Future<void> main() async {
@@ -29,9 +28,6 @@ class OffsideApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final data = ref.read(settingsRepositoryProvider);
-    final repoHolder = RepositoryHolder([ref.read(usersRepositoryProvider)]);
-
     final router = ref.watch(offsideRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

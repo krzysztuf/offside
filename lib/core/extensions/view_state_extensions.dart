@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:inspection_sidecar/core/extensions/scheduled_snack_bar.dart';
-import 'package:inspection_sidecar/presentation/view_state.dart';
+import 'package:offside/core/extensions/scheduled_snack_bar.dart';
+import 'package:offside/presentation/view_state.dart';
 import 'package:supercharged/supercharged.dart';
 
 extension SnackBarOnError on ViewState {
@@ -26,19 +26,5 @@ extension SnackBarOnError on ViewState {
       );
       error = null;
     }
-  }
-
-  // void tryCatch() {}
-
-  Future<StateType> tryCatchAsync<StateType>(Future<StateType> Function() action) async {
-    final fallbackState = this;
-
-    try {
-      return await action();
-    } catch (e) {
-      fallbackState.error = e.toString();
-    }
-
-    return fallbackState;
   }
 }

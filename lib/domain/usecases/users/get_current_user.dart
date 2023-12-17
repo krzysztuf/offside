@@ -1,8 +1,8 @@
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/repository.dart';
-import 'package:offside/domain/usecases/use_case.dart';
+import 'package:offside/domain/usecases/async_use_case.dart';
 
-class GetCurrentUser implements UseCase<Future<User?>> {
+class GetCurrentUser implements AsyncUseCase<User?> {
   final Repository<User> users;
 
   GetCurrentUser(this.users);
