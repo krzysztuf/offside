@@ -6,7 +6,7 @@ import 'reactive_setting.dart';
 part 'reactive_settings_providers.g.dart';
 
 @riverpod
-class CurrentUserIdSetting extends _$ThemeModeSetting with ReactiveSetting<int> {
+class CurrentUserIdSetting extends _$CurrentUserIdSetting with ReactiveSetting<int> {
   @override
   int build() => value;
 

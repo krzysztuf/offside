@@ -7,7 +7,7 @@ part of 'reactive_settings_providers.dart';
 // **************************************************************************
 
 String _$currentUserIdSettingHash() =>
-    r'bf37f6213398afa53975a2f1b5bcb478cedb964a';
+    r'618e9cea8bb8b7035bb69fb2729da9947492c832';
 
 /// See also [CurrentUserIdSetting].
 @ProviderFor(CurrentUserIdSetting)

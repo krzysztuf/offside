@@ -1,5 +1,5 @@
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/domain/usecases/matches/matches_use_cases.dart';
+import 'package:offside/domain/usecases/matches/matches_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'upcoming_matches_provider.g.dart';
