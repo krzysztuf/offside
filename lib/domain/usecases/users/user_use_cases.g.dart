@@ -7,7 +7,7 @@ part of 'user_use_cases.dart';
 // **************************************************************************
 
 String _$currentUserUseCaseHash() =>
-    r'1aead4be8b9288bd8ff20486ada9065ec9a771d7';
+    r'f5038ea74833b9dcf10fc0ccf084ddee35c7af10';
 
 /// See also [currentUserUseCase].
 @ProviderFor(currentUserUseCase)
