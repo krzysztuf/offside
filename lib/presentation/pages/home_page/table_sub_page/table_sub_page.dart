@@ -5,6 +5,7 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page_controller.dart';
 
+import 'main_table.dart';
 import 'table_sub_page_states.dart';
 
 class TableSubPage extends ConsumerWidget {
@@ -33,10 +34,11 @@ class TableSubPage extends ConsumerWidget {
               margin: const EdgeInsets.all(0),
               child: switch (ref.watch(tableSubPageControllerProvider)) {
                 LoadingMainTableState() => const LoadingTableSkeleton(),
+                MainTableReadyState(:final users) => MainTable(users: users),
                 _ => Container(height: 400),
               },
             ),
-            const Gap(16),
+            const Gap(32),
           ],
         ),
       ),

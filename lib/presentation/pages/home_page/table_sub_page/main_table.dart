@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:offside/domain/entities/user.dart';
 
-class LoadingTableSkeleton extends StatelessWidget {
-  const LoadingTableSkeleton({super.key});
+class MainTable extends StatelessWidget {
+  final List<User> users;
+
+  const MainTable({super.key, required this.users});
 
   @override
   Widget build(BuildContext context) {
-    return Skeletonizer(
-      enabled: true,
-      child: Column(
-        children: Iterable.generate(7, (index) {
-          return Padding(
+    return Column(
+      children: [
+        for (final user in users)
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
-              title: Text('Item number $index as title'),
-              subtitle: const Text('Subtitle here'),
-              leading: const Icon(Icons.add, size: 40),
+              title: user.fullName.text,
+              subtitle: user.nickname?.text ?? 'tutaj będzie forma'.styledText(context.textTheme.bodySmall!),
+              leading: user.avatar(radius: 20),
               trailing: Column(
                 children: [
                   '24'.styledText(context.textTheme.titleLarge!),
@@ -26,10 +27,10 @@ class LoadingTableSkeleton extends StatelessWidget {
                   'punkty'.styledText(context.textTheme.bodySmall!),
                 ],
               ),
+              onTap: () {},
             ),
-          );
-        }).toList(),
-      ),
+          ),
+      ],
     );
   }
 }

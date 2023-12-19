@@ -24,7 +24,7 @@ class User with _$User implements Identifiable {
 }
 
 extension UserAvatar on User {
-  Widget avatar({Color? borderColor}) {
+  Widget avatar({Color? borderColor, double? radius = 12}) {
     return Container(
       padding: EdgeInsets.all(borderColor != null ? 1 : 0),
       decoration: BoxDecoration(
@@ -32,10 +32,14 @@ extension UserAvatar on User {
         color: borderColor,
       ),
       child: CircleAvatar(
-        radius: 12,
+        radius: radius,
         backgroundImage: image != null ? AssetImage(image!) : null,
         child: image == null ? const Text('KP') : null,
       ),
     );
   }
+}
+
+extension UserFullName on User {
+  String get fullName => '$name $surname';
 }

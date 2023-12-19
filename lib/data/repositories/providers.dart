@@ -51,6 +51,11 @@ Repository<User> usersRepository(UsersRepositoryRef ref) {
         name: 'Dominik',
         surname: 'Tomaszewski',
       ),
+      User(
+        id: 4,
+        name: 'Patryk',
+        surname: 'Osmaczko',
+      ),
     ],
   );
 }
