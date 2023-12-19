@@ -1,7 +1,9 @@
 class ViewState {
   String? error;
 
-  ViewState({this.error});
+  bool loading;
+
+  ViewState({this.error, this.loading = false});
 
   bool get hasError => error != null;
 }

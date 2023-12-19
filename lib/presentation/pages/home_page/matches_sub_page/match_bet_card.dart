@@ -10,7 +10,7 @@ import 'package:offside/presentation/widgets/muted_information_label.dart';
 class MatchBetCard extends ConsumerWidget {
   final Match match;
 
-  MatchBetCard(this.match, {super.key});
+  const MatchBetCard(this.match, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

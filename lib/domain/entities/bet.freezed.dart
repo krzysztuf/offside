@@ -105,9 +105,9 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_BetCopyWith<$Res> implements $BetCopyWith<$Res> {
-  factory _$$_BetCopyWith(_$_Bet value, $Res Function(_$_Bet) then) =
-      __$$_BetCopyWithImpl<$Res>;
+abstract class _$$BetImplCopyWith<$Res> implements $BetCopyWith<$Res> {
+  factory _$$BetImplCopyWith(_$BetImpl value, $Res Function(_$BetImpl) then) =
+      __$$BetImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, User user, Match match, Team chosenTeam});
@@ -121,9 +121,9 @@ abstract class _$$_BetCopyWith<$Res> implements $BetCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_BetCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$_Bet>
-    implements _$$_BetCopyWith<$Res> {
-  __$$_BetCopyWithImpl(_$_Bet _value, $Res Function(_$_Bet) _then)
+class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
+    implements _$$BetImplCopyWith<$Res> {
+  __$$BetImplCopyWithImpl(_$BetImpl _value, $Res Function(_$BetImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -134,7 +134,7 @@ class __$$_BetCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$_Bet>
     Object? match = null,
     Object? chosenTeam = null,
   }) {
-    return _then(_$_Bet(
+    return _then(_$BetImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -157,14 +157,15 @@ class __$$_BetCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$_Bet>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Bet implements _Bet {
-  const _$_Bet(
+class _$BetImpl implements _Bet {
+  const _$BetImpl(
       {required this.id,
       required this.user,
       required this.match,
       required this.chosenTeam});
 
-  factory _$_Bet.fromJson(Map<String, dynamic> json) => _$$_BetFromJson(json);
+  factory _$BetImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BetImplFromJson(json);
 
   @override
   final int id;
@@ -181,10 +182,10 @@ class _$_Bet implements _Bet {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Bet &&
+            other is _$BetImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.match, match) || other.match == match) &&
@@ -199,12 +200,12 @@ class _$_Bet implements _Bet {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BetCopyWith<_$_Bet> get copyWith =>
-      __$$_BetCopyWithImpl<_$_Bet>(this, _$identity);
+  _$$BetImplCopyWith<_$BetImpl> get copyWith =>
+      __$$BetImplCopyWithImpl<_$BetImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BetToJson(
+    return _$$BetImplToJson(
       this,
     );
   }
@@ -215,9 +216,9 @@ abstract class _Bet implements Bet {
       {required final int id,
       required final User user,
       required final Match match,
-      required final Team chosenTeam}) = _$_Bet;
+      required final Team chosenTeam}) = _$BetImpl;
 
-  factory _Bet.fromJson(Map<String, dynamic> json) = _$_Bet.fromJson;
+  factory _Bet.fromJson(Map<String, dynamic> json) = _$BetImpl.fromJson;
 
   @override
   int get id;
@@ -229,5 +230,6 @@ abstract class _Bet implements Bet {
   Team get chosenTeam;
   @override
   @JsonKey(ignore: true)
-  _$$_BetCopyWith<_$_Bet> get copyWith => throw _privateConstructorUsedError;
+  _$$BetImplCopyWith<_$BetImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

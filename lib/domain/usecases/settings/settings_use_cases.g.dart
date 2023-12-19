@@ -30,9 +30,6 @@ class _SystemHash {
   }
 }
 
-typedef GetBoolSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsGetUseCase<bool>>;
-
 /// See also [getBoolSettingUseCase].
 @ProviderFor(getBoolSettingUseCase)
 const getBoolSettingUseCaseProvider = GetBoolSettingUseCaseFamily();
@@ -80,10 +77,10 @@ class GetBoolSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsGetUseCase<bool>> {
   /// See also [getBoolSettingUseCase].
   GetBoolSettingUseCaseProvider(
-    this.setting,
-  ) : super.internal(
+    AppSetting setting,
+  ) : this._internal(
           (ref) => getBoolSettingUseCase(
-            ref,
+            ref as GetBoolSettingUseCaseRef,
             setting,
           ),
           from: getBoolSettingUseCaseProvider,
@@ -95,9 +92,43 @@ class GetBoolSettingUseCaseProvider
           dependencies: GetBoolSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               GetBoolSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
         );
 
+  GetBoolSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+  }) : super.internal();
+
   final AppSetting setting;
+
+  @override
+  Override overrideWith(
+    SettingsGetUseCase<bool> Function(GetBoolSettingUseCaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetBoolSettingUseCaseProvider._internal(
+        (ref) => create(ref as GetBoolSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsGetUseCase<bool>> createElement() {
+    return _GetBoolSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -113,10 +144,23 @@ class GetBoolSettingUseCaseProvider
   }
 }
 
+mixin GetBoolSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsGetUseCase<bool>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+}
+
+class _GetBoolSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsGetUseCase<bool>>
+    with GetBoolSettingUseCaseRef {
+  _GetBoolSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as GetBoolSettingUseCaseProvider).setting;
+}
+
 String _$setBoolSettingUseCaseHash() =>
     r'b31fe7b0ae847f5b157bfa4cac5d70b5be3daae8';
-typedef SetBoolSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsSetUseCase<bool>>;
 
 /// See also [setBoolSettingUseCase].
 @ProviderFor(setBoolSettingUseCase)
@@ -168,11 +212,11 @@ class SetBoolSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsSetUseCase<bool>> {
   /// See also [setBoolSettingUseCase].
   SetBoolSettingUseCaseProvider(
-    this.setting,
-    this.value,
-  ) : super.internal(
+    AppSetting setting,
+    bool value,
+  ) : this._internal(
           (ref) => setBoolSettingUseCase(
-            ref,
+            ref as SetBoolSettingUseCaseRef,
             setting,
             value,
           ),
@@ -185,10 +229,47 @@ class SetBoolSettingUseCaseProvider
           dependencies: SetBoolSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               SetBoolSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
+          value: value,
         );
+
+  SetBoolSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+    required this.value,
+  }) : super.internal();
 
   final AppSetting setting;
   final bool value;
+
+  @override
+  Override overrideWith(
+    SettingsSetUseCase<bool> Function(SetBoolSettingUseCaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SetBoolSettingUseCaseProvider._internal(
+        (ref) => create(ref as SetBoolSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+        value: value,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsSetUseCase<bool>> createElement() {
+    return _SetBoolSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -207,10 +288,28 @@ class SetBoolSettingUseCaseProvider
   }
 }
 
+mixin SetBoolSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsSetUseCase<bool>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+
+  /// The parameter `value` of this provider.
+  bool get value;
+}
+
+class _SetBoolSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsSetUseCase<bool>>
+    with SetBoolSettingUseCaseRef {
+  _SetBoolSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as SetBoolSettingUseCaseProvider).setting;
+  @override
+  bool get value => (origin as SetBoolSettingUseCaseProvider).value;
+}
+
 String _$getIntSettingUseCaseHash() =>
     r'4ce13a6f8cdee03e87adf9b03fedac6ca5a7e0c2';
-typedef GetIntSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsGetUseCase<int>>;
 
 /// See also [getIntSettingUseCase].
 @ProviderFor(getIntSettingUseCase)
@@ -259,10 +358,10 @@ class GetIntSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsGetUseCase<int>> {
   /// See also [getIntSettingUseCase].
   GetIntSettingUseCaseProvider(
-    this.setting,
-  ) : super.internal(
+    AppSetting setting,
+  ) : this._internal(
           (ref) => getIntSettingUseCase(
-            ref,
+            ref as GetIntSettingUseCaseRef,
             setting,
           ),
           from: getIntSettingUseCaseProvider,
@@ -274,9 +373,43 @@ class GetIntSettingUseCaseProvider
           dependencies: GetIntSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               GetIntSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
         );
 
+  GetIntSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+  }) : super.internal();
+
   final AppSetting setting;
+
+  @override
+  Override overrideWith(
+    SettingsGetUseCase<int> Function(GetIntSettingUseCaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetIntSettingUseCaseProvider._internal(
+        (ref) => create(ref as GetIntSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsGetUseCase<int>> createElement() {
+    return _GetIntSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -292,10 +425,23 @@ class GetIntSettingUseCaseProvider
   }
 }
 
+mixin GetIntSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsGetUseCase<int>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+}
+
+class _GetIntSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsGetUseCase<int>>
+    with GetIntSettingUseCaseRef {
+  _GetIntSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as GetIntSettingUseCaseProvider).setting;
+}
+
 String _$setIntSettingUseCaseHash() =>
     r'2692682e655c55da9a1d54051aca6c539cef56bc';
-typedef SetIntSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsSetUseCase<int>>;
 
 /// See also [setIntSettingUseCase].
 @ProviderFor(setIntSettingUseCase)
@@ -347,11 +493,11 @@ class SetIntSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsSetUseCase<int>> {
   /// See also [setIntSettingUseCase].
   SetIntSettingUseCaseProvider(
-    this.setting,
-    this.value,
-  ) : super.internal(
+    AppSetting setting,
+    int value,
+  ) : this._internal(
           (ref) => setIntSettingUseCase(
-            ref,
+            ref as SetIntSettingUseCaseRef,
             setting,
             value,
           ),
@@ -364,10 +510,47 @@ class SetIntSettingUseCaseProvider
           dependencies: SetIntSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               SetIntSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
+          value: value,
         );
+
+  SetIntSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+    required this.value,
+  }) : super.internal();
 
   final AppSetting setting;
   final int value;
+
+  @override
+  Override overrideWith(
+    SettingsSetUseCase<int> Function(SetIntSettingUseCaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SetIntSettingUseCaseProvider._internal(
+        (ref) => create(ref as SetIntSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+        value: value,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsSetUseCase<int>> createElement() {
+    return _SetIntSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -386,10 +569,28 @@ class SetIntSettingUseCaseProvider
   }
 }
 
+mixin SetIntSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsSetUseCase<int>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+
+  /// The parameter `value` of this provider.
+  int get value;
+}
+
+class _SetIntSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsSetUseCase<int>>
+    with SetIntSettingUseCaseRef {
+  _SetIntSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as SetIntSettingUseCaseProvider).setting;
+  @override
+  int get value => (origin as SetIntSettingUseCaseProvider).value;
+}
+
 String _$getDoubleSettingUseCaseHash() =>
     r'f4c4412472b83f8b419f951488ae2d99fcea9ef4';
-typedef GetDoubleSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsGetUseCase<double>>;
 
 /// See also [getDoubleSettingUseCase].
 @ProviderFor(getDoubleSettingUseCase)
@@ -438,10 +639,10 @@ class GetDoubleSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsGetUseCase<double>> {
   /// See also [getDoubleSettingUseCase].
   GetDoubleSettingUseCaseProvider(
-    this.setting,
-  ) : super.internal(
+    AppSetting setting,
+  ) : this._internal(
           (ref) => getDoubleSettingUseCase(
-            ref,
+            ref as GetDoubleSettingUseCaseRef,
             setting,
           ),
           from: getDoubleSettingUseCaseProvider,
@@ -453,9 +654,44 @@ class GetDoubleSettingUseCaseProvider
           dependencies: GetDoubleSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               GetDoubleSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
         );
 
+  GetDoubleSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+  }) : super.internal();
+
   final AppSetting setting;
+
+  @override
+  Override overrideWith(
+    SettingsGetUseCase<double> Function(GetDoubleSettingUseCaseRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetDoubleSettingUseCaseProvider._internal(
+        (ref) => create(ref as GetDoubleSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsGetUseCase<double>> createElement() {
+    return _GetDoubleSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -471,10 +707,23 @@ class GetDoubleSettingUseCaseProvider
   }
 }
 
+mixin GetDoubleSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsGetUseCase<double>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+}
+
+class _GetDoubleSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsGetUseCase<double>>
+    with GetDoubleSettingUseCaseRef {
+  _GetDoubleSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as GetDoubleSettingUseCaseProvider).setting;
+}
+
 String _$setDoubleSettingUseCaseHash() =>
     r'68d5d82c9cb5fdc0b6677d3f7d3047c9b6dc6015';
-typedef SetDoubleSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsSetUseCase<double>>;
 
 /// See also [setDoubleSettingUseCase].
 @ProviderFor(setDoubleSettingUseCase)
@@ -526,11 +775,11 @@ class SetDoubleSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsSetUseCase<double>> {
   /// See also [setDoubleSettingUseCase].
   SetDoubleSettingUseCaseProvider(
-    this.setting,
-    this.value,
-  ) : super.internal(
+    AppSetting setting,
+    double value,
+  ) : this._internal(
           (ref) => setDoubleSettingUseCase(
-            ref,
+            ref as SetDoubleSettingUseCaseRef,
             setting,
             value,
           ),
@@ -543,10 +792,48 @@ class SetDoubleSettingUseCaseProvider
           dependencies: SetDoubleSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               SetDoubleSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
+          value: value,
         );
+
+  SetDoubleSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+    required this.value,
+  }) : super.internal();
 
   final AppSetting setting;
   final double value;
+
+  @override
+  Override overrideWith(
+    SettingsSetUseCase<double> Function(SetDoubleSettingUseCaseRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SetDoubleSettingUseCaseProvider._internal(
+        (ref) => create(ref as SetDoubleSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+        value: value,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsSetUseCase<double>> createElement() {
+    return _SetDoubleSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -565,10 +852,28 @@ class SetDoubleSettingUseCaseProvider
   }
 }
 
+mixin SetDoubleSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsSetUseCase<double>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+
+  /// The parameter `value` of this provider.
+  double get value;
+}
+
+class _SetDoubleSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsSetUseCase<double>>
+    with SetDoubleSettingUseCaseRef {
+  _SetDoubleSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as SetDoubleSettingUseCaseProvider).setting;
+  @override
+  double get value => (origin as SetDoubleSettingUseCaseProvider).value;
+}
+
 String _$getStringSettingUseCaseHash() =>
     r'd817812833a5ee59ac8cfe7f32f36dc7e043abec';
-typedef GetStringSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsGetUseCase<String>>;
 
 /// See also [getStringSettingUseCase].
 @ProviderFor(getStringSettingUseCase)
@@ -617,10 +922,10 @@ class GetStringSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsGetUseCase<String>> {
   /// See also [getStringSettingUseCase].
   GetStringSettingUseCaseProvider(
-    this.setting,
-  ) : super.internal(
+    AppSetting setting,
+  ) : this._internal(
           (ref) => getStringSettingUseCase(
-            ref,
+            ref as GetStringSettingUseCaseRef,
             setting,
           ),
           from: getStringSettingUseCaseProvider,
@@ -632,9 +937,44 @@ class GetStringSettingUseCaseProvider
           dependencies: GetStringSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               GetStringSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
         );
 
+  GetStringSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+  }) : super.internal();
+
   final AppSetting setting;
+
+  @override
+  Override overrideWith(
+    SettingsGetUseCase<String> Function(GetStringSettingUseCaseRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetStringSettingUseCaseProvider._internal(
+        (ref) => create(ref as GetStringSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsGetUseCase<String>> createElement() {
+    return _GetStringSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -650,10 +990,23 @@ class GetStringSettingUseCaseProvider
   }
 }
 
+mixin GetStringSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsGetUseCase<String>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+}
+
+class _GetStringSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsGetUseCase<String>>
+    with GetStringSettingUseCaseRef {
+  _GetStringSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as GetStringSettingUseCaseProvider).setting;
+}
+
 String _$setStringSettingUseCaseHash() =>
     r'dca274eb747302090d71e7931a4318e2632b31be';
-typedef SetStringSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsSetUseCase<String>>;
 
 /// See also [setStringSettingUseCase].
 @ProviderFor(setStringSettingUseCase)
@@ -705,11 +1058,11 @@ class SetStringSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsSetUseCase<String>> {
   /// See also [setStringSettingUseCase].
   SetStringSettingUseCaseProvider(
-    this.setting,
-    this.value,
-  ) : super.internal(
+    AppSetting setting,
+    String value,
+  ) : this._internal(
           (ref) => setStringSettingUseCase(
-            ref,
+            ref as SetStringSettingUseCaseRef,
             setting,
             value,
           ),
@@ -722,10 +1075,48 @@ class SetStringSettingUseCaseProvider
           dependencies: SetStringSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               SetStringSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
+          value: value,
         );
+
+  SetStringSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+    required this.value,
+  }) : super.internal();
 
   final AppSetting setting;
   final String value;
+
+  @override
+  Override overrideWith(
+    SettingsSetUseCase<String> Function(SetStringSettingUseCaseRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SetStringSettingUseCaseProvider._internal(
+        (ref) => create(ref as SetStringSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+        value: value,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsSetUseCase<String>> createElement() {
+    return _SetStringSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -744,10 +1135,28 @@ class SetStringSettingUseCaseProvider
   }
 }
 
+mixin SetStringSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsSetUseCase<String>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+
+  /// The parameter `value` of this provider.
+  String get value;
+}
+
+class _SetStringSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsSetUseCase<String>>
+    with SetStringSettingUseCaseRef {
+  _SetStringSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting => (origin as SetStringSettingUseCaseProvider).setting;
+  @override
+  String get value => (origin as SetStringSettingUseCaseProvider).value;
+}
+
 String _$getStringListSettingUseCaseHash() =>
     r'ddb3ea2c41287ae132ef69784eff39169a0d0a3a';
-typedef GetStringListSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsGetUseCase<List<String>>>;
 
 /// See also [getStringListSettingUseCase].
 @ProviderFor(getStringListSettingUseCase)
@@ -797,10 +1206,10 @@ class GetStringListSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsGetUseCase<List<String>>> {
   /// See also [getStringListSettingUseCase].
   GetStringListSettingUseCaseProvider(
-    this.setting,
-  ) : super.internal(
+    AppSetting setting,
+  ) : this._internal(
           (ref) => getStringListSettingUseCase(
-            ref,
+            ref as GetStringListSettingUseCaseRef,
             setting,
           ),
           from: getStringListSettingUseCaseProvider,
@@ -812,9 +1221,45 @@ class GetStringListSettingUseCaseProvider
           dependencies: GetStringListSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               GetStringListSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
         );
 
+  GetStringListSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+  }) : super.internal();
+
   final AppSetting setting;
+
+  @override
+  Override overrideWith(
+    SettingsGetUseCase<List<String>> Function(
+            GetStringListSettingUseCaseRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetStringListSettingUseCaseProvider._internal(
+        (ref) => create(ref as GetStringListSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsGetUseCase<List<String>>> createElement() {
+    return _GetStringListSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -831,10 +1276,24 @@ class GetStringListSettingUseCaseProvider
   }
 }
 
+mixin GetStringListSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsGetUseCase<List<String>>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+}
+
+class _GetStringListSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsGetUseCase<List<String>>>
+    with GetStringListSettingUseCaseRef {
+  _GetStringListSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting =>
+      (origin as GetStringListSettingUseCaseProvider).setting;
+}
+
 String _$setStringListSettingUseCaseHash() =>
     r'2828180877a23feecf8fc3c10b5078bb18fe4847';
-typedef SetStringListSettingUseCaseRef
-    = AutoDisposeProviderRef<SettingsSetUseCase<List<String>>>;
 
 /// See also [setStringListSettingUseCase].
 @ProviderFor(setStringListSettingUseCase)
@@ -887,11 +1346,11 @@ class SetStringListSettingUseCaseProvider
     extends AutoDisposeProvider<SettingsSetUseCase<List<String>>> {
   /// See also [setStringListSettingUseCase].
   SetStringListSettingUseCaseProvider(
-    this.setting,
-    this.value,
-  ) : super.internal(
+    AppSetting setting,
+    List<String> value,
+  ) : this._internal(
           (ref) => setStringListSettingUseCase(
-            ref,
+            ref as SetStringListSettingUseCaseRef,
             setting,
             value,
           ),
@@ -904,10 +1363,49 @@ class SetStringListSettingUseCaseProvider
           dependencies: SetStringListSettingUseCaseFamily._dependencies,
           allTransitiveDependencies:
               SetStringListSettingUseCaseFamily._allTransitiveDependencies,
+          setting: setting,
+          value: value,
         );
+
+  SetStringListSettingUseCaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.setting,
+    required this.value,
+  }) : super.internal();
 
   final AppSetting setting;
   final List<String> value;
+
+  @override
+  Override overrideWith(
+    SettingsSetUseCase<List<String>> Function(
+            SetStringListSettingUseCaseRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SetStringListSettingUseCaseProvider._internal(
+        (ref) => create(ref as SetStringListSettingUseCaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        setting: setting,
+        value: value,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<SettingsSetUseCase<List<String>>> createElement() {
+    return _SetStringListSettingUseCaseProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -925,5 +1423,27 @@ class SetStringListSettingUseCaseProvider
     return _SystemHash.finish(hash);
   }
 }
+
+mixin SetStringListSettingUseCaseRef
+    on AutoDisposeProviderRef<SettingsSetUseCase<List<String>>> {
+  /// The parameter `setting` of this provider.
+  AppSetting get setting;
+
+  /// The parameter `value` of this provider.
+  List<String> get value;
+}
+
+class _SetStringListSettingUseCaseProviderElement
+    extends AutoDisposeProviderElement<SettingsSetUseCase<List<String>>>
+    with SetStringListSettingUseCaseRef {
+  _SetStringListSettingUseCaseProviderElement(super.provider);
+
+  @override
+  AppSetting get setting =>
+      (origin as SetStringListSettingUseCaseProvider).setting;
+  @override
+  List<String> get value =>
+      (origin as SetStringListSettingUseCaseProvider).value;
+}
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -74,22 +74,22 @@ class _$CompetitionCopyWithImpl<$Res, $Val extends Competition>
 }
 
 /// @nodoc
-abstract class _$$_CompetitionCopyWith<$Res>
+abstract class _$$CompetitionImplCopyWith<$Res>
     implements $CompetitionCopyWith<$Res> {
-  factory _$$_CompetitionCopyWith(
-          _$_Competition value, $Res Function(_$_Competition) then) =
-      __$$_CompetitionCopyWithImpl<$Res>;
+  factory _$$CompetitionImplCopyWith(
+          _$CompetitionImpl value, $Res Function(_$CompetitionImpl) then) =
+      __$$CompetitionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name, List<Match>? matches});
 }
 
 /// @nodoc
-class __$$_CompetitionCopyWithImpl<$Res>
-    extends _$CompetitionCopyWithImpl<$Res, _$_Competition>
-    implements _$$_CompetitionCopyWith<$Res> {
-  __$$_CompetitionCopyWithImpl(
-      _$_Competition _value, $Res Function(_$_Competition) _then)
+class __$$CompetitionImplCopyWithImpl<$Res>
+    extends _$CompetitionCopyWithImpl<$Res, _$CompetitionImpl>
+    implements _$$CompetitionImplCopyWith<$Res> {
+  __$$CompetitionImplCopyWithImpl(
+      _$CompetitionImpl _value, $Res Function(_$CompetitionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_CompetitionCopyWithImpl<$Res>
     Object? name = null,
     Object? matches = freezed,
   }) {
-    return _then(_$_Competition(
+    return _then(_$CompetitionImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -118,13 +118,13 @@ class __$$_CompetitionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Competition implements _Competition {
-  const _$_Competition(
+class _$CompetitionImpl implements _Competition {
+  const _$CompetitionImpl(
       {required this.id, required this.name, final List<Match>? matches})
       : _matches = matches;
 
-  factory _$_Competition.fromJson(Map<String, dynamic> json) =>
-      _$$_CompetitionFromJson(json);
+  factory _$CompetitionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CompetitionImplFromJson(json);
 
   @override
   final String id;
@@ -146,10 +146,10 @@ class _$_Competition implements _Competition {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Competition &&
+            other is _$CompetitionImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._matches, _matches));
@@ -163,12 +163,12 @@ class _$_Competition implements _Competition {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CompetitionCopyWith<_$_Competition> get copyWith =>
-      __$$_CompetitionCopyWithImpl<_$_Competition>(this, _$identity);
+  _$$CompetitionImplCopyWith<_$CompetitionImpl> get copyWith =>
+      __$$CompetitionImplCopyWithImpl<_$CompetitionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CompetitionToJson(
+    return _$$CompetitionImplToJson(
       this,
     );
   }
@@ -178,10 +178,10 @@ abstract class _Competition implements Competition {
   const factory _Competition(
       {required final String id,
       required final String name,
-      final List<Match>? matches}) = _$_Competition;
+      final List<Match>? matches}) = _$CompetitionImpl;
 
   factory _Competition.fromJson(Map<String, dynamic> json) =
-      _$_Competition.fromJson;
+      _$CompetitionImpl.fromJson;
 
   @override
   String get id;
@@ -191,6 +191,6 @@ abstract class _Competition implements Competition {
   List<Match>? get matches;
   @override
   @JsonKey(ignore: true)
-  _$$_CompetitionCopyWith<_$_Competition> get copyWith =>
+  _$$CompetitionImplCopyWith<_$CompetitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

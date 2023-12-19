@@ -110,9 +110,10 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
 }
 
 /// @nodoc
-abstract class _$$_MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
-  factory _$$_MatchCopyWith(_$_Match value, $Res Function(_$_Match) then) =
-      __$$_MatchCopyWithImpl<$Res>;
+abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
+  factory _$$MatchImplCopyWith(
+          _$MatchImpl value, $Res Function(_$MatchImpl) then) =
+      __$$MatchImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, Team homeTeam, Team awayTeam, MatchResult? result});
@@ -126,9 +127,11 @@ abstract class _$$_MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
-    implements _$$_MatchCopyWith<$Res> {
-  __$$_MatchCopyWithImpl(_$_Match _value, $Res Function(_$_Match) _then)
+class __$$MatchImplCopyWithImpl<$Res>
+    extends _$MatchCopyWithImpl<$Res, _$MatchImpl>
+    implements _$$MatchImplCopyWith<$Res> {
+  __$$MatchImplCopyWithImpl(
+      _$MatchImpl _value, $Res Function(_$MatchImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -139,7 +142,7 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
     Object? awayTeam = null,
     Object? result = freezed,
   }) {
-    return _then(_$_Match(
+    return _then(_$MatchImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -162,16 +165,16 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Match extends _Match {
-  const _$_Match(
+class _$MatchImpl extends _Match {
+  const _$MatchImpl(
       {required this.id,
       required this.homeTeam,
       required this.awayTeam,
       this.result})
       : super._();
 
-  factory _$_Match.fromJson(Map<String, dynamic> json) =>
-      _$$_MatchFromJson(json);
+  factory _$MatchImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MatchImplFromJson(json);
 
   @override
   final int id;
@@ -188,10 +191,10 @@ class _$_Match extends _Match {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Match &&
+            other is _$MatchImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.homeTeam, homeTeam) ||
                 other.homeTeam == homeTeam) &&
@@ -207,12 +210,12 @@ class _$_Match extends _Match {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchCopyWith<_$_Match> get copyWith =>
-      __$$_MatchCopyWithImpl<_$_Match>(this, _$identity);
+  _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
+      __$$MatchImplCopyWithImpl<_$MatchImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MatchToJson(
+    return _$$MatchImplToJson(
       this,
     );
   }
@@ -223,10 +226,10 @@ abstract class _Match extends Match {
       {required final int id,
       required final Team homeTeam,
       required final Team awayTeam,
-      final MatchResult? result}) = _$_Match;
+      final MatchResult? result}) = _$MatchImpl;
   const _Match._() : super._();
 
-  factory _Match.fromJson(Map<String, dynamic> json) = _$_Match.fromJson;
+  factory _Match.fromJson(Map<String, dynamic> json) = _$MatchImpl.fromJson;
 
   @override
   int get id;
@@ -238,6 +241,6 @@ abstract class _Match extends Match {
   MatchResult? get result;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchCopyWith<_$_Match> get copyWith =>
+  _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

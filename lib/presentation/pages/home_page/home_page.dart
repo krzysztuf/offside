@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page.dart';
-import 'package:offside/presentation/pages/home_page/table_sub_page.dart';
+import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/square.dart';
 

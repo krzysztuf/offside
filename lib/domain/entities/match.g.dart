@@ -6,7 +6,7 @@ part of 'match.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Match _$$_MatchFromJson(Map<String, dynamic> json) => _$_Match(
+_$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
       id: json['id'] as int,
       homeTeam: Team.fromJson(json['homeTeam'] as Map<String, dynamic>),
       awayTeam: Team.fromJson(json['awayTeam'] as Map<String, dynamic>),
@@ -15,7 +15,8 @@ _$_Match _$$_MatchFromJson(Map<String, dynamic> json) => _$_Match(
           : MatchResult.fromJson(json['result'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_MatchToJson(_$_Match instance) => <String, dynamic>{
+Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'homeTeam': instance.homeTeam,
       'awayTeam': instance.awayTeam,

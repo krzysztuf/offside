@@ -6,8 +6,8 @@ part of 'competition.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Competition _$$_CompetitionFromJson(Map<String, dynamic> json) =>
-    _$_Competition(
+_$CompetitionImpl _$$CompetitionImplFromJson(Map<String, dynamic> json) =>
+    _$CompetitionImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       matches: (json['matches'] as List<dynamic>?)
@@ -15,7 +15,7 @@ _$_Competition _$$_CompetitionFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_CompetitionToJson(_$_Competition instance) =>
+Map<String, dynamic> _$$CompetitionImplToJson(_$CompetitionImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

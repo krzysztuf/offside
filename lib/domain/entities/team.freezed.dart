@@ -89,9 +89,10 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
 }
 
 /// @nodoc
-abstract class _$$_TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
-  factory _$$_TeamCopyWith(_$_Team value, $Res Function(_$_Team) then) =
-      __$$_TeamCopyWithImpl<$Res>;
+abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
+  factory _$$TeamImplCopyWith(
+          _$TeamImpl value, $Res Function(_$TeamImpl) then) =
+      __$$TeamImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -103,9 +104,10 @@ abstract class _$$_TeamCopyWith<$Res> implements $TeamCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
-    implements _$$_TeamCopyWith<$Res> {
-  __$$_TeamCopyWithImpl(_$_Team _value, $Res Function(_$_Team) _then)
+class __$$TeamImplCopyWithImpl<$Res>
+    extends _$TeamCopyWithImpl<$Res, _$TeamImpl>
+    implements _$$TeamImplCopyWith<$Res> {
+  __$$TeamImplCopyWithImpl(_$TeamImpl _value, $Res Function(_$TeamImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -117,7 +119,7 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
     Object? kickOffDate = null,
     Object? logo = freezed,
   }) {
-    return _then(_$_Team(
+    return _then(_$TeamImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -144,8 +146,8 @@ class __$$_TeamCopyWithImpl<$Res> extends _$TeamCopyWithImpl<$Res, _$_Team>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Team extends _Team {
-  _$_Team(
+class _$TeamImpl extends _Team {
+  _$TeamImpl(
       {required this.id,
       required this.name,
       required this.abbreviation,
@@ -153,7 +155,8 @@ class _$_Team extends _Team {
       this.logo})
       : super._();
 
-  factory _$_Team.fromJson(Map<String, dynamic> json) => _$$_TeamFromJson(json);
+  factory _$TeamImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TeamImplFromJson(json);
 
   @override
   final int id;
@@ -172,10 +175,10 @@ class _$_Team extends _Team {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Team &&
+            other is _$TeamImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.abbreviation, abbreviation) ||
@@ -193,12 +196,12 @@ class _$_Team extends _Team {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TeamCopyWith<_$_Team> get copyWith =>
-      __$$_TeamCopyWithImpl<_$_Team>(this, _$identity);
+  _$$TeamImplCopyWith<_$TeamImpl> get copyWith =>
+      __$$TeamImplCopyWithImpl<_$TeamImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TeamToJson(
+    return _$$TeamImplToJson(
       this,
     );
   }
@@ -210,10 +213,10 @@ abstract class _Team extends Team {
       required final String name,
       required final String abbreviation,
       required final DateTime kickOffDate,
-      final String? logo}) = _$_Team;
+      final String? logo}) = _$TeamImpl;
   _Team._() : super._();
 
-  factory _Team.fromJson(Map<String, dynamic> json) = _$_Team.fromJson;
+  factory _Team.fromJson(Map<String, dynamic> json) = _$TeamImpl.fromJson;
 
   @override
   int get id;
@@ -227,5 +230,6 @@ abstract class _Team extends Team {
   String? get logo;
   @override
   @JsonKey(ignore: true)
-  _$$_TeamCopyWith<_$_Team> get copyWith => throw _privateConstructorUsedError;
+  _$$TeamImplCopyWith<_$TeamImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

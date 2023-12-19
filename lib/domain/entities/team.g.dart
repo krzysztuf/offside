@@ -6,7 +6,7 @@ part of 'team.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Team _$$_TeamFromJson(Map<String, dynamic> json) => _$_Team(
+_$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
       id: json['id'] as int,
       name: json['name'] as String,
       abbreviation: json['abbreviation'] as String,
@@ -14,7 +14,8 @@ _$_Team _$$_TeamFromJson(Map<String, dynamic> json) => _$_Team(
       logo: json['logo'] as String?,
     );
 
-Map<String, dynamic> _$$_TeamToJson(_$_Team instance) => <String, dynamic>{
+Map<String, dynamic> _$$TeamImplToJson(_$TeamImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'abbreviation': instance.abbreviation,
