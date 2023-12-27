@@ -13,6 +13,7 @@ class Match with _$Match implements Identifiable {
     required int id,
     required Team homeTeam,
     required Team awayTeam,
+    required DateTime kickOffDate,
     MatchResult? result,
   }) = _Match;
 

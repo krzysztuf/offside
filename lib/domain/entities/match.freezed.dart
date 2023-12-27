@@ -23,6 +23,7 @@ mixin _$Match {
   int get id => throw _privateConstructorUsedError;
   Team get homeTeam => throw _privateConstructorUsedError;
   Team get awayTeam => throw _privateConstructorUsedError;
+  DateTime get kickOffDate => throw _privateConstructorUsedError;
   MatchResult? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,12 @@ abstract class $MatchCopyWith<$Res> {
   factory $MatchCopyWith(Match value, $Res Function(Match) then) =
       _$MatchCopyWithImpl<$Res, Match>;
   @useResult
-  $Res call({int id, Team homeTeam, Team awayTeam, MatchResult? result});
+  $Res call(
+      {int id,
+      Team homeTeam,
+      Team awayTeam,
+      DateTime kickOffDate,
+      MatchResult? result});
 
   $TeamCopyWith<$Res> get homeTeam;
   $TeamCopyWith<$Res> get awayTeam;
@@ -58,6 +64,7 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
     Object? id = null,
     Object? homeTeam = null,
     Object? awayTeam = null,
+    Object? kickOffDate = null,
     Object? result = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,6 +80,10 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
           ? _value.awayTeam
           : awayTeam // ignore: cast_nullable_to_non_nullable
               as Team,
+      kickOffDate: null == kickOffDate
+          ? _value.kickOffDate
+          : kickOffDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -116,7 +127,12 @@ abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
       __$$MatchImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, Team homeTeam, Team awayTeam, MatchResult? result});
+  $Res call(
+      {int id,
+      Team homeTeam,
+      Team awayTeam,
+      DateTime kickOffDate,
+      MatchResult? result});
 
   @override
   $TeamCopyWith<$Res> get homeTeam;
@@ -140,6 +156,7 @@ class __$$MatchImplCopyWithImpl<$Res>
     Object? id = null,
     Object? homeTeam = null,
     Object? awayTeam = null,
+    Object? kickOffDate = null,
     Object? result = freezed,
   }) {
     return _then(_$MatchImpl(
@@ -155,6 +172,10 @@ class __$$MatchImplCopyWithImpl<$Res>
           ? _value.awayTeam
           : awayTeam // ignore: cast_nullable_to_non_nullable
               as Team,
+      kickOffDate: null == kickOffDate
+          ? _value.kickOffDate
+          : kickOffDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -170,6 +191,7 @@ class _$MatchImpl extends _Match {
       {required this.id,
       required this.homeTeam,
       required this.awayTeam,
+      required this.kickOffDate,
       this.result})
       : super._();
 
@@ -183,11 +205,13 @@ class _$MatchImpl extends _Match {
   @override
   final Team awayTeam;
   @override
+  final DateTime kickOffDate;
+  @override
   final MatchResult? result;
 
   @override
   String toString() {
-    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, result: $result)';
+    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, kickOffDate: $kickOffDate, result: $result)';
   }
 
   @override
@@ -200,12 +224,15 @@ class _$MatchImpl extends _Match {
                 other.homeTeam == homeTeam) &&
             (identical(other.awayTeam, awayTeam) ||
                 other.awayTeam == awayTeam) &&
+            (identical(other.kickOffDate, kickOffDate) ||
+                other.kickOffDate == kickOffDate) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, homeTeam, awayTeam, result);
+  int get hashCode =>
+      Object.hash(runtimeType, id, homeTeam, awayTeam, kickOffDate, result);
 
   @JsonKey(ignore: true)
   @override
@@ -226,6 +253,7 @@ abstract class _Match extends Match {
       {required final int id,
       required final Team homeTeam,
       required final Team awayTeam,
+      required final DateTime kickOffDate,
       final MatchResult? result}) = _$MatchImpl;
   const _Match._() : super._();
 
@@ -237,6 +265,8 @@ abstract class _Match extends Match {
   Team get homeTeam;
   @override
   Team get awayTeam;
+  @override
+  DateTime get kickOffDate;
   @override
   MatchResult? get result;
   @override

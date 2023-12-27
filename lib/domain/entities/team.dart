@@ -10,7 +10,6 @@ class Team with _$Team implements Identifiable {
     required int id,
     required String name,
     required String abbreviation,
-    required DateTime kickOffDate,
     String? logo,
   }) = _Team;
 

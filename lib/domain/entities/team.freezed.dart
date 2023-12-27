@@ -23,7 +23,6 @@ mixin _$Team {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get abbreviation => throw _privateConstructorUsedError;
-  DateTime get kickOffDate => throw _privateConstructorUsedError;
   String? get logo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,12 +35,7 @@ abstract class $TeamCopyWith<$Res> {
   factory $TeamCopyWith(Team value, $Res Function(Team) then) =
       _$TeamCopyWithImpl<$Res, Team>;
   @useResult
-  $Res call(
-      {int id,
-      String name,
-      String abbreviation,
-      DateTime kickOffDate,
-      String? logo});
+  $Res call({int id, String name, String abbreviation, String? logo});
 }
 
 /// @nodoc
@@ -60,7 +54,6 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
     Object? id = null,
     Object? name = null,
     Object? abbreviation = null,
-    Object? kickOffDate = null,
     Object? logo = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,10 +69,6 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
           ? _value.abbreviation
           : abbreviation // ignore: cast_nullable_to_non_nullable
               as String,
-      kickOffDate: null == kickOffDate
-          ? _value.kickOffDate
-          : kickOffDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       logo: freezed == logo
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
@@ -95,12 +84,7 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
       __$$TeamImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      String name,
-      String abbreviation,
-      DateTime kickOffDate,
-      String? logo});
+  $Res call({int id, String name, String abbreviation, String? logo});
 }
 
 /// @nodoc
@@ -116,7 +100,6 @@ class __$$TeamImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? abbreviation = null,
-    Object? kickOffDate = null,
     Object? logo = freezed,
   }) {
     return _then(_$TeamImpl(
@@ -132,10 +115,6 @@ class __$$TeamImplCopyWithImpl<$Res>
           ? _value.abbreviation
           : abbreviation // ignore: cast_nullable_to_non_nullable
               as String,
-      kickOffDate: null == kickOffDate
-          ? _value.kickOffDate
-          : kickOffDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       logo: freezed == logo
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
@@ -151,7 +130,6 @@ class _$TeamImpl extends _Team {
       {required this.id,
       required this.name,
       required this.abbreviation,
-      required this.kickOffDate,
       this.logo})
       : super._();
 
@@ -165,13 +143,11 @@ class _$TeamImpl extends _Team {
   @override
   final String abbreviation;
   @override
-  final DateTime kickOffDate;
-  @override
   final String? logo;
 
   @override
   String toString() {
-    return 'Team(id: $id, name: $name, abbreviation: $abbreviation, kickOffDate: $kickOffDate, logo: $logo)';
+    return 'Team(id: $id, name: $name, abbreviation: $abbreviation, logo: $logo)';
   }
 
   @override
@@ -183,15 +159,12 @@ class _$TeamImpl extends _Team {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.abbreviation, abbreviation) ||
                 other.abbreviation == abbreviation) &&
-            (identical(other.kickOffDate, kickOffDate) ||
-                other.kickOffDate == kickOffDate) &&
             (identical(other.logo, logo) || other.logo == logo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, abbreviation, kickOffDate, logo);
+  int get hashCode => Object.hash(runtimeType, id, name, abbreviation, logo);
 
   @JsonKey(ignore: true)
   @override
@@ -212,7 +185,6 @@ abstract class _Team extends Team {
       {required final int id,
       required final String name,
       required final String abbreviation,
-      required final DateTime kickOffDate,
       final String? logo}) = _$TeamImpl;
   _Team._() : super._();
 
@@ -224,8 +196,6 @@ abstract class _Team extends Team {
   String get name;
   @override
   String get abbreviation;
-  @override
-  DateTime get kickOffDate;
   @override
   String? get logo;
   @override

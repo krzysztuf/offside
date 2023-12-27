@@ -15,13 +15,15 @@ Repository<Match> matchesRepository(MatchesRepositoryRef ref) {
   return MemoryRepository<Match>(items: [
     Match(
       id: 1,
-      homeTeam: Team(id: 0, name: 'Polska', abbreviation: 'POL', kickOffDate: DateTime.now()),
-      awayTeam: Team(id: 0, name: 'Niemcy', abbreviation: 'GER', kickOffDate: DateTime.now()),
+      homeTeam: Team(id: 0, name: 'Polska', abbreviation: 'POL'),
+      awayTeam: Team(id: 0, name: 'Niemcy', abbreviation: 'GER'),
+      kickOffDate: DateTime(2024, 6, 17, 17),
     ),
     Match(
       id: 1,
-      homeTeam: Team(id: 0, name: 'Włochy', abbreviation: 'ITA', kickOffDate: DateTime.now()),
-      awayTeam: Team(id: 0, name: 'Anglia', abbreviation: 'ENG', kickOffDate: DateTime.now()),
+      homeTeam: Team(id: 0, name: 'Włochy', abbreviation: 'ITA'),
+      awayTeam: Team(id: 0, name: 'Anglia', abbreviation: 'ENG'),
+      kickOffDate: DateTime(2024, 6, 17, 17),
     ),
   ]);
 }

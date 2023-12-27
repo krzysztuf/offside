@@ -30,21 +30,18 @@ class _HomePageState extends ConsumerState<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          const BottomNavigationBarItem(
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: currentIndex,
+        destinations: [
+          const NavigationDestination(
             icon: Icon(Icons.table_view),
             label: 'Tabela',
           ),
-          const BottomNavigationBarItem(
+          const NavigationDestination(
             icon: Icon(Icons.sports_soccer),
             label: 'Mecze',
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: switch (ref.watch(currentUserProvider)) {
               AsyncData(value: final user) => user!.avatar(borderColor: Theme.of(context).colorScheme.outline),
               _ => const Icon(Icons.person),
@@ -52,6 +49,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             label: 'Profil',
           ),
         ],
+        onDestinationSelected: (index) => setState(() => currentIndex = index),
       ),
     );
   }
