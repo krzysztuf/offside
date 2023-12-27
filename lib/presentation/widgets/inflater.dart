@@ -37,7 +37,7 @@ class _InflaterState extends State<Inflater> {
   Widget build(BuildContext context) {
     return CustomAnimationBuilder(
       tween: 0.0.tweenTo(1.0),
-      duration: 400.milliseconds,
+      duration: widget.duration,
       curve: widget.inflated ? Curves.easeInOutBack : Curves.fastOutSlowIn,
       control: widget.inflated ? Control.play : Control.playReverse,
       builder: (context, value, child) {

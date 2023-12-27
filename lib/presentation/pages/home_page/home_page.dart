@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
-import 'package:offside/presentation/widgets/square.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -46,19 +43,10 @@ class _HomePageState extends ConsumerState<HomePage> {
             label: 'Mecze',
           ),
           BottomNavigationBarItem(
-            icon: ref.watch(currentUserProvider).when(
-                  data: (user) {
-                    return user!.avatar(borderColor: Theme.of(context).colorScheme.outline);
-                  },
-                  error: (error, stackTrace) {
-                    log(error.toString(), stackTrace: stackTrace);
-                    return Text(error.toString());
-                  },
-                  loading: () => const Square(
-                    size: 26,
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
+            icon: switch (ref.watch(currentUserProvider)) {
+              AsyncData(value: final user) => user!.avatar(borderColor: Theme.of(context).colorScheme.outline),
+              _ => const Icon(Icons.person),
+            },
             label: 'Profil',
           ),
         ],
