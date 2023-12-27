@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/data/repositories/teams_in_memory_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/offside_router.dart';
+import 'package:offside/sidecar_themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,21 +31,8 @@ class OffsideApp extends ConsumerWidget {
     final router = ref.watch(offsideRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(useMaterial3: true).copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-        ),
-        textTheme: GoogleFonts.robotoFlexTextTheme(),
-      ),
-      darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          brightness: Brightness.dark,
-        ),
-        textTheme: GoogleFonts.openSansTextTheme(
-          ThemeData.dark().textTheme,
-        ),
-      ),
+      theme: SidecarThemes.light(context),
+      darkTheme: SidecarThemes.dark(context),
       locale: const Locale('pl', 'PL'),
       themeMode: ThemeMode.system,
       routerDelegate: router.routerDelegate,
