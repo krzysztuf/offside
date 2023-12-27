@@ -1,3 +1,4 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -5,7 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
+import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
+import 'package:supercharged/supercharged.dart';
 
 class MatchBetCard extends ConsumerWidget {
   final Match match;
@@ -43,12 +46,37 @@ class MatchBetCard extends ConsumerWidget {
                   TeamBadge(team: match.awayTeam),
                 ],
               ),
-              const Gap(16),
-              const Divider(height: 1),
-              const Gap(16),
-              TextButton(
-                child: const Text('TYPUJ'),
-                onPressed: () {},
+              const Gap(32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton.icon(
+                    icon: const Icon(Icons.group, size: 16),
+                    label: const Text('Typy innych'),
+                    onPressed: () {
+                      showFlexibleBottomSheet(
+                        context: context,
+                        duration: 400.milliseconds,
+                        isSafeArea: true,
+                        initHeight: 0.6,
+                        maxHeight: 0.9,
+                        anchors: [0, 0.6, 0.9],
+                        bottomSheetBorderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+                        builder: (context, scrollController, bottomSheetOffset) {
+                          return SingleChildScrollView(
+                            controller: scrollController,
+                            child: const LoadingTableSkeleton(),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  TextButton.icon(
+                    icon: const Icon(Icons.save, size: 16),
+                    label: const Text('Zapisz'),
+                    onPressed: () {},
+                  ),
+                ],
               ),
             ],
           ),

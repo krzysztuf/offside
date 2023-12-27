@@ -20,13 +20,15 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: [
-          const TableSubPage(),
-          const MatchesSubPage(),
-          Container(color: Colors.blueAccent),
-        ],
+      body: SafeArea(
+        child: IndexedStack(
+          index: currentIndex,
+          children: [
+            const TableSubPage(),
+            const MatchesSubPage(),
+            Container(color: Colors.blueAccent),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,

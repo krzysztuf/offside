@@ -12,7 +12,7 @@ class LoadingTableSkeleton extends StatelessWidget {
     return Skeletonizer(
       enabled: true,
       child: Column(
-        children: Iterable.generate(5, (index) {
+        children: Iterable.generate(12, (index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(

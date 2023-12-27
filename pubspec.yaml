@@ -30,6 +30,7 @@ dependencies:
   skeletonizer: ^0.8.0
   simple_animations: ^5.0.2
   animations: ^2.0.10
+  bottom_sheet: ^4.0.0
 
 dev_dependencies:
   flutter_test:
