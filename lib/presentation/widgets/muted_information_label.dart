@@ -24,7 +24,7 @@ class MutedInformationLabel extends StatelessWidget {
         const Gap(8),
         Text(
           text,
-          style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.outline),
+          style: context.textTheme.bodySmall,
         ),
       ],
     );

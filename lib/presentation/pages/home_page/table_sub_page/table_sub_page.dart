@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page_controller.dart';
+import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page_view_model.dart';
+import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'loading_table_skeleton.dart';
@@ -33,31 +34,23 @@ class TableSubPage extends ConsumerWidget {
             const Gap(32),
             Card(
               margin: const EdgeInsets.all(0),
-              child: AnimatedContainer(
-                duration: 5.seconds,
-                child: switch (ref.watch(tableSubPageControllerProvider)) {
-                  // LoadingMainTableState() => IntrinsicHeight(
-                  //     child: Container(
-                  //       key: UniqueKey(),
-                  //       color: Colors.blue[500],
-                  //       height: 100,
-                  //     ),
-                  //   ),
-                  // MainTableReadyState(:final users) => IntrinsicHeight(
-                  //     child: Container(
-                  //       key: UniqueKey(),
-                  //       color: Colors.blueGrey[900],
-                  //       height: 300,
-                  //     ),
-                  //   ),
+              child: AnimatedSize(
+                duration: 300.milliseconds,
+                curve: Curves.easeInOutQuart,
+                child: switch (ref.watch(tableSubPageViewModelProvider)) {
                   LoadingMainTableState() => LoadingTableSkeleton(
                       key: UniqueKey(),
                     ),
-                  MainTableReadyState(:final users) => MainTable(
-                      key: UniqueKey(),
-                      users: users,
+                  MainTableReadyState(:final users) => Inflater(
+                      inflated: true,
+                      duration: 1.seconds,
+                      scaleFactor: 0.9,
+                      child: MainTable(
+                        key: UniqueKey(),
+                        users: users,
+                      ),
                     ),
-                  _ => Container(height: 400),
+                  _ => Container(),
                 },
               ),
             ),

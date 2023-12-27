@@ -28,6 +28,7 @@ dependencies:
   intl: ^0.18.1
   supercharged: ^2.1.1
   skeletonizer: ^0.8.0
+  simple_animations: ^5.0.2
 
 dev_dependencies:
   flutter_test:

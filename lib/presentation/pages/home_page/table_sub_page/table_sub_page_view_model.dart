@@ -4,10 +4,10 @@ import 'package:supercharged/supercharged.dart';
 
 import 'table_sub_page_states.dart';
 
-part 'table_sub_page_controller.g.dart';
+part 'table_sub_page_view_model.g.dart';
 
 @riverpod
-class TableSubPageController extends _$TableSubPageController {
+class TableSubPageViewModel extends _$TableSubPageViewModel {
   @override
   TableSubPageState build() {
     loadTable();

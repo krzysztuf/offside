@@ -37,7 +37,7 @@ final teamsRepositoryProvider = AutoDisposeProvider<Repository<Team>>.internal(
 );
 
 typedef TeamsRepositoryRef = AutoDisposeProviderRef<Repository<Team>>;
-String _$usersRepositoryHash() => r'91fd3185290d9a40457dd585e5b2d1b5705d7b43';
+String _$usersRepositoryHash() => r'9d24fc7021d8292133b92d709ab8d4c73f52c082';
 
 /// See also [usersRepository].
 @ProviderFor(usersRepository)

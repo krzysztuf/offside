@@ -37,7 +37,7 @@ class TeamBadge extends StatelessWidget {
         const Gap(8),
         Text(
           team.name,
-          style: context.textTheme.titleMedium,
+          style: context.textTheme.titleSmall,
         ),
       ],
     );

@@ -30,7 +30,6 @@ class MatchBetCard extends ConsumerWidget {
                   ),
                   MutedInformationLabel(
                     icon: Icons.sports,
-                    // text: DateFormat('HH:mm').format(DateTime.now()),
                     text: DateFormat('17:00').format(DateTime.now()),
                   ),
                 ],

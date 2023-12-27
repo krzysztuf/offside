@@ -13,6 +13,9 @@ abstract class SidecarThemes {
           fontSize: 12,
           color: roboto.bodySmall!.moreOpaque(0.5),
         ),
+        titleSmall: roboto.titleSmall!.copyWith(
+          color: roboto.titleSmall!.moreOpaque(0.8),
+        ),
         titleMedium: roboto.titleMedium!.copyWith(
           color: roboto.titleMedium!.moreOpaque(0.6),
         ),
@@ -31,6 +34,9 @@ abstract class SidecarThemes {
         bodySmall: roboto.bodySmall!.copyWith(
           fontSize: 12,
           color: roboto.bodySmall!.moreOpaque(0.5),
+        ),
+        titleSmall: roboto.titleSmall!.copyWith(
+          color: roboto.titleSmall!.moreOpaque(0.8),
         ),
         titleMedium: roboto.titleMedium!.copyWith(
           color: roboto.titleMedium!.moreOpaque(0.6),
