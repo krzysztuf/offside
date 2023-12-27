@@ -21,13 +21,20 @@ abstract class SidecarThemes {
   }
 
   static dark(BuildContext context) {
+    final roboto = GoogleFonts.robotoFlexTextTheme(ThemeData.dark().textTheme);
     return ThemeData.dark(useMaterial3: true).copyWith(
       colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.blue,
         brightness: Brightness.dark,
       ),
-      textTheme: GoogleFonts.robotoFlexTextTheme(
-        ThemeData.dark().textTheme,
+      textTheme: roboto.copyWith(
+        bodySmall: roboto.bodySmall!.copyWith(
+          fontSize: 12,
+          color: roboto.bodySmall!.moreOpaque(0.5),
+        ),
+        titleMedium: roboto.titleMedium!.copyWith(
+          color: roboto.titleMedium!.moreOpaque(0.6),
+        ),
       ),
     );
   }
