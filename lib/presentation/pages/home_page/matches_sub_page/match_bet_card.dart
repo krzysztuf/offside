@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/score_input.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
@@ -42,7 +43,9 @@ class MatchBetCard extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TeamBadge(team: match.homeTeam),
+                  const ScoreInput(),
                   Text('-', style: context.textTheme.titleMedium),
+                  const ScoreInput(),
                   TeamBadge(team: match.awayTeam),
                 ],
               ),

@@ -14,17 +14,13 @@ class TeamBadge extends StatelessWidget {
     return Column(
       children: [
         Square(
-          size: 40,
+          size: 48,
           child: Material(
-            elevation: 2,
-            shape: CircleBorder(
-              side: BorderSide(
-                color: context.colorScheme.outline.withOpacity(0.2),
-              ),
-            ),
+            elevation: 1,
+            shape: const CircleBorder(),
             color: Colors.transparent,
             child: CircleAvatar(
-              backgroundColor: context.colorScheme.tertiaryContainer,
+              backgroundColor: context.colorScheme.secondaryContainer,
               child: Text(
                 team.abbreviation,
                 style: context.textTheme.bodySmall!.copyWith(
@@ -37,7 +33,7 @@ class TeamBadge extends StatelessWidget {
         const Gap(8),
         Text(
           team.name,
-          style: context.textTheme.titleSmall,
+          style: context.widgets.teamBadge.textTheme,
         ),
       ],
     );

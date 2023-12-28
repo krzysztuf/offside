@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:offside/presentation/theme/theme_extensions.dart';
+import 'package:offside/presentation/theme/widget_themes.dart';
 
 extension ThemeContextExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -18,4 +20,6 @@ extension ThemeContextExtension on BuildContext {
   TabBarTheme get tabBarTheme => theme.tabBarTheme;
 
   ButtonThemeData get buttonTheme => theme.buttonTheme;
+
+  WidgetThemes get widgets => theme.widgets;
 }
