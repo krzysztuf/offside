@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match_goals.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_states.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/score_input.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
@@ -20,16 +21,18 @@ class MatchBetCard extends ConsumerStatefulWidget {
   ConsumerState<MatchBetCard> createState() => _MatchBetCardState();
 }
 
+typedef UserEditablePrediction = int;
+
 class _MatchBetCardState extends ConsumerState<MatchBetCard> {
-  late int homeGoalsPrediction;
-  late int awayGoalsPrediction;
+  late UserEditablePrediction homeGoalsPrediction;
+  late UserEditablePrediction awayGoalsPrediction;
 
   @override
   void initState() {
     super.initState();
-    final goalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
-    homeGoalsPrediction = goalsPrediction.home;
-    awayGoalsPrediction = goalsPrediction.away;
+    final currentGoalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
+    homeGoalsPrediction = currentGoalsPrediction.home;
+    awayGoalsPrediction = currentGoalsPrediction.away;
   }
 
   @override
@@ -80,37 +83,14 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                   TextButton.icon(
                     icon: const Icon(Icons.group, size: 16),
                     label: const Text('Typy innych'),
-                    onPressed: () {
-                      showFlexibleBottomSheet(
-                        context: context,
-                        duration: 400.milliseconds,
-                        isSafeArea: true,
-                        initHeight: 0.6,
-                        maxHeight: 0.9,
-                        anchors: [0, 0.6, 0.9],
-                        bottomSheetBorderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-                        builder: (context, scrollController, bottomSheetOffset) {
-                          return SingleChildScrollView(
-                            controller: scrollController,
-                            child: const LoadingTableSkeleton(),
-                          );
-                        },
-                      );
-                    },
+                    onPressed: () => showOtherUsersPredictionsSheet(context),
                   ),
                   Enabled(
                     when: goalsPredictionHasChanged(state.bet.prediction),
                     child: TextButton.icon(
                       icon: const Icon(Icons.save, size: 16),
                       label: const Text('Zapisz'),
-                      onPressed: () {
-                        final goalsPrediction = state.bet.prediction.copyWith(
-                          home: homeGoalsPrediction,
-                          away: awayGoalsPrediction,
-                        );
-
-                        viewModel.updateBet(state.bet.copyWith(prediction: goalsPrediction));
-                      },
+                      onPressed: () => savePrediction(state, viewModel),
                     ),
                   ),
                 ],
@@ -119,6 +99,33 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           ),
         ),
       ),
+    );
+  }
+
+  void savePrediction(MatchBetCardState state, MatchBetCardViewModel viewModel) {
+    final goalsPrediction = state.bet.prediction.copyWith(
+      home: homeGoalsPrediction,
+      away: awayGoalsPrediction,
+    );
+
+    viewModel.updateBet(state.bet.copyWith(prediction: goalsPrediction));
+  }
+
+  void showOtherUsersPredictionsSheet(BuildContext context) {
+    showFlexibleBottomSheet(
+      context: context,
+      duration: 400.milliseconds,
+      isSafeArea: true,
+      initHeight: 0.6,
+      maxHeight: 0.9,
+      anchors: [0, 0.6, 0.9],
+      bottomSheetBorderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+      builder: (context, scrollController, bottomSheetOffset) {
+        return SingleChildScrollView(
+          controller: scrollController,
+          child: const LoadingTableSkeleton(),
+        );
+      },
     );
   }
 
