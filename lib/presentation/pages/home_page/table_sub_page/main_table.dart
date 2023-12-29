@@ -17,9 +17,9 @@ class MainTable extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
+              leading: user.avatar(radius: 20),
               title: user.fullName.text,
               subtitle: user.nickname?.text ?? 'tutaj będzie forma'.styledText(context.textTheme.bodySmall!),
-              leading: user.avatar(radius: 20),
               trailing: Column(
                 children: [
                   '24'.styledText(context.textTheme.titleLarge!),

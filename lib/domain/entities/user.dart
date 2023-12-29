@@ -34,7 +34,7 @@ extension UserAvatar on User {
       child: CircleAvatar(
         radius: radius,
         backgroundImage: image != null ? AssetImage(image!) : null,
-        child: image == null ? const Text('KP') : null,
+        child: image == null ? Text('${name[0]}${surname[0]}') : null,
       ),
     );
   }

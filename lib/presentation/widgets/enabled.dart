@@ -9,7 +9,7 @@ class Enabled extends StatelessWidget {
     super.key,
     required this.when,
     required this.child,
-    this.opacity = 0.6,
+    this.opacity = 0.4,
   });
 
   @override
