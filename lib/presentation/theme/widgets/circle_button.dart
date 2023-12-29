@@ -16,7 +16,7 @@ class CircleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.square(
       dimension: size,
-      child: FilledButton(
+      child: FilledButton.tonal(
         style: FilledButton.styleFrom(padding: EdgeInsets.zero),
         onPressed: onPressed,
         child: Icon(

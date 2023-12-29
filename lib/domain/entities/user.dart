@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/domain/entities/identifiable.dart';
 
 part 'user.freezed.dart';
@@ -34,12 +35,14 @@ extension UserAvatar on User {
       child: CircleAvatar(
         radius: radius,
         backgroundImage: image != null ? AssetImage(image!) : null,
-        child: image == null ? Text('${name[0]}${surname[0]}') : null,
+        child: image == null ? initials.text : null,
       ),
     );
   }
 }
 
-extension UserFullName on User {
+extension NameExtensions on User {
   String get fullName => '$name $surname';
+
+  String get initials => '${name[0]}${surname[0]}';
 }

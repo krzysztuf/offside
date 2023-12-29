@@ -23,7 +23,7 @@ mixin _$Bet {
   int get id => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
   Match get match => throw _privateConstructorUsedError;
-  Team get chosenTeam => throw _privateConstructorUsedError;
+  MatchGoals get prediction => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,11 +35,11 @@ abstract class $BetCopyWith<$Res> {
   factory $BetCopyWith(Bet value, $Res Function(Bet) then) =
       _$BetCopyWithImpl<$Res, Bet>;
   @useResult
-  $Res call({int id, User user, Match match, Team chosenTeam});
+  $Res call({int id, User user, Match match, MatchGoals prediction});
 
   $UserCopyWith<$Res> get user;
   $MatchCopyWith<$Res> get match;
-  $TeamCopyWith<$Res> get chosenTeam;
+  $MatchGoalsCopyWith<$Res> get prediction;
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
     Object? id = null,
     Object? user = null,
     Object? match = null,
-    Object? chosenTeam = null,
+    Object? prediction = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -72,10 +72,10 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
               as Match,
-      chosenTeam: null == chosenTeam
-          ? _value.chosenTeam
-          : chosenTeam // ignore: cast_nullable_to_non_nullable
-              as Team,
+      prediction: null == prediction
+          ? _value.prediction
+          : prediction // ignore: cast_nullable_to_non_nullable
+              as MatchGoals,
     ) as $Val);
   }
 
@@ -97,9 +97,9 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
 
   @override
   @pragma('vm:prefer-inline')
-  $TeamCopyWith<$Res> get chosenTeam {
-    return $TeamCopyWith<$Res>(_value.chosenTeam, (value) {
-      return _then(_value.copyWith(chosenTeam: value) as $Val);
+  $MatchGoalsCopyWith<$Res> get prediction {
+    return $MatchGoalsCopyWith<$Res>(_value.prediction, (value) {
+      return _then(_value.copyWith(prediction: value) as $Val);
     });
   }
 }
@@ -110,14 +110,14 @@ abstract class _$$BetImplCopyWith<$Res> implements $BetCopyWith<$Res> {
       __$$BetImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, User user, Match match, Team chosenTeam});
+  $Res call({int id, User user, Match match, MatchGoals prediction});
 
   @override
   $UserCopyWith<$Res> get user;
   @override
   $MatchCopyWith<$Res> get match;
   @override
-  $TeamCopyWith<$Res> get chosenTeam;
+  $MatchGoalsCopyWith<$Res> get prediction;
 }
 
 /// @nodoc
@@ -132,7 +132,7 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
     Object? id = null,
     Object? user = null,
     Object? match = null,
-    Object? chosenTeam = null,
+    Object? prediction = null,
   }) {
     return _then(_$BetImpl(
       id: null == id
@@ -147,10 +147,10 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
               as Match,
-      chosenTeam: null == chosenTeam
-          ? _value.chosenTeam
-          : chosenTeam // ignore: cast_nullable_to_non_nullable
-              as Team,
+      prediction: null == prediction
+          ? _value.prediction
+          : prediction // ignore: cast_nullable_to_non_nullable
+              as MatchGoals,
     ));
   }
 }
@@ -162,7 +162,7 @@ class _$BetImpl implements _Bet {
       {required this.id,
       required this.user,
       required this.match,
-      required this.chosenTeam});
+      required this.prediction});
 
   factory _$BetImpl.fromJson(Map<String, dynamic> json) =>
       _$$BetImplFromJson(json);
@@ -174,11 +174,11 @@ class _$BetImpl implements _Bet {
   @override
   final Match match;
   @override
-  final Team chosenTeam;
+  final MatchGoals prediction;
 
   @override
   String toString() {
-    return 'Bet(id: $id, user: $user, match: $match, chosenTeam: $chosenTeam)';
+    return 'Bet(id: $id, user: $user, match: $match, prediction: $prediction)';
   }
 
   @override
@@ -189,13 +189,13 @@ class _$BetImpl implements _Bet {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.match, match) || other.match == match) &&
-            (identical(other.chosenTeam, chosenTeam) ||
-                other.chosenTeam == chosenTeam));
+            (identical(other.prediction, prediction) ||
+                other.prediction == prediction));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, user, match, chosenTeam);
+  int get hashCode => Object.hash(runtimeType, id, user, match, prediction);
 
   @JsonKey(ignore: true)
   @override
@@ -216,7 +216,7 @@ abstract class _Bet implements Bet {
       {required final int id,
       required final User user,
       required final Match match,
-      required final Team chosenTeam}) = _$BetImpl;
+      required final MatchGoals prediction}) = _$BetImpl;
 
   factory _Bet.fromJson(Map<String, dynamic> json) = _$BetImpl.fromJson;
 
@@ -227,7 +227,7 @@ abstract class _Bet implements Bet {
   @override
   Match get match;
   @override
-  Team get chosenTeam;
+  MatchGoals get prediction;
   @override
   @JsonKey(ignore: true)
   _$$BetImplCopyWith<_$BetImpl> get copyWith =>
