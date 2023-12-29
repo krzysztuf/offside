@@ -4,19 +4,38 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/score_input.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
+import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 import 'package:supercharged/supercharged.dart';
 
-class MatchBetCard extends ConsumerWidget {
+class MatchBetCard extends ConsumerStatefulWidget {
   const MatchBetCard({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MatchBetCard> createState() => _MatchBetCardState();
+}
+
+class _MatchBetCardState extends ConsumerState<MatchBetCard> {
+  late int homeGoalsPrediction;
+  late int awayGoalsPrediction;
+
+  @override
+  void initState() {
+    super.initState();
+    final goalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
+    homeGoalsPrediction = goalsPrediction.home;
+    awayGoalsPrediction = goalsPrediction.away;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardViewModelProvider);
+    final viewModel = ref.read(matchBetCardViewModelProvider.notifier);
     final match = state.bet.match;
 
     return Card(
@@ -44,9 +63,13 @@ class MatchBetCard extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TeamBadge(team: match.homeTeam),
-                  const ScoreInput(),
+                  ScoreInput(
+                    onUpdated: (score) => setState(() => homeGoalsPrediction = score),
+                  ),
                   Text('-', style: context.textTheme.titleMedium),
-                  const ScoreInput(),
+                  ScoreInput(
+                    onUpdated: (score) => setState(() => awayGoalsPrediction = score),
+                  ),
                   TeamBadge(team: match.awayTeam),
                 ],
               ),
@@ -75,10 +98,20 @@ class MatchBetCard extends ConsumerWidget {
                       );
                     },
                   ),
-                  TextButton.icon(
-                    icon: const Icon(Icons.save, size: 16),
-                    label: const Text('Zapisz'),
-                    onPressed: () {},
+                  Enabled(
+                    when: goalsPredictionHasChanged(state.bet.prediction),
+                    child: TextButton.icon(
+                      icon: const Icon(Icons.save, size: 16),
+                      label: const Text('Zapisz'),
+                      onPressed: () {
+                        final goalsPrediction = state.bet.prediction.copyWith(
+                          home: homeGoalsPrediction,
+                          away: awayGoalsPrediction,
+                        );
+
+                        viewModel.updateBet(state.bet.copyWith(prediction: goalsPrediction));
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -87,5 +120,9 @@ class MatchBetCard extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  bool goalsPredictionHasChanged(MatchGoals savedGoalsPrediction) {
+    return homeGoalsPrediction != savedGoalsPrediction.home || awayGoalsPrediction != savedGoalsPrediction.away;
   }
 }

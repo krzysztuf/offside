@@ -6,7 +6,12 @@ import 'package:offside/presentation/theme/widgets/circle_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 
 class ScoreInput extends ConsumerStatefulWidget {
-  const ScoreInput({super.key});
+  final Function(int score) onUpdated;
+
+  const ScoreInput({
+    super.key,
+    required this.onUpdated,
+  });
 
   @override
   ConsumerState<ScoreInput> createState() => _ScoreInputState();
@@ -58,11 +63,13 @@ class _ScoreInputState extends ConsumerState<ScoreInput> {
 
   void increment() {
     setState(() => value++);
+    widget.onUpdated(value);
   }
 
   void decrement() {
     if (value > 0) {
       setState(() => value--);
+      widget.onUpdated(value);
     }
   }
 }

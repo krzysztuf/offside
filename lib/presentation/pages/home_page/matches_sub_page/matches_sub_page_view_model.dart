@@ -12,6 +12,7 @@ class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
     ref.read(upcomingMatchesUseCaseProvider).run().then((matches) {
       state = MatchesSubPageViewModelState(matches);
     });
+    
     return MatchesSubPageViewModelState([]);
   }
 }

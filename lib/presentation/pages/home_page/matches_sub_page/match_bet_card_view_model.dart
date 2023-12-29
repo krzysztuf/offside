@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:offside/domain/entities/bet.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,6 +12,10 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
   @override
   MatchBetCardState build() {
     return MatchBetCardState(ref.read(currentCardBetProviderProvider));
+  }
+
+  Future<void> updateBet(Bet bet) async {
+    log('bet updated');
   }
 }
 
