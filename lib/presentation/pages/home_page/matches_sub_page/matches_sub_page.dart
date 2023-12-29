@@ -5,7 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/async_value_widget_builder.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/match_goals.dart';
+import 'package:offside/domain/entities/user.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/state/upcoming_matches_provider.dart';
 
 import 'match_bet_card.dart';
@@ -42,7 +46,31 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
                       ),
                     ),
                     const Gap(32),
-                    ...matches.map((m) => MatchBetCard(m)).withGaps(gapSize: 32).toList(),
+                    ...matches
+                        .map((m) {
+                          const user = User(
+                            id: 1,
+                            name: 'Krzysztof',
+                            surname: 'Potrząsaj',
+                          );
+
+                          final bet = Bet(
+                            id: 0,
+                            user: user,
+                            match: m,
+                            prediction: const MatchGoals(home: 0, away: 0),
+                          );
+
+                          return ProviderScope(
+                            overrides: [
+                              matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
+                              currentCardBetProviderProvider.overrideWith((_) => bet)
+                            ],
+                            child: const MatchBetCard(),
+                          );
+                        })
+                        .withGaps(gapSize: 32)
+                        .toList(),
                   ],
                 );
               },

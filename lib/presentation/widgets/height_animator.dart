@@ -37,7 +37,7 @@ class _HeightAnimatorState extends State<HeightAnimator> with SingleTickerProvid
   }
 
   void _measureHeight() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final RenderBox renderBox = context.findRenderObject() as RenderBox;
       setState(() {
         _oldHeight = _newHeight;

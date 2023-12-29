@@ -1,0 +1,19 @@
+import 'package:offside/domain/entities/bet.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'match_bet_card_state.dart';
+
+part 'match_bet_card_view_model.g.dart';
+
+@riverpod
+class MatchBetCardViewModel extends _$MatchBetCardViewModel {
+  @override
+  MatchBetCardState build() {
+    return MatchBetCardState(ref.read(currentCardBetProviderProvider));
+  }
+}
+
+@riverpod
+Bet currentCardBetProvider(CurrentCardBetProviderRef ref) {
+  return throw UnimplementedError('Bet unavailable');
+}

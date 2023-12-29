@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/entities/match.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/score_input.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
@@ -12,12 +12,13 @@ import 'package:offside/presentation/widgets/muted_information_label.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MatchBetCard extends ConsumerWidget {
-  final Match match;
-
-  const MatchBetCard(this.match, {super.key});
+  const MatchBetCard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(matchBetCardViewModelProvider);
+    final match = state.bet.match;
+
     return Card(
       child: SizedBox(
         width: double.infinity,

@@ -5,6 +5,7 @@ import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/data/repositories/teams_in_memory_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/offside_router.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/sidecar_themes.dart';
 
 Future<void> main() async {
@@ -17,6 +18,7 @@ Future<void> main() async {
     ProviderScope(
       overrides: [
         teamsRepositoryProvider.overrideWith((ref) => TeamsInMemoryRepository()),
+        matchBetCardViewModelProvider.overrideWith(() => throw UnimplementedError('MatchBetCardViewModel unavailable')),
       ],
       child: const OffsideApp(),
     ),

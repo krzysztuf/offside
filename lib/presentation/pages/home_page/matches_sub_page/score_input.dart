@@ -35,7 +35,7 @@ class _ScoreInputState extends ConsumerState<ScoreInput> {
       children: [
         CircleButton(
           icon: Icons.add,
-          size: 18,
+          size: 22,
           onPressed: increment,
         ),
         const Gap(8),
@@ -48,7 +48,7 @@ class _ScoreInputState extends ConsumerState<ScoreInput> {
           when: value > 0,
           child: CircleButton(
             icon: Icons.remove,
-            size: 18,
+            size: 22,
             onPressed: decrement,
           ),
         ),
