@@ -1,7 +1,7 @@
 import 'package:offside/domain/entities/bet.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'match_bet_card_state.dart';
+import 'match_bet_card_states.dart';
 
 part 'match_bet_card_view_model.g.dart';
 
