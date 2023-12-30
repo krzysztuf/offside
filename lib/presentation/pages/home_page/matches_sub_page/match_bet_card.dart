@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/core/mixin/view_model_mixin.dart';
 import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_states.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
@@ -21,24 +22,27 @@ class MatchBetCard extends ConsumerStatefulWidget {
   ConsumerState<MatchBetCard> createState() => _MatchBetCardState();
 }
 
-typedef UserEditablePrediction = int;
+class _MatchBetCardState extends ConsumerState<MatchBetCard>
+    with ViewModelMixin<MatchBetCardViewModel, MatchBetCardState, MatchBetCard> {
+  late int homeGoalsPrediction;
+  late int awayGoalsPrediction;
 
-class _MatchBetCardState extends ConsumerState<MatchBetCard> {
-  late UserEditablePrediction homeGoalsPrediction;
-  late UserEditablePrediction awayGoalsPrediction;
+  @override
+  AutoDisposeNotifierProvider<MatchBetCardViewModel, MatchBetCardState> get viewModelProvider {
+    return matchBetCardViewModelProvider;
+  }
 
   @override
   void initState() {
     super.initState();
-    final currentGoalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
+    final currentGoalsPrediction = state.bet.prediction;
     homeGoalsPrediction = currentGoalsPrediction.home;
     awayGoalsPrediction = currentGoalsPrediction.away;
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(matchBetCardViewModelProvider);
-    final viewModel = ref.read(matchBetCardViewModelProvider.notifier);
+    final state = watchState();
     final match = state.bet.match;
 
     return Card(
@@ -90,7 +94,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                     child: TextButton.icon(
                       icon: const Icon(Icons.save, size: 16),
                       label: const Text('Zapisz'),
-                      onPressed: () => savePrediction(state, viewModel),
+                      onPressed: () => savePrediction(state),
                     ),
                   ),
                 ],
@@ -102,7 +106,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  void savePrediction(MatchBetCardState state, MatchBetCardViewModel viewModel) {
+  void savePrediction(MatchBetCardState state) {
     final goalsPrediction = state.bet.prediction.copyWith(
       home: homeGoalsPrediction,
       away: awayGoalsPrediction,
