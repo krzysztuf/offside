@@ -1,4 +1,4 @@
-import 'package:offside/data/repositories/firebase_collection.dart';
+import 'package:offside/data/repositories/firebase_repository.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/sources/local/memory_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
@@ -34,7 +34,7 @@ Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
 
 @riverpod
 Repository<User> usersRepository(UsersRepositoryRef ref) {
-  return FirebaseCollection('users');
+  return FirebaseRepository('users');
 }
 
 @riverpod
