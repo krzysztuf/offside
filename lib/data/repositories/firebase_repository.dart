@@ -1,25 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:offside/data/repositories/firebase_collection.dart';
-import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/repositories/repository.dart';
 
-class FirebaseRepository extends FirebaseCollection<User> {
-  FirebaseRepository(super.collectionName);
+class FirebaseRepository<Item> implements Repository<Item> {
+  final String collectionName;
+  final Item Function(DocumentSnapshot<Map<String, dynamic>> document) fromDocument;
+
+  FirebaseRepository(this.collectionName, {required this.fromDocument});
+
+  CollectionReference<Map<String, dynamic>> get collection {
+    return FirebaseFirestore.instance.collection(collectionName);
+  }
 
   @override
-  Future<void> add(User item) {
+  Future<void> add(Item item) {
     throw UnimplementedError();
   }
 
   @override
-  Future<List<User>> all() async {
-    final users = await collection.get();
-    return users.docs.map((userDocument) => _toUser(userDocument)).toList();
+  Future<List<Item>> all() async {
+    final items = await collection.get();
+    return items.docs.map((document) => fromDocument(document)).toList();
   }
 
   @override
-  Future<User?> byId(String id) async {
-    final userDocument = await collection.doc(id).get();
-    return userDocument.exists ? _toUser(userDocument) : null;
+  Future<Item?> byId(String id) async {
+    final document = await collection.doc(id).get();
+    return document.exists ? fromDocument(document) : null;
   }
 
   @override
@@ -28,11 +34,7 @@ class FirebaseRepository extends FirebaseCollection<User> {
   }
 
   @override
-  Future<void> remove(User item) {
+  Future<void> remove(Item item) {
     throw UnimplementedError();
-  }
-
-  User _toUser(DocumentSnapshot<Map<String, dynamic>> document) {
-    return User.fromJson(document.data()!).copyWith(id: document.id);
   }
 }

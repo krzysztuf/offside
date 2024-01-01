@@ -34,7 +34,10 @@ Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
 
 @riverpod
 Repository<User> usersRepository(UsersRepositoryRef ref) {
-  return FirebaseRepository('users');
+  return FirebaseRepository(
+    'users',
+    fromDocument: (document) => User.fromJson(document.data()!).copyWith(id: document.id),
+  );
 }
 
 @riverpod
