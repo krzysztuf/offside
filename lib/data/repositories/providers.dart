@@ -1,3 +1,4 @@
+import 'package:offside/data/repositories/firebase_collection.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/sources/local/memory_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
@@ -14,15 +15,13 @@ part 'providers.g.dart';
 Repository<Match> matchesRepository(MatchesRepositoryRef ref) {
   return MemoryRepository<Match>(items: [
     Match(
-      id: 1,
-      homeTeam: Team(id: 0, name: 'Polska', abbreviation: 'POL'),
-      awayTeam: Team(id: 0, name: 'Niemcy', abbreviation: 'GER'),
+      homeTeam: Team(name: 'Polska', abbreviation: 'POL'),
+      awayTeam: Team(name: 'Niemcy', abbreviation: 'GER'),
       kickOffDate: DateTime(2024, 6, 17, 17),
     ),
     Match(
-      id: 1,
-      homeTeam: Team(id: 0, name: 'Włochy', abbreviation: 'ITA'),
-      awayTeam: Team(id: 0, name: 'Anglia', abbreviation: 'ENG'),
+      homeTeam: Team(name: 'Włochy', abbreviation: 'ITA'),
+      awayTeam: Team(name: 'Anglia', abbreviation: 'ENG'),
       kickOffDate: DateTime(2024, 6, 17, 17),
     ),
   ]);
@@ -35,31 +34,7 @@ Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
 
 @riverpod
 Repository<User> usersRepository(UsersRepositoryRef ref) {
-  return MemoryRepository<User>(
-    items: const [
-      User(
-        id: 1,
-        name: 'Krzysztof',
-        surname: 'Potrząsaj',
-        image: 'assets/images/profile.jpg',
-      ),
-      User(
-        id: 2,
-        name: 'Bartek',
-        surname: 'Ambrozik',
-      ),
-      User(
-        id: 3,
-        name: 'Dominik',
-        surname: 'Tomaszewski',
-      ),
-      User(
-        id: 4,
-        name: 'Patryk',
-        surname: 'Osmaczko',
-      ),
-    ],
-  );
+  return FirebaseCollection('users');
 }
 
 @riverpod

@@ -7,12 +7,12 @@ part of 'matches_sub_page_view_model.dart';
 // **************************************************************************
 
 String _$matchesSubPageViewModelHash() =>
-    r'95f8d4d882e3852540dc34bb90cf2ef9d8b4a677';
+    r'128ac0cff373dfdf3cef9e8013564112f153d861';
 
 /// See also [MatchesSubPageViewModel].
 @ProviderFor(MatchesSubPageViewModel)
 final matchesSubPageViewModelProvider = AutoDisposeNotifierProvider<
-    MatchesSubPageViewModel, MatchesSubPageViewModelState>.internal(
+    MatchesSubPageViewModel, MatchesSubPageState>.internal(
   MatchesSubPageViewModel.new,
   name: r'matchesSubPageViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,7 +22,6 @@ final matchesSubPageViewModelProvider = AutoDisposeNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$MatchesSubPageViewModel
-    = AutoDisposeNotifier<MatchesSubPageViewModelState>;
+typedef _$MatchesSubPageViewModel = AutoDisposeNotifier<MatchesSubPageState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

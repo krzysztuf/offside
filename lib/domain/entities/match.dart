@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/domain/entities/identifiable.dart';
 
-import 'match_result.dart';
+import 'match_goals.dart';
 import 'team.dart';
 
 part 'match.freezed.dart';
@@ -10,11 +10,11 @@ part 'match.g.dart';
 @freezed
 class Match with _$Match implements Identifiable {
   const factory Match({
-    required int id,
+    @Default('') String id,
     required Team homeTeam,
     required Team awayTeam,
     required DateTime kickOffDate,
-    MatchResult? result,
+    MatchGoals? result,
   }) = _Match;
 
   const Match._();
@@ -22,5 +22,5 @@ class Match with _$Match implements Identifiable {
   factory Match.fromJson(Map<String, dynamic> json) => _$MatchFromJson(json);
 
   @override
-  int get identifier => id;
+  String get identifier => id;
 }

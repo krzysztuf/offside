@@ -1,7 +1,7 @@
-abstract class Repository<T> {
+abstract interface class Repository<T> {
   Future<List<T>> all();
 
-  Future<T?> byId(int id);
+  Future<T?> byId(String id);
 
   Future<void> add(T item);
 

@@ -9,7 +9,8 @@ part 'user.g.dart';
 @freezed
 class User with _$User implements Identifiable {
   const factory User({
-    required int id,
+    // ignore: invalid_annotation_target
+    @Default('') @JsonKey(includeToJson: false) String id,
     required String name,
     required String surname,
     String? nickname,
@@ -21,7 +22,7 @@ class User with _$User implements Identifiable {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   @override
-  int get identifier => id;
+  String get identifier => id;
 }
 
 extension UserAvatar on User {

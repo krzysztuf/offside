@@ -7,12 +7,12 @@ part of 'reactive_settings_providers.dart';
 // **************************************************************************
 
 String _$currentUserIdSettingHash() =>
-    r'618e9cea8bb8b7035bb69fb2729da9947492c832';
+    r'ace6d8415437121cb5e4eb8256ba428da4b075b5';
 
 /// See also [CurrentUserIdSetting].
 @ProviderFor(CurrentUserIdSetting)
 final currentUserIdSettingProvider =
-    AutoDisposeNotifierProvider<CurrentUserIdSetting, int>.internal(
+    AutoDisposeNotifierProvider<CurrentUserIdSetting, String>.internal(
   CurrentUserIdSetting.new,
   name: r'currentUserIdSettingProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,7 +22,7 @@ final currentUserIdSettingProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$CurrentUserIdSetting = AutoDisposeNotifier<int>;
+typedef _$CurrentUserIdSetting = AutoDisposeNotifier<String>;
 String _$themeModeSettingHash() => r'8a3d73fbe89c9989a5ae3a722059cd59601a4246';
 
 /// See also [ThemeModeSetting].

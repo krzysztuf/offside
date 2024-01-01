@@ -1,7 +1,7 @@
 import 'package:offside/domain/entities/identifiable.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
-class MemoryRepository<T extends Identifiable> extends Repository<T> {
+class MemoryRepository<T extends Identifiable> implements Repository<T> {
   List<T> items;
 
   MemoryRepository({
@@ -20,7 +20,7 @@ class MemoryRepository<T extends Identifiable> extends Repository<T> {
   }
 
   @override
-  Future<T?> byId(int id) {
+  Future<T?> byId(String id) {
     return Future.value(items.firstWhere((i) => i.identifier == id));
   }
 

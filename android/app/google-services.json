@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "793918615718",
+    "project_id": "offside-bb10d",
+    "storage_bucket": "offside-bb10d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793918615718:android:64969ec73f817bd9ee4467",
+        "android_client_info": {
+          "package_name": "pl.shakeit.offside"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVhQodJUeF6GmNAVNmXFA6P2CGmDkyRa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

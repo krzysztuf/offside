@@ -20,7 +20,9 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  int get id => throw _privateConstructorUsedError;
+// ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
   String? get nickname => throw _privateConstructorUsedError;
@@ -37,7 +39,11 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {int id, String name, String surname, String? nickname, String? image});
+      {@JsonKey(includeToJson: false) String id,
+      String name,
+      String surname,
+      String? nickname,
+      String? image});
 }
 
 /// @nodoc
@@ -63,7 +69,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -92,7 +98,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id, String name, String surname, String? nickname, String? image});
+      {@JsonKey(includeToJson: false) String id,
+      String name,
+      String surname,
+      String? nickname,
+      String? image});
 }
 
 /// @nodoc
@@ -115,7 +125,7 @@ class __$$UserImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -140,7 +150,7 @@ class __$$UserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserImpl extends _User {
   const _$UserImpl(
-      {required this.id,
+      {@JsonKey(includeToJson: false) this.id = '',
       required this.name,
       required this.surname,
       this.nickname,
@@ -150,8 +160,10 @@ class _$UserImpl extends _User {
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
-  final int id;
+  @JsonKey(includeToJson: false)
+  final String id;
   @override
   final String name;
   @override
@@ -200,7 +212,7 @@ class _$UserImpl extends _User {
 
 abstract class _User extends User {
   const factory _User(
-      {required final int id,
+      {@JsonKey(includeToJson: false) final String id,
       required final String name,
       required final String surname,
       final String? nickname,
@@ -209,8 +221,9 @@ abstract class _User extends User {
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
-  @override
-  int get id;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
+  String get id;
   @override
   String get name;
   @override

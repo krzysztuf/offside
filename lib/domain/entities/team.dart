@@ -7,7 +7,7 @@ part 'team.g.dart';
 @freezed
 class Team with _$Team implements Identifiable {
   factory Team({
-    required int id,
+    @Default('') String id,
     required String name,
     required String abbreviation,
     String? logo,
@@ -18,5 +18,5 @@ class Team with _$Team implements Identifiable {
   factory Team.fromJson(Map<String, dynamic> json) => _$TeamFromJson(json);
 
   @override
-  int get identifier => id;
+  String get identifier => id;
 }

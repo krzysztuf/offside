@@ -1,8 +1,8 @@
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/view_state.dart';
 
-class MatchesSubPageViewModelState extends ViewState {
+class MatchesSubPageState extends ViewState {
   final List<Match> matches;
 
-  MatchesSubPageViewModelState(this.matches);
+  MatchesSubPageState(this.matches);
 }

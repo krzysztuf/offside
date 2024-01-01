@@ -4,13 +4,13 @@ import 'package:offside/domain/usecases/async_use_case.dart';
 
 class GetCurrentUser implements AsyncUseCase<User?> {
   final Repository<User> users;
-  final int currentUserId;
+  final String currentUserId;
 
   GetCurrentUser(this.users, this.currentUserId);
 
   @override
   Future<User?> run() async {
-    if (currentUserId == -1) {
+    if (currentUserId.isEmpty) {
       return null;
     }
 

@@ -4,10 +4,12 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/core/mixin/view_model_mixin.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page_states.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page_view_model.dart';
 
 import 'match_bet_card.dart';
@@ -21,7 +23,13 @@ class MatchesSubPage extends ConsumerStatefulWidget {
   }
 }
 
-class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
+class _MatchesSubPageState extends ConsumerState<MatchesSubPage>
+    with ViewModelMixin<MatchesSubPageViewModel, MatchesSubPageState, MatchesSubPage> {
+  @override
+  AutoDisposeNotifierProvider<MatchesSubPageViewModel, MatchesSubPageState> get viewModelProvider {
+    return matchesSubPageViewModelProvider;
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchesSubPageViewModelProvider);
@@ -43,7 +51,6 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
             ...state.matches
                 .map((m) {
                   const user = User(
-                    id: 1,
                     name: 'Krzysztof',
                     surname: 'Potrząsaj',
                   );

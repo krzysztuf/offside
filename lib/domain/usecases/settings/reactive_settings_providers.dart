@@ -6,9 +6,9 @@ import 'reactive_setting.dart';
 part 'reactive_settings_providers.g.dart';
 
 @riverpod
-class CurrentUserIdSetting extends _$CurrentUserIdSetting with ReactiveSetting<int> {
+class CurrentUserIdSetting extends _$CurrentUserIdSetting with ReactiveSetting<String> {
   @override
-  int build() => value;
+  String build() => value;
 
   @override
   AppSetting get setting => AppSetting.currentUserId;

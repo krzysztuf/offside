@@ -20,7 +20,7 @@ Team _$TeamFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Team {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get abbreviation => throw _privateConstructorUsedError;
   String? get logo => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $TeamCopyWith<$Res> {
   factory $TeamCopyWith(Team value, $Res Function(Team) then) =
       _$TeamCopyWithImpl<$Res, Team>;
   @useResult
-  $Res call({int id, String name, String abbreviation, String? logo});
+  $Res call({String id, String name, String abbreviation, String? logo});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
       __$$TeamImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String abbreviation, String? logo});
+  $Res call({String id, String name, String abbreviation, String? logo});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$TeamImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -127,17 +127,15 @@ class __$$TeamImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TeamImpl extends _Team {
   _$TeamImpl(
-      {required this.id,
-      required this.name,
-      required this.abbreviation,
-      this.logo})
+      {this.id = '', required this.name, required this.abbreviation, this.logo})
       : super._();
 
   factory _$TeamImpl.fromJson(Map<String, dynamic> json) =>
       _$$TeamImplFromJson(json);
 
   @override
-  final int id;
+  @JsonKey()
+  final String id;
   @override
   final String name;
   @override
@@ -182,7 +180,7 @@ class _$TeamImpl extends _Team {
 
 abstract class _Team extends Team {
   factory _Team(
-      {required final int id,
+      {final String id,
       required final String name,
       required final String abbreviation,
       final String? logo}) = _$TeamImpl;
@@ -191,7 +189,7 @@ abstract class _Team extends Team {
   factory _Team.fromJson(Map<String, dynamic> json) = _$TeamImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String get name;
   @override

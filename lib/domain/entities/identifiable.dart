@@ -1,3 +1,3 @@
 abstract class Identifiable {
-  int get identifier;
+  String get identifier;
 }

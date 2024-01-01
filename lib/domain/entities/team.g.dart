@@ -7,7 +7,7 @@ part of 'team.dart';
 // **************************************************************************
 
 _$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
-      id: json['id'] as int,
+      id: json['id'] as String? ?? '',
       name: json['name'] as String,
       abbreviation: json['abbreviation'] as String,
       logo: json['logo'] as String?,
