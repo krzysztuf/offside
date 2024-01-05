@@ -4,28 +4,42 @@ import 'package:offside/core/mapper/register_mapping.dart';
 import 'package:offside/core/utils/firestore_reference.dart';
 import 'package:offside/data/models/firebase/match_model.dart';
 import 'package:offside/data/models/firebase/team_model.dart';
+import 'package:offside/data/models/firebase/user_model.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/domain/entities/user.dart';
 
 extension EntityToFirestoreMapping on GetIt {
   void registerEntityToFirestoreModelsMapping() {
     addBidirectionalMapper<Match, MatchModel>(
-      forward: (match) {
-        return MatchModel(
-          FirestoreReference<TeamModel>(match.homeTeam.id),
-          FirestoreReference<TeamModel>(match.homeTeam.id),
-          Timestamp.fromDate(match.kickOffDate),
-        );
-      },
+      forward: (match) => MatchModel(
+        FirestoreReference<TeamModel>(match.homeTeam.id),
+        FirestoreReference<TeamModel>(match.homeTeam.id),
+        Timestamp.fromDate(match.kickOffDate),
+      ),
       backward: (model) {
         final homeTeam = model.homeTeam.value;
         final awayTeam = model.awayTeam.value;
+
         return Match(
           homeTeam: Team(name: homeTeam.name, abbreviation: homeTeam.abbreviation),
           awayTeam: Team(name: awayTeam.name, abbreviation: awayTeam.abbreviation),
           kickOffDate: model.kickOffDate.toDate(),
         );
       },
+    );
+
+    addBidirectionalMapper<User, UserModel>(
+      forward: (user) => UserModel(
+        user.name,
+        user.surname,
+        user.image,
+      ),
+      backward: (model) => User(
+        name: model.name,
+        surname: model.surname,
+        image: model.image,
+      ),
     );
   }
 }
