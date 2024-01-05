@@ -48,30 +48,27 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage>
               ),
             ),
             const Gap(32),
-            ...state.matches
-                .map((m) {
-                  const user = User(
-                    name: 'Krzysztof',
-                    surname: 'Potrząsaj',
-                  );
+            ...state.matches.map((m) {
+              const user = User(
+                name: 'Krzysztof',
+                surname: 'Potrząsaj',
+              );
 
-                  final bet = Bet(
-                    id: 0,
-                    user: user,
-                    match: m,
-                    prediction: const MatchGoals(home: 0, away: 0),
-                  );
+              final bet = Bet(
+                id: 0,
+                user: user,
+                match: m,
+                prediction: const MatchGoals(home: 0, away: 0),
+              );
 
-                  return ProviderScope(
-                    overrides: [
-                      matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
-                      currentCardBetProviderProvider.overrideWith((_) => bet)
-                    ],
-                    child: const MatchBetCard(),
-                  );
-                })
-                .withGaps(gapSize: 32)
-                .toList(),
+              return ProviderScope(
+                overrides: [
+                  matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
+                  currentCardBetProviderProvider.overrideWith((_) => bet)
+                ],
+                child: const MatchBetCard(),
+              );
+            }).withGaps(gapSize: 32),
           ],
         ),
       ),

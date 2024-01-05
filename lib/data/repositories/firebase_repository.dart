@@ -1,30 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:offside/core/mapper/auto_mapper.dart';
 import 'package:offside/data/models/firebase/reference_holder.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
 class FirebaseRepository<Entity extends Object, FirestoreModel extends Object> implements Repository<Entity> {
-  final Entity Function(FirestoreModel model) fromModel;
-  final FirestoreModel Function(Entity model) toModel;
   final CollectionReference<FirestoreModel> collection;
+  
+  final modelToEntity = AutoMapper<FirestoreModel, Entity>().map;
+  final entityToModel = AutoMapper<Entity, FirestoreModel>().map;
 
-  FirebaseRepository({
-    required this.collection,
-    required this.fromModel,
-    required this.toModel,
-  });
+  FirebaseRepository({required this.collection});
 
   @override
   Future<List<Entity>> all() async {
     final items = await modelList();
     await Future.wait(items.map(maybeFetchProperties));
-    
-    return items.map(fromModel).toList();
+
+    return items.map(modelToEntity).toList();
   }
 
   @override
   Future<Entity?> byId(String id) async {
     final snapshot = await collection.doc(id).get();
-    return snapshot.exists ? fromModel(snapshot.data()!) : null;
+    return snapshot.exists ? modelToEntity(snapshot.data()!) : null;
   }
 
   @override
