@@ -4,14 +4,13 @@ import 'package:offside/core/extensions/firebase/typed_references_extension.dart
 class FirestoreReference<Model> {
   final String path;
 
-  Model? _model;
+  Model? model;
 
-  Model get value => _model!;
+  Model get value => model!;
 
-  FirestoreReference(this.path);
+  FirestoreReference(this.path, {this.model});
 
-  Future<Model> get() async {
-    _model ??= (await FirebaseFirestore.instance.typedDoc<Model>(path).get()).data()!;
-    return _model!;
+  Future<void> fetch() async {
+    model ??= (await FirebaseFirestore.instance.typedDoc<Model>(path).get()).data()!;
   }
 }

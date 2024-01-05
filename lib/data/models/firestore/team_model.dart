@@ -1,4 +1,4 @@
-class TeamModel {
+final class TeamModel {
   final String name;
   final String abbreviation;
 

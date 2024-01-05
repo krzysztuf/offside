@@ -33,6 +33,6 @@ class MatchModel implements ReferenceHolder {
 
   @override
   Future<void> fetchReferences() async {
-    await Future.wait([homeTeam.get(), awayTeam.get()]);
+    await Future.wait([homeTeam.fetch(), awayTeam.fetch()]);
   }
 }

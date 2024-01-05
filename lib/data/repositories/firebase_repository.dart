@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:offside/core/mapper/auto_mapper.dart';
-import 'package:offside/data/models/firebase/reference_holder.dart';
+import 'package:offside/core/utils/firestore_reference.dart';
+import 'package:offside/data/models/firestore/reference_holder.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
-class FirebaseRepository<Entity extends Object, FirestoreModel extends Object> implements Repository<Entity> {
-  final CollectionReference<FirestoreModel> collection;
-  
-  final modelToEntity = AutoMapper<FirestoreModel, Entity>().map;
-  final entityToModel = AutoMapper<Entity, FirestoreModel>().map;
+class FirebaseRepository<Entity extends Object, Model extends Object> implements Repository<Entity> {
+  final CollectionReference<Model> collection;
+
+  final modelToEntity = AutoMapper<FirestoreReference<Model>, Entity>().map;
+  final entityToModel = AutoMapper<Entity, FirestoreReference<Model>>().map;
 
   FirebaseRepository({required this.collection});
 
   @override
   Future<List<Entity>> all() async {
-    final items = await modelList();
+    final items = await typedReferencesList();
     await Future.wait(items.map(maybeFetchProperties));
 
     return items.map(modelToEntity).toList();
@@ -22,7 +23,11 @@ class FirebaseRepository<Entity extends Object, FirestoreModel extends Object> i
   @override
   Future<Entity?> byId(String id) async {
     final snapshot = await collection.doc(id).get();
-    return snapshot.exists ? modelToEntity(snapshot.data()!) : null;
+    if (!snapshot.exists) {
+      return null;
+    }
+
+    return modelToEntity(FirestoreReference('', model: snapshot.data()));
   }
 
   @override
@@ -40,13 +45,18 @@ class FirebaseRepository<Entity extends Object, FirestoreModel extends Object> i
     throw UnimplementedError();
   }
 
-  Future<List<FirestoreModel>> modelList() async {
-    return (await collection.get()).docs.map((e) => e.data()).toList();
+  Future<List<FirestoreReference<Model>>> typedReferencesList() async {
+    return (await collection.get()).docs.map((snapshot) {
+      return FirestoreReference(
+        '${collection.path}/${snapshot.id}',
+        model: snapshot.data(),
+      );
+    }).toList();
   }
 
-  Future<void> maybeFetchProperties(FirestoreModel model) async {
-    if (model is ReferenceHolder) {
-      await model.fetchReferences();
+  Future<void> maybeFetchProperties(FirestoreReference<Model> ref) async {
+    if (ref.model is ReferenceHolder) {
+      await (ref.model as ReferenceHolder).fetchReferences();
     }
   }
 }

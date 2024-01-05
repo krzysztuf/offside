@@ -1,9 +1,15 @@
+
+
 class UserModel {
   final String name;
   final String surname;
   final String? image;
 
-  UserModel(this.name, this.surname, this.image);
+  UserModel(
+    this.name,
+    this.surname,
+    this.image,
+  );
 
   Map<String, dynamic> toJson() {
     return {
