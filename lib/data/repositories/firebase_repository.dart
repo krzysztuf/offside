@@ -1,31 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:offside/data/models/firebase/reference_holder.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
-class FirebaseRepository<Item> implements Repository<Item> {
-  final String collectionName;
-  final Item Function(DocumentSnapshot<Map<String, dynamic>> document) fromDocument;
+class FirebaseRepository<Entity extends Object, FirestoreModel extends Object> implements Repository<Entity> {
+  final Entity Function(FirestoreModel model) fromModel;
+  final FirestoreModel Function(Entity model) toModel;
+  final CollectionReference<FirestoreModel> collection;
 
-  FirebaseRepository(this.collectionName, {required this.fromDocument});
+  FirebaseRepository({
+    required this.collection,
+    required this.fromModel,
+    required this.toModel,
+  });
 
-  CollectionReference<Map<String, dynamic>> get collection {
-    return FirebaseFirestore.instance.collection(collectionName);
+  @override
+  Future<List<Entity>> all() async {
+    final items = await modelList();
+    await Future.wait(items.map(maybeFetchProperties));
+    
+    return items.map(fromModel).toList();
   }
 
   @override
-  Future<void> add(Item item) {
+  Future<Entity?> byId(String id) async {
+    final snapshot = await collection.doc(id).get();
+    return snapshot.exists ? fromModel(snapshot.data()!) : null;
+  }
+
+  @override
+  Future<void> add(Entity item) {
     throw UnimplementedError();
-  }
-
-  @override
-  Future<List<Item>> all() async {
-    final items = await collection.get();
-    return items.docs.map((document) => fromDocument(document)).toList();
-  }
-
-  @override
-  Future<Item?> byId(String id) async {
-    final document = await collection.doc(id).get();
-    return document.exists ? fromDocument(document) : null;
   }
 
   @override
@@ -34,7 +38,17 @@ class FirebaseRepository<Item> implements Repository<Item> {
   }
 
   @override
-  Future<void> remove(Item item) {
+  Future<void> remove(Entity item) {
     throw UnimplementedError();
+  }
+
+  Future<List<FirestoreModel>> modelList() async {
+    return (await collection.get()).docs.map((e) => e.data()).toList();
+  }
+
+  Future<void> maybeFetchProperties(FirestoreModel model) async {
+    if (model is ReferenceHolder) {
+      await model.fetchReferences();
+    }
   }
 }

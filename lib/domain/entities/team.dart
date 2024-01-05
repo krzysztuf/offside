@@ -7,7 +7,8 @@ part 'team.g.dart';
 @freezed
 class Team with _$Team implements Identifiable {
   factory Team({
-    @Default('') String id,
+    // ignore: invalid_annotation_target
+    @Default('') @JsonKey(includeToJson: false) String id,
     required String name,
     required String abbreviation,
     String? logo,

@@ -15,7 +15,6 @@ _$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
 
 Map<String, dynamic> _$$TeamImplToJson(_$TeamImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'abbreviation': instance.abbreviation,
       'logo': instance.logo,

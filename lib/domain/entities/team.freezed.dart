@@ -20,6 +20,8 @@ Team _$TeamFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Team {
+// ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get abbreviation => throw _privateConstructorUsedError;
@@ -35,7 +37,11 @@ abstract class $TeamCopyWith<$Res> {
   factory $TeamCopyWith(Team value, $Res Function(Team) then) =
       _$TeamCopyWithImpl<$Res, Team>;
   @useResult
-  $Res call({String id, String name, String abbreviation, String? logo});
+  $Res call(
+      {@JsonKey(includeToJson: false) String id,
+      String name,
+      String abbreviation,
+      String? logo});
 }
 
 /// @nodoc
@@ -84,7 +90,11 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
       __$$TeamImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String abbreviation, String? logo});
+  $Res call(
+      {@JsonKey(includeToJson: false) String id,
+      String name,
+      String abbreviation,
+      String? logo});
 }
 
 /// @nodoc
@@ -127,14 +137,18 @@ class __$$TeamImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TeamImpl extends _Team {
   _$TeamImpl(
-      {this.id = '', required this.name, required this.abbreviation, this.logo})
+      {@JsonKey(includeToJson: false) this.id = '',
+      required this.name,
+      required this.abbreviation,
+      this.logo})
       : super._();
 
   factory _$TeamImpl.fromJson(Map<String, dynamic> json) =>
       _$$TeamImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
-  @JsonKey()
+  @JsonKey(includeToJson: false)
   final String id;
   @override
   final String name;
@@ -180,7 +194,7 @@ class _$TeamImpl extends _Team {
 
 abstract class _Team extends Team {
   factory _Team(
-      {final String id,
+      {@JsonKey(includeToJson: false) final String id,
       required final String name,
       required final String abbreviation,
       final String? logo}) = _$TeamImpl;
@@ -188,7 +202,8 @@ abstract class _Team extends Team {
 
   factory _Team.fromJson(Map<String, dynamic> json) = _$TeamImpl.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
   String get id;
   @override
   String get name;

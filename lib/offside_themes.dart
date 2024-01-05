@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-abstract class SidecarThemes {
+abstract class OffsideThemes {
   static light(BuildContext context) {
     final roboto = GoogleFonts.robotoFlexTextTheme();
     return ThemeData.light(useMaterial3: true).copyWith(

@@ -13,6 +13,26 @@ class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
       state = MatchesSubPageState(matches);
     });
 
+    // ref.read(matchesRepositoryProvider).all().then((matches) {
+    //   // for (final match in matches) {
+    //   //   log('homeTeam: ${match}')
+    //   // }
+    // });
+
+    // final teams = FirebaseSource.teams.get().then((snapshot) => snapshot.docs).then((value) {
+    //   for (final team in value.map((e) => e.data())) {
+    //     log(team.name);
+    //   }
+    // });
+
+    // FirestoreSource.matches.get().then((value) async {
+    //   for (final match in value.docs.map((e) => e.data())) {
+    //     final homeTeam = await match.homeTeam.get();
+    //     final awayTeam = await match.awayTeam.get();
+    //     log('--- ${homeTeam.name} vs ${awayTeam.name}');
+    //   }
+    // });
+
     // final db = FirebaseFirestore.instance;
     // db.collection('matches').get().then((values) async {
     //   for (var element in values.docs) {

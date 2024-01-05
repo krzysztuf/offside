@@ -46,7 +46,7 @@ SettingsGetUseCase<double> getDoubleSettingUseCase(GetDoubleSettingUseCaseRef re
 SettingsSetUseCase<double> setDoubleSettingUseCase(SetDoubleSettingUseCaseRef ref, AppSetting setting, double value) {
   return SetDoubleSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting, value);
 }
- 
+
 // String
 @riverpod
 SettingsGetUseCase<String> getStringSettingUseCase(GetStringSettingUseCaseRef ref, AppSetting setting) {

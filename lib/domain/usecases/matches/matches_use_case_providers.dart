@@ -10,6 +10,6 @@ part 'get_upcoming_matches.dart';
 part 'matches_use_case_providers.g.dart';
 
 @riverpod
-AsyncUseCase<List<Match>> upcomingMatchesUseCase(UpcomingMatchesUseCaseRef ref) {
-  return GetUpcomingMatches(ref.watch(matchesRepositoryProvider));
+GetUpcomingMatchesUseCase upcomingMatchesUseCase(UpcomingMatchesUseCaseRef ref) {
+  return GetUpcomingMatchesUseCase(ref.watch(matchesRepositoryProvider));
 }
