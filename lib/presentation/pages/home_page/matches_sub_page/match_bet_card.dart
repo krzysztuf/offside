@@ -64,7 +64,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
                   ),
                   MutedInformationLabel(
                     icon: Icons.sports,
-                    text: DateFormat('17:00').format(DateTime.now()),
+                    text: DateFormat('hh:mm').format(match.kickOffDate),
                   ),
                 ],
               ),
