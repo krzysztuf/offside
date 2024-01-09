@@ -16,11 +16,14 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
   Entity get value => _entity!;
 
   @override
+  bool get hasValue => _entity != null;
+
+  @override
   Future<void> fetch() async {
     if (_entity != null) {
       return;
     }
-    
+
     await reference.fetch();
     await Future.delayed(5.seconds);
 

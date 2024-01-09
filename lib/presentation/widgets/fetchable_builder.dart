@@ -19,6 +19,10 @@ class FetchableBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (fetchable.hasValue) {
+      return child(fetchable.value);
+    }
+
     return FutureBuilder(
       future: fetchable.fetch(),
       builder: (context, snapshot) => switch (snapshot.state) {
