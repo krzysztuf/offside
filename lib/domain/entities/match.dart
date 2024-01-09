@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/domain/entities/identifiable.dart';
 
+import 'fetchable.dart';
 import 'match_goals.dart';
 import 'team.dart';
 
@@ -11,8 +12,8 @@ part 'match.g.dart';
 class Match with _$Match implements Identifiable {
   const factory Match({
     @Default('') String id,
-    required Team homeTeam,
-    required Team awayTeam,
+    @Default(NoOpFetchable<Team>()) @JsonKey(includeFromJson: false, includeToJson: false) Fetchable<Team> homeTeam,
+    @Default(NoOpFetchable<Team>()) @JsonKey(includeFromJson: false, includeToJson: false) Fetchable<Team> awayTeam,
     required DateTime kickOffDate,
     MatchGoals? result,
   }) = _Match;

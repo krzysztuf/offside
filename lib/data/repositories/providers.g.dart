@@ -6,7 +6,7 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$matchesRepositoryHash() => r'cc96e83de34ce6d61de986328ff37232ac3d07c2';
+String _$matchesRepositoryHash() => r'78baadbe410dd251b328d49b5aac52687f453809';
 
 /// See also [matchesRepository].
 @ProviderFor(matchesRepository)
@@ -22,7 +22,7 @@ final matchesRepositoryProvider =
 );
 
 typedef MatchesRepositoryRef = AutoDisposeProviderRef<Repository<Match>>;
-String _$teamsRepositoryHash() => r'4b9a6e3d5e0e56d499d55fecd2dfbde66ac65dae';
+String _$teamsRepositoryHash() => r'd9da09805615175c41f8e3259d16f8df0e46a640';
 
 /// See also [teamsRepository].
 @ProviderFor(teamsRepository)
@@ -37,7 +37,7 @@ final teamsRepositoryProvider = AutoDisposeProvider<Repository<Team>>.internal(
 );
 
 typedef TeamsRepositoryRef = AutoDisposeProviderRef<Repository<Team>>;
-String _$usersRepositoryHash() => r'442b27c15c555a4774b459c911cb0e0b66e6f787';
+String _$usersRepositoryHash() => r'57562522b5dcc9ce65c218e41596917cf5d1d5b0';
 
 /// See also [usersRepository].
 @ProviderFor(usersRepository)

@@ -6,13 +6,16 @@ import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/core/mixin/view_model_mixin.dart';
 import 'package:offside/domain/entities/match_goals.dart';
+import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_states.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/score_input.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
+import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MatchBetCard extends ConsumerStatefulWidget {
@@ -69,15 +72,23 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TeamBadge(team: match.homeTeam),
+                  FetchableBuilder(
+                    fetchable: match.homeTeam,
+                    waiting: () => createTeamBadgeSkeletonizer(),
+                    child: (homeTeam) => TeamBadge(team: homeTeam),
+                  ),
                   ScoreInput(
                     onUpdated: (score) => setState(() => homeGoalsPrediction = score),
                   ),
-                  Text('-', style: context.textTheme.titleMedium),
+                  Text('-', style: context.textTheme.titleLarge),
                   ScoreInput(
                     onUpdated: (score) => setState(() => awayGoalsPrediction = score),
                   ),
-                  TeamBadge(team: match.awayTeam),
+                  FetchableBuilder(
+                    fetchable: match.awayTeam,
+                    waiting: () => createTeamBadgeSkeletonizer(),
+                    child: (awayTeam) => TeamBadge(team: awayTeam),
+                  ),
                 ],
               ),
               const Gap(32),
@@ -104,6 +115,10 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
         ),
       ),
     );
+  }
+
+  Skeletonizer createTeamBadgeSkeletonizer() {
+    return Skeletonizer(child: TeamBadge(team: Team(name: 'Dummy', abbreviation: 'ASB')));
   }
 
   void savePrediction(MatchBetCardState state) {

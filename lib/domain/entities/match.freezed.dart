@@ -21,8 +21,10 @@ Match _$MatchFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Match {
   String get id => throw _privateConstructorUsedError;
-  Team get homeTeam => throw _privateConstructorUsedError;
-  Team get awayTeam => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  Fetchable<Team> get homeTeam => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  Fetchable<Team> get awayTeam => throw _privateConstructorUsedError;
   DateTime get kickOffDate => throw _privateConstructorUsedError;
   MatchGoals? get result => throw _privateConstructorUsedError;
 
@@ -38,13 +40,13 @@ abstract class $MatchCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      Team homeTeam,
-      Team awayTeam,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      Fetchable<Team> homeTeam,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      Fetchable<Team> awayTeam,
       DateTime kickOffDate,
       MatchGoals? result});
 
-  $TeamCopyWith<$Res> get homeTeam;
-  $TeamCopyWith<$Res> get awayTeam;
   $MatchGoalsCopyWith<$Res>? get result;
 }
 
@@ -75,11 +77,11 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
       homeTeam: null == homeTeam
           ? _value.homeTeam
           : homeTeam // ignore: cast_nullable_to_non_nullable
-              as Team,
+              as Fetchable<Team>,
       awayTeam: null == awayTeam
           ? _value.awayTeam
           : awayTeam // ignore: cast_nullable_to_non_nullable
-              as Team,
+              as Fetchable<Team>,
       kickOffDate: null == kickOffDate
           ? _value.kickOffDate
           : kickOffDate // ignore: cast_nullable_to_non_nullable
@@ -89,22 +91,6 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
           : result // ignore: cast_nullable_to_non_nullable
               as MatchGoals?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TeamCopyWith<$Res> get homeTeam {
-    return $TeamCopyWith<$Res>(_value.homeTeam, (value) {
-      return _then(_value.copyWith(homeTeam: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TeamCopyWith<$Res> get awayTeam {
-    return $TeamCopyWith<$Res>(_value.awayTeam, (value) {
-      return _then(_value.copyWith(awayTeam: value) as $Val);
-    });
   }
 
   @override
@@ -129,15 +115,13 @@ abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      Team homeTeam,
-      Team awayTeam,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      Fetchable<Team> homeTeam,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      Fetchable<Team> awayTeam,
       DateTime kickOffDate,
       MatchGoals? result});
 
-  @override
-  $TeamCopyWith<$Res> get homeTeam;
-  @override
-  $TeamCopyWith<$Res> get awayTeam;
   @override
   $MatchGoalsCopyWith<$Res>? get result;
 }
@@ -167,11 +151,11 @@ class __$$MatchImplCopyWithImpl<$Res>
       homeTeam: null == homeTeam
           ? _value.homeTeam
           : homeTeam // ignore: cast_nullable_to_non_nullable
-              as Team,
+              as Fetchable<Team>,
       awayTeam: null == awayTeam
           ? _value.awayTeam
           : awayTeam // ignore: cast_nullable_to_non_nullable
-              as Team,
+              as Fetchable<Team>,
       kickOffDate: null == kickOffDate
           ? _value.kickOffDate
           : kickOffDate // ignore: cast_nullable_to_non_nullable
@@ -189,8 +173,10 @@ class __$$MatchImplCopyWithImpl<$Res>
 class _$MatchImpl extends _Match {
   const _$MatchImpl(
       {this.id = '',
-      required this.homeTeam,
-      required this.awayTeam,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      this.homeTeam = const NoOpFetchable<Team>(),
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      this.awayTeam = const NoOpFetchable<Team>(),
       required this.kickOffDate,
       this.result})
       : super._();
@@ -202,9 +188,11 @@ class _$MatchImpl extends _Match {
   @JsonKey()
   final String id;
   @override
-  final Team homeTeam;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final Fetchable<Team> homeTeam;
   @override
-  final Team awayTeam;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final Fetchable<Team> awayTeam;
   @override
   final DateTime kickOffDate;
   @override
@@ -252,8 +240,10 @@ class _$MatchImpl extends _Match {
 abstract class _Match extends Match {
   const factory _Match(
       {final String id,
-      required final Team homeTeam,
-      required final Team awayTeam,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final Fetchable<Team> homeTeam,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final Fetchable<Team> awayTeam,
       required final DateTime kickOffDate,
       final MatchGoals? result}) = _$MatchImpl;
   const _Match._() : super._();
@@ -263,9 +253,11 @@ abstract class _Match extends Match {
   @override
   String get id;
   @override
-  Team get homeTeam;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  Fetchable<Team> get homeTeam;
   @override
-  Team get awayTeam;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  Fetchable<Team> get awayTeam;
   @override
   DateTime get kickOffDate;
   @override
