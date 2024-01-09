@@ -18,7 +18,7 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
   @override
   Future<void> fetch() async {
     await reference.fetch();
-    await Future.delayed(3.seconds);
+    await Future.delayed(5.seconds);
 
     try {
       _entity = AutoMapper<FirestoreReference<Model>, Entity>().map(reference);

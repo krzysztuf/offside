@@ -70,12 +70,15 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
               ),
               const Gap(32),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FetchableBuilder(
-                    fetchable: match.homeTeam,
-                    waiting: () => createTeamBadgeSkeletonizer(),
-                    child: (homeTeam) => TeamBadge(team: homeTeam),
+                  SizedBox(
+                    width: 80,
+                    child: FetchableBuilder(
+                      fetchable: match.homeTeam,
+                      waiting: () => createTeamBadgeSkeletonizer(),
+                      child: (homeTeam) => TeamBadge(team: homeTeam),
+                    ),
                   ),
                   ScoreInput(
                     onUpdated: (score) => setState(() => homeGoalsPrediction = score),
@@ -84,10 +87,13 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
                   ScoreInput(
                     onUpdated: (score) => setState(() => awayGoalsPrediction = score),
                   ),
-                  FetchableBuilder(
-                    fetchable: match.awayTeam,
-                    waiting: () => createTeamBadgeSkeletonizer(),
-                    child: (awayTeam) => TeamBadge(team: awayTeam),
+                  SizedBox(
+                    width: 80,
+                    child: FetchableBuilder(
+                      fetchable: match.awayTeam,
+                      waiting: () => createTeamBadgeSkeletonizer(),
+                      child: (awayTeam) => TeamBadge(team: awayTeam),
+                    ),
                   ),
                 ],
               ),
