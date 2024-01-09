@@ -6,17 +6,21 @@ import 'package:offside/domain/entities/fetchable.dart';
 import 'package:supercharged/supercharged.dart';
 
 class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
-  late Entity _entity;
+  Entity? _entity;
 
   final FirestoreReference<Model> reference;
 
   FirestoreFetchable(this.reference);
 
   @override
-  Entity get value => _entity;
+  Entity get value => _entity!;
 
   @override
   Future<void> fetch() async {
+    if (_entity != null) {
+      return;
+    }
+    
     await reference.fetch();
     await Future.delayed(5.seconds);
 
