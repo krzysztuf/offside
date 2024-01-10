@@ -6,24 +6,38 @@ part of 'match_bet_card_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentCardBetProviderHash() =>
-    r'7007aa73ca386314aa543c2383c6b7b7ca2967a9';
+String _$currentCardBetHash() => r'4e152de406bcd0d99bce4a471a65a369ebf0e786';
 
-/// See also [currentCardBetProvider].
-@ProviderFor(currentCardBetProvider)
-final currentCardBetProviderProvider = AutoDisposeProvider<Bet>.internal(
-  currentCardBetProvider,
-  name: r'currentCardBetProviderProvider',
+/// See also [currentCardBet].
+@ProviderFor(currentCardBet)
+final currentCardBetProvider = AutoDisposeProvider<Bet>.internal(
+  currentCardBet,
+  name: r'currentCardBetProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$currentCardBetProviderHash,
+      : _$currentCardBetHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef CurrentCardBetProviderRef = AutoDisposeProviderRef<Bet>;
+typedef CurrentCardBetRef = AutoDisposeProviderRef<Bet>;
+String _$currentCardMatchHash() => r'ea4fd3eee9392502edf145780eecd94b277d9eda';
+
+/// See also [currentCardMatch].
+@ProviderFor(currentCardMatch)
+final currentCardMatchProvider = AutoDisposeProvider<Match>.internal(
+  currentCardMatch,
+  name: r'currentCardMatchProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$currentCardMatchHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CurrentCardMatchRef = AutoDisposeProviderRef<Match>;
 String _$matchBetCardViewModelHash() =>
-    r'fb1ee31ce281378a2e900ff1d2fac7fee72d4f32';
+    r'3cb581aa0e865f94ab541a18f50f1d675331a864';
 
 /// See also [MatchBetCardViewModel].
 @ProviderFor(MatchBetCardViewModel)

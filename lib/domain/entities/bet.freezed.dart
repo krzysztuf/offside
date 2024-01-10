@@ -20,9 +20,8 @@ Bet _$BetFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Bet {
-  int get id => throw _privateConstructorUsedError;
-  User get user => throw _privateConstructorUsedError;
-  Match get match => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   MatchGoals get prediction => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,10 +34,8 @@ abstract class $BetCopyWith<$Res> {
   factory $BetCopyWith(Bet value, $Res Function(Bet) then) =
       _$BetCopyWithImpl<$Res, Bet>;
   @useResult
-  $Res call({int id, User user, Match match, MatchGoals prediction});
+  $Res call({String id, String userId, MatchGoals prediction});
 
-  $UserCopyWith<$Res> get user;
-  $MatchCopyWith<$Res> get match;
   $MatchGoalsCopyWith<$Res> get prediction;
 }
 
@@ -55,44 +52,23 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? user = null,
-    Object? match = null,
+    Object? userId = null,
     Object? prediction = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      match: null == match
-          ? _value.match
-          : match // ignore: cast_nullable_to_non_nullable
-              as Match,
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       prediction: null == prediction
           ? _value.prediction
           : prediction // ignore: cast_nullable_to_non_nullable
               as MatchGoals,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MatchCopyWith<$Res> get match {
-    return $MatchCopyWith<$Res>(_value.match, (value) {
-      return _then(_value.copyWith(match: value) as $Val);
-    });
   }
 
   @override
@@ -110,12 +86,8 @@ abstract class _$$BetImplCopyWith<$Res> implements $BetCopyWith<$Res> {
       __$$BetImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, User user, Match match, MatchGoals prediction});
+  $Res call({String id, String userId, MatchGoals prediction});
 
-  @override
-  $UserCopyWith<$Res> get user;
-  @override
-  $MatchCopyWith<$Res> get match;
   @override
   $MatchGoalsCopyWith<$Res> get prediction;
 }
@@ -130,23 +102,18 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
   @override
   $Res call({
     Object? id = null,
-    Object? user = null,
-    Object? match = null,
+    Object? userId = null,
     Object? prediction = null,
   }) {
     return _then(_$BetImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      match: null == match
-          ? _value.match
-          : match // ignore: cast_nullable_to_non_nullable
-              as Match,
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       prediction: null == prediction
           ? _value.prediction
           : prediction // ignore: cast_nullable_to_non_nullable
@@ -159,26 +126,21 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
 @JsonSerializable()
 class _$BetImpl implements _Bet {
   const _$BetImpl(
-      {required this.id,
-      required this.user,
-      required this.match,
-      required this.prediction});
+      {required this.id, required this.userId, required this.prediction});
 
   factory _$BetImpl.fromJson(Map<String, dynamic> json) =>
       _$$BetImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
-  final User user;
-  @override
-  final Match match;
+  final String userId;
   @override
   final MatchGoals prediction;
 
   @override
   String toString() {
-    return 'Bet(id: $id, user: $user, match: $match, prediction: $prediction)';
+    return 'Bet(id: $id, userId: $userId, prediction: $prediction)';
   }
 
   @override
@@ -187,15 +149,14 @@ class _$BetImpl implements _Bet {
         (other.runtimeType == runtimeType &&
             other is _$BetImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.match, match) || other.match == match) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.prediction, prediction) ||
                 other.prediction == prediction));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, user, match, prediction);
+  int get hashCode => Object.hash(runtimeType, id, userId, prediction);
 
   @JsonKey(ignore: true)
   @override
@@ -213,19 +174,16 @@ class _$BetImpl implements _Bet {
 
 abstract class _Bet implements Bet {
   const factory _Bet(
-      {required final int id,
-      required final User user,
-      required final Match match,
+      {required final String id,
+      required final String userId,
       required final MatchGoals prediction}) = _$BetImpl;
 
   factory _Bet.fromJson(Map<String, dynamic> json) = _$BetImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
-  User get user;
-  @override
-  Match get match;
+  String get userId;
   @override
   MatchGoals get prediction;
   @override

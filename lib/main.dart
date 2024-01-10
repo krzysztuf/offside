@@ -8,7 +8,8 @@ import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/firebase_options.dart';
 import 'package:offside/offside_router.dart';
 import 'package:offside/offside_themes.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
+
+import 'presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

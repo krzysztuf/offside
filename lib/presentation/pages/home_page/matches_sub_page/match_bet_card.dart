@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/core/mixin/view_model_mixin.dart';
 import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_states.dart';
@@ -25,28 +24,21 @@ class MatchBetCard extends ConsumerStatefulWidget {
   ConsumerState<MatchBetCard> createState() => _MatchBetCardState();
 }
 
-class _MatchBetCardState extends ConsumerState<MatchBetCard>
-    with ViewModelMixin<MatchBetCardViewModel, MatchBetCardState, MatchBetCard> {
+class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   late int homeGoalsPrediction;
   late int awayGoalsPrediction;
 
   @override
-  AutoDisposeNotifierProvider<MatchBetCardViewModel, MatchBetCardState> get viewModelProvider {
-    return matchBetCardViewModelProvider;
-  }
-
-  @override
   void initState() {
     super.initState();
-    final currentGoalsPrediction = state.bet.prediction;
+    final currentGoalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
     homeGoalsPrediction = currentGoalsPrediction.home;
     awayGoalsPrediction = currentGoalsPrediction.away;
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = watchState();
-    final match = state.bet.match;
+    final state = ref.watch(matchBetCardViewModelProvider);
 
     return Card(
       child: SizedBox(
@@ -64,7 +56,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
                   ),
                   MutedInformationLabel(
                     icon: Icons.sports,
-                    text: DateFormat('hh:mm').format(match.kickOffDate),
+                    text: DateFormat('hh:mm').format(state.match.kickOffDate),
                   ),
                 ],
               ),
@@ -75,7 +67,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
                   SizedBox(
                     width: 80,
                     child: FetchableBuilder(
-                      fetchable: match.homeTeam,
+                      fetchable: state.match.homeTeam,
                       waiting: () => createTeamBadgeSkeletonizer(),
                       child: (homeTeam) => TeamBadge(team: homeTeam),
                     ),
@@ -90,7 +82,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
                   SizedBox(
                     width: 80,
                     child: FetchableBuilder(
-                      fetchable: match.awayTeam,
+                      fetchable: state.match.awayTeam,
                       waiting: () => createTeamBadgeSkeletonizer(),
                       child: (awayTeam) => TeamBadge(team: awayTeam),
                     ),
@@ -133,7 +125,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard>
       away: awayGoalsPrediction,
     );
 
-    viewModel.updateBet(state.bet.copyWith(prediction: goalsPrediction));
+    ref.read(matchBetCardViewModelProvider.notifier).updateBet(state.bet.copyWith(prediction: goalsPrediction));
   }
 
   void showOtherUsersPredictionsSheet(BuildContext context) {

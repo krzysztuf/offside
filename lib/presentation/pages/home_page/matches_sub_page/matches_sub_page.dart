@@ -4,12 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/core/mixin/view_model_mixin.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page_states.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page_view_model.dart';
 
 import 'match_bet_card.dart';
@@ -23,13 +21,7 @@ class MatchesSubPage extends ConsumerStatefulWidget {
   }
 }
 
-class _MatchesSubPageState extends ConsumerState<MatchesSubPage>
-    with ViewModelMixin<MatchesSubPageViewModel, MatchesSubPageState, MatchesSubPage> {
-  @override
-  AutoDisposeNotifierProvider<MatchesSubPageViewModel, MatchesSubPageState> get viewModelProvider {
-    return matchesSubPageViewModelProvider;
-  }
-
+class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchesSubPageViewModelProvider);
@@ -48,23 +40,23 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage>
               ),
             ),
             const Gap(32),
-            ...state.matches.map((m) {
+            ...state.matches.map((match) {
               const user = User(
                 name: 'Krzysztof',
                 surname: 'Potrząsaj',
               );
 
-              final bet = Bet(
-                id: 0,
-                user: user,
-                match: m,
-                prediction: const MatchGoals(home: 0, away: 0),
+              const bet = Bet(
+                id: '0',
+                userId: '1',
+                prediction: MatchGoals(home: 0, away: 0),
               );
 
               return ProviderScope(
                 overrides: [
                   matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
-                  currentCardBetProviderProvider.overrideWith((_) => bet)
+                  currentCardBetProvider.overrideWith((_) => bet),
+                  currentCardMatchProvider.overrideWith((_) => match),
                 ],
                 child: const MatchBetCard(),
               );

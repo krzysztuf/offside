@@ -1,24 +1,26 @@
 import 'package:offside/domain/entities/bet.dart';
+import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/view_state.dart';
 
 class MatchBetCardState extends ViewState {
   final Bet bet;
+  final Match match;
 
-  MatchBetCardState(this.bet);
+  MatchBetCardState(this.bet, this.match);
 }
 
 class MatchNotStarted extends MatchBetCardState {
-  MatchNotStarted(super.bet);
+  MatchNotStarted(super.bet, super.match);
 }
 
 class MatchIsBeingPlayed extends MatchBetCardState {
-  MatchIsBeingPlayed(super.bet);
+  MatchIsBeingPlayed(super.bet, super.match);
 }
 
 class MatchEnded extends MatchBetCardState {
-  MatchEnded(super.bet);
+  MatchEnded(super.bet, super.match);
 }
 
 class PlacedBetLoaded extends MatchBetCardState {
-  PlacedBetLoaded(super.bet);
+  PlacedBetLoaded(super.bet, super.match);
 }
