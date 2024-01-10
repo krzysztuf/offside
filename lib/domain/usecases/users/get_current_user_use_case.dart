@@ -2,11 +2,11 @@ import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
 
-class GetCurrentUser implements AsyncUseCase<User?> {
+class GetCurrentUserUseCase implements AsyncUseCase<User?> {
   final Repository<User> users;
   final String currentUserId;
 
-  GetCurrentUser(this.users, this.currentUserId);
+  GetCurrentUserUseCase(this.users, this.currentUserId);
 
   @override
   Future<User?> run() async {

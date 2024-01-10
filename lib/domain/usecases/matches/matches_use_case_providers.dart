@@ -6,7 +6,7 @@ import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'get_upcoming_matches.dart';
+part 'get_upcoming_matches_use_case.dart';
 part 'matches_use_case_providers.g.dart';
 
 @riverpod

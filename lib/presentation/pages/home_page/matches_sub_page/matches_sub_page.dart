@@ -6,7 +6,6 @@ import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match_goals.dart';
-import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page_view_model.dart';
 
@@ -41,11 +40,6 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
             ),
             const Gap(32),
             ...state.matches.map((match) {
-              const user = User(
-                name: 'Krzysztof',
-                surname: 'Potrząsaj',
-              );
-
               const bet = Bet(
                 id: '0',
                 userId: '1',

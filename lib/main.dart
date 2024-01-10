@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:offside/core/mapping/entity_to_firestore_mapping.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
+import 'package:offside/domain/entities/app_setting.dart';
 import 'package:offside/firebase_options.dart';
 import 'package:offside/offside_router.dart';
 import 'package:offside/offside_themes.dart';
@@ -34,6 +35,8 @@ class OffsideApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    AppSetting.currentUserId;
+
     final router = ref.watch(offsideRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

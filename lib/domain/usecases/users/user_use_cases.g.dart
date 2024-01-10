@@ -7,11 +7,12 @@ part of 'user_use_cases.dart';
 // **************************************************************************
 
 String _$currentUserUseCaseHash() =>
-    r'f5038ea74833b9dcf10fc0ccf084ddee35c7af10';
+    r'da8cb9e9dd33ded9aef82326bf72ded2dbc56113';
 
 /// See also [currentUserUseCase].
 @ProviderFor(currentUserUseCase)
-final currentUserUseCaseProvider = AutoDisposeProvider<GetCurrentUser>.internal(
+final currentUserUseCaseProvider =
+    AutoDisposeProvider<GetCurrentUserUseCase>.internal(
   currentUserUseCase,
   name: r'currentUserUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,12 +22,13 @@ final currentUserUseCaseProvider = AutoDisposeProvider<GetCurrentUser>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CurrentUserUseCaseRef = AutoDisposeProviderRef<GetCurrentUser>;
-String _$allUsersUseCaseHash() => r'03837e1cb10a8e7b636db5029417babac5fb3afd';
+typedef CurrentUserUseCaseRef = AutoDisposeProviderRef<GetCurrentUserUseCase>;
+String _$allUsersUseCaseHash() => r'a59d50e72bd14cb8cf9b728e2d94204a0840711e';
 
 /// See also [allUsersUseCase].
 @ProviderFor(allUsersUseCase)
-final allUsersUseCaseProvider = AutoDisposeProvider<GetAllUsers>.internal(
+final allUsersUseCaseProvider =
+    AutoDisposeProvider<GetAllUsersUseCase>.internal(
   allUsersUseCase,
   name: r'allUsersUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -36,6 +38,6 @@ final allUsersUseCaseProvider = AutoDisposeProvider<GetAllUsers>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AllUsersUseCaseRef = AutoDisposeProviderRef<GetAllUsers>;
+typedef AllUsersUseCaseRef = AutoDisposeProviderRef<GetAllUsersUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
