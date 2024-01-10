@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/domain/entities/identifiable.dart';
 
+import 'bet.dart';
 import 'fetchable.dart';
 import 'match_goals.dart';
 import 'team.dart';
@@ -15,6 +16,7 @@ class Match with _$Match implements Identifiable {
     @Default(NoOpFetchable<Team>()) @JsonKey(includeFromJson: false, includeToJson: false) Fetchable<Team> homeTeam,
     @Default(NoOpFetchable<Team>()) @JsonKey(includeFromJson: false, includeToJson: false) Fetchable<Team> awayTeam,
     required DateTime kickOffDate,
+    required List<Bet> bets,
     MatchGoals? result,
   }) = _Match;
 

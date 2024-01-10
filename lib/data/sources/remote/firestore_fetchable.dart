@@ -1,14 +1,14 @@
 import 'dart:developer';
 
 import 'package:offside/core/mapper/auto_mapper.dart';
-import 'package:offside/core/utils/firestore_reference.dart';
+import 'package:offside/core/utils/firestore/document.dart';
 import 'package:offside/domain/entities/fetchable.dart';
 import 'package:supercharged/supercharged.dart';
 
 class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
   Entity? _entity;
 
-  final FirestoreReference<Model> reference;
+  final Document<Model> reference;
 
   FirestoreFetchable(this.reference);
 
@@ -28,7 +28,7 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
     await Future.delayed(5.seconds);
 
     try {
-      _entity = AutoMapper<FirestoreReference<Model>, Entity>().map(reference);
+      _entity = AutoMapper<Document<Model>, Entity>().map(reference);
     } catch (e, s) {
       log(e.toString(), stackTrace: s);
       return Future.error(e);

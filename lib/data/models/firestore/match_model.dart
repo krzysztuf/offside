@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:offside/core/utils/firestore_reference.dart';
+import 'package:offside/core/utils/firestore/document.dart';
 
-import 'reference_holder.dart';
 import 'team_model.dart';
 
-class MatchModel implements ReferenceHolder {
-  final FirestoreReference<TeamModel> homeTeam;
-  final FirestoreReference<TeamModel> awayTeam;
+class MatchModel {
+  final String id;
+  final Document<TeamModel> homeTeam;
+  final Document<TeamModel> awayTeam;
   final Timestamp kickOffDate;
 
   MatchModel(
+    this.id,
     this.homeTeam,
     this.awayTeam,
     this.kickOffDate,
@@ -23,16 +24,13 @@ class MatchModel implements ReferenceHolder {
     };
   }
 
-  factory MatchModel.fromJson(Map<String, dynamic> json) {
+  factory MatchModel.fromJson(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    final json = snapshot.data()!;
     return MatchModel(
-      FirestoreReference(json['homeTeamRef'] as String),
-      FirestoreReference(json['awayTeamRef'] as String),
+      snapshot.id,
+      Document(json['homeTeamRef'] as String),
+      Document(json['awayTeamRef'] as String),
       json['kickOffDate'] as Timestamp,
     );
-  }
-
-  @override
-  Future<void> fetchReferences() async {
-    await Future.wait([homeTeam.fetch(), awayTeam.fetch()]);
   }
 }

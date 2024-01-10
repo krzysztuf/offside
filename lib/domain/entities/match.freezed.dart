@@ -26,6 +26,7 @@ mixin _$Match {
   @JsonKey(includeFromJson: false, includeToJson: false)
   Fetchable<Team> get awayTeam => throw _privateConstructorUsedError;
   DateTime get kickOffDate => throw _privateConstructorUsedError;
+  List<Bet> get bets => throw _privateConstructorUsedError;
   MatchGoals? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $MatchCopyWith<$Res> {
       @JsonKey(includeFromJson: false, includeToJson: false)
       Fetchable<Team> awayTeam,
       DateTime kickOffDate,
+      List<Bet> bets,
       MatchGoals? result});
 
   $MatchGoalsCopyWith<$Res>? get result;
@@ -67,6 +69,7 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
     Object? homeTeam = null,
     Object? awayTeam = null,
     Object? kickOffDate = null,
+    Object? bets = null,
     Object? result = freezed,
   }) {
     return _then(_value.copyWith(
@@ -86,6 +89,10 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
           ? _value.kickOffDate
           : kickOffDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      bets: null == bets
+          ? _value.bets
+          : bets // ignore: cast_nullable_to_non_nullable
+              as List<Bet>,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -120,6 +127,7 @@ abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
       @JsonKey(includeFromJson: false, includeToJson: false)
       Fetchable<Team> awayTeam,
       DateTime kickOffDate,
+      List<Bet> bets,
       MatchGoals? result});
 
   @override
@@ -141,6 +149,7 @@ class __$$MatchImplCopyWithImpl<$Res>
     Object? homeTeam = null,
     Object? awayTeam = null,
     Object? kickOffDate = null,
+    Object? bets = null,
     Object? result = freezed,
   }) {
     return _then(_$MatchImpl(
@@ -160,6 +169,10 @@ class __$$MatchImplCopyWithImpl<$Res>
           ? _value.kickOffDate
           : kickOffDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      bets: null == bets
+          ? _value._bets
+          : bets // ignore: cast_nullable_to_non_nullable
+              as List<Bet>,
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -178,8 +191,10 @@ class _$MatchImpl extends _Match {
       @JsonKey(includeFromJson: false, includeToJson: false)
       this.awayTeam = const NoOpFetchable<Team>(),
       required this.kickOffDate,
+      required final List<Bet> bets,
       this.result})
-      : super._();
+      : _bets = bets,
+        super._();
 
   factory _$MatchImpl.fromJson(Map<String, dynamic> json) =>
       _$$MatchImplFromJson(json);
@@ -195,12 +210,20 @@ class _$MatchImpl extends _Match {
   final Fetchable<Team> awayTeam;
   @override
   final DateTime kickOffDate;
+  final List<Bet> _bets;
+  @override
+  List<Bet> get bets {
+    if (_bets is EqualUnmodifiableListView) return _bets;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bets);
+  }
+
   @override
   final MatchGoals? result;
 
   @override
   String toString() {
-    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, kickOffDate: $kickOffDate, result: $result)';
+    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, kickOffDate: $kickOffDate, bets: $bets, result: $result)';
   }
 
   @override
@@ -215,13 +238,14 @@ class _$MatchImpl extends _Match {
                 other.awayTeam == awayTeam) &&
             (identical(other.kickOffDate, kickOffDate) ||
                 other.kickOffDate == kickOffDate) &&
+            const DeepCollectionEquality().equals(other._bets, _bets) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, homeTeam, awayTeam, kickOffDate, result);
+  int get hashCode => Object.hash(runtimeType, id, homeTeam, awayTeam,
+      kickOffDate, const DeepCollectionEquality().hash(_bets), result);
 
   @JsonKey(ignore: true)
   @override
@@ -245,6 +269,7 @@ abstract class _Match extends Match {
       @JsonKey(includeFromJson: false, includeToJson: false)
       final Fetchable<Team> awayTeam,
       required final DateTime kickOffDate,
+      required final List<Bet> bets,
       final MatchGoals? result}) = _$MatchImpl;
   const _Match._() : super._();
 
@@ -260,6 +285,8 @@ abstract class _Match extends Match {
   Fetchable<Team> get awayTeam;
   @override
   DateTime get kickOffDate;
+  @override
+  List<Bet> get bets;
   @override
   MatchGoals? get result;
   @override
