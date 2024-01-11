@@ -16,7 +16,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferencesHolder.initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  GetIt.instance.registerEntityToFirestoreModelsMapping();
+  GetIt.instance.addEntityFirestoreModelsMapping();
 
   initializeDateFormatting('pl', null);
 

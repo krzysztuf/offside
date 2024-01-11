@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/domain/entities/identifiable.dart';
 
@@ -13,10 +15,10 @@ part 'match.g.dart';
 class Match with _$Match implements Identifiable {
   const factory Match({
     @Default('') String id,
-    @Default(NoOpFetchable<Team>()) @JsonKey(includeFromJson: false, includeToJson: false) Fetchable<Team> homeTeam,
-    @Default(NoOpFetchable<Team>()) @JsonKey(includeFromJson: false, includeToJson: false) Fetchable<Team> awayTeam,
+    @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<Team> homeTeam,
+    @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
     required DateTime kickOffDate,
-    required List<Bet> bets,
+    @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
     MatchGoals? result,
   }) = _Match;
 

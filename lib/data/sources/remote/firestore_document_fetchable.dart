@@ -8,9 +8,9 @@ import 'package:supercharged/supercharged.dart';
 class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
   Entity? _entity;
 
-  final Document<Model> reference;
+  final Document<Model> document;
 
-  FirestoreFetchable(this.reference);
+  FirestoreFetchable(this.document);
 
   @override
   Entity get value => _entity!;
@@ -24,11 +24,11 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
       return;
     }
 
-    await reference.fetch();
+    await document.fetch();
     await Future.delayed(5.seconds);
 
     try {
-      _entity = AutoMapper<Document<Model>, Entity>().map(reference);
+      _entity = AutoMapper<Document<Model>, Entity>().map(document);
     } catch (e, s) {
       log(e.toString(), stackTrace: s);
       return Future.error(e);

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,6 +41,9 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardViewModelProvider);
+    state.match.bets.fetch().then((_) {
+      log('done: ${state.match.bets.value.length}');
+    });
 
     return Card(
       child: SizedBox(

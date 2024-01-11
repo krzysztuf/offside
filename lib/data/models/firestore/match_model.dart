@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:offside/core/utils/firestore/document.dart';
+import 'package:offside/core/utils/firestore/document_collection.dart';
+import 'package:offside/data/models/firestore/bet_model.dart';
 
 import 'team_model.dart';
 
@@ -8,12 +10,14 @@ class MatchModel {
   final Document<TeamModel> homeTeam;
   final Document<TeamModel> awayTeam;
   final Timestamp kickOffDate;
+  final DocumentCollection<BetModel> bets;
 
   MatchModel(
     this.id,
     this.homeTeam,
     this.awayTeam,
     this.kickOffDate,
+    this.bets,
   );
 
   Map<String, dynamic> toJson() {
@@ -26,11 +30,13 @@ class MatchModel {
 
   factory MatchModel.fromJson(DocumentSnapshot<Map<String, dynamic>> snapshot) {
     final json = snapshot.data()!;
+
     return MatchModel(
       snapshot.id,
       Document(json['homeTeamRef'] as String),
       Document(json['awayTeamRef'] as String),
       json['kickOffDate'] as Timestamp,
+      DocumentCollection('matches/${snapshot.id}/bets'),
     );
   }
 }

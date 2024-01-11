@@ -41,7 +41,6 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
             const Gap(32),
             ...state.matches.map((match) {
               const bet = Bet(
-                id: '0',
                 userId: '1',
                 prediction: MatchGoals(home: 0, away: 0),
               );

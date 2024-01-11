@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
@@ -11,6 +13,8 @@ class MainTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('user: ${users.first.id}');
+
     return Column(
       children: [
         for (final user in users)

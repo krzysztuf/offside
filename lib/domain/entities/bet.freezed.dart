@@ -20,6 +20,8 @@ Bet _$BetFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Bet {
+// ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   MatchGoals get prediction => throw _privateConstructorUsedError;
@@ -34,7 +36,10 @@ abstract class $BetCopyWith<$Res> {
   factory $BetCopyWith(Bet value, $Res Function(Bet) then) =
       _$BetCopyWithImpl<$Res, Bet>;
   @useResult
-  $Res call({String id, String userId, MatchGoals prediction});
+  $Res call(
+      {@JsonKey(includeToJson: false) String id,
+      String userId,
+      MatchGoals prediction});
 
   $MatchGoalsCopyWith<$Res> get prediction;
 }
@@ -86,7 +91,10 @@ abstract class _$$BetImplCopyWith<$Res> implements $BetCopyWith<$Res> {
       __$$BetImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String userId, MatchGoals prediction});
+  $Res call(
+      {@JsonKey(includeToJson: false) String id,
+      String userId,
+      MatchGoals prediction});
 
   @override
   $MatchGoalsCopyWith<$Res> get prediction;
@@ -126,12 +134,16 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
 @JsonSerializable()
 class _$BetImpl implements _Bet {
   const _$BetImpl(
-      {required this.id, required this.userId, required this.prediction});
+      {@JsonKey(includeToJson: false) this.id = '',
+      required this.userId,
+      required this.prediction});
 
   factory _$BetImpl.fromJson(Map<String, dynamic> json) =>
       _$$BetImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
+  @JsonKey(includeToJson: false)
   final String id;
   @override
   final String userId;
@@ -174,13 +186,14 @@ class _$BetImpl implements _Bet {
 
 abstract class _Bet implements Bet {
   const factory _Bet(
-      {required final String id,
+      {@JsonKey(includeToJson: false) final String id,
       required final String userId,
       required final MatchGoals prediction}) = _$BetImpl;
 
   factory _Bet.fromJson(Map<String, dynamic> json) = _$BetImpl.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeToJson: false)
   String get id;
   @override
   String get userId;

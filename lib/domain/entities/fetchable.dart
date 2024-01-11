@@ -20,5 +20,3 @@ class NoOpFetchable<T> implements Fetchable<T> {
   @override
   bool get hasValue => throw UnimplementedError('NoOpFetchable');
 }
-
-const noOpFetchable = NoOpFetchable();
