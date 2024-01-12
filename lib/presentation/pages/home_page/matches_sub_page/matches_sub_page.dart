@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/entities/bet.dart';
-import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page_view_model.dart';
 
@@ -39,21 +36,14 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
               ),
             ),
             const Gap(32),
-            ...state.matches.map((match) {
-              const bet = Bet(
-                userId: '1',
-                prediction: MatchGoals(home: 0, away: 0),
-              );
-
-              return ProviderScope(
+            for (final match in state.matches)
+              ProviderScope(
                 overrides: [
                   matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
-                  currentCardBetProvider.overrideWith((_) => bet),
                   currentCardMatchProvider.overrideWith((_) => match),
                 ],
                 child: const MatchBetCard(),
-              );
-            }).withGaps(gapSize: 32),
+              ),
           ],
         ),
       ),

@@ -8,12 +8,12 @@ import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/domain/entities/team.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_states.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/score_input.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
-import 'package:offside/presentation/widgets/enabled.dart';
+import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -27,24 +27,21 @@ class MatchBetCard extends ConsumerStatefulWidget {
 }
 
 class _MatchBetCardState extends ConsumerState<MatchBetCard> {
-  late int homeGoalsPrediction;
-  late int awayGoalsPrediction;
+  int homeGoalsPrediction = 0;
+  int awayGoalsPrediction = 0;
 
   @override
   void initState() {
     super.initState();
-    final currentGoalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
-    homeGoalsPrediction = currentGoalsPrediction.home;
-    awayGoalsPrediction = currentGoalsPrediction.away;
+    // final currentGoalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
+    // homeGoalsPrediction = currentGoalsPrediction.home;
+    // awayGoalsPrediction = currentGoalsPrediction.away;
   }
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardViewModelProvider);
-    state.match.bets.fetch().then((_) {
-      log('done: ${state.match.bets.value.length}');
-    });
-
+    log('--- state: ${state.betState}');
     return Card(
       child: SizedBox(
         width: double.infinity,
@@ -67,7 +64,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
               ),
               const Gap(32),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
                     width: 80,
@@ -77,12 +74,26 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                       child: (homeTeam) => TeamBadge(team: homeTeam),
                     ),
                   ),
-                  ScoreInput(
-                    onUpdated: (score) => setState(() => homeGoalsPrediction = score),
-                  ),
-                  Text('-', style: context.textTheme.titleLarge),
-                  ScoreInput(
-                    onUpdated: (score) => setState(() => awayGoalsPrediction = score),
+                  SizedBox(
+                    width: 200,
+                    child: AlternativeInflater(
+                      useAlternative: state.betState == BetState.loading,
+                      builder: (_) => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ScoreInput(
+                            onUpdated: (score) => setState(() => homeGoalsPrediction = score),
+                          ),
+                          Text('-', style: context.textTheme.titleLarge),
+                          ScoreInput(
+                            onUpdated: (score) => setState(() => awayGoalsPrediction = score),
+                          ),
+                        ],
+                      ),
+                      alternativeBuilder: (_) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     width: 80,
@@ -95,24 +106,24 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                 ],
               ),
               const Gap(32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton.icon(
-                    icon: const Icon(Icons.group, size: 16),
-                    label: const Text('Typy innych'),
-                    onPressed: () => showOtherUsersPredictionsSheet(context),
-                  ),
-                  Enabled(
-                    when: goalsPredictionHasChanged(state.bet.prediction),
-                    child: TextButton.icon(
-                      icon: const Icon(Icons.save, size: 16),
-                      label: const Text('Zapisz'),
-                      onPressed: () => savePrediction(state),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextButton.icon(
+              //       icon: const Icon(Icons.group, size: 16),
+              //       label: const Text('Typy innych'),
+              //       onPressed: () => showOtherUsersPredictionsSheet(context),
+              //     ),
+              //     Enabled(
+              //       when: goalsPredictionHasChanged(state.bet.prediction),
+              //       child: TextButton.icon(
+              //         icon: const Icon(Icons.save, size: 16),
+              //         label: const Text('Zapisz'),
+              //         onPressed: () => savePrediction(state),
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
@@ -125,12 +136,12 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   }
 
   void savePrediction(MatchBetCardState state) {
-    final goalsPrediction = state.bet.prediction.copyWith(
+    final goalsPrediction = state.bet!.prediction.copyWith(
       home: homeGoalsPrediction,
       away: awayGoalsPrediction,
     );
 
-    ref.read(matchBetCardViewModelProvider.notifier).updateBet(state.bet.copyWith(prediction: goalsPrediction));
+    ref.read(matchBetCardViewModelProvider.notifier).updateBet(state.bet!.copyWith(prediction: goalsPrediction));
   }
 
   void showOtherUsersPredictionsSheet(BuildContext context) {

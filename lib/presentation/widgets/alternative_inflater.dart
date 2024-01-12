@@ -18,8 +18,8 @@ class AlternativeInflater extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Inflater(inflated: useAlternative, child: builder(context)),
-        Inflater(inflated: !useAlternative, child: alternativeBuilder(context)),
+        Inflater(inflated: !useAlternative, child: builder(context)),
+        Inflater(inflated: useAlternative, child: alternativeBuilder(context)),
       ],
     );
   }

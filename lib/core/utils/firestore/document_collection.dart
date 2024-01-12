@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:offside/core/extensions/firebase/firestore_path_extensions.dart';
 import 'package:offside/core/extensions/firebase/typed_references_extension.dart';
@@ -18,19 +16,13 @@ class DocumentCollection<Model> {
   DocumentCollection(this.path);
 
   Future<void> fetch() async {
-    log('--- $path');
-
     if (_items != null) {
       return;
     }
 
-    try {
-      final snapshot = await FirebaseFirestore.instance.typedCollection<Model>(path).get();
-      _items = snapshot.docs.map((doc) {
-        return Document(path.pathJoin(doc.id), model: doc.data()!);
-      }).toList();
-    } catch (e) {
-      log(e.toString());
-    }
+    final snapshot = await FirebaseFirestore.instance.typedCollection<Model>(path).get();
+    _items = snapshot.docs.map((doc) {
+      return Document(path.pathJoin(doc.id), model: doc.data()!);
+    }).toList();
   }
 }
