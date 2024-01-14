@@ -1,16 +1,13 @@
-import 'dart:developer';
-
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/entities/match_goals.dart';
+import 'package:loading_animations/loading_animations.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/score_input.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
@@ -27,21 +24,11 @@ class MatchBetCard extends ConsumerStatefulWidget {
 }
 
 class _MatchBetCardState extends ConsumerState<MatchBetCard> {
-  int homeGoalsPrediction = 0;
-  int awayGoalsPrediction = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    // final currentGoalsPrediction = ref.read(matchBetCardViewModelProvider).bet.prediction;
-    // homeGoalsPrediction = currentGoalsPrediction.home;
-    // awayGoalsPrediction = currentGoalsPrediction.away;
-  }
+  var editingPrediction = false;
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardViewModelProvider);
-    log('--- state: ${state.betState}');
     return Card(
       child: SizedBox(
         width: double.infinity,
@@ -76,22 +63,15 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                   ),
                   SizedBox(
                     width: 200,
+                    height: 160,
                     child: AlternativeInflater(
+                      scaleFactor: 0.9,
                       useAlternative: state.betState == BetState.loading,
-                      builder: (_) => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ScoreInput(
-                            onUpdated: (score) => setState(() => homeGoalsPrediction = score),
-                          ),
-                          Text('-', style: context.textTheme.titleLarge),
-                          ScoreInput(
-                            onUpdated: (score) => setState(() => awayGoalsPrediction = score),
-                          ),
-                        ],
+                      builder: () => GoalsPredictionEditor(
+                        onUpdated: (homeGoals, awayGoals) {},
                       ),
-                      alternativeBuilder: (_) => const Center(
-                        child: CircularProgressIndicator(),
+                      alternativeBuilder: () => Center(
+                        child: LoadingBouncingGrid.square(size: 32),
                       ),
                     ),
                   ),
@@ -135,14 +115,14 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     return Skeletonizer(child: TeamBadge(team: Team(name: 'Dummy', abbreviation: 'ASB')));
   }
 
-  void savePrediction(MatchBetCardState state) {
-    final goalsPrediction = state.bet!.prediction.copyWith(
-      home: homeGoalsPrediction,
-      away: awayGoalsPrediction,
-    );
-
-    ref.read(matchBetCardViewModelProvider.notifier).updateBet(state.bet!.copyWith(prediction: goalsPrediction));
-  }
+  // void savePrediction(MatchBetCardState state) {
+  //   final goalsPrediction = state.bet!.prediction.copyWith(
+  //     home: homeGoalsPrediction,
+  //     away: awayGoalsPrediction,
+  //   );
+  //
+  //   ref.read(matchBetCardViewModelProvider.notifier).updateBet(state.bet!.copyWith(prediction: goalsPrediction));
+  // }
 
   void showOtherUsersPredictionsSheet(BuildContext context) {
     showFlexibleBottomSheet(
@@ -162,7 +142,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  bool goalsPredictionHasChanged(MatchGoals savedGoalsPrediction) {
-    return homeGoalsPrediction != savedGoalsPrediction.home || awayGoalsPrediction != savedGoalsPrediction.away;
-  }
+// bool goalsPredictionHasChanged(Goals savedGoalsPrediction) {
+//   return homeGoalsPrediction != savedGoalsPrediction.home || awayGoalsPrediction != savedGoalsPrediction.away;
+// }
 }

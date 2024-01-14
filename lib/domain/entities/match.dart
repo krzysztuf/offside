@@ -5,7 +5,7 @@ import 'package:offside/domain/entities/identifiable.dart';
 
 import 'bet.dart';
 import 'fetchable.dart';
-import 'match_goals.dart';
+import 'goals.dart';
 import 'team.dart';
 
 part 'match.freezed.dart';
@@ -19,7 +19,7 @@ class Match with _$Match implements Identifiable {
     @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
     required DateTime kickOffDate,
     @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
-    MatchGoals? result,
+    Goals? result,
   }) = _Match;
 
   const Match._();

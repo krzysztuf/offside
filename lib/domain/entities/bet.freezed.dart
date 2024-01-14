@@ -24,7 +24,7 @@ mixin _$Bet {
   @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
-  MatchGoals get prediction => throw _privateConstructorUsedError;
+  Goals get prediction => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,9 +39,9 @@ abstract class $BetCopyWith<$Res> {
   $Res call(
       {@JsonKey(includeToJson: false) String id,
       String userId,
-      MatchGoals prediction});
+      Goals prediction});
 
-  $MatchGoalsCopyWith<$Res> get prediction;
+  $GoalsCopyWith<$Res> get prediction;
 }
 
 /// @nodoc
@@ -72,14 +72,14 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
       prediction: null == prediction
           ? _value.prediction
           : prediction // ignore: cast_nullable_to_non_nullable
-              as MatchGoals,
+              as Goals,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MatchGoalsCopyWith<$Res> get prediction {
-    return $MatchGoalsCopyWith<$Res>(_value.prediction, (value) {
+  $GoalsCopyWith<$Res> get prediction {
+    return $GoalsCopyWith<$Res>(_value.prediction, (value) {
       return _then(_value.copyWith(prediction: value) as $Val);
     });
   }
@@ -94,10 +94,10 @@ abstract class _$$BetImplCopyWith<$Res> implements $BetCopyWith<$Res> {
   $Res call(
       {@JsonKey(includeToJson: false) String id,
       String userId,
-      MatchGoals prediction});
+      Goals prediction});
 
   @override
-  $MatchGoalsCopyWith<$Res> get prediction;
+  $GoalsCopyWith<$Res> get prediction;
 }
 
 /// @nodoc
@@ -125,7 +125,7 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
       prediction: null == prediction
           ? _value.prediction
           : prediction // ignore: cast_nullable_to_non_nullable
-              as MatchGoals,
+              as Goals,
     ));
   }
 }
@@ -148,7 +148,7 @@ class _$BetImpl implements _Bet {
   @override
   final String userId;
   @override
-  final MatchGoals prediction;
+  final Goals prediction;
 
   @override
   String toString() {
@@ -188,7 +188,7 @@ abstract class _Bet implements Bet {
   const factory _Bet(
       {@JsonKey(includeToJson: false) final String id,
       required final String userId,
-      required final MatchGoals prediction}) = _$BetImpl;
+      required final Goals prediction}) = _$BetImpl;
 
   factory _Bet.fromJson(Map<String, dynamic> json) = _$BetImpl.fromJson;
 
@@ -198,7 +198,7 @@ abstract class _Bet implements Bet {
   @override
   String get userId;
   @override
-  MatchGoals get prediction;
+  Goals get prediction;
   @override
   @JsonKey(ignore: true)
   _$$BetImplCopyWith<_$BetImpl> get copyWith =>

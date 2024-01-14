@@ -53,12 +53,11 @@ final usersRepositoryProvider = AutoDisposeProvider<Repository<User>>.internal(
 
 typedef UsersRepositoryRef = AutoDisposeProviderRef<Repository<User>>;
 String _$settingsRepositoryHash() =>
-    r'ef0b1c4981bc1010f741eae308d24f4e72ccb14f';
+    r'ca060010406df15617fdd8ad7f619fbce1d41685';
 
 /// See also [settingsRepository].
 @ProviderFor(settingsRepository)
-final settingsRepositoryProvider =
-    AutoDisposeProvider<SettingsRepository>.internal(
+final settingsRepositoryProvider = Provider<SettingsRepository>.internal(
   settingsRepository,
   name: r'settingsRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -68,6 +67,6 @@ final settingsRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
-typedef SettingsRepositoryRef = AutoDisposeProviderRef<SettingsRepository>;
+typedef SettingsRepositoryRef = ProviderRef<SettingsRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

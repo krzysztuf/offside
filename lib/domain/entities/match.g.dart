@@ -11,7 +11,7 @@ _$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
       kickOffDate: DateTime.parse(json['kickOffDate'] as String),
       result: json['result'] == null
           ? null
-          : MatchGoals.fromJson(json['result'] as Map<String, dynamic>),
+          : Goals.fromJson(json['result'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>

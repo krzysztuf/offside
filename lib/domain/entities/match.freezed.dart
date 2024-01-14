@@ -28,7 +28,7 @@ mixin _$Match {
   DateTime get kickOffDate => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets => throw _privateConstructorUsedError;
-  MatchGoals? get result => throw _privateConstructorUsedError;
+  Goals? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,9 +46,9 @@ abstract class $MatchCopyWith<$Res> {
       @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
       DateTime kickOffDate,
       @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
-      MatchGoals? result});
+      Goals? result});
 
-  $MatchGoalsCopyWith<$Res>? get result;
+  $GoalsCopyWith<$Res>? get result;
 }
 
 /// @nodoc
@@ -95,18 +95,18 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as MatchGoals?,
+              as Goals?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MatchGoalsCopyWith<$Res>? get result {
+  $GoalsCopyWith<$Res>? get result {
     if (_value.result == null) {
       return null;
     }
 
-    return $MatchGoalsCopyWith<$Res>(_value.result!, (value) {
+    return $GoalsCopyWith<$Res>(_value.result!, (value) {
       return _then(_value.copyWith(result: value) as $Val);
     });
   }
@@ -125,10 +125,10 @@ abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
       @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
       DateTime kickOffDate,
       @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
-      MatchGoals? result});
+      Goals? result});
 
   @override
-  $MatchGoalsCopyWith<$Res>? get result;
+  $GoalsCopyWith<$Res>? get result;
 }
 
 /// @nodoc
@@ -173,7 +173,7 @@ class __$$MatchImplCopyWithImpl<$Res>
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as MatchGoals?,
+              as Goals?,
     ));
   }
 }
@@ -208,7 +208,7 @@ class _$MatchImpl extends _Match {
   @JsonKey(includeFromJson: false)
   final Fetchable<List<Bet>> bets;
   @override
-  final MatchGoals? result;
+  final Goals? result;
 
   @override
   String toString() {
@@ -257,7 +257,7 @@ abstract class _Match extends Match {
       @JsonKey(includeFromJson: false) final Fetchable<Team> awayTeam,
       required final DateTime kickOffDate,
       @JsonKey(includeFromJson: false) final Fetchable<List<Bet>> bets,
-      final MatchGoals? result}) = _$MatchImpl;
+      final Goals? result}) = _$MatchImpl;
   const _Match._() : super._();
 
   factory _Match.fromJson(Map<String, dynamic> json) = _$MatchImpl.fromJson;
@@ -276,7 +276,7 @@ abstract class _Match extends Match {
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets;
   @override
-  MatchGoals? get result;
+  Goals? get result;
   @override
   @JsonKey(ignore: true)
   _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>

@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'inflater.dart';
 
 class AlternativeInflater extends StatelessWidget {
+  final double scaleFactor;
+  final Duration duration;
+
   final bool useAlternative;
-  final Widget Function(BuildContext context) builder;
-  final Widget Function(BuildContext context) alternativeBuilder;
+  final Widget Function() builder;
+  final Widget Function() alternativeBuilder;
 
   const AlternativeInflater({
     super.key,
+    this.scaleFactor = 0.4,
+    this.duration = const Duration(milliseconds: 400),
     required this.useAlternative,
     required this.builder,
     required this.alternativeBuilder,
@@ -18,8 +23,18 @@ class AlternativeInflater extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Inflater(inflated: !useAlternative, child: builder(context)),
-        Inflater(inflated: useAlternative, child: alternativeBuilder(context)),
+        Inflater(
+          inflated: !useAlternative,
+          scaleFactor: scaleFactor,
+          duration: duration,
+          child: builder(),
+        ),
+        Inflater(
+          inflated: useAlternative,
+          scaleFactor: scaleFactor,
+          duration: duration,
+          child: alternativeBuilder(),
+        ),
       ],
     );
   }

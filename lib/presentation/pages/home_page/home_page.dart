@@ -15,7 +15,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  var currentIndex = 0;
+  var currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,8 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           NavigationDestination(
             icon: switch (ref.watch(currentUserProvider)) {
-              AsyncData(value: final user) => user!.avatar(borderColor: Theme.of(context).colorScheme.outline),
+              AsyncData(value: final user) =>
+                user?.avatar(borderColor: Theme.of(context).colorScheme.outline) ?? const Icon(Icons.person),
               _ => const Icon(Icons.person),
             },
             label: 'Profil',

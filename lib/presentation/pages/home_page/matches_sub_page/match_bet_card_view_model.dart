@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'match_bet_card_state.dart';
@@ -15,11 +16,14 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
     var match = ref.read(currentCardMatchProvider);
     if (!match.bets.hasValue) {
       match.bets.fetch().then((_) {
-        log('fetching done');
-        state = state.copyWith(betState: BetState.placed);
+        final userId = ref.read(currentUserIdSettingProvider);
+        log('user id: $userId');
+
+        final betPlaced = match.bets.value.any((bet) => bet.userId == userId);
+        state = state.copyWith(betState: betPlaced ? BetState.placed : BetState.notPlaced);
       });
     }
-    log('returning loading');
+
     return MatchBetCardState(match: match);
   }
 

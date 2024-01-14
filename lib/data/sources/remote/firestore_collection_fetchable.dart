@@ -26,7 +26,7 @@ class FirestoreCollectionFetchable<Entity, Model> implements Fetchable<List<Enti
     }
 
     await collection.fetch();
-    await Future.delayed(5.seconds);
+    await Future.delayed(1.seconds);
 
     try {
       _entities = AutoMapper<Document<Model>, Entity>().mapMany(collection.items);

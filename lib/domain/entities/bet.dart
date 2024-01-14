@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:offside/domain/entities/match_goals.dart';
+import 'package:offside/domain/entities/goals.dart';
 
 part 'bet.freezed.dart';
 part 'bet.g.dart';
@@ -10,7 +10,7 @@ class Bet with _$Bet {
     // ignore: invalid_annotation_target
     @Default('') @JsonKey(includeToJson: false) String id,
     required String userId,
-    required MatchGoals prediction,
+    required Goals prediction,
   }) = _Bet;
 
   factory Bet.fromJson(Map<String, dynamic> json) => _$BetFromJson(json);

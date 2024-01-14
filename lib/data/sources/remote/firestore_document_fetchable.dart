@@ -25,7 +25,9 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
     }
 
     await document.fetch();
-    await Future.delayed(5.seconds);
+
+    // todo: remove delay
+    await Future.delayed(2.seconds);
 
     try {
       _entity = AutoMapper<Document<Model>, Entity>().map(document);

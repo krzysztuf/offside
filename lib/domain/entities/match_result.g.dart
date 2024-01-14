@@ -10,7 +10,7 @@ _$MatchResultImpl _$$MatchResultImplFromJson(Map<String, dynamic> json) =>
     _$MatchResultImpl(
       id: json['id'] as int,
       match: Match.fromJson(json['match'] as Map<String, dynamic>),
-      goals: MatchGoals.fromJson(json['goals'] as Map<String, dynamic>),
+      goals: Goals.fromJson(json['goals'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MatchResultImplToJson(_$MatchResultImpl instance) =>

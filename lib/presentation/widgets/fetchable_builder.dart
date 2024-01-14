@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:offside/core/extensions/async_snapshot_states.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/domain/entities/fetchable.dart';
 
@@ -25,9 +24,9 @@ class FetchableBuilder<T> extends StatelessWidget {
 
     return FutureBuilder(
       future: fetchable.fetch(),
-      builder: (context, snapshot) => switch (snapshot.state) {
-        SnapshotWaiting() => waiting(),
-        SnapshotDataReady() => child(fetchable.value),
+      builder: (context, snapshot) => switch (snapshot.connectionState) {
+        ConnectionState.waiting => waiting(),
+        ConnectionState.done => child(fetchable.value),
         _ => Container(child: 'Dupsko'.text),
       },
     );

@@ -5,19 +5,19 @@ import 'package:offside/presentation/theme/theme_extensions.dart';
 import 'package:offside/presentation/theme/widgets/circle_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 
-class ScoreInput extends ConsumerStatefulWidget {
+class GoalsInput extends ConsumerStatefulWidget {
   final Function(int score) onUpdated;
 
-  const ScoreInput({
+  const GoalsInput({
     super.key,
     required this.onUpdated,
   });
 
   @override
-  ConsumerState<ScoreInput> createState() => _ScoreInputState();
+  ConsumerState<GoalsInput> createState() => _GoalsInputState();
 }
 
-class _ScoreInputState extends ConsumerState<ScoreInput> {
+class _GoalsInputState extends ConsumerState<GoalsInput> {
   var value = 0;
 
   late final TextEditingController controller;
@@ -37,6 +37,7 @@ class _ScoreInputState extends ConsumerState<ScoreInput> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleButton(
           icon: Icons.add,

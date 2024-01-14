@@ -10,8 +10,8 @@ import 'package:offside/data/models/firestore/user_model.dart';
 import 'package:offside/data/sources/remote/firestore_collection_fetchable.dart';
 import 'package:offside/data/sources/remote/firestore_document_fetchable.dart';
 import 'package:offside/domain/entities/bet.dart';
+import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/domain/entities/match_goals.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 
@@ -83,7 +83,7 @@ extension EntityToFirestoreMapping on GetIt {
       backward: (document) => Bet(
         id: document.id,
         userId: document.value.userId,
-        prediction: MatchGoals(
+        prediction: Goals(
           home: document.value.homeGoalsPrediction,
           away: document.value.awayGoalsPrediction,
         ),

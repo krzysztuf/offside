@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'match_goals.dart';
+part of 'goals.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,34 +14,32 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MatchGoals _$MatchGoalsFromJson(Map<String, dynamic> json) {
-  return _MatchGoals.fromJson(json);
+Goals _$GoalsFromJson(Map<String, dynamic> json) {
+  return _Goals.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MatchGoals {
+mixin _$Goals {
   int get home => throw _privateConstructorUsedError;
   int get away => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MatchGoalsCopyWith<MatchGoals> get copyWith =>
-      throw _privateConstructorUsedError;
+  $GoalsCopyWith<Goals> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MatchGoalsCopyWith<$Res> {
-  factory $MatchGoalsCopyWith(
-          MatchGoals value, $Res Function(MatchGoals) then) =
-      _$MatchGoalsCopyWithImpl<$Res, MatchGoals>;
+abstract class $GoalsCopyWith<$Res> {
+  factory $GoalsCopyWith(Goals value, $Res Function(Goals) then) =
+      _$GoalsCopyWithImpl<$Res, Goals>;
   @useResult
   $Res call({int home, int away});
 }
 
 /// @nodoc
-class _$MatchGoalsCopyWithImpl<$Res, $Val extends MatchGoals>
-    implements $MatchGoalsCopyWith<$Res> {
-  _$MatchGoalsCopyWithImpl(this._value, this._then);
+class _$GoalsCopyWithImpl<$Res, $Val extends Goals>
+    implements $GoalsCopyWith<$Res> {
+  _$GoalsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -68,22 +66,21 @@ class _$MatchGoalsCopyWithImpl<$Res, $Val extends MatchGoals>
 }
 
 /// @nodoc
-abstract class _$$MatchGoalsImplCopyWith<$Res>
-    implements $MatchGoalsCopyWith<$Res> {
-  factory _$$MatchGoalsImplCopyWith(
-          _$MatchGoalsImpl value, $Res Function(_$MatchGoalsImpl) then) =
-      __$$MatchGoalsImplCopyWithImpl<$Res>;
+abstract class _$$GoalsImplCopyWith<$Res> implements $GoalsCopyWith<$Res> {
+  factory _$$GoalsImplCopyWith(
+          _$GoalsImpl value, $Res Function(_$GoalsImpl) then) =
+      __$$GoalsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int home, int away});
 }
 
 /// @nodoc
-class __$$MatchGoalsImplCopyWithImpl<$Res>
-    extends _$MatchGoalsCopyWithImpl<$Res, _$MatchGoalsImpl>
-    implements _$$MatchGoalsImplCopyWith<$Res> {
-  __$$MatchGoalsImplCopyWithImpl(
-      _$MatchGoalsImpl _value, $Res Function(_$MatchGoalsImpl) _then)
+class __$$GoalsImplCopyWithImpl<$Res>
+    extends _$GoalsCopyWithImpl<$Res, _$GoalsImpl>
+    implements _$$GoalsImplCopyWith<$Res> {
+  __$$GoalsImplCopyWithImpl(
+      _$GoalsImpl _value, $Res Function(_$GoalsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +89,7 @@ class __$$MatchGoalsImplCopyWithImpl<$Res>
     Object? home = null,
     Object? away = null,
   }) {
-    return _then(_$MatchGoalsImpl(
+    return _then(_$GoalsImpl(
       home: null == home
           ? _value.home
           : home // ignore: cast_nullable_to_non_nullable
@@ -107,11 +104,11 @@ class __$$MatchGoalsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MatchGoalsImpl extends _MatchGoals {
-  const _$MatchGoalsImpl({required this.home, required this.away}) : super._();
+class _$GoalsImpl extends _Goals {
+  const _$GoalsImpl({required this.home, required this.away}) : super._();
 
-  factory _$MatchGoalsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MatchGoalsImplFromJson(json);
+  factory _$GoalsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GoalsImplFromJson(json);
 
   @override
   final int home;
@@ -120,14 +117,14 @@ class _$MatchGoalsImpl extends _MatchGoals {
 
   @override
   String toString() {
-    return 'MatchGoals(home: $home, away: $away)';
+    return 'Goals(home: $home, away: $away)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MatchGoalsImpl &&
+            other is _$GoalsImpl &&
             (identical(other.home, home) || other.home == home) &&
             (identical(other.away, away) || other.away == away));
   }
@@ -139,24 +136,23 @@ class _$MatchGoalsImpl extends _MatchGoals {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MatchGoalsImplCopyWith<_$MatchGoalsImpl> get copyWith =>
-      __$$MatchGoalsImplCopyWithImpl<_$MatchGoalsImpl>(this, _$identity);
+  _$$GoalsImplCopyWith<_$GoalsImpl> get copyWith =>
+      __$$GoalsImplCopyWithImpl<_$GoalsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MatchGoalsImplToJson(
+    return _$$GoalsImplToJson(
       this,
     );
   }
 }
 
-abstract class _MatchGoals extends MatchGoals {
-  const factory _MatchGoals(
-      {required final int home, required final int away}) = _$MatchGoalsImpl;
-  const _MatchGoals._() : super._();
+abstract class _Goals extends Goals {
+  const factory _Goals({required final int home, required final int away}) =
+      _$GoalsImpl;
+  const _Goals._() : super._();
 
-  factory _MatchGoals.fromJson(Map<String, dynamic> json) =
-      _$MatchGoalsImpl.fromJson;
+  factory _Goals.fromJson(Map<String, dynamic> json) = _$GoalsImpl.fromJson;
 
   @override
   int get home;
@@ -164,6 +160,6 @@ abstract class _MatchGoals extends MatchGoals {
   int get away;
   @override
   @JsonKey(ignore: true)
-  _$$MatchGoalsImplCopyWith<_$MatchGoalsImpl> get copyWith =>
+  _$$GoalsImplCopyWith<_$GoalsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

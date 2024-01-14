@@ -14,19 +14,6 @@ part 'providers.g.dart';
 @riverpod
 Repository<Match> matchesRepository(MatchesRepositoryRef ref) {
   return FirebaseRepository(collection: FirestoreSource.matches);
-
-  // return MemoryRepository<Match>(items: [
-  //   Match(
-  //     homeTeam: Team(name: 'Polska', abbreviation: 'POL'),
-  //     awayTeam: Team(name: 'Niemcy', abbreviation: 'GER'),
-  //     kickOffDate: DateTime(2024, 6, 17, 17),
-  //   ),
-  //   Match(
-  //     homeTeam: Team(name: 'Włochy', abbreviation: 'ITA'),
-  //     awayTeam: Team(name: 'Anglia', abbreviation: 'ENG'),
-  //     kickOffDate: DateTime(2024, 6, 17, 17),
-  //   ),
-  // ]);
 }
 
 @riverpod
@@ -39,7 +26,7 @@ Repository<User> usersRepository(UsersRepositoryRef ref) {
   return FirebaseRepository(collection: FirestoreSource.users);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 SettingsRepository settingsRepository(SettingsRepositoryRef ref) {
   return SharedPreferencesRepository(SharedPreferencesHolder.preferences);
 }

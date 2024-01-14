@@ -22,7 +22,7 @@ MatchResult _$MatchResultFromJson(Map<String, dynamic> json) {
 mixin _$MatchResult {
   int get id => throw _privateConstructorUsedError;
   Match get match => throw _privateConstructorUsedError;
-  MatchGoals get goals => throw _privateConstructorUsedError;
+  Goals get goals => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,10 +36,10 @@ abstract class $MatchResultCopyWith<$Res> {
           MatchResult value, $Res Function(MatchResult) then) =
       _$MatchResultCopyWithImpl<$Res, MatchResult>;
   @useResult
-  $Res call({int id, Match match, MatchGoals goals});
+  $Res call({int id, Match match, Goals goals});
 
   $MatchCopyWith<$Res> get match;
-  $MatchGoalsCopyWith<$Res> get goals;
+  $GoalsCopyWith<$Res> get goals;
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$MatchResultCopyWithImpl<$Res, $Val extends MatchResult>
       goals: null == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
-              as MatchGoals,
+              as Goals,
     ) as $Val);
   }
 
@@ -85,8 +85,8 @@ class _$MatchResultCopyWithImpl<$Res, $Val extends MatchResult>
 
   @override
   @pragma('vm:prefer-inline')
-  $MatchGoalsCopyWith<$Res> get goals {
-    return $MatchGoalsCopyWith<$Res>(_value.goals, (value) {
+  $GoalsCopyWith<$Res> get goals {
+    return $GoalsCopyWith<$Res>(_value.goals, (value) {
       return _then(_value.copyWith(goals: value) as $Val);
     });
   }
@@ -100,12 +100,12 @@ abstract class _$$MatchResultImplCopyWith<$Res>
       __$$MatchResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, Match match, MatchGoals goals});
+  $Res call({int id, Match match, Goals goals});
 
   @override
   $MatchCopyWith<$Res> get match;
   @override
-  $MatchGoalsCopyWith<$Res> get goals;
+  $GoalsCopyWith<$Res> get goals;
 }
 
 /// @nodoc
@@ -135,7 +135,7 @@ class __$$MatchResultImplCopyWithImpl<$Res>
       goals: null == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
-              as MatchGoals,
+              as Goals,
     ));
   }
 }
@@ -154,7 +154,7 @@ class _$MatchResultImpl implements _MatchResult {
   @override
   final Match match;
   @override
-  final MatchGoals goals;
+  final Goals goals;
 
   @override
   String toString() {
@@ -193,7 +193,7 @@ abstract class _MatchResult implements MatchResult {
   const factory _MatchResult(
       {required final int id,
       required final Match match,
-      required final MatchGoals goals}) = _$MatchResultImpl;
+      required final Goals goals}) = _$MatchResultImpl;
 
   factory _MatchResult.fromJson(Map<String, dynamic> json) =
       _$MatchResultImpl.fromJson;
@@ -203,7 +203,7 @@ abstract class _MatchResult implements MatchResult {
   @override
   Match get match;
   @override
-  MatchGoals get goals;
+  Goals get goals;
   @override
   @JsonKey(ignore: true)
   _$$MatchResultImplCopyWith<_$MatchResultImpl> get copyWith =>

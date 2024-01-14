@@ -8,7 +8,7 @@ enum AppSetting {
 extension AppSettingDefaultValue on AppSetting {
   T defaultValue<T>() {
     return switch (this) {
-      AppSetting.currentUserId => 1,
+      AppSetting.currentUserId => 'dupsko',
       AppSetting.themeMode => ThemeMode.system.index,
       // ignore: unreachable_switch_case
       _ => throw Exception('unimplemented default value: $this'),

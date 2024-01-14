@@ -20,28 +20,3 @@ enum BetState {
   notPlaced,
   placed,
 }
-
-// class MatchBetCardState extends ViewState {
-//   final Bet? bet;
-//   final Match match;
-//
-//   bool get betPlaced => bet != null;
-//
-//   MatchBetCardState(this.bet, this.match);
-// }
-//
-// class MatchNotStarted extends MatchBetCardState {
-//   MatchNotStarted(super.bet, super.match);
-// }
-//
-// class MatchIsBeingPlayed extends MatchBetCardState {
-//   MatchIsBeingPlayed(super.bet, super.match);
-// }
-//
-// class MatchEnded extends MatchBetCardState {
-//   MatchEnded(super.bet, super.match);
-// }
-//
-// class PlacedBetLoaded extends MatchBetCardState {
-//   PlacedBetLoaded(super.bet, super.match);
-// }
