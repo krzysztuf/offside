@@ -47,7 +47,7 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
         const Gap(8),
         Text(
           '$value',
-          style: Theme.of(context).widgets.scoreInput.textTheme,
+          style: Theme.of(context).widgets.goalsInput.textTheme,
         ),
         const Gap(8),
         Enabled(

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/domain/entities/goals.dart';
 
 import 'goals_input.dart';
 
 class GoalsPredictionEditor extends StatefulWidget {
-  final Function(int homeGoals, int awayGoals) onUpdated;
+  final Function(Goals prediction) onUpdated;
 
   const GoalsPredictionEditor({
     super.key,
@@ -16,8 +17,7 @@ class GoalsPredictionEditor extends StatefulWidget {
 }
 
 class _GoalsPredictionEditorState extends State<GoalsPredictionEditor> {
-  var homeGoals = 0;
-  var awayGoals = 0;
+  var prediction = const Goals(home: 0, away: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +33,12 @@ class _GoalsPredictionEditorState extends State<GoalsPredictionEditor> {
 
   void _notifyPrediction({int? home, int? away}) {
     if (home != null) {
-      homeGoals = home;
+      prediction = prediction.copyWith(home: home);
     }
 
     if (away != null) {
-      awayGoals = away;
+      prediction = prediction.copyWith(away: away);
     }
-
-    widget.onUpdated(homeGoals, awayGoals);
+    widget.onUpdated(prediction);
   }
 }

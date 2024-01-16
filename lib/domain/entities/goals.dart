@@ -13,4 +13,14 @@ class Goals with _$Goals {
   const Goals._();
 
   factory Goals.fromJson(Map<String, dynamic> json) => _$GoalsFromJson(json);
+
+  @override
+  bool operator ==(Object other) {
+    return other is Goals && home == other.home && away == other.away;
+  }
+
+  @override
+  int get hashCode {
+    return home.hashCode ^ away.hashCode;
+  }
 }

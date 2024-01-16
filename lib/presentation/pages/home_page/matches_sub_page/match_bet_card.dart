@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animations/loading_animations.dart';
+import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
@@ -25,10 +27,18 @@ class MatchBetCard extends ConsumerStatefulWidget {
 
 class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   var editingPrediction = false;
+  var editedPrediction = const Goals(home: 0, away: 0);
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardViewModelProvider);
+    ref.listen(matchBetCardViewModelProvider, (_, vm) {
+      if (vm.betState == BetState.placed) {
+        assert(vm.bet != null, 'null bet when state is betPlaced');
+        editedPrediction = vm.bet!.prediction.copyWith();
+      }
+    });
+
     return Card(
       child: SizedBox(
         width: double.infinity,
@@ -62,13 +72,21 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                     ),
                   ),
                   SizedBox(
-                    width: 200,
-                    height: 160,
+                    width: 180,
                     child: AlternativeInflater(
                       scaleFactor: 0.9,
                       useAlternative: state.betState == BetState.loading,
-                      builder: () => GoalsPredictionEditor(
-                        onUpdated: (homeGoals, awayGoals) {},
+                      // useAlternative: true,
+                      builder: () => AlternativeInflater(
+                        useAlternative: state.betState == BetState.notPlaced || editingPrediction,
+                        scaleFactor: 0.7,
+                        builder: () {
+                          final prediction = state.bet?.prediction;
+                          return GoalsPrediction(home: prediction?.home ?? 0, away: prediction?.away ?? 0);
+                        },
+                        alternativeBuilder: () => GoalsPredictionEditor(
+                          onUpdated: (prediction) => editedPrediction = prediction,
+                        ),
                       ),
                       alternativeBuilder: () => Center(
                         child: LoadingBouncingGrid.square(size: 32),
@@ -86,24 +104,40 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                 ],
               ),
               const Gap(32),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     TextButton.icon(
-              //       icon: const Icon(Icons.group, size: 16),
-              //       label: const Text('Typy innych'),
-              //       onPressed: () => showOtherUsersPredictionsSheet(context),
-              //     ),
-              //     Enabled(
-              //       when: goalsPredictionHasChanged(state.bet.prediction),
-              //       child: TextButton.icon(
-              //         icon: const Icon(Icons.save, size: 16),
-              //         label: const Text('Zapisz'),
-              //         onPressed: () => savePrediction(state),
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Visibility(
+                    visible: false,
+                    child: TextButton.icon(
+                      icon: const Icon(Icons.group, size: 16),
+                      label: const Text('Typy innych'),
+                      onPressed: () => showOtherUsersPredictionsSheet(context),
+                    ),
+                  ),
+                  Stack(
+                    children: [
+                      Visibility(
+                        visible: editingPrediction || state.betState == BetState.notPlaced,
+                        child: TextButton.icon(
+                            icon: const Icon(Icons.save, size: 16),
+                            label: const Text('Zapisz'),
+                            onPressed: () {
+                              setState(() => editingPrediction = false);
+                              ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction);
+                            }),
+                      ),
+                      Visibility(
+                        visible: !editingPrediction && state.betState == BetState.placed,
+                        child: TextButton.icon(
+                            icon: const Icon(Icons.edit, size: 16),
+                            label: const Text('Edytuj'),
+                            onPressed: () => setState(() => editingPrediction = true)),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -141,8 +175,4 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
       },
     );
   }
-
-// bool goalsPredictionHasChanged(Goals savedGoalsPrediction) {
-//   return homeGoalsPrediction != savedGoalsPrediction.home || awayGoalsPrediction != savedGoalsPrediction.away;
-// }
 }

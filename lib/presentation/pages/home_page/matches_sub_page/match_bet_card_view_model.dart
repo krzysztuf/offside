@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:offside/domain/entities/bet.dart';
+import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -17,8 +16,6 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
     if (!match.bets.hasValue) {
       match.bets.fetch().then((_) {
         final userId = ref.read(currentUserIdSettingProvider);
-        log('user id: $userId');
-
         final betPlaced = match.bets.value.any((bet) => bet.userId == userId);
         state = state.copyWith(betState: betPlaced ? BetState.placed : BetState.notPlaced);
       });
@@ -27,8 +24,11 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
     return MatchBetCardState(match: match);
   }
 
-  Future<void> updateBet(Bet bet) async {
-    log('bet updated');
+  Future<void> updatePrediction(Goals prediction) async {
+    state = state.copyWith(
+      bet: Bet(userId: ref.read(currentUserIdSettingProvider), prediction: prediction),
+      betState: BetState.placed,
+    );
   }
 }
 

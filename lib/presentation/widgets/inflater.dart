@@ -6,7 +6,7 @@ import 'package:supercharged/supercharged.dart';
 
 import 'enabled.dart';
 
-class Inflater extends StatefulWidget {
+class Inflater extends StatelessWidget {
   final Widget child;
   final bool inflated;
   final double scaleFactor;
@@ -21,42 +21,24 @@ class Inflater extends StatefulWidget {
   });
 
   @override
-  State<Inflater> createState() => _InflaterState();
-}
-
-class _InflaterState extends State<Inflater> {
-  late bool childEnabled;
-
-  @override
-  void initState() {
-    enableDisabledChildOnInflated();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return CustomAnimationBuilder(
       tween: 0.0.tweenTo(1.0),
-      duration: widget.duration,
-      curve: widget.inflated ? Curves.easeInOutBack : Curves.fastOutSlowIn,
-      control: widget.inflated ? Control.play : Control.playReverse,
+      duration: duration,
+      curve: inflated ? Curves.fastEaseInToSlowEaseOut : Curves.fastOutSlowIn,
+      control: inflated ? Control.play : Control.playReverse,
       builder: (context, value, child) {
         return Opacity(
           opacity: clampDouble(value, 0, 1),
           child: Transform.scale(
-            scale: widget.scaleFactor + value * (1 - widget.scaleFactor),
+            scale: scaleFactor + value * (1 - scaleFactor),
             child: Enabled(
-              when: widget.inflated,
-              child: widget.child,
+              when: inflated,
+              child: this.child,
             ),
           ),
         );
       },
-      onCompleted: () => enableDisabledChildOnInflated(),
     );
-  }
-
-  void enableDisabledChildOnInflated() {
-    setState(() => childEnabled = widget.inflated);
   }
 }
