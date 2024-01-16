@@ -24,7 +24,7 @@ class PillButton extends StatelessWidget {
         onPressed: onPressed,
         child: Icon(
           icon,
-          size: 14,
+          size: 16,
         ),
       ),
     );

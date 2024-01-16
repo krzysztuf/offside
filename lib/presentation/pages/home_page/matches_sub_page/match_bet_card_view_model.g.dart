@@ -22,7 +22,7 @@ final currentCardMatchProvider = AutoDisposeProvider<Match>.internal(
 
 typedef CurrentCardMatchRef = AutoDisposeProviderRef<Match>;
 String _$matchBetCardViewModelHash() =>
-    r'7596ae7add5a986bb268f2773967a0e97a49f4ed';
+    r'073b042213524dbc9d37c4ade41b703c861f8eb7';
 
 /// See also [MatchBetCardViewModel].
 @ProviderFor(MatchBetCardViewModel)

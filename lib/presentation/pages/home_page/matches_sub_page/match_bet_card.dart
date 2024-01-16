@@ -26,7 +26,7 @@ class MatchBetCard extends ConsumerStatefulWidget {
 
 class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   var editingPrediction = false;
-  var editedPrediction = const Goals(home: 0, away: 0);
+  Goals? editedPrediction;
 
   @override
   Widget build(BuildContext context) {
@@ -69,13 +69,11 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                     child: AlternativeInflater(
                       scaleFactor: 0.9,
                       useAlternative: state.betState == BetState.loading || state.bet == null,
-                      builder: () {
-                        return GoalsPredictionEditor(
-                          initialPrediction: state.bet?.prediction ?? const Goals(),
-                          editable: state.betState == BetState.notPlaced || editingPrediction,
-                          onUpdated: (prediction) => editedPrediction = prediction,
-                        );
-                      },
+                      builder: () => GoalsPredictionEditor(
+                        initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
+                        editable: state.betState == BetState.notPlaced || editingPrediction,
+                        onUpdated: (prediction) => setState(() => editedPrediction = prediction),
+                      ),
                       alternativeBuilder: () => Center(
                         child: LoadingBouncingGrid.square(size: 32),
                       ),
@@ -92,39 +90,49 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                 ],
               ),
               const Gap(32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Visibility(
-                    visible: false,
-                    child: TextButton.icon(
-                      icon: const Icon(Icons.group, size: 16),
-                      label: const Text('Typy innych'),
-                      onPressed: () => showOtherUsersPredictionsSheet(context),
+              SizedBox(
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Visibility(
+                      visible: false,
+                      child: TextButton.icon(
+                        icon: const Icon(Icons.group, size: 18),
+                        label: const Text('Typy innych'),
+                        onPressed: () => showOtherUsersPredictionsSheet(context),
+                      ),
                     ),
-                  ),
-                  Stack(
-                    children: [
-                      Visibility(
-                        visible: editingPrediction || state.betState == BetState.notPlaced,
-                        child: TextButton.icon(
-                            icon: const Icon(Icons.save, size: 16),
-                            label: const Text('Zapisz'),
-                            onPressed: () async {
-                              await ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction);
-                              setState(() => editingPrediction = false);
-                            }),
-                      ),
-                      Visibility(
-                        visible: !editingPrediction && state.betState == BetState.placed,
-                        child: TextButton.icon(
-                            icon: const Icon(Icons.edit, size: 16),
-                            label: const Text('Edytuj'),
-                            onPressed: () => setState(() => editingPrediction = true)),
-                      ),
-                    ],
-                  ),
-                ],
+                    Visibility(
+                      visible: editingPrediction && editedPrediction == state.bet!.prediction,
+                      child: TextButton.icon(
+                          icon: const Icon(Icons.cancel, size: 18),
+                          label: const Text('Anuluj'),
+                          onPressed: () => setState(() => editingPrediction = false)),
+                    ),
+                    Visibility(
+                      visible: editingPrediction && editedPrediction != state.bet!.prediction ||
+                          state.betState == BetState.notPlaced,
+                      child: TextButton.icon(
+                          icon: const Icon(Icons.save, size: 18),
+                          label: const Text('Zapisz'),
+                          onPressed: () async {
+                            await ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction!);
+                            setState(() => editingPrediction = false);
+                          }),
+                    ),
+                    Visibility(
+                      visible: !editingPrediction && state.betState == BetState.placed,
+                      child: TextButton.icon(
+                          icon: const Icon(Icons.edit, size: 18),
+                          label: const Text('Edytuj'),
+                          onPressed: () => setState(() {
+                                editedPrediction = state.bet!.prediction.copyWith();
+                                editingPrediction = true;
+                              })),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -136,15 +144,6 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   Skeletonizer createTeamBadgeSkeletonizer() {
     return Skeletonizer(child: TeamBadge(team: Team(name: 'Dummy', abbreviation: 'ASB')));
   }
-
-  // void savePrediction(MatchBetCardState state) {
-  //   final goalsPrediction = state.bet!.prediction.copyWith(
-  //     home: homeGoalsPrediction,
-  //     away: awayGoalsPrediction,
-  //   );
-  //
-  //   ref.read(matchBetCardViewModelProvider.notifier).updateBet(state.bet!.copyWith(prediction: goalsPrediction));
-  // }
 
   void showOtherUsersPredictionsSheet(BuildContext context) {
     showFlexibleBottomSheet(
