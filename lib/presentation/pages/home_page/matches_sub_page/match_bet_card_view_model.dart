@@ -26,8 +26,19 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
 
   Future<void> updatePrediction(Goals prediction) async {
     state = state.copyWith(
-      bet: Bet(userId: ref.read(currentUserIdSettingProvider), prediction: prediction),
+      bet: betWithPrediction(prediction),
       betState: BetState.placed,
+    );
+  }
+
+  Bet betWithPrediction(Goals prediction) {
+    if (state.bet != null) {
+      return state.bet!.copyWith(prediction: prediction);
+    }
+
+    return Bet(
+      userId: ref.read(currentUserIdSettingProvider),
+      prediction: prediction,
     );
   }
 }

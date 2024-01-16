@@ -1,4 +1,4 @@
-import 'package:offside/data/repositories/firebase_repository.dart';
+import 'package:offside/data/repositories/firestore_repository.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/data/sources/remote/firestore_source.dart';
@@ -13,17 +13,17 @@ part 'providers.g.dart';
 
 @riverpod
 Repository<Match> matchesRepository(MatchesRepositoryRef ref) {
-  return FirebaseRepository(collection: FirestoreSource.matches);
+  return FirestoreRepository(collection: FirestoreSource.matches);
 }
 
 @riverpod
 Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
-  return FirebaseRepository(collection: FirestoreSource.teams);
+  return FirestoreRepository(collection: FirestoreSource.teams);
 }
 
 @riverpod
 Repository<User> usersRepository(UsersRepositoryRef ref) {
-  return FirebaseRepository(collection: FirestoreSource.users);
+  return FirestoreRepository(collection: FirestoreSource.users);
 }
 
 @Riverpod(keepAlive: true)

@@ -3,13 +3,13 @@ import 'package:offside/core/mapper/auto_mapper.dart';
 import 'package:offside/core/utils/firestore/document.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
-class FirebaseRepository<Entity, Model> implements Repository<Entity> {
+class FirestoreRepository<Entity, Model> implements Repository<Entity> {
   final CollectionReference<Model> collection;
 
   final modelToEntity = AutoMapper<Document<Model>, Entity>().map;
   final entityToModel = AutoMapper<Entity, Document<Model>>().map;
 
-  FirebaseRepository({required this.collection});
+  FirestoreRepository({required this.collection});
 
   @override
   Future<List<Entity>> all() async {
