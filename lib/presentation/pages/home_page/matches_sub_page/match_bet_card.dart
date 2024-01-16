@@ -68,7 +68,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                     width: 180,
                     child: AlternativeInflater(
                       scaleFactor: 0.9,
-                      useAlternative: state.betState == BetState.loading || state.bet == null,
+                      useAlternative: state.betState == BetState.loading,
                       builder: () => GoalsPredictionEditor(
                         initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
                         editable: state.betState == BetState.notPlaced || editingPrediction,

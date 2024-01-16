@@ -42,7 +42,12 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
                   matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
                   currentCardMatchProvider.overrideWith((_) => match),
                 ],
-                child: const MatchBetCard(),
+                child: const Column(
+                  children: [
+                    MatchBetCard(),
+                    Gap(32),
+                  ],
+                ),
               ),
           ],
         ),

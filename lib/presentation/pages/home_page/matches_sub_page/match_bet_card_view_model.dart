@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:offside/core/extensions/iterable_extensions.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
@@ -22,8 +20,6 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
         final userId = ref.read(currentUserIdSettingProvider);
         final bet = match.bets.value.find((bet) => bet.userId == userId);
 
-        log('bet loaded: $bet');
-        
         state = state.copyWith(
           bet: bet,
           betState: bet != null ? BetState.placed : BetState.notPlaced,
