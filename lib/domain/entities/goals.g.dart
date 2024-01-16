@@ -7,8 +7,8 @@ part of 'goals.dart';
 // **************************************************************************
 
 _$GoalsImpl _$$GoalsImplFromJson(Map<String, dynamic> json) => _$GoalsImpl(
-      home: json['home'] as int,
-      away: json['away'] as int,
+      home: json['home'] as int? ?? 0,
+      away: json['away'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$GoalsImplToJson(_$GoalsImpl instance) =>

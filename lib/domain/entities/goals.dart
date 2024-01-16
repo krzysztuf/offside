@@ -6,8 +6,8 @@ part 'goals.g.dart';
 @freezed
 class Goals with _$Goals {
   const factory Goals({
-    required int home,
-    required int away,
+    @Default(0) int home,
+    @Default(0) int away,
   }) = _Goals;
 
   const Goals._();

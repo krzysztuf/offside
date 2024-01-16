@@ -75,18 +75,23 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                     width: 180,
                     child: AlternativeInflater(
                       scaleFactor: 0.9,
-                      useAlternative: state.betState == BetState.loading,
+                      useAlternative: state.betState == BetState.loading || state.bet == null,
                       // useAlternative: true,
                       builder: () => AlternativeInflater(
-                        useAlternative: state.betState == BetState.notPlaced || editingPrediction,
+                        useAlternative: (state.betState == BetState.notPlaced || editingPrediction),
                         scaleFactor: 0.7,
                         builder: () {
                           final prediction = state.bet?.prediction;
-                          return GoalsPrediction(home: prediction?.home ?? 0, away: prediction?.away ?? 0);
+                          return GoalsPrediction(
+                            prediction: prediction ?? const Goals(),
+                          );
                         },
-                        alternativeBuilder: () => GoalsPredictionEditor(
-                          onUpdated: (prediction) => editedPrediction = prediction,
-                        ),
+                        alternativeBuilder: () {
+                          return GoalsPredictionEditor(
+                            initialPrediction: state.bet?.prediction ?? const Goals(),
+                            onUpdated: (prediction) => editedPrediction = prediction,
+                          );
+                        },
                       ),
                       alternativeBuilder: () => Center(
                         child: LoadingBouncingGrid.square(size: 32),

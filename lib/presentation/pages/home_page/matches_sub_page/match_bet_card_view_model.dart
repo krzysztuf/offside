@@ -1,6 +1,8 @@
+import 'package:offside/core/extensions/iterable_extensions.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/usecases/match/match_use_cases.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,12 +14,15 @@ part 'match_bet_card_view_model.g.dart';
 class MatchBetCardViewModel extends _$MatchBetCardViewModel {
   @override
   MatchBetCardState build() {
-    var match = ref.read(currentCardMatchProvider);
+    final match = ref.read(currentCardMatchProvider);
     if (!match.bets.hasValue) {
       match.bets.fetch().then((_) {
         final userId = ref.read(currentUserIdSettingProvider);
-        final betPlaced = match.bets.value.any((bet) => bet.userId == userId);
-        state = state.copyWith(betState: betPlaced ? BetState.placed : BetState.notPlaced);
+        final bet = match.bets.value.find((bet) => bet.userId == userId);
+        state = state.copyWith(
+          bet: bet,
+          betState: bet != null ? BetState.placed : BetState.notPlaced,
+        );
       });
     }
 
@@ -26,20 +31,33 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
 
   Future<void> updatePrediction(Goals prediction) async {
     state = state.copyWith(
-      bet: betWithPrediction(prediction),
+      bet: await _createOrUpdateBet(prediction),
       betState: BetState.placed,
     );
   }
 
-  Bet betWithPrediction(Goals prediction) {
+  Future<Bet> _createOrUpdateBet(Goals prediction) async {
     if (state.bet != null) {
-      return state.bet!.copyWith(prediction: prediction);
+      return await _updateExistingBet(prediction);
     }
 
-    return Bet(
+    return await _createNewBet(prediction);
+  }
+
+  Future<Bet> _updateExistingBet(Goals prediction) async {
+    final bet = state.bet!.copyWith(prediction: prediction);
+    await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
+    return bet;
+  }
+
+  Future<Bet> _createNewBet(Goals prediction) async {
+    final bet = Bet(
       userId: ref.read(currentUserIdSettingProvider),
       prediction: prediction,
     );
+
+    final id = await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
+    return bet.copyWith(id: id);
   }
 }
 

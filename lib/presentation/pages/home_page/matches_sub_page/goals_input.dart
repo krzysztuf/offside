@@ -6,10 +6,12 @@ import 'package:offside/presentation/theme/widgets/circle_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 
 class GoalsInput extends ConsumerStatefulWidget {
-  final Function(int score) onUpdated;
+  final Function(int goals) onUpdated;
+  final int initialValue;
 
   const GoalsInput({
     super.key,
+    required this.initialValue,
     required this.onUpdated,
   });
 
@@ -26,6 +28,13 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
   void initState() {
     super.initState();
     controller = TextEditingController();
+    value = widget.initialValue;
+  }
+
+  @override
+  void didUpdateWidget(GoalsInput oldWidget) {
+    value = widget.initialValue;
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

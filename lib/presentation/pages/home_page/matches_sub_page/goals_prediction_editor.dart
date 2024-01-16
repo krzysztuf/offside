@@ -5,10 +5,12 @@ import 'package:offside/domain/entities/goals.dart';
 import 'goals_input.dart';
 
 class GoalsPredictionEditor extends StatefulWidget {
+  final Goals initialPrediction;
   final Function(Goals prediction) onUpdated;
 
   const GoalsPredictionEditor({
     super.key,
+    required this.initialPrediction,
     required this.onUpdated,
   });
 
@@ -17,16 +19,34 @@ class GoalsPredictionEditor extends StatefulWidget {
 }
 
 class _GoalsPredictionEditorState extends State<GoalsPredictionEditor> {
-  var prediction = const Goals(home: 0, away: 0);
+  late Goals prediction;
+
+  @override
+  void initState() {
+    super.initState();
+    prediction = widget.initialPrediction;
+  }
+
+  @override
+  void didUpdateWidget(GoalsPredictionEditor oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    prediction = widget.initialPrediction;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        GoalsInput(onUpdated: (score) => _notifyPrediction(home: score)),
+        GoalsInput(
+          initialValue: widget.initialPrediction.home,
+          onUpdated: (score) => _notifyPrediction(home: score),
+        ),
         Text(':', style: context.textTheme.titleLarge),
-        GoalsInput(onUpdated: (score) => _notifyPrediction(away: score)),
+        GoalsInput(
+          initialValue: widget.initialPrediction.away,
+          onUpdated: (score) => _notifyPrediction(away: score),
+        ),
       ],
     );
   }

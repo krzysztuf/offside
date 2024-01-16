@@ -1,7 +1,9 @@
+import 'package:offside/data/models/firestore/bet_model.dart';
 import 'package:offside/data/repositories/firestore_repository.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/data/sources/remote/firestore_source.dart';
+import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
@@ -14,6 +16,12 @@ part 'providers.g.dart';
 @riverpod
 Repository<Match> matchesRepository(MatchesRepositoryRef ref) {
   return FirestoreRepository(collection: FirestoreSource.matches);
+}
+
+@riverpod
+Repository<Bet> matchBetsRepository(MatchBetsRepositoryRef ref, Match match) {
+  var path = 'matches/${match.id}/bets';
+  return FirestoreRepository(collection: FirestoreSource.typedCollectionRef<BetModel>(path));
 }
 
 @riverpod

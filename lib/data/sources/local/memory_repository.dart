@@ -9,9 +9,9 @@ class MemoryRepository<T extends Identifiable> implements Repository<T> {
   });
 
   @override
-  Future<void> add(T item) {
+  Future<String> add(T item) {
     items.add(item);
-    return Future.value();
+    return Future.value('');
   }
 
   @override
@@ -28,6 +28,12 @@ class MemoryRepository<T extends Identifiable> implements Repository<T> {
   Future<void> clear() {
     items.clear();
     return Future.value();
+  }
+
+  @override
+  Future<void> update(T item) {
+    // TODO: implement update
+    throw UnimplementedError();
   }
 
   @override

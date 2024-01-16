@@ -105,33 +105,22 @@ class __$$GoalsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GoalsImpl extends _Goals {
-  const _$GoalsImpl({required this.home, required this.away}) : super._();
+  const _$GoalsImpl({this.home = 0, this.away = 0}) : super._();
 
   factory _$GoalsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GoalsImplFromJson(json);
 
   @override
+  @JsonKey()
   final int home;
   @override
+  @JsonKey()
   final int away;
 
   @override
   String toString() {
     return 'Goals(home: $home, away: $away)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GoalsImpl &&
-            (identical(other.home, home) || other.home == home) &&
-            (identical(other.away, away) || other.away == away));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, home, away);
 
   @JsonKey(ignore: true)
   @override
@@ -148,8 +137,7 @@ class _$GoalsImpl extends _Goals {
 }
 
 abstract class _Goals extends Goals {
-  const factory _Goals({required final int home, required final int away}) =
-      _$GoalsImpl;
+  const factory _Goals({final int home, final int away}) = _$GoalsImpl;
   const _Goals._() : super._();
 
   factory _Goals.fromJson(Map<String, dynamic> json) = _$GoalsImpl.fromJson;

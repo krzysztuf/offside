@@ -1,4 +1,4 @@
-part of 'matches_use_case_providers.dart';
+part of 'match_use_cases.dart';
 
 class GetUpcomingMatchesUseCase implements AsyncUseCase<List<Match>> {
   final Repository<Match> matchesRepository;

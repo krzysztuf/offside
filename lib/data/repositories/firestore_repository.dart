@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:offside/core/extensions/firebase/typed_references_extension.dart';
 import 'package:offside/core/mapper/auto_mapper.dart';
 import 'package:offside/core/utils/firestore/document.dart';
 import 'package:offside/domain/repositories/repository.dart';
@@ -29,13 +32,33 @@ class FirestoreRepository<Entity, Model> implements Repository<Entity> {
   }
 
   @override
-  Future<void> add(Entity item) {
-    throw UnimplementedError();
+  Future<String> add(Entity item) async {
+    final document = entityToModel(item);
+    log('adding: ${document.id}');
+
+    if (document.id.isNotEmpty) {
+      throw Exception('$runtimeType: adding item with non empty id');
+    }
+
+    final ref = await collection.add(document.value);
+    return ref.id;
   }
 
   @override
   Future<void> clear() {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> update(Entity item) async {
+    final document = entityToModel(item);
+    if (document.id.isEmpty) {
+      throw Exception('$runtimeType: updating item with empty id');
+    }
+
+    final path = '${collection.path}/${document.id}';
+    final ref = FirebaseFirestore.instance.typedDoc<Model>(path);
+    await ref.set(document.value);
   }
 
   @override

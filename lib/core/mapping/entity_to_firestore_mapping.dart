@@ -41,6 +41,7 @@ extension EntityToFirestoreMapping on GetIt {
       forward: (entity) => Document(
         entity.id,
         model: UserModel(
+          entity.id,
           entity.name,
           entity.surname,
           entity.image,

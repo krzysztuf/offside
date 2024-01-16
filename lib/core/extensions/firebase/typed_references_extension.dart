@@ -28,7 +28,7 @@ extension TypedReferencesExtension on FirebaseFirestore {
   }
 
   static final Map<Type, FromFirestore> _fromFirestoreFactories = {
-    UserModel: (snapshot, _) => UserModel.fromJson(snapshot.data()!),
+    UserModel: (snapshot, _) => UserModel.fromJson(snapshot),
     BetModel: (snapshot, _) => BetModel.fromJson(snapshot),
     TeamModel: (snapshot, _) => TeamModel.fromJson(snapshot),
     MatchModel: (snapshot, _) => MatchModel.fromJson(snapshot),

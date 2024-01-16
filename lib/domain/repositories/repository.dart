@@ -3,9 +3,11 @@ abstract interface class Repository<T> {
 
   Future<T?> byId(String id);
 
-  Future<void> add(T item);
+  Future<String> add(T item);
 
   Future<void> remove(T item);
+
+  Future<void> update(T item);
 
   Future<void> clear();
 }

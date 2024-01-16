@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/domain/entities/goals.dart';
 
 class GoalsPrediction extends StatelessWidget {
-  final int home;
-  final int away;
+  final Goals prediction;
 
   const GoalsPrediction({
     super.key,
-    required this.home,
-    required this.away,
+    required this.prediction,
   });
 
   @override
@@ -18,7 +17,7 @@ class GoalsPrediction extends StatelessWidget {
       // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          '$home',
+          '${prediction.home}',
           style: context.widgets.goalsInput.textTheme.copyWith(fontSize: 46),
         ),
         Text(
@@ -26,7 +25,7 @@ class GoalsPrediction extends StatelessWidget {
           style: context.textTheme.titleLarge,
         ),
         Text(
-          '$away',
+          '${prediction.away}',
           style: context.widgets.goalsInput.textTheme.copyWith(fontSize: 46),
         ),
       ],
