@@ -4,7 +4,6 @@ import 'package:offside/core/mapper/auto_mapper.dart';
 import 'package:offside/core/utils/firestore/document.dart';
 import 'package:offside/core/utils/firestore/document_collection.dart';
 import 'package:offside/domain/entities/fetchable.dart';
-import 'package:supercharged/supercharged.dart';
 
 class FirestoreCollectionFetchable<Entity, Model> implements Fetchable<List<Entity>> {
   List<Entity>? _entities;
@@ -26,7 +25,6 @@ class FirestoreCollectionFetchable<Entity, Model> implements Fetchable<List<Enti
     }
 
     await collection.fetch();
-    await Future.delayed(1.seconds);
 
     try {
       _entities = AutoMapper<Document<Model>, Entity>().mapMany(collection.items);

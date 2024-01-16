@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:offside/core/mapper/auto_mapper.dart';
 import 'package:offside/core/utils/firestore/document.dart';
 import 'package:offside/domain/entities/fetchable.dart';
-import 'package:supercharged/supercharged.dart';
 
 class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
   Entity? _entity;
@@ -25,9 +24,6 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
     }
 
     await document.fetch();
-
-    // todo: remove delay
-    await Future.delayed(2.seconds);
 
     try {
       _entity = AutoMapper<Document<Model>, Entity>().map(document);

@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/team.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
@@ -32,12 +31,6 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardViewModelProvider);
-    ref.listen(matchBetCardViewModelProvider, (_, vm) {
-      if (vm.betState == BetState.placed) {
-        assert(vm.bet != null, 'null bet when state is betPlaced');
-        editedPrediction = vm.bet!.prediction.copyWith();
-      }
-    });
 
     return Card(
       child: SizedBox(
@@ -76,23 +69,13 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                     child: AlternativeInflater(
                       scaleFactor: 0.9,
                       useAlternative: state.betState == BetState.loading || state.bet == null,
-                      // useAlternative: true,
-                      builder: () => AlternativeInflater(
-                        useAlternative: (state.betState == BetState.notPlaced || editingPrediction),
-                        scaleFactor: 0.7,
-                        builder: () {
-                          final prediction = state.bet?.prediction;
-                          return GoalsPrediction(
-                            prediction: prediction ?? const Goals(),
-                          );
-                        },
-                        alternativeBuilder: () {
-                          return GoalsPredictionEditor(
-                            initialPrediction: state.bet?.prediction ?? const Goals(),
-                            onUpdated: (prediction) => editedPrediction = prediction,
-                          );
-                        },
-                      ),
+                      builder: () {
+                        return GoalsPredictionEditor(
+                          initialPrediction: state.bet?.prediction ?? const Goals(),
+                          editable: state.betState == BetState.notPlaced || editingPrediction,
+                          onUpdated: (prediction) => editedPrediction = prediction,
+                        );
+                      },
                       alternativeBuilder: () => Center(
                         child: LoadingBouncingGrid.square(size: 32),
                       ),
@@ -127,9 +110,9 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                         child: TextButton.icon(
                             icon: const Icon(Icons.save, size: 16),
                             label: const Text('Zapisz'),
-                            onPressed: () {
+                            onPressed: () async {
+                              await ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction);
                               setState(() => editingPrediction = false);
-                              ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction);
                             }),
                       ),
                       Visibility(

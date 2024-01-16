@@ -6,11 +6,13 @@ import 'goals_input.dart';
 
 class GoalsPredictionEditor extends StatefulWidget {
   final Goals initialPrediction;
+  final bool editable;
   final Function(Goals prediction) onUpdated;
 
   const GoalsPredictionEditor({
     super.key,
     required this.initialPrediction,
+    required this.editable,
     required this.onUpdated,
   });
 
@@ -40,11 +42,13 @@ class _GoalsPredictionEditorState extends State<GoalsPredictionEditor> {
       children: [
         GoalsInput(
           initialValue: widget.initialPrediction.home,
+          editable: widget.editable,
           onUpdated: (score) => _notifyPrediction(home: score),
         ),
         Text(':', style: context.textTheme.titleLarge),
         GoalsInput(
           initialValue: widget.initialPrediction.away,
+          editable: widget.editable,
           onUpdated: (score) => _notifyPrediction(away: score),
         ),
       ],

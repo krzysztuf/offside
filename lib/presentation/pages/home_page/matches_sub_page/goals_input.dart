@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/presentation/theme/theme_extensions.dart';
-import 'package:offside/presentation/theme/widgets/circle_button.dart';
+import 'package:offside/presentation/theme/widgets/pill_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
+import 'package:offside/presentation/widgets/inflater.dart';
 
 class GoalsInput extends ConsumerStatefulWidget {
   final Function(int goals) onUpdated;
   final int initialValue;
+  final bool editable;
 
   const GoalsInput({
     super.key,
     required this.initialValue,
+    required this.editable,
     required this.onUpdated,
   });
 
@@ -48,10 +51,13 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleButton(
-          icon: Icons.add,
-          size: 22,
-          onPressed: increment,
+        Inflater(
+          inflated: widget.editable,
+          child: PillButton(
+            icon: Icons.add,
+            height: 32,
+            onPressed: increment,
+          ),
         ),
         const Gap(8),
         Text(
@@ -59,12 +65,15 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
           style: Theme.of(context).widgets.goalsInput.textTheme,
         ),
         const Gap(8),
-        Enabled(
-          when: value > 0,
-          child: CircleButton(
-            icon: Icons.remove,
-            size: 22,
-            onPressed: decrement,
+        Inflater(
+          inflated: widget.editable,
+          child: Enabled(
+            when: value > 0,
+            child: PillButton(
+              icon: Icons.remove,
+              height: 32,
+              onPressed: decrement,
+            ),
           ),
         ),
       ],
