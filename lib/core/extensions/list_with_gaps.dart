@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/expand_with.dart';
 
 extension ListWithGaps on Iterable<Widget> {
-  Iterable<Widget> withGaps({required double gapSize}) {
-    return expandWith(Gap(gapSize));
+  List<Widget> withGaps(double size) {
+    return expandWith(Gap(size)).toList();
   }
 }

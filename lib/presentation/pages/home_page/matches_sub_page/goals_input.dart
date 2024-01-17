@@ -57,12 +57,12 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
           inflated: widget.editable,
           child: PillButton(
             icon: Icons.add,
-            height: 32,
+            height: 28,
             onPressed: increment,
           ),
         ),
         SizedBox(
-          height: 80,
+          height: 56,
           child: CustomAnimationBuilder(
             tween: 1.0.tweenTo(1.4),
             curve: Curves.easeInOutCubic,

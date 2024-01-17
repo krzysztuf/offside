@@ -14,18 +14,16 @@ class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
   @override
   MatchesSubPageState build() {
     ref.read(upcomingMatchesUseCaseProvider).run().then((matches) {
-      final groupedMatches = _groupMatchesByDay(matches);
-      state = MatchesSubPageState(groupedMatches);
+      state = MatchesSubPageState(_groupMatchesByDay(matches));
     });
 
     return MatchesSubPageState({});
   }
 
   Map<DateTime, List<Match>> _groupMatchesByDay(List<Match> matches) {
-    final groupedMatches = matches.fold(SplayTreeMap<DateTime, List<Match>>(), (map, match) {
+    return matches.fold(SplayTreeMap<DateTime, List<Match>>(), (map, match) {
       map.putIfAbsent(match.kickOffDate.date, () => []).add(match);
       return map;
     });
-    return groupedMatches;
   }
 }

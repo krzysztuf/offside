@@ -1,10 +1,9 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:loading_animations/loading_animations.dart';
+import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
@@ -46,133 +45,144 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const MutedInformationLabel(
-                    icon: Icons.emoji_events_outlined,
-                    text: 'GRUPA A',
-                  ),
-                  MutedInformationLabel(
-                    icon: Icons.sports,
-                    text: DateFormat('HH:mm').format(state.match.kickOffDate),
-                  ),
-                ],
-              ),
-              const Gap(32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: 80,
-                    child: FetchableBuilder(
-                      fetchable: state.match.homeTeam,
-                      waiting: () => createTeamBadgeSkeletonizer(),
-                      child: (homeTeam) => TeamBadge(team: homeTeam),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 180,
-                    child: AlternativeInflater(
-                      scaleFactor: 0.9,
-                      useAlternative: state.betState == BetState.loading,
-                      builder: () {
-                        if (state.betState == BetState.expired) {
-                          return const ExpiredBetGoals();
-                        }
-
-                        return GoalsPredictionEditor(
-                          initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
-                          editable: state.betState == BetState.notPlaced || editingPrediction,
-                          onUpdated: (prediction) => setState(() => editedPrediction = prediction),
-                        );
-                      },
-                      alternativeBuilder: () => Center(
-                        child: LoadingBouncingGrid.square(size: 32),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 80,
-                    child: FetchableBuilder(
-                      fetchable: state.match.awayTeam,
-                      waiting: () => createTeamBadgeSkeletonizer(),
-                      child: (awayTeam) => TeamBadge(team: awayTeam),
-                    ),
-                  ),
-                ],
-              ),
-              const Gap(32),
-              SizedBox(
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BetStatusPill(betState: state.betState),
-                    Inflater(
-                      inflated: state.loading,
-                      child: LoadingAnimationWidget.fourRotatingDots(
-                        // color: context.textTheme.bodyMedium!.color!,
-                        color: context.colorScheme.primary,
-                        size: 32,
-                      ),
-                    ),
-                    Enabled(
-                      enabled: !state.loading,
-                      child: Row(
-                        children: [
-                          Visibility(
-                            visible: state.match.afterKickOff,
-                            child: FilledButton.tonalIcon(
-                              icon: const Icon(Icons.group, size: 18),
-                              label: const Text('Typy innych'),
-                              onPressed: () => showOtherUsersPredictionsSheet(context),
-                            ),
-                          ),
-                          Visibility(
-                            visible: editingPrediction && editedPrediction == state.bet!.prediction,
-                            child: FilledButton.tonalIcon(
-                                icon: const Icon(Icons.cancel, size: 18),
-                                label: const Text('Anuluj'),
-                                onPressed: () => setState(() => editingPrediction = false)),
-                          ),
-                          Visibility(
-                            visible: editingPrediction && editedPrediction != state.bet!.prediction ||
-                                state.betState == BetState.notPlaced,
-                            child: FilledButton.tonalIcon(
-                                icon: const Icon(Icons.sports_soccer_rounded, size: 18),
-                                label: const Text('Typuj'),
-                                onPressed: () async {
-                                  editedPrediction ??= const Goals();
-                                  await ref
-                                      .read(matchBetCardViewModelProvider.notifier)
-                                      .updatePrediction(editedPrediction!);
-                                  setState(() => editingPrediction = false);
-                                }),
-                          ),
-                          Visibility(
-                            visible: !editingPrediction && state.betState == BetState.placed,
-                            child: FilledButton.tonalIcon(
-                              icon: const Icon(Icons.edit, size: 18),
-                              label: const Text('Zmień'),
-                              onPressed: () {
-                                setState(() {
-                                  editedPrediction = state.bet!.prediction.copyWith();
-                                  editingPrediction = true;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              buildHeader(state),
+              buildGoalsPredictionRow(state),
+              buildFooter(state, context),
+            ].withGaps(32),
           ),
         ),
       ),
+    );
+  }
+
+  SizedBox buildFooter(MatchBetCardState state, BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          BetStatusPill(betState: state.betState),
+          Inflater(
+            inflated: state.loading,
+            child: LoadingAnimationWidget.fourRotatingDots(
+              // color: context.textTheme.bodyMedium!.color!,
+              color: context.colorScheme.primary,
+              size: 32,
+            ),
+          ),
+          Enabled(
+            enabled: !state.loading,
+            child: Row(
+              children: [
+                Visibility(
+                  visible: state.match.afterKickOff,
+                  child: FilledButton.tonalIcon(
+                    icon: const Icon(Icons.group, size: 18),
+                    label: const Text('Typy innych'),
+                    onPressed: () => showOtherUsersPredictionsSheet(context),
+                  ),
+                ),
+                Visibility(
+                  visible: editingPrediction && editedPrediction == state.bet!.prediction,
+                  child: FilledButton.tonalIcon(
+                      icon: const Icon(Icons.cancel, size: 18),
+                      label: const Text('Anuluj'),
+                      onPressed: () => setState(() => editingPrediction = false)),
+                ),
+                Visibility(
+                  visible: editingPrediction && editedPrediction != state.bet!.prediction ||
+                      state.betState == BetState.notPlaced,
+                  child: FilledButton.tonalIcon(
+                      icon: const Icon(Icons.sports_soccer_rounded, size: 18),
+                      label: const Text('Typuj'),
+                      onPressed: () async {
+                        editedPrediction ??= const Goals();
+                        await ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction!);
+                        setState(() => editingPrediction = false);
+                      }),
+                ),
+                Visibility(
+                  visible: !editingPrediction && state.betState == BetState.placed,
+                  child: FilledButton.tonalIcon(
+                    icon: const Icon(Icons.edit, size: 18),
+                    label: const Text('Zmień'),
+                    onPressed: () {
+                      setState(() {
+                        editedPrediction = state.bet!.prediction.copyWith();
+                        editingPrediction = true;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Row buildGoalsPredictionRow(MatchBetCardState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(
+          width: 80,
+          child: FetchableBuilder(
+            fetchable: state.match.homeTeam,
+            waiting: () => createTeamBadgeSkeletonizer(),
+            child: (homeTeam) => TeamBadge(team: homeTeam),
+          ),
+        ),
+        SizedBox(
+          width: 180,
+          child: AlternativeInflater(
+            scaleFactor: 0.9,
+            useAlternative: state.betState == BetState.loading,
+            builder: () {
+              if (state.betState == BetState.expired) {
+                return const ExpiredBetGoals();
+              }
+
+              return GoalsPredictionEditor(
+                initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
+                editable: state.betState == BetState.notPlaced || editingPrediction,
+                onUpdated: (prediction) => setState(() => editedPrediction = prediction),
+              );
+            },
+            alternativeBuilder: () => Center(
+              child: LoadingAnimationWidget.fourRotatingDots(
+                size: 32,
+                color: context.colorScheme.primary,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 80,
+          child: FetchableBuilder(
+            fetchable: state.match.awayTeam,
+            waiting: () => createTeamBadgeSkeletonizer(),
+            child: (awayTeam) => TeamBadge(team: awayTeam),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row buildHeader(MatchBetCardState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const MutedInformationLabel(
+          icon: Icons.emoji_events_outlined,
+          text: 'GRUPA A',
+        ),
+        MutedInformationLabel(
+          icon: Icons.sports,
+          text: DateFormat('HH:mm').format(state.match.kickOffDate),
+        ),
+      ],
     );
   }
 
