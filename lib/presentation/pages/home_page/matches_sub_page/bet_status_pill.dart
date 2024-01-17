@@ -15,7 +15,7 @@ class BetStatusPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final preset = _loadPreset(context);
     return Material(
-      elevation: 1,
+      elevation: 0.5,
       borderRadius: BorderRadius.circular(16),
       color: Colors.transparent,
       child: Container(
@@ -27,10 +27,7 @@ class BetStatusPill extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Center(
-            child: Text(
-              _statusText,
-              style: preset.textStyle,
-            ),
+            child: Text(_statusText, style: preset.textStyle),
           ),
         ),
       ),

@@ -6,38 +6,42 @@ class BetStatusPillTheme extends WidgetTheme {
   BetStatusPillTheme(super.theme);
 
   PillPreset get pending => PillPreset(
-        background: theme.variant(
-          light: const Color(0xfff9ffb2),
-          dark: const Color(0xff51582c),
+        theme,
+        foreground: theme.variant(
+          light: const Color(0xff8b9800),
+          dark: const Color(0xffeaff80),
         ),
-        textStyle: theme.textTheme.labelSmall!.copyWith(
-          color: theme.variant(
-            light: const Color(0xff3e402d),
-            dark: const Color(0xffeaff80),
-          ),
+        background: theme.variant(
+          light: const Color(0xfffefff2),
+          dark: const Color(0xff51582c),
         ),
       );
 
   PillPreset get placed => PillPreset(
-        background: theme.variant(
-          light: const Color(0xffb2ffb2),
-          dark: const Color(0xff2e5a2e),
+        theme,
+        foreground: theme.variant(
+          light: const Color(0xff0f9a0f),
+          dark: const Color(0xff80ff80),
         ),
-        textStyle: theme.textTheme.labelSmall!.copyWith(
-          color: theme.variant(
-            light: const Color(0xff2d402d),
-            dark: const Color(0xff80ff80),
-          ),
+        background: theme.variant(
+          light: const Color(0xfff2fff2),
+          dark: const Color(0xff2e5a2e),
         ),
       );
 }
 
 class PillPreset {
+  final ThemeData theme;
   final Color background;
-  final TextStyle textStyle;
+  final Color foreground;
 
-  PillPreset({
+  PillPreset(
+    this.theme, {
     required this.background,
-    required this.textStyle,
+    required this.foreground,
   });
+
+  TextStyle get textStyle => theme.textTheme.labelSmall!.copyWith(color: foreground);
+
+  Color get foregroundMuted => foreground.withOpacity(0.5);
 }
