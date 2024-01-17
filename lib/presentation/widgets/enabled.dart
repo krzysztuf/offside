@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Enabled extends StatelessWidget {
-  final bool when;
+  final bool enabled;
   final double opacity;
   final Widget child;
 
   const Enabled({
     super.key,
-    required this.when,
+    required this.enabled,
     required this.child,
     this.opacity = 0.4,
   });
@@ -15,9 +15,9 @@ class Enabled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: !when,
+      ignoring: !enabled,
       child: Opacity(
-        opacity: when ? 1 : opacity,
+        opacity: enabled ? 1 : opacity,
         child: child,
       ),
     );

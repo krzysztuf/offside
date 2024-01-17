@@ -28,6 +28,18 @@ class BetStatusPillTheme extends WidgetTheme {
           dark: const Color(0xff2e5a2e),
         ),
       );
+
+  PillPreset get expired => PillPreset(
+        theme,
+        foreground: theme.variant(
+          light: const Color(0xff980000),
+          dark: const Color(0xffff8080),
+        ),
+        background: theme.variant(
+          light: const Color(0xfffff2f2),
+          dark: const Color(0xff5a2e2e),
+        ),
+      );
 }
 
 class PillPreset {

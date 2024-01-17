@@ -34,6 +34,7 @@ dependencies:
   firebase_core: ^2.24.2
   cloud_firestore: ^4.13.6
   loading_animations: ^2.2.0
+  loading_animation_widget: ^1.2.0+4
 
 dev_dependencies:
   flutter_test:

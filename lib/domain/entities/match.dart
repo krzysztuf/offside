@@ -29,3 +29,9 @@ class Match with _$Match implements Identifiable {
   @override
   String get identifier => id;
 }
+
+extension ConvenienceMethods on Match {
+  bool get afterKickOff => DateTime.now().isAfter(kickOffDate);
+
+  bool get finished => DateTime.now().isAfter(kickOffDate.copyWith(hour: kickOffDate.hour + 2));
+}

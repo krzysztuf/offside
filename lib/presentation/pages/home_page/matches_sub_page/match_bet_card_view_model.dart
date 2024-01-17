@@ -2,9 +2,9 @@ import 'package:offside/core/extensions/iterable_extensions.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/domain/usecases/match/match_use_cases.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'match_bet_card_state.dart';
 
@@ -20,25 +20,38 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
         final userId = ref.read(currentUserIdSettingProvider);
         final bet = match.bets.value.find((bet) => bet.userId == userId);
 
-        state = state.copyWith(
+        var updatedState = state.copyWith(
           bet: bet,
           betState: bet != null ? BetState.placed : BetState.notPlaced,
+          loading: false,
         );
+
+        if (match.afterKickOff && bet == null) {
+          updatedState = updatedState.copyWith(betState: BetState.expired);
+        }
+
+        state = updatedState;
       });
     }
 
-    return MatchBetCardState(match: match);
+    return MatchBetCardState(match: match, loading: true);
   }
 
   Future<void> updatePrediction(Goals prediction) async {
-    if (prediction == state.bet!.prediction) {
+    if (prediction == state.bet?.prediction) {
       return;
     }
+
+    setLoading(true);
+
+    await Future.delayed(2.seconds);
 
     state = state.copyWith(
       bet: await _createOrUpdateBet(prediction),
       betState: BetState.placed,
     );
+
+    setLoading(false);
   }
 
   Future<Bet> _createOrUpdateBet(Goals prediction) async {
@@ -51,7 +64,7 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
 
   Future<Bet> _updateExistingBet(Goals prediction) async {
     final bet = state.bet!.copyWith(prediction: prediction);
-    await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
+    // await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
     return bet;
   }
 
@@ -61,8 +74,15 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
       prediction: prediction,
     );
 
-    final id = await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
-    return bet.copyWith(id: id);
+    // final id = await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
+    // return bet.copyWith(id: id);
+
+    // final id = await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
+    return bet.copyWith(id: 'id');
+  }
+
+  void setLoading(bool loading) {
+    state = state.copyWith(loading: loading);
   }
 }
 

@@ -9,7 +9,8 @@ class MatchBetCardState with _$MatchBetCardState {
   const factory MatchBetCardState({
     required Match match,
     Bet? bet,
-    @Default(BetState.loading) BetState betState,
+    @Default(BetState.notPlaced) BetState betState,
+    @Default(false) bool loading,
   }) = _MatchBetCardState;
 
   const MatchBetCardState._();
@@ -19,4 +20,5 @@ enum BetState {
   loading,
   notPlaced,
   placed,
+  expired,
 }

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:loading_animations/loading_animations.dart';
+import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
@@ -12,7 +14,9 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
+import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
+import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
@@ -98,46 +102,69 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     BetStatusPill(betState: state.betState),
-                    // Container(),
+                    Inflater(
+                      inflated: state.loading,
+                      child: LoadingAnimationWidget.fourRotatingDots(
+                        // color: context.textTheme.bodyMedium!.color!,
+                        color: context.colorScheme.primary,
+                        size: 32,
+                      ),
+                    ),
                     Row(
                       children: [
                         Visibility(
                           visible: false,
-                          child: TextButton.icon(
-                            icon: const Icon(Icons.group, size: 18),
-                            label: const Text('Typy innych'),
-                            onPressed: () => showOtherUsersPredictionsSheet(context),
+                          child: Enabled(
+                            enabled: !state.loading,
+                            child: FilledButton.tonalIcon(
+                              icon: const Icon(Icons.group, size: 18),
+                              label: const Text('Typy innych'),
+                              onPressed: () => showOtherUsersPredictionsSheet(context),
+                            ),
                           ),
                         ),
                         Visibility(
                           visible: editingPrediction && editedPrediction == state.bet!.prediction,
-                          child: TextButton.icon(
-                              icon: const Icon(Icons.cancel, size: 18),
-                              label: const Text('Anuluj'),
-                              onPressed: () => setState(() => editingPrediction = false)),
+                          child: Enabled(
+                            enabled: !state.loading,
+                            child: FilledButton.tonalIcon(
+                                icon: const Icon(Icons.cancel, size: 18),
+                                label: const Text('Anuluj'),
+                                onPressed: () => setState(() => editingPrediction = false)),
+                          ),
                         ),
                         Visibility(
                           visible: editingPrediction && editedPrediction != state.bet!.prediction ||
                               state.betState == BetState.notPlaced,
-                          child: TextButton.icon(
-                              icon: const Icon(Icons.save, size: 18),
-                              label: const Text('Zapisz'),
-                              onPressed: () async {
-                                await ref
-                                    .read(matchBetCardViewModelProvider.notifier)
-                                    .updatePrediction(editedPrediction!);
-                                setState(() => editingPrediction = false);
-                              }),
+                          child: Enabled(
+                            enabled: !state.loading,
+                            child: FilledButton.tonalIcon(
+                                icon: const Icon(Icons.sports_soccer_rounded, size: 18),
+                                label: const Text('Typuj'),
+                                onPressed: () async {
+                                  editedPrediction ??= const Goals();
+                                  await ref
+                                      .read(matchBetCardViewModelProvider.notifier)
+                                      .updatePrediction(editedPrediction!);
+                                  setState(() => editingPrediction = false);
+                                }),
+                          ),
                         ),
                         Visibility(
                           visible: !editingPrediction && state.betState == BetState.placed,
-                          child: TextButton.icon(
+                          child: Enabled(
+                            enabled: !state.loading,
+                            child: FilledButton.tonalIcon(
                               icon: const Icon(Icons.edit, size: 18),
-                              label: const Text('Edytuj'),
-                              onPressed: () => setState(() {
-                                    editedPrediction = state.bet!.prediction.copyWith();
-                                    editingPrediction = true;
-                                  })),
+                              label: const Text('Zmień'),
+                              onPressed: () {
+                                setState(() {
+                                  editedPrediction = state.bet!.prediction.copyWith();
+                                  editingPrediction = true;
+                                });
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     ),

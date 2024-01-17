@@ -68,7 +68,7 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
         Inflater(
           inflated: widget.editable,
           child: Enabled(
-            when: value > 0,
+            enabled: value > 0,
             child: PillButton(
               icon: Icons.remove,
               height: 32,

@@ -19,6 +19,7 @@ mixin _$MatchBetCardState {
   Match get match => throw _privateConstructorUsedError;
   Bet? get bet => throw _privateConstructorUsedError;
   BetState get betState => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MatchBetCardStateCopyWith<MatchBetCardState> get copyWith =>
@@ -31,7 +32,7 @@ abstract class $MatchBetCardStateCopyWith<$Res> {
           MatchBetCardState value, $Res Function(MatchBetCardState) then) =
       _$MatchBetCardStateCopyWithImpl<$Res, MatchBetCardState>;
   @useResult
-  $Res call({Match match, Bet? bet, BetState betState});
+  $Res call({Match match, Bet? bet, BetState betState, bool loading});
 
   $MatchCopyWith<$Res> get match;
   $BetCopyWith<$Res>? get bet;
@@ -53,6 +54,7 @@ class _$MatchBetCardStateCopyWithImpl<$Res, $Val extends MatchBetCardState>
     Object? match = null,
     Object? bet = freezed,
     Object? betState = null,
+    Object? loading = null,
   }) {
     return _then(_value.copyWith(
       match: null == match
@@ -67,6 +69,10 @@ class _$MatchBetCardStateCopyWithImpl<$Res, $Val extends MatchBetCardState>
           ? _value.betState
           : betState // ignore: cast_nullable_to_non_nullable
               as BetState,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -99,7 +105,7 @@ abstract class _$$MatchBetCardStateImplCopyWith<$Res>
       __$$MatchBetCardStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Match match, Bet? bet, BetState betState});
+  $Res call({Match match, Bet? bet, BetState betState, bool loading});
 
   @override
   $MatchCopyWith<$Res> get match;
@@ -121,6 +127,7 @@ class __$$MatchBetCardStateImplCopyWithImpl<$Res>
     Object? match = null,
     Object? bet = freezed,
     Object? betState = null,
+    Object? loading = null,
   }) {
     return _then(_$MatchBetCardStateImpl(
       match: null == match
@@ -135,6 +142,10 @@ class __$$MatchBetCardStateImplCopyWithImpl<$Res>
           ? _value.betState
           : betState // ignore: cast_nullable_to_non_nullable
               as BetState,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -143,7 +154,10 @@ class __$$MatchBetCardStateImplCopyWithImpl<$Res>
 
 class _$MatchBetCardStateImpl extends _MatchBetCardState {
   const _$MatchBetCardStateImpl(
-      {required this.match, this.bet, this.betState = BetState.loading})
+      {required this.match,
+      this.bet,
+      this.betState = BetState.notPlaced,
+      this.loading = false})
       : super._();
 
   @override
@@ -153,10 +167,13 @@ class _$MatchBetCardStateImpl extends _MatchBetCardState {
   @override
   @JsonKey()
   final BetState betState;
+  @override
+  @JsonKey()
+  final bool loading;
 
   @override
   String toString() {
-    return 'MatchBetCardState(match: $match, bet: $bet, betState: $betState)';
+    return 'MatchBetCardState(match: $match, bet: $bet, betState: $betState, loading: $loading)';
   }
 
   @override
@@ -167,11 +184,12 @@ class _$MatchBetCardStateImpl extends _MatchBetCardState {
             (identical(other.match, match) || other.match == match) &&
             (identical(other.bet, bet) || other.bet == bet) &&
             (identical(other.betState, betState) ||
-                other.betState == betState));
+                other.betState == betState) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, match, bet, betState);
+  int get hashCode => Object.hash(runtimeType, match, bet, betState, loading);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +203,8 @@ abstract class _MatchBetCardState extends MatchBetCardState {
   const factory _MatchBetCardState(
       {required final Match match,
       final Bet? bet,
-      final BetState betState}) = _$MatchBetCardStateImpl;
+      final BetState betState,
+      final bool loading}) = _$MatchBetCardStateImpl;
   const _MatchBetCardState._() : super._();
 
   @override
@@ -194,6 +213,8 @@ abstract class _MatchBetCardState extends MatchBetCardState {
   Bet? get bet;
   @override
   BetState get betState;
+  @override
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$$MatchBetCardStateImplCopyWith<_$MatchBetCardStateImpl> get copyWith =>

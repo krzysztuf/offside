@@ -33,7 +33,7 @@ class Inflater extends StatelessWidget {
           child: Transform.scale(
             scale: scaleFactor + value * (1 - scaleFactor),
             child: Enabled(
-              when: inflated,
+              enabled: inflated,
               child: this.child,
             ),
           ),
