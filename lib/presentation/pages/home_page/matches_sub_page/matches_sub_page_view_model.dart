@@ -1,3 +1,5 @@
+import 'package:offside/core/extensions/date_time_extensions.dart';
+import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/usecases/match/match_use_cases.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,9 +12,21 @@ class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
   @override
   MatchesSubPageState build() {
     ref.read(upcomingMatchesUseCaseProvider).run().then((matches) {
-      state = MatchesSubPageState(matches);
+      Map<DateTime, List<Match>> groupedMatches = {};
+
+      for (var match in matches) {
+        final kickOffDay = match.kickOffDate.date;
+
+        if (!groupedMatches.containsKey(kickOffDay)) {
+          groupedMatches[kickOffDay] = [];
+        }
+
+        groupedMatches[kickOffDay]!.add(match);
+      }
+
+      state = MatchesSubPageState(groupedMatches);
     });
-    
-    return MatchesSubPageState([]);
+
+    return MatchesSubPageState({});
   }
 }
