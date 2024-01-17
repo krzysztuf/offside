@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -37,8 +35,6 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
       children: matches.entries.map((entry) {
         final kickOffDay = entry.key;
         final thisDayMatches = entry.value;
-
-        log('$kickOffDay: ${thisDayMatches.length}');
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
