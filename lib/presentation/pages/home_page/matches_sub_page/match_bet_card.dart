@@ -7,7 +7,9 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
+import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/expired_bet_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
@@ -74,11 +76,17 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                     child: AlternativeInflater(
                       scaleFactor: 0.9,
                       useAlternative: state.betState == BetState.loading,
-                      builder: () => GoalsPredictionEditor(
-                        initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
-                        editable: state.betState == BetState.notPlaced || editingPrediction,
-                        onUpdated: (prediction) => setState(() => editedPrediction = prediction),
-                      ),
+                      builder: () {
+                        if (state.betState == BetState.expired) {
+                          return const ExpiredBetGoals();
+                        }
+
+                        return GoalsPredictionEditor(
+                          initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
+                          editable: state.betState == BetState.notPlaced || editingPrediction,
+                          onUpdated: (prediction) => setState(() => editedPrediction = prediction),
+                        );
+                      },
                       alternativeBuilder: () => Center(
                         child: LoadingBouncingGrid.square(size: 32),
                       ),
@@ -109,34 +117,28 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                         size: 32,
                       ),
                     ),
-                    Row(
-                      children: [
-                        Visibility(
-                          visible: false,
-                          child: Enabled(
-                            enabled: !state.loading,
+                    Enabled(
+                      enabled: !state.loading,
+                      child: Row(
+                        children: [
+                          Visibility(
+                            visible: state.match.afterKickOff,
                             child: FilledButton.tonalIcon(
                               icon: const Icon(Icons.group, size: 18),
                               label: const Text('Typy innych'),
                               onPressed: () => showOtherUsersPredictionsSheet(context),
                             ),
                           ),
-                        ),
-                        Visibility(
-                          visible: editingPrediction && editedPrediction == state.bet!.prediction,
-                          child: Enabled(
-                            enabled: !state.loading,
+                          Visibility(
+                            visible: editingPrediction && editedPrediction == state.bet!.prediction,
                             child: FilledButton.tonalIcon(
                                 icon: const Icon(Icons.cancel, size: 18),
                                 label: const Text('Anuluj'),
                                 onPressed: () => setState(() => editingPrediction = false)),
                           ),
-                        ),
-                        Visibility(
-                          visible: editingPrediction && editedPrediction != state.bet!.prediction ||
-                              state.betState == BetState.notPlaced,
-                          child: Enabled(
-                            enabled: !state.loading,
+                          Visibility(
+                            visible: editingPrediction && editedPrediction != state.bet!.prediction ||
+                                state.betState == BetState.notPlaced,
                             child: FilledButton.tonalIcon(
                                 icon: const Icon(Icons.sports_soccer_rounded, size: 18),
                                 label: const Text('Typuj'),
@@ -148,11 +150,8 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                                   setState(() => editingPrediction = false);
                                 }),
                           ),
-                        ),
-                        Visibility(
-                          visible: !editingPrediction && state.betState == BetState.placed,
-                          child: Enabled(
-                            enabled: !state.loading,
+                          Visibility(
+                            visible: !editingPrediction && state.betState == BetState.placed,
                             child: FilledButton.tonalIcon(
                               icon: const Icon(Icons.edit, size: 18),
                               label: const Text('Zmień'),
@@ -164,8 +163,8 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                               },
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

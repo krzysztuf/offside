@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 import 'package:offside/presentation/theme/theme_extensions.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:offside/presentation/widgets/pill_button.dart';
+import 'package:simple_animations/animation_builder/custom_animation_builder.dart';
+import 'package:supercharged/supercharged.dart';
 
 class GoalsInput extends ConsumerStatefulWidget {
   final Function(int goals) onUpdated;
@@ -48,6 +49,7 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context).widgets.goalsInput;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -59,12 +61,26 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
             onPressed: increment,
           ),
         ),
-        const Gap(16),
-        Text(
-          '$value',
-          style: Theme.of(context).widgets.goalsInput.textTheme,
+        SizedBox(
+          height: 80,
+          child: CustomAnimationBuilder(
+            tween: 1.0.tweenTo(1.4),
+            curve: Curves.easeInOutCubic,
+            duration: 400.milliseconds,
+            control: widget.editable ? Control.playReverse : Control.play,
+            builder: (context, scale, child) {
+              return Center(
+                child: Transform.scale(
+                  scale: scale,
+                  child: Text(
+                    '${value >= 0 ? value : '-'}',
+                    style: theme.textTheme,
+                  ),
+                ),
+              );
+            },
+          ),
         ),
-        const Gap(16),
         Inflater(
           inflated: widget.editable,
           child: Enabled(
