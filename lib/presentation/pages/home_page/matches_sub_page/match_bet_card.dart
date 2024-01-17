@@ -37,7 +37,6 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardViewModelProvider);
-
     return Card(
       child: SizedBox(
         width: double.infinity,
@@ -54,7 +53,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                   ),
                   MutedInformationLabel(
                     icon: Icons.sports,
-                    text: DateFormat('hh:mm').format(state.match.kickOffDate),
+                    text: DateFormat('HH:mm').format(state.match.kickOffDate),
                   ),
                 ],
               ),
