@@ -18,7 +18,7 @@ class GoalsPrediction extends StatelessWidget {
       children: [
         Text(
           '${prediction.home}',
-          style: context.widgets.goalsInput.textTheme.copyWith(fontSize: 46),
+          style: context.widgetThemes.goalsInput.textTheme.copyWith(fontSize: 46),
         ),
         Text(
           ':',
@@ -26,7 +26,7 @@ class GoalsPrediction extends StatelessWidget {
         ),
         Text(
           '${prediction.away}',
-          style: context.widgets.goalsInput.textTheme.copyWith(fontSize: 46),
+          style: context.widgetThemes.goalsInput.textTheme.copyWith(fontSize: 46),
         ),
       ],
     );

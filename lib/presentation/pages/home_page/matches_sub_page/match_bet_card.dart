@@ -17,6 +17,8 @@ import 'package:offside/presentation/widgets/muted_information_label.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
+import 'bet_status_pill.dart';
+
 class MatchBetCard extends ConsumerStatefulWidget {
   const MatchBetCard({super.key});
 
@@ -93,43 +95,51 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
               SizedBox(
                 width: double.infinity,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Visibility(
-                      visible: false,
-                      child: TextButton.icon(
-                        icon: const Icon(Icons.group, size: 18),
-                        label: const Text('Typy innych'),
-                        onPressed: () => showOtherUsersPredictionsSheet(context),
-                      ),
-                    ),
-                    Visibility(
-                      visible: editingPrediction && editedPrediction == state.bet!.prediction,
-                      child: TextButton.icon(
-                          icon: const Icon(Icons.cancel, size: 18),
-                          label: const Text('Anuluj'),
-                          onPressed: () => setState(() => editingPrediction = false)),
-                    ),
-                    Visibility(
-                      visible: editingPrediction && editedPrediction != state.bet!.prediction ||
-                          state.betState == BetState.notPlaced,
-                      child: TextButton.icon(
-                          icon: const Icon(Icons.save, size: 18),
-                          label: const Text('Zapisz'),
-                          onPressed: () async {
-                            await ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction!);
-                            setState(() => editingPrediction = false);
-                          }),
-                    ),
-                    Visibility(
-                      visible: !editingPrediction && state.betState == BetState.placed,
-                      child: TextButton.icon(
-                          icon: const Icon(Icons.edit, size: 18),
-                          label: const Text('Edytuj'),
-                          onPressed: () => setState(() {
-                                editedPrediction = state.bet!.prediction.copyWith();
-                                editingPrediction = true;
-                              })),
+                    BetStatusPill(betState: state.betState),
+                    // Container(),
+                    Row(
+                      children: [
+                        Visibility(
+                          visible: false,
+                          child: TextButton.icon(
+                            icon: const Icon(Icons.group, size: 18),
+                            label: const Text('Typy innych'),
+                            onPressed: () => showOtherUsersPredictionsSheet(context),
+                          ),
+                        ),
+                        Visibility(
+                          visible: editingPrediction && editedPrediction == state.bet!.prediction,
+                          child: TextButton.icon(
+                              icon: const Icon(Icons.cancel, size: 18),
+                              label: const Text('Anuluj'),
+                              onPressed: () => setState(() => editingPrediction = false)),
+                        ),
+                        Visibility(
+                          visible: editingPrediction && editedPrediction != state.bet!.prediction ||
+                              state.betState == BetState.notPlaced,
+                          child: TextButton.icon(
+                              icon: const Icon(Icons.save, size: 18),
+                              label: const Text('Zapisz'),
+                              onPressed: () async {
+                                await ref
+                                    .read(matchBetCardViewModelProvider.notifier)
+                                    .updatePrediction(editedPrediction!);
+                                setState(() => editingPrediction = false);
+                              }),
+                        ),
+                        Visibility(
+                          visible: !editingPrediction && state.betState == BetState.placed,
+                          child: TextButton.icon(
+                              icon: const Icon(Icons.edit, size: 18),
+                              label: const Text('Edytuj'),
+                              onPressed: () => setState(() {
+                                    editedPrediction = state.bet!.prediction.copyWith();
+                                    editingPrediction = true;
+                                  })),
+                        ),
+                      ],
                     ),
                   ],
                 ),

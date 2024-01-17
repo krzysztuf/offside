@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/presentation/theme/theme_extensions.dart';
-import 'package:offside/presentation/theme/widgets/pill_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
+import 'package:offside/presentation/widgets/pill_button.dart';
 
 class GoalsInput extends ConsumerStatefulWidget {
   final Function(int goals) onUpdated;
@@ -59,12 +59,12 @@ class _GoalsInputState extends ConsumerState<GoalsInput> {
             onPressed: increment,
           ),
         ),
-        const Gap(8),
+        const Gap(16),
         Text(
           '$value',
           style: Theme.of(context).widgets.goalsInput.textTheme,
         ),
-        const Gap(8),
+        const Gap(16),
         Inflater(
           inflated: widget.editable,
           child: Enabled(

@@ -21,5 +21,5 @@ extension ThemeContextExtension on BuildContext {
 
   ButtonThemeData get buttonTheme => theme.buttonTheme;
 
-  WidgetThemes get widgets => theme.widgets;
+  WidgetThemes get widgetThemes => theme.widgets;
 }
