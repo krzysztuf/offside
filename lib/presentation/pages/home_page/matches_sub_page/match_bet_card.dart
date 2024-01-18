@@ -135,7 +135,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           ),
         ),
         SizedBox(
-          width: 180,
+          width: 160,
           child: AlternativeInflater(
             scaleFactor: 0.9,
             useAlternative: state.betState == BetState.loading,

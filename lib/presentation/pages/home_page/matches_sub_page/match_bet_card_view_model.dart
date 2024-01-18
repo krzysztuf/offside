@@ -15,24 +15,9 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
   @override
   MatchBetCardState build() {
     final match = ref.read(currentCardMatchProvider);
-    if (!match.bets.hasValue) {
-      match.bets.fetch().then((_) {
-        final userId = ref.read(currentUserIdSettingProvider);
-        final bet = match.bets.value.find((bet) => bet.userId == userId);
+    final userId = ref.watch(currentUserIdSettingProvider);
 
-        var updatedState = state.copyWith(
-          bet: bet,
-          betState: bet != null ? BetState.placed : BetState.notPlaced,
-          loading: false,
-        );
-
-        if (match.afterKickOff && bet == null) {
-          updatedState = updatedState.copyWith(betState: BetState.expired);
-        }
-
-        state = updatedState;
-      });
-    }
+    _fetchBets(match, userId);
 
     return MatchBetCardState(match: match, loading: true);
   }
@@ -52,6 +37,24 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
     );
 
     setLoading(false);
+  }
+
+  void _fetchBets(Match match, String userId) {
+    match.bets.fetch().then((_) {
+      final bet = match.bets.value.find((bet) => bet.userId == userId);
+
+      var updatedState = state.copyWith(
+        bet: bet,
+        betState: bet != null ? BetState.placed : BetState.notPlaced,
+        loading: false,
+      );
+
+      if (match.afterKickOff && bet == null) {
+        updatedState = updatedState.copyWith(betState: BetState.expired);
+      }
+
+      state = updatedState;
+    });
   }
 
   Future<Bet> _createOrUpdateBet(Goals prediction) async {

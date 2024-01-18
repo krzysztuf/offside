@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:offside/domain/entities/app_setting.dart';
 import 'package:offside/domain/repositories/settings_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,6 +46,7 @@ class SharedPreferencesRepository implements SettingsRepository {
 
   @override
   void setString(AppSetting setting, String value) {
+    log('updating ${setting.name}: $value');
     preferences.setString(setting.name, value);
   }
 

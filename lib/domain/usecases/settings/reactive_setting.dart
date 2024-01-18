@@ -23,7 +23,7 @@ mixin ReactiveSetting<T> on AutoDisposeNotifier<T> {
   }
 
   set value(T newValue) {
-    switch (value) {
+    switch (newValue) {
       case (bool boolValue):
         ref.read(setBoolSettingUseCaseProvider(setting, boolValue)).run();
       case (int intValue):

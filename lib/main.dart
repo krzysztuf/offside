@@ -14,6 +14,7 @@ import 'presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferencesHolder.initialize();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   GetIt.instance.addEntityFirestoreModelsMapping();
 
@@ -35,6 +36,7 @@ class OffsideApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(offsideRouterProvider);
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: OffsideThemes.light(context),
