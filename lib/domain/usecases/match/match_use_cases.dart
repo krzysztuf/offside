@@ -1,7 +1,5 @@
 library matches_use_cases;
 
-import 'dart:developer';
-
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';

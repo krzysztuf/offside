@@ -11,7 +11,7 @@ class Team with _$Team implements Identifiable {
     @Default('') @JsonKey(includeToJson: false) String id,
     required String name,
     required String abbreviation,
-    String? logo,
+    required String logo,
   }) = _Team;
 
   Team._();

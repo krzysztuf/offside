@@ -48,7 +48,9 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/images/teams/manchester-united.png
-    - assets/images/teams/manchester-city.png
+    - assets/images/teams/england.png
+    - assets/images/teams/poland.png
+    - assets/images/teams/italy.png
+    - assets/images/teams/germany.png
     - assets/images/profile.jpg
   uses-material-design: true

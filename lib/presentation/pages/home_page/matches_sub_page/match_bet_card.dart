@@ -187,7 +187,15 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   }
 
   Skeletonizer createTeamBadgeSkeletonizer() {
-    return Skeletonizer(child: TeamBadge(team: Team(name: 'Dummy', abbreviation: 'ASB')));
+    return Skeletonizer(
+      child: TeamBadge(
+        team: Team(
+          name: 'Dummy',
+          abbreviation: 'ASB',
+          logo: 'assets/images/teams/england.png',
+        ),
+      ),
+    );
   }
 
   void showOtherUsersPredictionsSheet(BuildContext context) {

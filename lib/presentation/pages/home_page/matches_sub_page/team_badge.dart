@@ -16,17 +16,24 @@ class TeamBadge extends StatelessWidget {
         Square(
           size: 48,
           child: Material(
-            elevation: 1,
-            shape: const CircleBorder(),
+            elevation: 4,
+            shape: CircleBorder(
+              side: BorderSide(
+                width: 1,
+                color: Colors.grey.shade600,
+                strokeAlign: 0.5,
+              ),
+            ),
             color: Colors.transparent,
             child: CircleAvatar(
-              backgroundColor: context.colorScheme.secondaryContainer,
-              child: Text(
-                team.abbreviation,
-                style: context.textTheme.bodySmall!.copyWith(
-                  color: context.colorScheme.onTertiaryContainer,
-                ),
-              ),
+              backgroundImage: AssetImage(team.logo),
+              // backgroundColor: context.colorScheme.secondaryContainer,
+              // child: Text(
+              //   team.abbreviation,
+              //   style: context.textTheme.bodySmall!.copyWith(
+              //     color: context.colorScheme.onTertiaryContainer,
+              //   ),
+              // ),
             ),
           ),
         ),

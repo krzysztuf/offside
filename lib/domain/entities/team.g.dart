@@ -10,7 +10,7 @@ _$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
       id: json['id'] as String? ?? '',
       name: json['name'] as String,
       abbreviation: json['abbreviation'] as String,
-      logo: json['logo'] as String?,
+      logo: json['logo'] as String,
     );
 
 Map<String, dynamic> _$$TeamImplToJson(_$TeamImpl instance) =>
