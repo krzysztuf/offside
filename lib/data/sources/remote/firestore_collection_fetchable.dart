@@ -19,13 +19,13 @@ class FirestoreCollectionFetchable<Entity, Model> implements Fetchable<List<Enti
   bool get hasValue => _entities != null;
 
   @override
-  Future<void> fetch({bool forced = false}) async {
-    if (_entities != null && !forced) {
+  Future<void> fetch({bool force = false}) async {
+    if (_entities != null && !force) {
       return;
     }
 
     try {
-      await collection.fetch();
+      await collection.fetch(force: force);
       _entities = AutoMapper<Document<Model>, Entity>().mapMany(collection.items);
     } catch (e, s) {
       log(e.toString(), stackTrace: s);

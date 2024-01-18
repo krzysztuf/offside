@@ -18,8 +18,8 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
   bool get hasValue => _entity != null;
 
   @override
-  Future<void> fetch({bool forced = false}) async {
-    if (_entity != null && !forced) {
+  Future<void> fetch({bool force = false}) async {
+    if (_entity != null && !force) {
       return;
     }
 

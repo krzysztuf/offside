@@ -15,8 +15,8 @@ class DocumentCollection<Model> {
 
   DocumentCollection(this.path);
 
-  Future<void> fetch() async {
-    if (_items != null) {
+  Future<void> fetch({bool force = false}) async {
+    if (_items != null && !force) {
       return;
     }
 

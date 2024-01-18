@@ -4,6 +4,7 @@ import 'package:offside/domain/entities/fetchable.dart';
 
 class FetchableBuilder<T> extends StatelessWidget {
   final Fetchable<T> fetchable;
+  final bool force;
   final Widget Function() waiting;
   final Widget Function()? error;
   final Widget Function(T data) child;
@@ -13,6 +14,7 @@ class FetchableBuilder<T> extends StatelessWidget {
     required this.fetchable,
     required this.waiting,
     required this.child,
+    this.force = false,
     this.error,
   });
 

@@ -12,8 +12,9 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/expired_be
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
-import 'package:offside/presentation/pages/home_page/table_sub_page/loading_table_skeleton.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
@@ -75,11 +76,11 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             child: Row(
               children: [
                 Visibility(
-                  visible: state.match.afterKickOff,
+                  // visible: state.match.afterKickOff,
                   child: FilledButton.tonalIcon(
                     icon: const Icon(Icons.group, size: 18),
                     label: const Text('Typy innych'),
-                    onPressed: () => showOtherUsersPredictionsSheet(context),
+                    onPressed: () => showOtherUsersPredictionsSheet(context, state.match),
                   ),
                 ),
                 Visibility(
@@ -198,7 +199,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  void showOtherUsersPredictionsSheet(BuildContext context) {
+  void showOtherUsersPredictionsSheet(BuildContext context, Match match) {
     showFlexibleBottomSheet(
       context: context,
       duration: 400.milliseconds,
@@ -210,7 +211,13 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
       builder: (context, scrollController, bottomSheetOffset) {
         return SingleChildScrollView(
           controller: scrollController,
-          child: const LoadingTableSkeleton(),
+          child: ProviderScope(
+            overrides: [
+              matchBetsViewModelProvider.overrideWith(() => MatchBetsViewModel()),
+              matchOfBetsToShowProvider.overrideWith((_) => match),
+            ],
+            child: const MatchBets(),
+          ),
         );
       },
     );
