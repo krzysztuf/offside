@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:offside/core/extensions/date_time_extensions.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/usecases/match/match_use_cases.dart';
+import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'matches_sub_page_states.dart';
@@ -13,6 +14,7 @@ part 'matches_sub_page_view_model.g.dart';
 class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
   @override
   MatchesSubPageState build() {
+    ref.watch(currentUserIdSettingProvider);
     ref.read(upcomingMatchesUseCaseProvider).run().then((matches) {
       state = MatchesSubPageState(_groupMatchesByDay(matches));
     });

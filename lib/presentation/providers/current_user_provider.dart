@@ -1,4 +1,5 @@
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_cases.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,6 +9,7 @@ part 'current_user_provider.g.dart';
 class CurrentUser extends _$CurrentUser {
   @override
   FutureOr<User?> build() async {
+    ref.watch(currentUserIdSettingProvider);
     return ref.read(currentUserUseCaseProvider).run();
   }
 }

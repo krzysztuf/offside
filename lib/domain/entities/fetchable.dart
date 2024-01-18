@@ -3,14 +3,14 @@ abstract interface class Fetchable<T> {
 
   T get value;
 
-  Future<void> fetch();
+  Future<void> fetch({bool forced = false});
 }
 
 class NoOpFetchable<T> implements Fetchable<T> {
   const NoOpFetchable();
 
   @override
-  Future<void> fetch() {
+  Future<void> fetch({bool forced = false}) {
     throw UnimplementedError('NoOpFetchable');
   }
 
