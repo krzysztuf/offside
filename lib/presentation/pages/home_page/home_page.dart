@@ -44,8 +44,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           NavigationDestination(
             icon: switch (ref.watch(currentUserProvider)) {
-              AsyncData(value: final user) =>
-                user?.avatar(borderColor: Theme.of(context).colorScheme.outline) ?? const Icon(Icons.person),
+              AsyncData(value: final user) => user?.avatar(context, dense: true) ?? const Icon(Icons.person),
               _ => const Icon(Icons.person),
             },
             label: 'Profil',

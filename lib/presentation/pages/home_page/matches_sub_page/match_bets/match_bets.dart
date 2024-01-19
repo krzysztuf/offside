@@ -21,7 +21,7 @@ class MatchBets extends ConsumerWidget {
         children: [
           for (final bet in state.bets)
             ListTile(
-              leading: bet.user.avatar(radius: 20),
+              leading: bet.user.avatar(context),
               title: '${bet.user.name} ${bet.user.surname}'.text,
               subtitle: switch (bet.prediction) {
                 null => 'Nie obstawił'.text,
@@ -33,20 +33,6 @@ class MatchBets extends ConsumerWidget {
                     ],
                   ),
               },
-              // trailing: switch (bet.prediction) {
-              //   null => 'Nie obstawił'.text,
-              //   _ => SizedBox(
-              //       width: 48,
-              //       height: 48,
-              //       child: Row(
-              //         children: [
-              //           bet.prediction!.home.text,
-              //           ':'.text,
-              //           bet.prediction!.away.text,
-              //         ],
-              //       ),
-              //     ),
-              // },
             ),
         ],
       ),

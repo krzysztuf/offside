@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:offside/core/extensions/string_suffix_extensions.dart';
+import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/identifiable.dart';
+import 'package:offside/presentation/widgets/avatar.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -26,19 +27,22 @@ class User with _$User implements Identifiable {
 }
 
 extension UserAvatar on User {
-  Widget avatar({Color? borderColor, double? radius = 12}) {
-    return Container(
-      padding: EdgeInsets.all(borderColor != null ? 1 : 0),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: borderColor,
-      ),
-      child: CircleAvatar(
-        radius: radius,
-        backgroundImage: image != null ? AssetImage(image!) : null,
-        child: image == null ? initials.text : null,
-      ),
+  Widget avatar(BuildContext context, {bool dense = false}) {
+    return Avatar(
+      elevation: 2,
+      radius: dense ? 12 : 20,
+      image: maybeImage(),
+      child: maybeText(context, dense),
     );
+  }
+
+  AssetImage? maybeImage() {
+    return image != null ? AssetImage(image!) : null;
+  }
+
+  Text? maybeText(BuildContext context, bool dense) {
+    final initialsStyle = context.textTheme.bodyMedium!.copyWith(fontSize: dense ? 10 : 14);
+    return image == null ? Text(initials, style: initialsStyle) : null;
   }
 }
 
