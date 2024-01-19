@@ -204,9 +204,8 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
       context: context,
       duration: 400.milliseconds,
       isSafeArea: true,
-      initHeight: 0.6,
-      maxHeight: 0.9,
-      anchors: [0, 0.6, 0.9],
+      initHeight: 0.8,
+      anchors: [0.0, 0.8, 1.0],
       bottomSheetBorderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
       builder: (context, scrollController, bottomSheetOffset) {
         return SingleChildScrollView(

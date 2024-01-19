@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MatchBetsState {
   bool get loading => throw _privateConstructorUsedError;
+  Match get match => throw _privateConstructorUsedError;
   List<UserPrediction> get bets => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,9 @@ abstract class $MatchBetsStateCopyWith<$Res> {
           MatchBetsState value, $Res Function(MatchBetsState) then) =
       _$MatchBetsStateCopyWithImpl<$Res, MatchBetsState>;
   @useResult
-  $Res call({bool loading, List<UserPrediction> bets});
+  $Res call({bool loading, Match match, List<UserPrediction> bets});
+
+  $MatchCopyWith<$Res> get match;
 }
 
 /// @nodoc
@@ -47,6 +50,7 @@ class _$MatchBetsStateCopyWithImpl<$Res, $Val extends MatchBetsState>
   @override
   $Res call({
     Object? loading = null,
+    Object? match = null,
     Object? bets = null,
   }) {
     return _then(_value.copyWith(
@@ -54,11 +58,23 @@ class _$MatchBetsStateCopyWithImpl<$Res, $Val extends MatchBetsState>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      match: null == match
+          ? _value.match
+          : match // ignore: cast_nullable_to_non_nullable
+              as Match,
       bets: null == bets
           ? _value.bets
           : bets // ignore: cast_nullable_to_non_nullable
               as List<UserPrediction>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MatchCopyWith<$Res> get match {
+    return $MatchCopyWith<$Res>(_value.match, (value) {
+      return _then(_value.copyWith(match: value) as $Val);
+    });
   }
 }
 
@@ -70,7 +86,10 @@ abstract class _$$MatchBetsStateImplCopyWith<$Res>
       __$$MatchBetsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, List<UserPrediction> bets});
+  $Res call({bool loading, Match match, List<UserPrediction> bets});
+
+  @override
+  $MatchCopyWith<$Res> get match;
 }
 
 /// @nodoc
@@ -85,6 +104,7 @@ class __$$MatchBetsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? match = null,
     Object? bets = null,
   }) {
     return _then(_$MatchBetsStateImpl(
@@ -92,6 +112,10 @@ class __$$MatchBetsStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      match: null == match
+          ? _value.match
+          : match // ignore: cast_nullable_to_non_nullable
+              as Match,
       bets: null == bets
           ? _value._bets
           : bets // ignore: cast_nullable_to_non_nullable
@@ -104,12 +128,16 @@ class __$$MatchBetsStateImplCopyWithImpl<$Res>
 
 class _$MatchBetsStateImpl extends _MatchBetsState {
   const _$MatchBetsStateImpl(
-      {required this.loading, final List<UserPrediction> bets = const []})
+      {required this.loading,
+      required this.match,
+      final List<UserPrediction> bets = const []})
       : _bets = bets,
         super._();
 
   @override
   final bool loading;
+  @override
+  final Match match;
   final List<UserPrediction> _bets;
   @override
   @JsonKey()
@@ -121,7 +149,7 @@ class _$MatchBetsStateImpl extends _MatchBetsState {
 
   @override
   String toString() {
-    return 'MatchBetsState(loading: $loading, bets: $bets)';
+    return 'MatchBetsState(loading: $loading, match: $match, bets: $bets)';
   }
 
   @override
@@ -130,12 +158,13 @@ class _$MatchBetsStateImpl extends _MatchBetsState {
         (other.runtimeType == runtimeType &&
             other is _$MatchBetsStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.match, match) || other.match == match) &&
             const DeepCollectionEquality().equals(other._bets, _bets));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, loading, const DeepCollectionEquality().hash(_bets));
+      runtimeType, loading, match, const DeepCollectionEquality().hash(_bets));
 
   @JsonKey(ignore: true)
   @override
@@ -148,11 +177,14 @@ class _$MatchBetsStateImpl extends _MatchBetsState {
 abstract class _MatchBetsState extends MatchBetsState {
   const factory _MatchBetsState(
       {required final bool loading,
+      required final Match match,
       final List<UserPrediction> bets}) = _$MatchBetsStateImpl;
   const _MatchBetsState._() : super._();
 
   @override
   bool get loading;
+  @override
+  Match get match;
   @override
   List<UserPrediction> get bets;
   @override

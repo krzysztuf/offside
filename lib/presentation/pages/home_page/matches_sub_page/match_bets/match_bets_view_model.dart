@@ -1,5 +1,4 @@
 import 'package:offside/core/extensions/iterable_extensions.dart';
-import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user_prediction.dart';
 import 'package:offside/domain/usecases/users/user_use_cases.dart';
@@ -14,19 +13,23 @@ class MatchBetsViewModel extends _$MatchBetsViewModel {
   @override
   MatchBetsState build() {
     final match = ref.read(matchOfBetsToShowProvider);
-    match.bets.fetch(force: true).then((_) => buildUserPredictions(match.bets.value));
+    match.bets.fetch(force: true).then((_) => buildUserPredictions(match));
 
-    return const MatchBetsState(loading: true);
+    return MatchBetsState(match: match, loading: true);
   }
 
-  Future<void> buildUserPredictions(List<Bet> bets) async {
+  Future<void> buildUserPredictions(Match match) async {
     final users = await ref.read(allUsersUseCaseProvider).run();
     final userPredictions = users.map((user) {
-      final bet = bets.find((bet) => bet.userId == user.id);
+      final bet = match.bets.value.find((bet) => bet.userId == user.id);
       return UserPrediction(user: user, prediction: bet?.prediction);
     });
 
-    state = MatchBetsState(loading: false, bets: userPredictions.toList());
+    state = MatchBetsState(
+      match: match,
+      bets: userPredictions.toList(),
+      loading: false,
+    );
   }
 }
 
