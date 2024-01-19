@@ -26,6 +26,7 @@ class MatchBets extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               TeamBadge(team: state.match.homeTeam.value),
+              const Text(':', style: TextStyle(fontSize: 22)),
               TeamBadge(team: state.match.awayTeam.value),
             ],
           ),

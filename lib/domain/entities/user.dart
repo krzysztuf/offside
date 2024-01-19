@@ -29,7 +29,7 @@ class User with _$User implements Identifiable {
 extension UserAvatar on User {
   Widget avatar(BuildContext context, {bool dense = false}) {
     return Avatar(
-      elevation: 2,
+      elevation: 1.5,
       radius: dense ? 12 : 20,
       image: maybeImage(),
       child: maybeText(context, dense),

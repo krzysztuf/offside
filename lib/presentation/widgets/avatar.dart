@@ -17,7 +17,7 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 4,
+      elevation: elevation,
       shape: CircleBorder(
         side: BorderSide(
           width: 0.5,
