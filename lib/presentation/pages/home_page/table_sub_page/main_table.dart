@@ -17,7 +17,10 @@ class MainTable extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
-              leading: user.avatar(context),
+              leading: Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: user.avatar(context),
+              ),
               title: user.fullName.text,
               subtitle: user.nickname?.text ?? 'tutaj będzie forma'.styledText(context.textTheme.bodySmall!),
               selected: user.name == 'Krzysztof',
