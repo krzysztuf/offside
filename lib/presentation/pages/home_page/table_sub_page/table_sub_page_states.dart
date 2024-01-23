@@ -1,7 +1,6 @@
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/presentation/view_state.dart';
 
-class TableSubPageState extends ViewState {}
+class TableSubPageState {}
 
 class LoadingMainTableState extends TableSubPageState {}
 
