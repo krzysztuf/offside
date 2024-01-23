@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:offside/presentation/theme/theme_extensions.dart';
 import 'package:offside/presentation/theme/widget_theme.dart';
 
+import 'color_preset.dart';
+
 class BetStatusPillTheme extends WidgetTheme {
   BetStatusPillTheme(super.theme);
 
-  PillPreset get pending => PillPreset(
+  ColorPreset get pending => ColorPreset(
         theme,
         foreground: theme.variant(
           light: const Color(0xff8b9800),
@@ -17,7 +19,7 @@ class BetStatusPillTheme extends WidgetTheme {
         ),
       );
 
-  PillPreset get placed => PillPreset(
+  ColorPreset get placed => ColorPreset(
         theme,
         foreground: theme.variant(
           light: const Color(0xff0f9a0f),
@@ -29,7 +31,7 @@ class BetStatusPillTheme extends WidgetTheme {
         ),
       );
 
-  PillPreset get expired => PillPreset(
+  ColorPreset get expired => ColorPreset(
         theme,
         foreground: theme.variant(
           light: const Color(0xff980000),
@@ -40,20 +42,4 @@ class BetStatusPillTheme extends WidgetTheme {
           dark: const Color(0xff5a2e2e),
         ),
       );
-}
-
-class PillPreset {
-  final ThemeData theme;
-  final Color background;
-  final Color foreground;
-
-  PillPreset(
-    this.theme, {
-    required this.background,
-    required this.foreground,
-  });
-
-  TextStyle get textStyle => theme.textTheme.labelSmall!.copyWith(color: foreground);
-
-  Color get foregroundMuted => foreground.withOpacity(0.5);
 }

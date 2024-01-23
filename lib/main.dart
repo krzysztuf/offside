@@ -21,7 +21,7 @@ Future<void> main() async {
 
   initializeDateFormatting('pl', null);
 
-  final stubTime = DateTime(2023, 6, 6, 11);
+  final stubTime = DateTime(2024, 6, 13, 20);
 
   runApp(
     ProviderScope(

@@ -1,7 +1,6 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
@@ -14,7 +13,9 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_view_model.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_kick_off_status.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
+import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
@@ -49,7 +50,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
               buildHeader(state),
               buildGoalsPredictionRow(state),
               buildFooter(state, context),
-            ].withGaps(32),
+            ].withGaps(48),
           ),
         ),
       ),
@@ -76,7 +77,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             child: Row(
               children: [
                 Visibility(
-                  // visible: state.match.afterKickOff,
+                  visible: state.match.afterKickOff(ref.read(dateTimeProvider)),
                   child: FilledButton.tonalIcon(
                     icon: const Icon(Icons.group, size: 18),
                     label: const Text('Typy innych'),
@@ -179,10 +180,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           icon: Icons.emoji_events_outlined,
           text: 'GRUPA A',
         ),
-        MutedInformationLabel(
-          icon: Icons.sports,
-          text: DateFormat('HH:mm').format(state.match.kickOffDate),
-        ),
+        MatchKickOffStatus(match: state.match),
       ],
     );
   }

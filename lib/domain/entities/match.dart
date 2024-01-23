@@ -32,7 +32,7 @@ class Match with _$Match implements Identifiable {
 
 extension ConvenienceMethods on Match {
   bool afterKickOff(DateTime now) {
-    return DateTime.now().isAfter(kickOffDate);
+    return now.isAfter(kickOffDate);
   }
 
   bool finished(DateTime now) {

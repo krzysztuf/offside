@@ -34,7 +34,7 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
     return Column(
       children: matches.entries.map((entry) {
         final kickOffDay = entry.key;
-        final thisDayMatches = entry.value;
+        final matchesThisDay = entry.value;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,13 +52,13 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
                   // style: context.textTheme.Large,
                 ),
                 subtitle: Text(
-                  '${thisDayMatches.length} ${thisDayMatches.length == 1 ? 'mecz' : 'mecze'}',
+                  '${matchesThisDay.length} ${matchesThisDay.length == 1 ? 'MECZ' : 'MECZE'}',
                   style: context.textTheme.bodySmall,
                 ),
               ),
             ),
             const Gap(8),
-            for (final match in thisDayMatches)
+            for (final match in matchesThisDay)
               ProviderScope(
                 overrides: [
                   matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),

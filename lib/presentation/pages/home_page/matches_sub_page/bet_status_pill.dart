@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
-import 'package:offside/presentation/theme/bet_status_pill_theme.dart';
+import 'package:offside/presentation/theme/color_preset.dart';
 import 'package:supercharged/supercharged.dart';
 
 class BetStatusPill extends StatelessWidget {
@@ -40,24 +40,21 @@ class BetStatusPill extends StatelessWidget {
     );
   }
 
-  PillPreset _loadPreset(BuildContext context) => switch (betState) {
-        BetState.loading => context.widgetThemes.betStatusPill.pending,
-        BetState.notPlaced => context.widgetThemes.betStatusPill.pending,
+  ColorPreset _loadPreset(BuildContext context) => switch (betState) {
+        BetState.loading || BetState.notPlaced => context.widgetThemes.betStatusPill.pending,
         BetState.placed => context.widgetThemes.betStatusPill.placed,
         BetState.expired => context.widgetThemes.betStatusPill.expired,
       };
 
-  Widget _createStatusWidget(PillPreset preset) {
+  Widget _createStatusWidget(ColorPreset preset) {
     final text = switch (betState) {
-      BetState.loading => 'oczekuje',
-      BetState.notPlaced => 'oczekuje',
-      BetState.placed => 'obstawiony',
-      BetState.expired => 'pominięty',
+      BetState.loading || BetState.notPlaced => 'OCZEKUJE',
+      BetState.placed => 'OBSTAWIONY',
+      BetState.expired => 'POMINIĘTY',
     };
 
     final icon = switch (betState) {
-      BetState.loading => Icons.hourglass_bottom_rounded,
-      BetState.notPlaced => Icons.hourglass_bottom_rounded,
+      BetState.loading || BetState.notPlaced => Icons.hourglass_bottom_rounded,
       BetState.placed => Icons.check_circle_outline_rounded,
       BetState.expired => Icons.warning_rounded,
     };
