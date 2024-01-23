@@ -39,12 +39,22 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Gap(32),
+            const Gap(16),
             Padding(
               padding: const EdgeInsets.only(left: 4.0),
-              child: Text(
-                DateFormat('d MMMM yyyy', 'pl').format(kickOffDay),
-                style: context.textTheme.titleLarge,
+              child: ListTile(
+                leading: Icon(
+                  Icons.calendar_month,
+                  color: context.colorScheme.primary,
+                ),
+                title: Text(
+                  DateFormat('d MMMM', 'pl').format(kickOffDay),
+                  // style: context.textTheme.Large,
+                ),
+                subtitle: Text(
+                  '${thisDayMatches.length} ${thisDayMatches.length == 1 ? 'mecz' : 'mecze'}',
+                  style: context.textTheme.bodySmall,
+                ),
               ),
             ),
             const Gap(8),

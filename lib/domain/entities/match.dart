@@ -38,4 +38,8 @@ extension ConvenienceMethods on Match {
   bool finished(DateTime now) {
     return now.isAfter(kickOffDate.copyWith(hour: kickOffDate.hour + 2));
   }
+
+  bool beingPlayed(DateTime now) {
+    return afterKickOff(now) && !finished(now);
+  }
 }
