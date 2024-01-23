@@ -31,7 +31,11 @@ class Match with _$Match implements Identifiable {
 }
 
 extension ConvenienceMethods on Match {
-  bool get afterKickOff => DateTime.now().isAfter(kickOffDate);
+  bool afterKickOff(DateTime now) {
+    return DateTime.now().isAfter(kickOffDate);
+  }
 
-  bool get finished => DateTime.now().isAfter(kickOffDate.copyWith(hour: kickOffDate.hour + 2));
+  bool finished(DateTime now) {
+    return now.isAfter(kickOffDate.copyWith(hour: kickOffDate.hour + 2));
+  }
 }

@@ -4,6 +4,7 @@ import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/usecases/match/match_use_cases.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'match_bet_card_state.dart';
@@ -32,7 +33,7 @@ class MatchBetCardViewModel extends _$MatchBetCardViewModel {
         loading: false,
       );
 
-      if (match.afterKickOff && bet == null) {
+      if (match.afterKickOff(ref.read(dateTimeProvider)) && bet == null) {
         updatedState = updatedState.copyWith(betState: BetState.expired);
       }
 

@@ -8,6 +8,7 @@ import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/firebase_options.dart';
 import 'package:offside/offside_router.dart';
 import 'package:offside/offside_themes.dart';
+import 'package:offside/presentation/providers/date_time_provider.dart';
 
 import 'presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 
@@ -20,9 +21,12 @@ Future<void> main() async {
 
   initializeDateFormatting('pl', null);
 
+  final stubTime = DateTime(2023, 6, 6, 11);
+
   runApp(
     ProviderScope(
       overrides: [
+        dateTimeProvider.overrideWithValue(stubTime),
         matchBetCardViewModelProvider.overrideWith(() => throw UnimplementedError('MatchBetCardViewModel unavailable')),
       ],
       child: const OffsideApp(),
