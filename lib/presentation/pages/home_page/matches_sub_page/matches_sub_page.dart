@@ -51,10 +51,7 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
                   Icons.calendar_month,
                   color: context.colorScheme.primary,
                 ),
-                title: Text(
-                  DateFormat('d MMMM', 'pl').format(kickOffDay),
-                  // style: context.textTheme.Large,
-                ),
+                title: Text(DateFormat('d MMMM', 'pl').format(kickOffDay)),
                 subtitle: Text(
                   '${matchesThisDay.length} ${matchesThisDay.length == 1 ? 'MECZ' : 'MECZE'}',
                   style: context.textTheme.bodySmall,
@@ -68,10 +65,10 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
                   matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
                   currentCardMatchProvider.overrideWith((_) => match),
                 ],
-                child: Column(
+                child: const Column(
                   children: [
                     MatchBetCard(),
-                    const Gap(32),
+                    Gap(32),
                   ],
                 ),
               ),

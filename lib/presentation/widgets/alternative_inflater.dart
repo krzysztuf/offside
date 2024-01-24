@@ -10,10 +10,13 @@ class AlternativeInflater extends StatelessWidget {
   final Widget Function() builder;
   final Widget Function() alternativeBuilder;
 
+  final AlignmentGeometry alignment;
+
   const AlternativeInflater({
     super.key,
-    this.scaleFactor = 0.4,
+    this.scaleFactor = 0.95,
     this.duration = const Duration(milliseconds: 400),
+    this.alignment = Alignment.center,
     required this.useAlternative,
     required this.builder,
     required this.alternativeBuilder,
@@ -22,19 +25,19 @@ class AlternativeInflater extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.center,
+      alignment: alignment,
       children: [
-        Inflater(
-          inflated: !useAlternative,
-          scaleFactor: scaleFactor,
-          duration: duration,
-          child: builder(),
-        ),
         Inflater(
           inflated: useAlternative,
           scaleFactor: scaleFactor,
           duration: duration,
           child: alternativeBuilder(),
+        ),
+        Inflater(
+          inflated: !useAlternative,
+          scaleFactor: scaleFactor,
+          duration: duration,
+          child: builder(),
         ),
       ],
     );

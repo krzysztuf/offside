@@ -22,7 +22,7 @@ final matchOfBetsToShowProvider = AutoDisposeProvider<Match>.internal(
 
 typedef MatchOfBetsToShowRef = AutoDisposeProviderRef<Match>;
 String _$matchBetsViewModelHash() =>
-    r'783f9f0ae0af7b2007c15bf1a8afcbb707620dbf';
+    r'1f625511db803459ba428bf26f9be6081617be1d';
 
 /// See also [MatchBetsViewModel].
 @ProviderFor(MatchBetsViewModel)

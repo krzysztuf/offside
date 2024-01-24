@@ -6,23 +6,23 @@ part of 'match_use_cases.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$upcomingMatchesUseCaseHash() =>
-    r'57774f7a92fb87d74879dc935b4561b84ea2d6cb';
+String _$getUpcomingMatchesUseCaseHash() =>
+    r'4dcb41f80a50b30e7a4239206c15a785103f9061';
 
-/// See also [upcomingMatchesUseCase].
-@ProviderFor(upcomingMatchesUseCase)
-final upcomingMatchesUseCaseProvider =
+/// See also [getUpcomingMatchesUseCase].
+@ProviderFor(getUpcomingMatchesUseCase)
+final getUpcomingMatchesUseCaseProvider =
     AutoDisposeProvider<GetUpcomingMatchesUseCase>.internal(
-  upcomingMatchesUseCase,
-  name: r'upcomingMatchesUseCaseProvider',
+  getUpcomingMatchesUseCase,
+  name: r'getUpcomingMatchesUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$upcomingMatchesUseCaseHash,
+      : _$getUpcomingMatchesUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef UpcomingMatchesUseCaseRef
+typedef GetUpcomingMatchesUseCaseRef
     = AutoDisposeProviderRef<GetUpcomingMatchesUseCase>;
 String _$placeBetUseCaseHash() => r'7c3e8dfd015d0163d3fb635cd9fbceab6a2e7f1c';
 

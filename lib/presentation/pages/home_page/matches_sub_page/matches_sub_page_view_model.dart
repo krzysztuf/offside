@@ -28,7 +28,7 @@ class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
   }
 
   Future<void> refresh() async {
-    ref.read(upcomingMatchesUseCaseProvider).run().then((matches) {
+    ref.read(getUpcomingMatchesUseCaseProvider).run().then((matches) {
       state = MatchesSubPageState(_groupMatchesByDay(matches));
     });
   }

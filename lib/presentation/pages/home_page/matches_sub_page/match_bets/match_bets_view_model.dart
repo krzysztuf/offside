@@ -3,6 +3,7 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user_prediction.dart';
 import 'package:offside/domain/usecases/users/user_use_cases.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'match_bets_state.dart';
 
@@ -19,6 +20,8 @@ class MatchBetsViewModel extends _$MatchBetsViewModel {
   }
 
   Future<void> buildUserPredictions(Match match) async {
+    await Future.delayed(1.seconds);
+
     final users = await ref.read(allUsersUseCaseProvider).run();
     final userPredictions = users.map((user) {
       final bet = match.bets.value.find((bet) => bet.userId == user.id);

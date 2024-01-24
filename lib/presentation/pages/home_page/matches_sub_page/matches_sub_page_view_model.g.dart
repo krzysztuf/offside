@@ -7,7 +7,7 @@ part of 'matches_sub_page_view_model.dart';
 // **************************************************************************
 
 String _$matchesSubPageViewModelHash() =>
-    r'26967d1bd62697227c70a34bd7a2bf5618f6a181';
+    r'b919a574b0f405d960e6e343b987cdd493830291';
 
 /// See also [MatchesSubPageViewModel].
 @ProviderFor(MatchesSubPageViewModel)

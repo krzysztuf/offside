@@ -16,7 +16,7 @@ class Inflater extends StatelessWidget {
     super.key,
     required this.inflated,
     required this.child,
-    this.scaleFactor = 0.4,
+    this.scaleFactor = 0.8,
     this.duration = const Duration(milliseconds: 400),
   });
 
@@ -25,7 +25,8 @@ class Inflater extends StatelessWidget {
     return CustomAnimationBuilder(
       tween: 0.0.tweenTo(1.0),
       duration: duration,
-      curve: inflated ? Curves.fastEaseInToSlowEaseOut : Curves.fastOutSlowIn,
+      // curve: inflated ? Curves.fastEaseInToSlowEaseOut : Curves.fastOutSlowIn,
+      curve: Curves.fastOutSlowIn,
       control: inflated ? Control.play : Control.playReverse,
       builder: (context, value, child) {
         return Opacity(

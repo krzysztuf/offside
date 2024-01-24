@@ -12,7 +12,7 @@ part 'match_use_cases.g.dart';
 part 'place_bet_use_case.dart';
 
 @riverpod
-GetUpcomingMatchesUseCase upcomingMatchesUseCase(UpcomingMatchesUseCaseRef ref) {
+GetUpcomingMatchesUseCase getUpcomingMatchesUseCase(GetUpcomingMatchesUseCaseRef ref) {
   return GetUpcomingMatchesUseCase(ref.watch(matchesRepositoryProvider));
 }
 

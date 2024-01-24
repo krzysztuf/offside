@@ -5,8 +5,10 @@ import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/loading_table_skeleton.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
+import 'package:offside/presentation/widgets/alternative_inflater.dart';
 
 class MatchBets extends ConsumerWidget {
   const MatchBets({super.key});
@@ -14,11 +16,17 @@ class MatchBets extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(matchBetsViewModelProvider);
-    if (state.loading) {
-      return const LoadingBetsSkeleton();
-    }
+    return AlternativeInflater(
+      alignment: Alignment.topCenter,
+      useAlternative: state.loading,
+      builder: () => buildUserPredictionsList(state, context),
+      alternativeBuilder: () => const LoadingBetsSkeleton(),
+    );
+  }
 
+  Widget buildUserPredictionsList(MatchBetsState state, BuildContext context) {
     return Padding(
+      key: UniqueKey(),
       padding: const EdgeInsets.all(24.0),
       child: Column(
         children: [
