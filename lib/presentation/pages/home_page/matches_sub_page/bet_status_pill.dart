@@ -24,13 +24,13 @@ class BetStatusPill extends StatelessWidget {
         duration: 200.milliseconds,
         curve: Curves.fastOutSlowIn,
         child: Container(
-          height: 32,
+          height: 28,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(14),
             color: preset.background,
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Center(
               child: _createStatusWidget(preset),
             ),

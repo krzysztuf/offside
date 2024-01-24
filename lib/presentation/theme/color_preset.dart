@@ -11,7 +11,7 @@ class ColorPreset {
     required this.foreground,
   });
 
-  TextStyle get textStyle => theme.textTheme.labelSmall!.copyWith(color: foreground);
+  TextStyle get textStyle => theme.textTheme.labelSmall!.copyWith(color: foreground, fontSize: 9);
 
   Color get foregroundMuted => foreground.withOpacity(0.5);
 }

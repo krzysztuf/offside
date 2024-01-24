@@ -15,9 +15,7 @@ class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
   @override
   MatchesSubPageState build() {
     ref.watch(currentUserIdSettingProvider);
-    ref.read(upcomingMatchesUseCaseProvider).run().then((matches) {
-      state = MatchesSubPageState(_groupMatchesByDay(matches));
-    });
+    refresh();
 
     return MatchesSubPageState({});
   }
@@ -26,6 +24,12 @@ class MatchesSubPageViewModel extends _$MatchesSubPageViewModel {
     return matches.fold(SplayTreeMap<DateTime, List<Match>>(), (map, match) {
       map.putIfAbsent(match.kickOffDate.date, () => []).add(match);
       return map;
+    });
+  }
+
+  Future<void> refresh() async {
+    ref.read(upcomingMatchesUseCaseProvider).run().then((matches) {
+      state = MatchesSubPageState(_groupMatchesByDay(matches));
     });
   }
 }

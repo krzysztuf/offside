@@ -45,7 +45,7 @@ class MatchKickOffStatus extends ConsumerWidget {
     }
 
     return const MutedInformationLabel(
-      icon: Icons.sports,
+      icon: Icons.event_available,
       text: 'ZAKOŃCZONY',
     );
   }

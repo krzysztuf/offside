@@ -22,16 +22,20 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchesSubPageViewModelProvider);
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: unfoldMatches(state.matches),
+    return RefreshIndicator(
+      onRefresh: ref.read(matchesSubPageViewModelProvider.notifier).refresh,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: unfoldMatches(state.matches),
+        ),
       ),
     );
   }
 
   Widget unfoldMatches(Map<DateTime, List<Match>> matches) {
     return Column(
+      key: UniqueKey(),
       children: matches.entries.map((entry) {
         final kickOffDay = entry.key;
         final matchesThisDay = entry.value;
@@ -64,10 +68,10 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
                   matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
                   currentCardMatchProvider.overrideWith((_) => match),
                 ],
-                child: const Column(
+                child: Column(
                   children: [
                     MatchBetCard(),
-                    Gap(32),
+                    const Gap(32),
                   ],
                 ),
               ),
