@@ -12,7 +12,7 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_pred
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_view_model.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_kick_off_status.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
@@ -210,7 +210,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           controller: scrollController,
           child: ProviderScope(
             overrides: [
-              matchBetsViewModelProvider.overrideWith(() => MatchBetsViewModel()),
+              matchBetsControllerProvider.overrideWith(() => MatchBetsController()),
               matchOfBetsToShowProvider.overrideWith((_) => match),
             ],
             child: const MatchBets(),

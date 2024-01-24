@@ -7,10 +7,10 @@ import 'package:supercharged/supercharged.dart';
 
 import 'match_bets_state.dart';
 
-part 'match_bets_view_model.g.dart';
+part 'match_bets_controller.g.dart';
 
 @riverpod
-class MatchBetsViewModel extends _$MatchBetsViewModel {
+class MatchBetsController extends _$MatchBetsController {
   @override
   MatchBetsState build() {
     final match = ref.read(matchOfBetsToShowProvider);

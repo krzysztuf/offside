@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -16,16 +14,13 @@ class LoadingBetsSkeleton extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
+              contentPadding: const EdgeInsets.only(bottom: 0),
               title: Text('Item number $index as title'),
-              subtitle: const Text('Subtitle here'),
-              leading: const Icon(Icons.add, size: 40),
-              trailing: Column(
-                children: [
-                  '24'.styledText(context.textTheme.titleLarge!),
-                  const Gap(4),
-                  'punkty'.styledText(context.textTheme.bodySmall!),
-                ],
+              leading: const Padding(
+                padding: EdgeInsets.only(right: 8.0),
+                child: Icon(Icons.add, size: 40),
               ),
+              trailing: Text('AAAAA', style: context.textTheme.headlineLarge),
             ),
           );
         }).toList(),

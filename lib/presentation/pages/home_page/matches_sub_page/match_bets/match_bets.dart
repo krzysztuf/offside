@@ -5,31 +5,26 @@ import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/loading_table_skeleton.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_state.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
-import 'package:offside/presentation/widgets/alternative_inflater.dart';
+import 'package:supercharged/supercharged.dart';
 
 class MatchBets extends ConsumerWidget {
   const MatchBets({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(matchBetsViewModelProvider);
-    return AlternativeInflater(
-      alignment: Alignment.topCenter,
-      useAlternative: state.loading,
-      builder: () => buildUserPredictionsList(state, context),
-      alternativeBuilder: () => const LoadingBetsSkeleton(),
-    );
-  }
-
-  Widget buildUserPredictionsList(MatchBetsState state, BuildContext context) {
+    final state = ref.watch(matchBetsControllerProvider);
     return Padding(
-      key: UniqueKey(),
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(32.0),
       child: Column(
         children: [
+          Text(
+            'Przewidywania użytkowników',
+            style: context.textTheme.headlineSmall,
+          ),
+          const Gap(48),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -38,34 +33,45 @@ class MatchBets extends ConsumerWidget {
               TeamBadge(team: state.match.awayTeam.value),
             ],
           ),
-          const Gap(32),
-          for (final bet in state.bets)
-            ListTile(
-              contentPadding: const EdgeInsets.only(bottom: 16),
-              leading: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: bet.user.avatar(context),
-              ),
-              title: '${bet.user.name} ${bet.user.surname}'.text,
-              trailing: SizedBox(
-                width: 100,
-                child: Card(
-                  elevation: 1,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildGoalsText(bet.prediction?.home, context),
-                        buildGoalsText(' : ', context),
-                        buildGoalsText(bet.prediction?.away, context),
-                      ],
-                    ),
+          const Gap(48),
+          AnimatedSwitcher(
+            duration: 400.milliseconds,
+            child: state.loading ? const LoadingBetsSkeleton() : buildUserPredictionsList(state, context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildUserPredictionsList(MatchBetsState state, BuildContext context) {
+    return Column(
+      children: [
+        for (final bet in state.bets)
+          ListTile(
+            contentPadding: const EdgeInsets.only(bottom: 16),
+            leading: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: bet.user.avatar(context),
+            ),
+            title: '${bet.user.name} ${bet.user.surname}'.text,
+            trailing: SizedBox(
+              width: 100,
+              child: Card(
+                elevation: 1,
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      buildGoalsText(bet.prediction?.home, context),
+                      buildGoalsText(' : ', context),
+                      buildGoalsText(bet.prediction?.away, context),
+                    ],
                   ),
                 ),
               ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 
