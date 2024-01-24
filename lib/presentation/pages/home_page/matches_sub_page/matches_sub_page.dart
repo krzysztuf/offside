@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page_view_model.dart';
 
 import 'match_bet_card.dart';
@@ -77,7 +77,7 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
             for (final match in matchesThisDay)
               ProviderScope(
                 overrides: [
-                  matchBetCardViewModelProvider.overrideWith(() => MatchBetCardViewModel()),
+                  matchBetCardControllerProvider.overrideWith(() => MatchBetCardController()),
                   currentCardMatchProvider.overrideWith((_) => match),
                 ],
                 child: const Column(

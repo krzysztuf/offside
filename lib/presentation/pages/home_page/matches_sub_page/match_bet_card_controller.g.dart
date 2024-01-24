@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'match_bet_card_view_model.dart';
+part of 'match_bet_card_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -21,22 +21,22 @@ final currentCardMatchProvider = AutoDisposeProvider<Match>.internal(
 );
 
 typedef CurrentCardMatchRef = AutoDisposeProviderRef<Match>;
-String _$matchBetCardViewModelHash() =>
-    r'ae4a4d2e4757986c62146cdaa5e0210387225d5c';
+String _$matchBetCardControllerHash() =>
+    r'1ce999a238fff6b75ff13c216aaed388faba28ca';
 
-/// See also [MatchBetCardViewModel].
-@ProviderFor(MatchBetCardViewModel)
-final matchBetCardViewModelProvider = AutoDisposeNotifierProvider<
-    MatchBetCardViewModel, MatchBetCardState>.internal(
-  MatchBetCardViewModel.new,
-  name: r'matchBetCardViewModelProvider',
+/// See also [MatchBetCardController].
+@ProviderFor(MatchBetCardController)
+final matchBetCardControllerProvider = AutoDisposeNotifierProvider<
+    MatchBetCardController, MatchBetCardState>.internal(
+  MatchBetCardController.new,
+  name: r'matchBetCardControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$matchBetCardViewModelHash,
+      : _$matchBetCardControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$MatchBetCardViewModel = AutoDisposeNotifier<MatchBetCardState>;
+typedef _$MatchBetCardController = AutoDisposeNotifier<MatchBetCardState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

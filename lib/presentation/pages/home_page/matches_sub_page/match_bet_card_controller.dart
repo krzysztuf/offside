@@ -9,10 +9,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'match_bet_card_state.dart';
 
-part 'match_bet_card_view_model.g.dart';
+part 'match_bet_card_controller.g.dart';
 
 @riverpod
-class MatchBetCardViewModel extends _$MatchBetCardViewModel {
+class MatchBetCardController extends _$MatchBetCardController {
   @override
   MatchBetCardState build() {
     final match = ref.read(currentCardMatchProvider);

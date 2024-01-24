@@ -9,8 +9,8 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/expired_bet_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_kick_off_status.dart';
@@ -39,7 +39,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(matchBetCardViewModelProvider);
+    final state = ref.watch(matchBetCardControllerProvider);
     return Card(
       child: SizedBox(
         width: double.infinity,
@@ -99,7 +99,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                       label: const Text('Typuj'),
                       onPressed: () async {
                         editedPrediction ??= const Goals();
-                        await ref.read(matchBetCardViewModelProvider.notifier).updatePrediction(editedPrediction!);
+                        await ref.read(matchBetCardControllerProvider.notifier).updatePrediction(editedPrediction!);
                         setState(() => editingPrediction = false);
                       }),
                 ),

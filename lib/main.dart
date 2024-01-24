@@ -10,7 +10,7 @@ import 'package:offside/offside_router.dart';
 import 'package:offside/offside_themes.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 
-import 'presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
+import 'presentation/pages/home_page/matches_sub_page/match_bet_card_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,8 @@ Future<void> main() async {
     ProviderScope(
       overrides: [
         dateTimeProvider.overrideWithValue(stubTime),
-        matchBetCardViewModelProvider.overrideWith(() => throw UnimplementedError('MatchBetCardViewModel unavailable')),
+        matchBetCardControllerProvider
+            .overrideWith(() => throw UnimplementedError('MatchBetCardViewModel unavailable')),
       ],
       child: const OffsideApp(),
     ),
