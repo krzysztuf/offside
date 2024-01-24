@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
@@ -31,7 +32,7 @@ class MainTable extends StatelessWidget {
                   'punkty'.styledText(context.textTheme.bodySmall!),
                 ],
               ),
-              onTap: () {},
+              onTap: () => context.goNamed('userDetails', extra: user),
             ),
           ),
       ],

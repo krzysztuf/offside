@@ -6,7 +6,7 @@ part of 'offside_router.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$offsideRouterHash() => r'18ddec61104f347f417298ec2a1f8e7e968fee0d';
+String _$offsideRouterHash() => r'06a2eb2803feb39bc5d97fa1cd4f712af382f811';
 
 /// See also [offsideRouter].
 @ProviderFor(offsideRouter)

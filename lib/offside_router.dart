@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'domain/entities/user.dart';
 import 'presentation/pages/home_page/home_page.dart';
+import 'presentation/pages/user_page/user_page.dart';
 
 part 'offside_router.g.dart';
 
@@ -28,13 +30,13 @@ GoRouter offsideRouter(OffsideRouterRef ref) {
         path: '/',
         name: 'home',
         builder: (context, state) => const HomePage(),
-        // routes: [
-        //   GoRoute(
-        //     path: 'settings',
-        //     name: 'settings',
-        //     builder: (context, state) => const SettingsPage(),
-        //   ),
-        // ],
+        routes: [
+          GoRoute(
+            path: 'userDetails',
+            name: 'userDetails',
+            builder: (context, state) => UserPage(user: state.extra as User),
+          ),
+        ],
       ),
     ],
   );

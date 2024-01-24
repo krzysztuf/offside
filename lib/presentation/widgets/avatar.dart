@@ -27,7 +27,7 @@ class Avatar extends StatelessWidget {
       ),
       color: Colors.transparent,
       child: CircleAvatar(
-        backgroundImage: image,
+        foregroundImage: image,
         radius: radius,
         child: child,
       ),

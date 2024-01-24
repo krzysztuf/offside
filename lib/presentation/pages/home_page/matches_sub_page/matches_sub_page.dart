@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_view_model.dart';
@@ -26,8 +27,22 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
       onRefresh: ref.read(matchesSubPageViewModelProvider.notifier).refresh,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: unfoldMatches(state.matches),
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Gap(16),
+              ListTile(
+                title: Text('Nadchodzące mecze', style: context.textTheme.headlineSmall),
+                trailing: FilledButton.tonalIcon(
+                  icon: const Icon(Icons.history, size: 18),
+                  onPressed: null,
+                  label: 'Historia'.text,
+                ),
+              ),
+              unfoldMatches(state.matches),
+            ],
+          ),
         ),
       ),
     );
