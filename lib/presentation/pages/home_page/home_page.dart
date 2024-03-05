@@ -37,10 +37,12 @@ class _HomePageState extends ConsumerState<HomePage> {
           const NavigationDestination(
             icon: Icon(Icons.table_view),
             label: 'Tabela',
+            tooltip: '',
           ),
           const NavigationDestination(
             icon: Icon(Icons.sports_soccer),
             label: 'Mecze',
+            tooltip: '',
           ),
           NavigationDestination(
             icon: switch (ref.watch(currentUserProvider)) {
@@ -48,6 +50,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               _ => const Icon(Icons.person),
             },
             label: 'Profil',
+            tooltip: '',
           ),
         ],
         onDestinationSelected: (index) => setState(() => currentIndex = index),

@@ -42,7 +42,7 @@ class UserPage extends ConsumerWidget {
                     ),
                     UserStatCard(
                       title: 'FORMA',
-                      child: buildStandardStat('* * * * *', context),
+                      child: buildStandardStat('*****', context),
                     ),
                   ],
                 ),
@@ -69,6 +69,6 @@ class UserPage extends ConsumerWidget {
   }
 
   Text buildStandardStat(dynamic text, BuildContext context) {
-    return Text('$text', style: context.textTheme.titleLarge);
+    return Text('$text', style: context.textTheme.titleLarge!.copyWith(fontSize: 36));
   }
 }

@@ -16,10 +16,10 @@ class UserStatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final labelSmall = context.textTheme.labelSmall!;
     return SizedBox(
-      width: 160,
+      width: 180,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24), // Adjust the radius here
+          borderRadius: BorderRadius.circular(24),
         ),
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -27,7 +27,7 @@ class UserStatCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               child,
-              const Gap(4),
+              const Gap(8),
               Text(
                 title,
                 style: labelSmall.copyWith(color: labelSmall.color!.withOpacity(0.7)),
