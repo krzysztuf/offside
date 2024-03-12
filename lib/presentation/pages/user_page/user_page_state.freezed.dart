@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserPageState {
+  User get user => throw _privateConstructorUsedError;
+  List<Match> get matches => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
-  List<Match> get match => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserPageStateCopyWith<UserPageState> get copyWith =>
@@ -30,7 +31,9 @@ abstract class $UserPageStateCopyWith<$Res> {
           UserPageState value, $Res Function(UserPageState) then) =
       _$UserPageStateCopyWithImpl<$Res, UserPageState>;
   @useResult
-  $Res call({bool loading, List<Match> match});
+  $Res call({User user, List<Match> matches, bool loading});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -46,19 +49,32 @@ class _$UserPageStateCopyWithImpl<$Res, $Val extends UserPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? user = null,
+    Object? matches = null,
     Object? loading = null,
-    Object? match = null,
   }) {
     return _then(_value.copyWith(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+      matches: null == matches
+          ? _value.matches
+          : matches // ignore: cast_nullable_to_non_nullable
+              as List<Match>,
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      match: null == match
-          ? _value.match
-          : match // ignore: cast_nullable_to_non_nullable
-              as List<Match>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -70,7 +86,10 @@ abstract class _$$UserPageStateImplCopyWith<$Res>
       __$$UserPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, List<Match> match});
+  $Res call({User user, List<Match> matches, bool loading});
+
+  @override
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -84,18 +103,23 @@ class __$$UserPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? user = null,
+    Object? matches = null,
     Object? loading = null,
-    Object? match = null,
   }) {
     return _then(_$UserPageStateImpl(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+      matches: null == matches
+          ? _value._matches
+          : matches // ignore: cast_nullable_to_non_nullable
+              as List<Match>,
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      match: null == match
-          ? _value._match
-          : match // ignore: cast_nullable_to_non_nullable
-              as List<Match>,
     ));
   }
 }
@@ -104,23 +128,28 @@ class __$$UserPageStateImplCopyWithImpl<$Res>
 
 class _$UserPageStateImpl extends _UserPageState {
   const _$UserPageStateImpl(
-      {required this.loading, required final List<Match> match})
-      : _match = match,
+      {required this.user,
+      required final List<Match> matches,
+      required this.loading})
+      : _matches = matches,
         super._();
 
   @override
-  final bool loading;
-  final List<Match> _match;
+  final User user;
+  final List<Match> _matches;
   @override
-  List<Match> get match {
-    if (_match is EqualUnmodifiableListView) return _match;
+  List<Match> get matches {
+    if (_matches is EqualUnmodifiableListView) return _matches;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_match);
+    return EqualUnmodifiableListView(_matches);
   }
 
   @override
+  final bool loading;
+
+  @override
   String toString() {
-    return 'UserPageState(loading: $loading, match: $match)';
+    return 'UserPageState(user: $user, matches: $matches, loading: $loading)';
   }
 
   @override
@@ -128,13 +157,14 @@ class _$UserPageStateImpl extends _UserPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserPageStateImpl &&
-            (identical(other.loading, loading) || other.loading == loading) &&
-            const DeepCollectionEquality().equals(other._match, _match));
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other._matches, _matches) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, loading, const DeepCollectionEquality().hash(_match));
+  int get hashCode => Object.hash(runtimeType, user,
+      const DeepCollectionEquality().hash(_matches), loading);
 
   @JsonKey(ignore: true)
   @override
@@ -145,14 +175,17 @@ class _$UserPageStateImpl extends _UserPageState {
 
 abstract class _UserPageState extends UserPageState {
   const factory _UserPageState(
-      {required final bool loading,
-      required final List<Match> match}) = _$UserPageStateImpl;
+      {required final User user,
+      required final List<Match> matches,
+      required final bool loading}) = _$UserPageStateImpl;
   const _UserPageState._() : super._();
 
   @override
-  bool get loading;
+  User get user;
   @override
-  List<Match> get match;
+  List<Match> get matches;
+  @override
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$$UserPageStateImplCopyWith<_$UserPageStateImpl> get copyWith =>

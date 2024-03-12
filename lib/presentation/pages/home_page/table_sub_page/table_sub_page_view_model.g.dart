@@ -7,7 +7,7 @@ part of 'table_sub_page_view_model.dart';
 // **************************************************************************
 
 String _$tableSubPageViewModelHash() =>
-    r'5eedcab608b3a8c7a3c3163cba65135ace23308d';
+    r'e73d7318bbc26711a76f86d4ef49ec4209f25557';
 
 /// See also [TableSubPageViewModel].
 @ProviderFor(TableSubPageViewModel)

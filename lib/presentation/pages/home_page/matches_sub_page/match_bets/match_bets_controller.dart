@@ -19,7 +19,7 @@ class MatchBetsController extends _$MatchBetsController {
   }
 
   Future<void> buildUserPredictions(Match match) async {
-    final users = await ref.read(allUsersUseCaseProvider).run();
+    final users = await ref.read(getAllUsersUseCaseProvider).run();
     final userPredictions = users.map((user) {
       final bet = match.bets.value.find((bet) => bet.userId == user.id);
       return UserPrediction(user: user, prediction: bet?.prediction);

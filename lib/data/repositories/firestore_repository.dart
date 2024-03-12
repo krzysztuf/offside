@@ -17,7 +17,6 @@ class FirestoreRepository<Entity, Model> implements Repository<Entity> {
   @override
   Future<List<Entity>> all() async {
     final items = await typedReferencesList();
-
     return items.map(modelToEntity).toList();
   }
 

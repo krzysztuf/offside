@@ -14,4 +14,8 @@ abstract class FirestoreSource {
   static CollectionReference<T> typedCollectionRef<T>(String path) {
     return FirebaseFirestore.instance.typedCollection<T>(path);
   }
+
+  static Query<T> collectionGroup<T>(String path) {
+    return FirebaseFirestore.instance.typedCollectionGroup<T>(path);
+  }
 }

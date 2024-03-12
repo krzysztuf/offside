@@ -203,6 +203,21 @@ final usersRepositoryProvider = AutoDisposeProvider<Repository<User>>.internal(
 );
 
 typedef UsersRepositoryRef = AutoDisposeProviderRef<Repository<User>>;
+String _$betsRepositoryHash() => r'039397d6cfc951072326a03168f9e3e6e0fb8174';
+
+/// See also [betsRepository].
+@ProviderFor(betsRepository)
+final betsRepositoryProvider = AutoDisposeProvider<BetsRepository>.internal(
+  betsRepository,
+  name: r'betsRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$betsRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef BetsRepositoryRef = AutoDisposeProviderRef<BetsRepository>;
 String _$settingsRepositoryHash() =>
     r'ca060010406df15617fdd8ad7f619fbce1d41685';
 

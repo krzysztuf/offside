@@ -21,7 +21,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
   Widget build(BuildContext context) {
     return Center(
       child: FutureBuilder(
-        future: ref.watch(allUsersUseCaseProvider).run(),
+        future: ref.watch(getAllUsersUseCaseProvider).run(),
         builder: (context, snapshot) {
           return switch (snapshot.connectionState) {
             ConnectionState.waiting => LoadingAnimationWidget.fourRotatingDots(

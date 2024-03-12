@@ -10,6 +10,6 @@ class CurrentUser extends _$CurrentUser {
   @override
   FutureOr<User?> build() async {
     ref.watch(currentUserIdSettingProvider);
-    return ref.read(currentUserUseCaseProvider).run();
+    return ref.read(getCurrentUserUseCaseProvider).run();
   }
 }

@@ -92,5 +92,14 @@ extension EntityToFirestoreMapping on GetIt {
         ),
       ),
     );
+
+    addMapper<BetModel, Bet>((model) => Bet(
+          id: model.id,
+          userId: model.userId,
+          prediction: Goals(
+            home: model.homeGoalsPrediction,
+            away: model.awayGoalsPrediction,
+          ),
+        ));
   }
 }

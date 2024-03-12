@@ -12,6 +12,13 @@ extension TypedReferencesExtension on FirebaseFirestore {
     );
   }
 
+  Query<T> typedCollectionGroup<T>(String path) {
+    return collectionGroup(path).withConverter(
+      fromFirestore: fromFirestoreFactory<T>(),
+      toFirestore: (dynamic model, _) => model.toJson(),
+    );
+  }
+
   DocumentReference<T> typedDoc<T>(String name) {
     return doc(name).withConverter(
       fromFirestore: fromFirestoreFactory<T>(),

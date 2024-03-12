@@ -14,7 +14,7 @@ class TableSubPageViewModel extends _$TableSubPageViewModel {
   }
 
   Future<void> loadTable() async {
-    final users = await ref.read(allUsersUseCaseProvider).run();
+    final users = await ref.read(getAllUsersUseCaseProvider).run();
     state = MainTableReadyState(users);
   }
 }
