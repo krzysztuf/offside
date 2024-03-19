@@ -14,13 +14,13 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_kick_off_status.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
+import 'package:offside/presentation/widgets/offside/team_badge.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 

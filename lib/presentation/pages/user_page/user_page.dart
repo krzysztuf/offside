@@ -1,21 +1,15 @@
-import 'dart:developer';
-
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/entities/bet.dart';
-import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
 import 'package:offside/presentation/pages/user_page/user_page_state.dart';
-import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 
 import 'user_page_controller.dart';
+import 'user_prediction_status.dart';
 import 'user_stat_card.dart';
 
 class UserPage extends ConsumerWidget {
@@ -101,73 +95,13 @@ class UserPage extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          children: [
-            for (final match in state.matches)
-              ListTile(
-                title: Row(
-                  children: [
-                    SizedBox(
-                      width: 72,
-                      child: Row(
-                        children: [
-                          Expanded(child: Container()),
-                          FetchableBuilder(
-                            fetchable: match.homeTeam,
-                            waiting: () => LoadingAnimationWidget.waveDots(
-                              color: context.colorScheme.primary,
-                              size: 24,
-                            ),
-                            child: (homeTeam) => TeamBadge(
-                              team: homeTeam,
-                              badgeRadius: 10,
-                              direction: Axis.horizontal,
-                              useAbbreviation: true,
-                              mirrored: true,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 80,
-                      child: Center(child: buildScorePrediction(match, state.bets, context)),
-                    ),
-                    FetchableBuilder(
-                      fetchable: match.awayTeam,
-                      waiting: () => LoadingAnimationWidget.waveDots(
-                        color: context.colorScheme.primary,
-                        size: 24,
-                      ),
-                      child: (homeTeam) => TeamBadge(
-                        team: homeTeam,
-                        badgeRadius: 10,
-                        direction: Axis.horizontal,
-                        useAbbreviation: true,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-          ],
+          children: state.matches
+              .map((m) => UserPredictionStatus(
+                    match: m,
+                    userBets: state.bets,
+                  ))
+              .toList(),
         ),
-      ),
-    );
-  }
-
-  Widget buildScorePrediction(Match match, List<Bet> bets, BuildContext context) {
-    final bet = bets.firstWhereOrNull((bet) {
-      log('bet: ${bet.matchId}, match: ${match.id}, ${bet.matchId == match.id}');
-      return bet.matchId == match.id;
-    });
-
-    log('building for match: ${match.id}, bets: ${bets}, found: ${bet != null}');
-
-    final scoreString = bet != null ? '${bet.prediction.home} : ${bet.prediction.away}' : '- : -';
-    return Opacity(
-      opacity: bet != null ? 1 : 0.5,
-      child: Text(
-        scoreString,
-        style: context.textTheme.titleLarge,
       ),
     );
   }

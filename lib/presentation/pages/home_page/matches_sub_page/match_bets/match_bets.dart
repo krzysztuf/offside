@@ -7,7 +7,7 @@ import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/loading_table_skeleton.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_state.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/team_badge.dart';
+import 'package:offside/presentation/widgets/offside/team_badge.dart';
 import 'package:supercharged/supercharged.dart';
 
 class MatchBets extends ConsumerWidget {
