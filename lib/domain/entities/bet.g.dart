@@ -8,11 +8,13 @@ part of 'bet.dart';
 
 _$BetImpl _$$BetImplFromJson(Map<String, dynamic> json) => _$BetImpl(
       id: json['id'] as String? ?? '',
+      matchId: json['matchId'] as String,
       userId: json['userId'] as String,
       prediction: Goals.fromJson(json['prediction'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$BetImplToJson(_$BetImpl instance) => <String, dynamic>{
+      'matchId': instance.matchId,
       'userId': instance.userId,
       'prediction': instance.prediction,
     };

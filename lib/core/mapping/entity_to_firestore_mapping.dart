@@ -78,6 +78,7 @@ extension EntityToFirestoreMapping on GetIt {
         entity.id,
         model: BetModel(
           entity.id,
+          entity.matchId,
           entity.userId,
           entity.prediction.home,
           entity.prediction.away,
@@ -85,6 +86,7 @@ extension EntityToFirestoreMapping on GetIt {
       ),
       backward: (document) => Bet(
         id: document.id,
+        matchId: document.value.matchId,
         userId: document.value.userId,
         prediction: Goals(
           home: document.value.homeGoalsPrediction,
@@ -95,6 +97,7 @@ extension EntityToFirestoreMapping on GetIt {
 
     addMapper<BetModel, Bet>((model) => Bet(
           id: model.id,
+          matchId: model.matchId,
           userId: model.userId,
           prediction: Goals(
             home: model.homeGoalsPrediction,

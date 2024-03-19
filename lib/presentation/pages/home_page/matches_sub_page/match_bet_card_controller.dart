@@ -72,6 +72,7 @@ class MatchBetCardController extends _$MatchBetCardController {
 
   Future<Bet> _createNewBet(Goals prediction) async {
     final bet = Bet(
+      matchId: state.match.id,
       userId: ref.read(currentUserIdSettingProvider),
       prediction: prediction,
     );

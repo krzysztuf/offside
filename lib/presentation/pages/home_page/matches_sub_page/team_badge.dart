@@ -6,22 +6,43 @@ import 'package:offside/presentation/widgets/avatar.dart';
 
 class TeamBadge extends StatelessWidget {
   final Team team;
+  final Axis direction;
+  final bool useAbbreviation;
+  final bool mirrored;
+  final double badgeRadius;
 
-  const TeamBadge({super.key, required this.team});
+  const TeamBadge({
+    super.key,
+    required this.team,
+    this.direction = Axis.vertical,
+    this.useAbbreviation = false,
+    this.mirrored = false,
+    this.badgeRadius = 24,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final teamBadgeAndName = [
+      Avatar(image: AssetImage(team.logo), radius: badgeRadius),
+      const Gap(8),
+      buildTeamName(context),
+    ];
+
+    if (direction == Axis.horizontal) {
+      return Row(
+        children: mirrored ? teamBadgeAndName.reversed.toList() : teamBadgeAndName,
+      );
+    }
+
     return Column(
-      children: [
-        Avatar(
-          image: AssetImage(team.logo),
-        ),
-        const Gap(8),
-        Text(
-          team.name,
-          style: context.widgetThemes.teamBadge.textTheme,
-        ),
-      ],
+      children: mirrored ? teamBadgeAndName.reversed.toList() : teamBadgeAndName,
+    );
+  }
+
+  Widget buildTeamName(BuildContext context) {
+    return Text(
+      useAbbreviation ? team.abbreviation : team.name,
+      style: context.widgetThemes.teamBadge.textTheme,
     );
   }
 }

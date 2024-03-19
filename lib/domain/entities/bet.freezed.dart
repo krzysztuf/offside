@@ -23,6 +23,7 @@ mixin _$Bet {
 // ignore: invalid_annotation_target
   @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
+  String get matchId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   Goals get prediction => throw _privateConstructorUsedError;
 
@@ -38,6 +39,7 @@ abstract class $BetCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(includeToJson: false) String id,
+      String matchId,
       String userId,
       Goals prediction});
 
@@ -57,6 +59,7 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
+    Object? matchId = null,
     Object? userId = null,
     Object? prediction = null,
   }) {
@@ -64,6 +67,10 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      matchId: null == matchId
+          ? _value.matchId
+          : matchId // ignore: cast_nullable_to_non_nullable
               as String,
       userId: null == userId
           ? _value.userId
@@ -93,6 +100,7 @@ abstract class _$$BetImplCopyWith<$Res> implements $BetCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(includeToJson: false) String id,
+      String matchId,
       String userId,
       Goals prediction});
 
@@ -110,6 +118,7 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
   @override
   $Res call({
     Object? id = null,
+    Object? matchId = null,
     Object? userId = null,
     Object? prediction = null,
   }) {
@@ -117,6 +126,10 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      matchId: null == matchId
+          ? _value.matchId
+          : matchId // ignore: cast_nullable_to_non_nullable
               as String,
       userId: null == userId
           ? _value.userId
@@ -135,6 +148,7 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
 class _$BetImpl implements _Bet {
   const _$BetImpl(
       {@JsonKey(includeToJson: false) this.id = '',
+      required this.matchId,
       required this.userId,
       required this.prediction});
 
@@ -146,13 +160,15 @@ class _$BetImpl implements _Bet {
   @JsonKey(includeToJson: false)
   final String id;
   @override
+  final String matchId;
+  @override
   final String userId;
   @override
   final Goals prediction;
 
   @override
   String toString() {
-    return 'Bet(id: $id, userId: $userId, prediction: $prediction)';
+    return 'Bet(id: $id, matchId: $matchId, userId: $userId, prediction: $prediction)';
   }
 
   @override
@@ -161,6 +177,7 @@ class _$BetImpl implements _Bet {
         (other.runtimeType == runtimeType &&
             other is _$BetImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.matchId, matchId) || other.matchId == matchId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.prediction, prediction) ||
                 other.prediction == prediction));
@@ -168,7 +185,7 @@ class _$BetImpl implements _Bet {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, prediction);
+  int get hashCode => Object.hash(runtimeType, id, matchId, userId, prediction);
 
   @JsonKey(ignore: true)
   @override
@@ -187,6 +204,7 @@ class _$BetImpl implements _Bet {
 abstract class _Bet implements Bet {
   const factory _Bet(
       {@JsonKey(includeToJson: false) final String id,
+      required final String matchId,
       required final String userId,
       required final Goals prediction}) = _$BetImpl;
 
@@ -195,6 +213,8 @@ abstract class _Bet implements Bet {
   @override // ignore: invalid_annotation_target
   @JsonKey(includeToJson: false)
   String get id;
+  @override
+  String get matchId;
   @override
   String get userId;
   @override

@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/usecases/match/match_use_cases.dart';
 import 'package:offside/domain/usecases/users/user_use_cases.dart';
 import 'package:offside/presentation/pages/user_page/user_page_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -10,19 +9,16 @@ part 'user_page_controller.g.dart';
 @riverpod
 class UserPageController extends _$UserPageController {
   @override
-  UserPageState build() {
-    log('building user page state');
-
+  Future<UserPageState> build() async {
     final user = ref.read(userOfUserPageProvider);
+    final bets = await ref.read(getUserBetsUseCaseProvider(user)).run();
+    final allMatches = await ref.read(getUpcomingMatchesUseCaseProvider).run();
 
-    log('current user: $user');
-    log('fetching user bets');
-
-    ref.read(getUserBetsUseCaseProvider(user)).run().then((bets) {
-      log('bets: $bets');
-    });
-
-    return UserPageState(user: user, matches: [], loading: true);
+    return UserPageState(
+      user: user,
+      bets: bets,
+      matches: allMatches,
+    );
   }
 }
 

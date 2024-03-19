@@ -22,12 +22,12 @@ final userOfUserPageProvider = AutoDisposeProvider<User>.internal(
 
 typedef UserOfUserPageRef = AutoDisposeProviderRef<User>;
 String _$userPageControllerHash() =>
-    r'd15be5caad25afe793328ea1f41c92b0b288c241';
+    r'cc7834914942ff89ad50446c02f4d6c55c0ce145';
 
 /// See also [UserPageController].
 @ProviderFor(UserPageController)
-final userPageControllerProvider =
-    AutoDisposeNotifierProvider<UserPageController, UserPageState>.internal(
+final userPageControllerProvider = AutoDisposeAsyncNotifierProvider<
+    UserPageController, UserPageState>.internal(
   UserPageController.new,
   name: r'userPageControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -37,6 +37,6 @@ final userPageControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$UserPageController = AutoDisposeNotifier<UserPageState>;
+typedef _$UserPageController = AutoDisposeAsyncNotifier<UserPageState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

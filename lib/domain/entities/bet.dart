@@ -9,6 +9,7 @@ class Bet with _$Bet {
   const factory Bet({
     // ignore: invalid_annotation_target
     @Default('') @JsonKey(includeToJson: false) String id,
+    required String matchId,
     required String userId,
     required Goals prediction,
   }) = _Bet;
