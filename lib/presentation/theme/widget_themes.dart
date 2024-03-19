@@ -9,11 +9,11 @@ class WidgetThemes {
   final ScoreInputTheme goalsInput;
   final TeamBadgeTheme teamBadge;
   final BetStatusPillTheme betStatusPill;
-  final MatchKickOffStatusTheme matchKickOffStatus;
+  final SharedWidgetsTheme sharedWidgets;
 
   WidgetThemes(ThemeData theme)
       : goalsInput = ScoreInputTheme(theme),
         teamBadge = TeamBadgeTheme(theme),
         betStatusPill = BetStatusPillTheme(theme),
-        matchKickOffStatus = MatchKickOffStatusTheme(theme);
+        sharedWidgets = SharedWidgetsTheme(theme);
 }

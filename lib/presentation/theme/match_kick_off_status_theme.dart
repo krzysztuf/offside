@@ -3,8 +3,8 @@ import 'package:offside/presentation/theme/color_preset.dart';
 import 'package:offside/presentation/theme/theme_extensions.dart';
 import 'package:offside/presentation/theme/widget_theme.dart';
 
-class MatchKickOffStatusTheme extends WidgetTheme {
-  MatchKickOffStatusTheme(super.theme);
+class SharedWidgetsTheme extends WidgetTheme {
+  SharedWidgetsTheme(super.theme);
 
   ColorPreset get beingPlayed => ColorPreset(
         theme,
