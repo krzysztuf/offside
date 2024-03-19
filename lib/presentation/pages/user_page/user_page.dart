@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -98,7 +99,7 @@ class UserPage extends ConsumerWidget {
           children: state.matches
               .map((m) => UserPredictionStatus(
                     match: m,
-                    userBets: state.bets,
+                    userBet: state.bets.firstWhereOrNull((bet) => bet.matchId == m.id),
                   ))
               .toList(),
         ),
