@@ -38,9 +38,9 @@ abstract class OffsideThemes {
         titleSmall: roboto.titleSmall!.copyWith(
           color: roboto.titleSmall!.moreOpaque(0.8),
         ),
-        titleMedium: roboto.titleMedium!.copyWith(
-          color: roboto.titleMedium!.moreOpaque(0.6),
-        ),
+        // titleMedium: roboto.titleMedium!.copyWith(
+        //   color: roboto.titleMedium!.moreOpaque(0.6),
+        // ),
       ),
     );
   }
