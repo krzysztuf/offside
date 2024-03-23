@@ -26,6 +26,7 @@ extension EntityToFirestoreMapping on GetIt {
           Document<TeamModel>(entity.awayTeam.value.id),
           Timestamp.fromDate(entity.kickOffDate),
           DocumentCollection<BetModel>('matches/${entity.id}/bets'),
+          entity.result?.toJson(),
         ),
       ),
       backward: (document) => Match(
@@ -34,6 +35,7 @@ extension EntityToFirestoreMapping on GetIt {
         awayTeam: FirestoreFetchable(document.value.awayTeam),
         kickOffDate: document.value.kickOffDate.toDate(),
         bets: FirestoreCollectionFetchable<Bet, BetModel>(document.value.bets),
+        result: Goals.fromJson(document.value.result ?? {}),
       ),
     );
 

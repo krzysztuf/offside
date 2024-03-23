@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/match/match_use_cases.dart';
 import 'package:offside/domain/usecases/users/user_use_cases.dart';
@@ -13,6 +15,10 @@ class UserPageController extends _$UserPageController {
     final user = ref.read(userOfUserPageProvider);
     final bets = await ref.read(getUserBetsUseCaseProvider(user)).run();
     final allMatches = await ref.read(getUpcomingMatchesUseCaseProvider).run();
+
+    for (final match in allMatches) {
+      log('result: ${match.result}');
+    }
 
     return UserPageState(
       user: user,
