@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page_view_model.dart';
+import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page_controller.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -32,7 +32,7 @@ class TableSubPage extends ConsumerWidget {
               style: context.textTheme.titleMedium,
             ),
             const Gap(32),
-            switch (ref.watch(tableSubPageViewModelProvider)) {
+            switch (ref.watch(tableSubPageControllerProvider)) {
               LoadingMainTableState() => Card(
                   child: LoadingTableSkeleton(
                     key: UniqueKey(),
