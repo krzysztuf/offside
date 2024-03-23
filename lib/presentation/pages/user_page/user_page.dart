@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -6,11 +5,11 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/presentation/pages/user_page/user_bets_table.dart';
 import 'package:offside/presentation/pages/user_page/user_page_state.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 
 import 'user_page_controller.dart';
-import 'user_prediction_status.dart';
 import 'user_stat_card.dart';
 
 class UserPage extends ConsumerWidget {
@@ -78,7 +77,7 @@ class UserPage extends ConsumerWidget {
                 )
               ],
             ),
-            buildBetsTable(state, context),
+            UserBetsTable(matches: state.matches, userBets: state.bets),
           ],
         ),
       ),
@@ -87,23 +86,5 @@ class UserPage extends ConsumerWidget {
 
   Text buildStandardStat(dynamic text, BuildContext context) {
     return Text('$text', style: context.textTheme.titleLarge!.copyWith(fontSize: 36));
-  }
-
-  Widget buildBetsTable(UserPageState state, BuildContext context) {
-    // return Container();
-    return Card(
-      margin: const EdgeInsets.all(32),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: state.matches
-              .map((m) => UserPredictionStatus(
-                    match: m,
-                    userBet: state.bets.firstWhereOrNull((bet) => bet.matchId == m.id),
-                  ))
-              .toList(),
-        ),
-      ),
-    );
   }
 }

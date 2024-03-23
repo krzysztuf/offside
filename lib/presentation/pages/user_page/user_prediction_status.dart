@@ -50,7 +50,7 @@ class UserPredictionStatus extends ConsumerWidget {
               ),
             ),
             SizedBox(
-              width: 80,
+              width: 48,
               child: Center(child: buildScorePrediction(context)),
             ),
             FetchableBuilder(
@@ -78,11 +78,15 @@ class UserPredictionStatus extends ConsumerWidget {
   }
 
   Widget buildScorePrediction(BuildContext context) {
-    final scoreString = userBet != null ? '${userBet!.prediction.home} : ${userBet!.prediction.away}' : '- : -';
     return Text(
-      scoreString,
+      '-',
       style: context.textTheme.titleLarge,
     );
+    // final scoreString = userBet != null ? '${userBet!.prediction.home} : ${userBet!.prediction.away}' : '- : -';
+    // return Text(
+    //   scoreString,
+    //   style: context.textTheme.titleLarge,
+    // );
   }
 
   Widget buildOutcomeWidget(DateTime currentTime, BuildContext context) {
