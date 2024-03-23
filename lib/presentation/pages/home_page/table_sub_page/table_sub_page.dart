@@ -32,28 +32,25 @@ class TableSubPage extends ConsumerWidget {
               style: context.textTheme.titleMedium,
             ),
             const Gap(32),
-            Card(
-              margin: const EdgeInsets.all(0),
-              child: AnimatedSize(
-                duration: 300.milliseconds,
-                curve: Curves.easeInOutQuart,
-                child: switch (ref.watch(tableSubPageViewModelProvider)) {
-                  LoadingMainTableState() => LoadingTableSkeleton(
+            switch (ref.watch(tableSubPageViewModelProvider)) {
+              LoadingMainTableState() => Card(
+                  child: LoadingTableSkeleton(
+                    key: UniqueKey(),
+                  ),
+                ),
+              MainTableReadyState(:final users) => Inflater(
+                  inflated: true,
+                  duration: 1.seconds,
+                  scaleFactor: 0.9,
+                  child: Card(
+                    child: MainTable(
                       key: UniqueKey(),
+                      users: users,
                     ),
-                  MainTableReadyState(:final users) => Inflater(
-                      inflated: true,
-                      duration: 1.seconds,
-                      scaleFactor: 0.9,
-                      child: MainTable(
-                        key: UniqueKey(),
-                        users: users,
-                      ),
-                    ),
-                  _ => Container(),
-                },
-              ),
-            ),
+                  ),
+                ),
+              _ => Container(),
+            },
             const Gap(32),
           ],
         ),
