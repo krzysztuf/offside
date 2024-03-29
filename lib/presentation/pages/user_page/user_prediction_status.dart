@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
@@ -20,64 +21,53 @@ class UserPredictionStatus extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Opacity(
-      opacity: userBet != null ? 1 : 0.5,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 72,
-            child: Row(
-              children: [
-                Expanded(child: Container()),
-                FetchableBuilder(
-                  fetchable: match.homeTeam,
-                  waiting: () => LoadingAnimationWidget.waveDots(
-                    color: context.colorScheme.primary,
-                    size: 24,
-                  ),
-                  child: (homeTeam) => TeamBadge(
+    return Row(
+      children: [
+        SizedBox(
+          width: 72,
+          child: Row(
+            children: [
+              Expanded(child: Container()),
+              FetchableBuilder(
+                fetchable: match.homeTeam,
+                waiting: () => LoadingAnimationWidget.waveDots(
+                  color: context.colorScheme.primary,
+                  size: 24,
+                ),
+                child: (homeTeam) => Center(
+                  child: TeamBadge(
                     team: homeTeam,
-                    badgeRadius: 10,
+                    badgeRadius: 8,
                     direction: Axis.horizontal,
                     useAbbreviation: true,
                     mirrored: true,
+                    textStyle: context.widgetThemes.userBets.cellValue,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          SizedBox(
-            width: 48,
-            child: Center(child: buildScorePrediction(context)),
+        ),
+        SizedBox(
+          width: 32,
+          child: Center(child: '-'.styledText(context.widgetThemes.userBets.cellValue)),
+        ),
+        FetchableBuilder(
+          fetchable: match.awayTeam,
+          waiting: () => LoadingAnimationWidget.waveDots(
+            color: context.colorScheme.primary,
+            size: 24,
           ),
-          FetchableBuilder(
-            fetchable: match.awayTeam,
-            waiting: () => LoadingAnimationWidget.waveDots(
-              color: context.colorScheme.primary,
-              size: 24,
-            ),
-            child: (homeTeam) => TeamBadge(
-              team: homeTeam,
-              badgeRadius: 10,
-              direction: Axis.horizontal,
-              useAbbreviation: true,
-            ),
+          child: (homeTeam) => TeamBadge(
+            team: homeTeam,
+            badgeRadius: 8,
+            direction: Axis.horizontal,
+            useAbbreviation: true,
+            textStyle: context.widgetThemes.userBets.cellValue,
           ),
-        ],
-      ),
+        ),
+      ],
     );
-  }
-
-  Widget buildScorePrediction(BuildContext context) {
-    return Text(
-      '-',
-      style: context.textTheme.titleLarge,
-    );
-    // final scoreString = userBet != null ? '${userBet!.prediction.home} : ${userBet!.prediction.away}' : '- : -';
-    // return Text(
-    //   scoreString,
-    //   style: context.textTheme.titleLarge,
-    // );
   }
 
   Widget buildOutcomeWidget(DateTime currentTime, BuildContext context) {

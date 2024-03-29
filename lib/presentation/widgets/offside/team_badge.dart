@@ -10,6 +10,7 @@ class TeamBadge extends StatelessWidget {
   final bool useAbbreviation;
   final bool mirrored;
   final double badgeRadius;
+  final TextStyle? textStyle;
 
   const TeamBadge({
     super.key,
@@ -18,12 +19,17 @@ class TeamBadge extends StatelessWidget {
     this.useAbbreviation = false,
     this.mirrored = false,
     this.badgeRadius = 24,
+    this.textStyle,
   });
 
   @override
   Widget build(BuildContext context) {
     final teamBadgeAndName = [
-      Avatar(image: AssetImage(team.logo), radius: badgeRadius),
+      Avatar(
+        image: AssetImage(team.logo),
+        radius: badgeRadius,
+        elevation: 2,
+      ),
       const Gap(8),
       buildTeamName(context),
     ];
@@ -42,7 +48,7 @@ class TeamBadge extends StatelessWidget {
   Widget buildTeamName(BuildContext context) {
     return Text(
       useAbbreviation ? team.abbreviation : team.name,
-      style: context.widgetThemes.teamBadge.textTheme,
+      style: textStyle ?? context.widgetThemes.teamBadge.textTheme,
     );
   }
 }
