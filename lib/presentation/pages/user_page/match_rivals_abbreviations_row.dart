@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -9,11 +10,11 @@ import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/offside/being_played_indicator.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
-class UserPredictionStatus extends ConsumerWidget {
+class MatchRivalsAbbreviationsRow extends ConsumerWidget {
   final Match match;
   final Bet? userBet;
 
-  const UserPredictionStatus({
+  const MatchRivalsAbbreviationsRow({
     super.key,
     required this.match,
     required this.userBet,
@@ -23,8 +24,7 @@ class UserPredictionStatus extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
-        SizedBox(
-          width: 72,
+        Expanded(
           child: Row(
             children: [
               Expanded(child: Container()),
@@ -52,18 +52,20 @@ class UserPredictionStatus extends ConsumerWidget {
           width: 32,
           child: Center(child: '-'.styledText(context.widgetThemes.userBets.cellValue)),
         ),
-        FetchableBuilder(
-          fetchable: match.awayTeam,
-          waiting: () => LoadingAnimationWidget.waveDots(
-            color: context.colorScheme.primary,
-            size: 24,
-          ),
-          child: (homeTeam) => TeamBadge(
-            team: homeTeam,
-            badgeRadius: 8,
-            direction: Axis.horizontal,
-            useAbbreviation: true,
-            textStyle: context.widgetThemes.userBets.cellValue,
+        Expanded(
+          child: FetchableBuilder(
+            fetchable: match.awayTeam,
+            waiting: () => LoadingAnimationWidget.waveDots(
+              color: context.colorScheme.primary,
+              size: 24,
+            ),
+            child: (homeTeam) => TeamBadge(
+              team: homeTeam,
+              badgeRadius: 8,
+              direction: Axis.horizontal,
+              useAbbreviation: true,
+              textStyle: context.widgetThemes.userBets.cellValue,
+            ),
           ),
         ),
       ],

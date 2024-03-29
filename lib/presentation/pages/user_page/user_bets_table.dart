@@ -5,7 +5,7 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 
-import 'user_prediction_status.dart';
+import 'match_rivals_abbreviations_row.dart';
 
 class UserBetsTable extends StatelessWidget {
   final List<Match> matches;
@@ -33,9 +33,9 @@ class UserBetsTable extends StatelessWidget {
         child: Table(
           columnWidths: const {
             0: FlexColumnWidth(),
-            1: IntrinsicColumnWidth(),
-            2: IntrinsicColumnWidth(),
-            3: IntrinsicColumnWidth(),
+            1: FixedColumnWidth(56),
+            2: FixedColumnWidth(56),
+            3: FixedColumnWidth(56),
           },
           children: [
             TableRow(
@@ -52,11 +52,14 @@ class UserBetsTable extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: UserPredictionStatus(match: m, userBet: userBet),
+                    child: MatchRivalsAbbreviationsRow(
+                      match: m,
+                      userBet: userBet,
+                    ),
                   ),
-                  Center(child: createCell(m.result?.asString ?? '-', cellStyle)),
-                  Center(child: createCell(userBet?.prediction.asString ?? '-', cellStyle)),
-                  Center(child: createCell(calculatePoints(m.result, userBet?.prediction), cellStyle)),
+                  createCell(m.result?.asString ?? '-', cellStyle),
+                  createCell(userBet?.prediction.asString ?? '-', cellStyle),
+                  createCell(calculatePoints(m.result, userBet?.prediction), cellStyle),
                 ],
               );
             })
@@ -67,9 +70,11 @@ class UserBetsTable extends StatelessWidget {
   }
 
   Widget createCell(String text, TextStyle style) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(text, style: style),
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(text, style: style),
+      ),
     );
   }
 
