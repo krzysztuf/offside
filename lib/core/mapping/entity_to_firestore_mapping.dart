@@ -35,7 +35,7 @@ extension EntityToFirestoreMapping on GetIt {
         awayTeam: FirestoreFetchable(document.value.awayTeam),
         kickOffDate: document.value.kickOffDate.toDate(),
         bets: FirestoreCollectionFetchable<Bet, BetModel>(document.value.bets),
-        result: Goals.fromJson(document.value.result ?? {}),
+        result: document.value.result != null ? Goals.fromJson(document.value.result!) : null,
       ),
     );
 

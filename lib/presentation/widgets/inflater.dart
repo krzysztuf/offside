@@ -14,8 +14,8 @@ class Inflater extends StatelessWidget {
 
   const Inflater({
     super.key,
-    required this.inflated,
     required this.child,
+    this.inflated = true,
     this.scaleFactor = 0.8,
     this.duration = const Duration(milliseconds: 400),
   });

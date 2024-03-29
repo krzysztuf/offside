@@ -32,8 +32,8 @@ class UserPage extends ConsumerWidget {
   }
 
   Widget _buildUserPage(UserPageState state, BuildContext context) {
+    final statStyle = context.widgetThemes.userBets.userStatValue;
     return Inflater(
-      inflated: true,
       scaleFactor: 0.9,
       child: SingleChildScrollView(
         child: Column(
@@ -41,8 +41,8 @@ class UserPage extends ConsumerWidget {
             const Gap(48),
             Center(
               child: SizedBox.square(
-                dimension: 128,
-                child: state.user.avatar(context, elevation: 8),
+                dimension: 192,
+                child: state.user.avatar(context, elevation: 6),
               ),
             ),
             const Gap(48),
@@ -53,11 +53,11 @@ class UserPage extends ConsumerWidget {
                   children: [
                     UserStatCard(
                       title: 'PUNKTY',
-                      child: buildStandardStat(24, context),
+                      child: buildStandardStat(24, statStyle),
                     ),
                     UserStatCard(
                       title: 'FORMA',
-                      child: buildStandardStat('*****', context),
+                      child: buildStandardStat('*****', statStyle),
                     ),
                   ],
                 ),
@@ -67,11 +67,11 @@ class UserPage extends ConsumerWidget {
                   children: [
                     UserStatCard(
                       title: 'TYPY ZA 3 PKT',
-                      child: buildStandardStat(4, context),
+                      child: buildStandardStat(4, statStyle),
                     ),
                     UserStatCard(
                       title: 'TYPY ZA 1 PKT',
-                      child: buildStandardStat(6, context),
+                      child: buildStandardStat(6, statStyle),
                     ),
                   ],
                 )
@@ -84,7 +84,7 @@ class UserPage extends ConsumerWidget {
     );
   }
 
-  Text buildStandardStat(dynamic text, BuildContext context) {
-    return Text('$text', style: context.textTheme.titleLarge!.copyWith(fontSize: 36));
+  Text buildStandardStat(dynamic text, TextStyle style) {
+    return Text('$text', style: style);
   }
 }

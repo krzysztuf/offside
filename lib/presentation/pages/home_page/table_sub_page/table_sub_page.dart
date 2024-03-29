@@ -43,6 +43,7 @@ class TableSubPage extends ConsumerWidget {
                   duration: 1.seconds,
                   scaleFactor: 0.9,
                   child: Card(
+                    elevation: 3,
                     child: MainTable(
                       key: UniqueKey(),
                       users: users,

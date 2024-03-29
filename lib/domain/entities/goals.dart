@@ -24,3 +24,11 @@ class Goals with _$Goals {
     return home.hashCode ^ away.hashCode;
   }
 }
+
+extension GoalsConvenienceMethods on Goals {
+  String get asString => '$home:$away';
+
+  bool get homeTeamWon => home > away;
+
+  bool get awayTeamWon => away > home;
+}

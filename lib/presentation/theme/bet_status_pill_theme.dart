@@ -14,7 +14,7 @@ class BetStatusPillTheme extends WidgetTheme {
           dark: const Color(0xffeaff80),
         ),
         background: theme.variant(
-          light: const Color(0xfffefff2),
+          light: const Color(0xfffdffe6),
           dark: const Color(0xff51582c),
         ),
       );
@@ -26,7 +26,7 @@ class BetStatusPillTheme extends WidgetTheme {
           dark: const Color(0xff80ff80),
         ),
         background: theme.variant(
-          light: const Color(0xfff2fff2),
+          light: const Color(0xffe6ffe6),
           dark: const Color(0xff2e5a2e),
         ),
       );
@@ -38,7 +38,7 @@ class BetStatusPillTheme extends WidgetTheme {
           dark: const Color(0xffff8080),
         ),
         background: theme.variant(
-          light: const Color(0xfffff2f2),
+          light: const Color(0xffffe7e7),
           dark: const Color(0xff5a2e2e),
         ),
       );

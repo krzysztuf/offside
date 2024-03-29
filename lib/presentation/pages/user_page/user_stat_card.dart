@@ -14,10 +14,10 @@ class UserStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final labelSmall = context.textTheme.labelSmall!;
     return SizedBox(
       width: 180,
       child: Card(
+        elevation: 3,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
@@ -30,7 +30,7 @@ class UserStatCard extends StatelessWidget {
               const Gap(8),
               Text(
                 title,
-                style: labelSmall.copyWith(color: labelSmall.color!.withOpacity(0.7)),
+                style: context.widgetThemes.userBets.userStatTitle,
               ),
             ],
           ),

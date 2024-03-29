@@ -41,6 +41,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardControllerProvider);
     return Card(
+      elevation: 3,
       child: SizedBox(
         width: double.infinity,
         child: Padding(
