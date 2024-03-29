@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +17,7 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_kick_off_status.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/set_match_result_dialog.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
@@ -194,9 +197,10 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             icon: const Icon(Icons.sports_score),
             offset: const Offset(64, 0),
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: AdminAction.setScore,
-                child: IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
+                onTap: () => showScoreSettingDialog(context, state.match.result),
+                child: const IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
               ),
               PopupMenuItem(
                 value: AdminAction.remove,
@@ -262,5 +266,11 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             )
           ]);
         });
+  }
+
+  Future<void> showScoreSettingDialog(BuildContext context, Goals? goals) {
+    return SetMatchResultDialog.show(context, goals, (result) {
+      log('wynik ustaiwony: $result');
+    });
   }
 }
