@@ -7,6 +7,7 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/expired_bet_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_controller.dart';
@@ -18,6 +19,7 @@ import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
+import 'package:offside/presentation/widgets/icon_with_text.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
@@ -33,6 +35,11 @@ class MatchBetCard extends ConsumerStatefulWidget {
   ConsumerState<MatchBetCard> createState() => _MatchBetCardState();
 }
 
+enum AdminAction {
+  remove,
+  setScore,
+}
+
 class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   var editingPrediction = false;
   Goals? editedPrediction;
@@ -40,6 +47,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardControllerProvider);
+    final isAdmin = ref.watch(currentUserIdSettingProvider) == '8YJAzYxecm0OgOWKMW3u';
     return Card(
       elevation: 3,
       child: SizedBox(
@@ -48,7 +56,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              buildHeader(state),
+              buildHeader(state, isAdmin),
               buildGoalsPredictionRow(state),
               buildFooter(state, context),
             ].withGaps(48),
@@ -68,7 +76,6 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           Inflater(
             inflated: state.loading,
             child: LoadingAnimationWidget.fourRotatingDots(
-              // color: context.textTheme.bodyMedium!.color!,
               color: context.colorScheme.primary,
               size: 32,
             ),
@@ -173,13 +180,31 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  Row buildHeader(MatchBetCardState state) {
+  Row buildHeader(MatchBetCardState state, bool isAdmin) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const MutedInformationLabel(
           icon: Icons.emoji_events_outlined,
           text: 'GRUPA A',
+        ),
+        Visibility(
+          visible: isAdmin,
+          child: PopupMenuButton<AdminAction>(
+            icon: const Icon(Icons.sports_score),
+            offset: const Offset(64, 0),
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: AdminAction.setScore,
+                child: IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
+              ),
+              const PopupMenuItem(
+                value: AdminAction.remove,
+                child: IconWithText(icon: Icons.delete, text: 'Usuń'),
+              ),
+            ],
+            onSelected: (action) {},
+          ),
         ),
         MatchKickOffStatus(match: state.match),
       ],

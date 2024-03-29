@@ -51,3 +51,7 @@ extension NameExtensions on User {
 
   String get initials => '${name[0]}${surname[0]}';
 }
+
+extension AdminExtension on User {
+  bool get isAdmin => name == 'Krzysztof';
+}
