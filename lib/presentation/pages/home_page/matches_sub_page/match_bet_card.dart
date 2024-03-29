@@ -198,9 +198,10 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                 value: AdminAction.setScore,
                 child: IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: AdminAction.remove,
-                child: IconWithText(icon: Icons.delete, text: 'Usuń'),
+                onTap: () async => await maybeRemoveMatch(context),
+                child: const IconWithText(icon: Icons.delete, text: 'Usuń'),
               ),
             ],
             onSelected: (action) {},
@@ -244,5 +245,22 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
         );
       },
     );
+  }
+
+  Future<void> maybeRemoveMatch(BuildContext context) async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(title: const Text('Usunąć mecz?'), actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Anuluj'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Usuń'),
+            )
+          ]);
+        });
   }
 }
