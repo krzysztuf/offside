@@ -4,9 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/loading_table_skeleton.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_state.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/bets/loading_table_skeleton.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/bets/match_bets_controller.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/bets/match_bets_state.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 import 'package:supercharged/supercharged.dart';
 

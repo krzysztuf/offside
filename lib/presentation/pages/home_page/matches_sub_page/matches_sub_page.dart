@@ -42,7 +42,7 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
                 ),
               ),
               unfoldMatches(state.matches),
-              const AdminVisible(child: SizedBox(height: 64)),
+              const AdminVisible(child: SizedBox(height: 46)),
             ],
           ),
         ),

@@ -7,12 +7,12 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/bets/match_bets.dart';
+import 'package:offside/presentation/pages/home_page/matches_sub_page/bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/expired_bet_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_state.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets.dart';
-import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_kick_off_status.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/set_match_result_dialog.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
@@ -27,7 +27,7 @@ import 'package:offside/presentation/widgets/offside/team_badge.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
-import 'bet_status_pill.dart';
+import 'bets/bet_status_pill.dart';
 
 class MatchBetCard extends ConsumerStatefulWidget {
   const MatchBetCard({super.key});
