@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_sub_page.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/new_match_dialog.dart';
@@ -11,6 +8,8 @@ import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_pa
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/providers/user_is_admin.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
+
+import 'home_page_controller.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -46,7 +45,9 @@ class _HomePageState extends ConsumerState<HomePage> {
       floatingActionButton: Inflater(
         inflated: currentTab == HomePageTab.matches && ref.watch(userIsAdminProvider),
         child: FloatingActionButton(
-          onPressed: () async => await NewMatchDialog.show(context, (Match match) => log(match.toString())),
+          onPressed: () async => await NewMatchDialog.show(context, (match) {
+            ref.read(homePageControllerProvider.notifier).addMatch(match);
+          }),
           child: const Icon(Icons.add),
         ),
       ),
