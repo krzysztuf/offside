@@ -173,5 +173,23 @@ class _PlaceBetUseCaseProviderElement
   @override
   Match get match => (origin as PlaceBetUseCaseProvider).match;
 }
+
+String _$updateMatchUseCaseHash() =>
+    r'062d26a6799fe7f49f456a6699ae3b69da6477e4';
+
+/// See also [updateMatchUseCase].
+@ProviderFor(updateMatchUseCase)
+final updateMatchUseCaseProvider =
+    AutoDisposeProvider<UpdateMatchUseCase>.internal(
+  updateMatchUseCase,
+  name: r'updateMatchUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateMatchUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UpdateMatchUseCaseRef = AutoDisposeProviderRef<UpdateMatchUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -31,10 +29,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
               ),
             ConnectionState.done => UserDropdown(
                 users: snapshot.data!,
-                onChanged: (user) {
-                  log('user: ${user.id}');
-                  ref.read(currentUserIdSettingProvider.notifier).value = user.id;
-                },
+                onChanged: (user) => ref.read(currentUserIdSettingProvider.notifier).value = user.id,
               ),
             _ => 'Done'.text,
           };

@@ -52,7 +52,10 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            Navigator.of(context).pop();
+            widget.onScoreSet(editedGoals);
+          },
           child: const Text('Anuluj'),
         ),
         TextButton(

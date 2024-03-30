@@ -145,6 +145,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             fetchable: state.match.homeTeam,
             waiting: () => createTeamBadgeSkeletonizer(),
             child: (homeTeam) => TeamBadge(team: homeTeam),
+            error: teamMissingBadge,
           ),
         ),
         SizedBox(
@@ -177,6 +178,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             fetchable: state.match.awayTeam,
             waiting: () => createTeamBadgeSkeletonizer(),
             child: (awayTeam) => TeamBadge(team: awayTeam),
+            error: teamMissingBadge,
           ),
         ),
       ],
@@ -199,7 +201,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: AdminAction.setScore,
-                onTap: () => showScoreSettingDialog(context, state.match.result),
+                onTap: () => updateMatchScore(context, ref, state.match.result),
                 child: const IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
               ),
               PopupMenuItem(
@@ -268,9 +270,20 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
         });
   }
 
-  Future<void> showScoreSettingDialog(BuildContext context, Goals? goals) {
+  Future<void> updateMatchScore(BuildContext context, WidgetRef ref, Goals? goals) {
     return SetMatchResultDialog.show(context, goals, (result) {
-      log('wynik ustaiwony: $result');
+      log('result: $result');
+      ref.read(matchBetCardControllerProvider.notifier).setResult(result);
     });
+  }
+
+  Widget teamMissingBadge() {
+    return TeamBadge(
+      team: Team(
+        name: 'Błąd',
+        abbreviation: 'ERR',
+        logo: 'assets/images/teams/england.png',
+      ),
+    );
   }
 }

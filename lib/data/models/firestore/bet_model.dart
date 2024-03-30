@@ -18,6 +18,7 @@ class BetModel {
   Map<String, dynamic> toJson() {
     return {
       'userId': userId,
+      'matchId': matchId,
       'homeGoalsPrediction': homeGoalsPrediction,
       'awayGoalsPrediction': awayGoalsPrediction,
     };

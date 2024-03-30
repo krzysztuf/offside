@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/domain/entities/fetchable.dart';
 
 class FetchableBuilder<T> extends StatelessWidget {
@@ -28,8 +27,8 @@ class FetchableBuilder<T> extends StatelessWidget {
       future: fetchable.fetch(),
       builder: (context, snapshot) => switch (snapshot.connectionState) {
         ConnectionState.waiting => waiting(),
-        ConnectionState.done => child(fetchable.value),
-        _ => Container(child: 'Dupsko'.text),
+        ConnectionState.done => fetchable.hasValue ? child(fetchable.value) : error?.call() ?? Container(),
+        _ => Container(),
       },
     );
   }

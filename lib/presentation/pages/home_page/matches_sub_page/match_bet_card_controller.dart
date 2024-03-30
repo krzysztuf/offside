@@ -23,6 +23,15 @@ class MatchBetCardController extends _$MatchBetCardController {
     return MatchBetCardState(match: match, loading: true);
   }
 
+  Future<void> setResult(Goals result) async {
+    state = state.copyWith(loading: true);
+
+    final updatedMatch = state.match.copyWith(result: result);
+    ref.read(updateMatchUseCaseProvider).run(updatedMatch);
+
+    state = state.copyWith(match: updatedMatch, loading: false);
+  }
+
   void _fetchBets(Match match, String userId) {
     match.bets.fetch().then((_) {
       final bet = match.bets.value.find((bet) => bet.userId == userId);
@@ -79,9 +88,6 @@ class MatchBetCardController extends _$MatchBetCardController {
 
     final id = await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
     return bet.copyWith(id: id);
-
-    // final id = await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
-    // return bet.copyWith(id: 'id');
   }
 
   void setLoading(bool loading) {

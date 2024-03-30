@@ -22,8 +22,8 @@ extension EntityToFirestoreMapping on GetIt {
         entity.id,
         model: MatchModel(
           entity.id,
-          Document<TeamModel>(entity.homeTeam.value.id),
-          Document<TeamModel>(entity.awayTeam.value.id),
+          Document<TeamModel>('teams/${entity.homeTeam.value.id}'),
+          Document<TeamModel>('teams/${entity.awayTeam.value.id}'),
           Timestamp.fromDate(entity.kickOffDate),
           DocumentCollection<BetModel>('matches/${entity.id}/bets'),
           entity.result?.toJson(),

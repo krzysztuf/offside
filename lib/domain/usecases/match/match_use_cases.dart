@@ -1,5 +1,7 @@
 library matches_use_cases;
 
+import 'dart:developer';
+
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
@@ -10,6 +12,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'get_upcoming_matches_use_case.dart';
 part 'match_use_cases.g.dart';
 part 'place_bet_use_case.dart';
+part 'update_match_use_case.dart';
 
 @riverpod
 GetUpcomingMatchesUseCase getUpcomingMatchesUseCase(GetUpcomingMatchesUseCaseRef ref) {
@@ -19,4 +22,9 @@ GetUpcomingMatchesUseCase getUpcomingMatchesUseCase(GetUpcomingMatchesUseCaseRef
 @riverpod
 PlaceBetUseCase placeBetUseCase(PlaceBetUseCaseRef ref, Match match) {
   return PlaceBetUseCase(ref.read(matchBetsRepositoryProvider(match)));
+}
+
+@riverpod
+UpdateMatchUseCase updateMatchUseCase(UpdateMatchUseCaseRef ref) {
+  return UpdateMatchUseCase(ref.watch(matchesRepositoryProvider));
 }

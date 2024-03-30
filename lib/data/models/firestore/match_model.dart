@@ -27,6 +27,7 @@ class MatchModel {
       'homeTeamRef': homeTeam.path,
       'awayTeamRef': awayTeam.path,
       'kickOffDate': kickOffDate,
+      'result': result,
     };
   }
 
