@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -272,7 +270,6 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
 
   Future<void> updateMatchScore(BuildContext context, WidgetRef ref, Goals? goals) {
     return SetMatchResultDialog.show(context, goals, (result) {
-      log('result: $result');
       ref.read(matchBetCardControllerProvider.notifier).setResult(result);
     });
   }

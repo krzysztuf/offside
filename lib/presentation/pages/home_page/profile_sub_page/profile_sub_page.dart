@@ -23,7 +23,6 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
         builder: (context, snapshot) {
           return switch (snapshot.connectionState) {
             ConnectionState.waiting => LoadingAnimationWidget.fourRotatingDots(
-                // color: context.textTheme.bodyMedium!.color!,
                 color: context.colorScheme.primary,
                 size: 64,
               ),
