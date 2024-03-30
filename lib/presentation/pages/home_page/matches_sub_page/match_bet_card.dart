@@ -67,6 +67,94 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
+  Row buildHeader(MatchBetCardState state, bool isAdmin) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const MutedInformationLabel(
+          icon: Icons.emoji_events_outlined,
+          text: 'GRUPA A',
+        ),
+        Visibility(
+          visible: isAdmin,
+          child: SizedBox.square(
+            dimension: 32,
+            child: PopupMenuButton<AdminAction>(
+              iconSize: 16,
+              icon: const Icon(Icons.sports_score),
+              offset: const Offset(64, 0),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: AdminAction.setScore,
+                  onTap: () => updateMatchScore(context, ref, state.match.result),
+                  child: const IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
+                ),
+                PopupMenuItem(
+                  value: AdminAction.remove,
+                  onTap: () async => await maybeRemoveMatch(context),
+                  child: const IconWithText(icon: Icons.delete, text: 'Usuń'),
+                ),
+              ],
+              onSelected: (action) {},
+            ),
+          ),
+        ),
+        MatchKickOffStatus(match: state.match),
+      ],
+    );
+  }
+
+  Row buildGoalsPredictionRow(MatchBetCardState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(
+          width: 80,
+          child: FetchableBuilder(
+            fetchable: state.match.homeTeam,
+            waiting: () => createTeamBadgeSkeletonizer(),
+            child: (homeTeam) => TeamBadge(team: homeTeam),
+            error: teamMissingBadge,
+          ),
+        ),
+        SizedBox(
+          width: 160,
+          child: AlternativeInflater(
+            scaleFactor: 0.9,
+            useAlternative: state.betState == BetState.loading,
+            builder: () {
+              if (state.betState == BetState.expired) {
+                return const ExpiredBetGoals();
+              }
+
+              return GoalsPredictionEditor(
+                initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
+                editable: state.betState == BetState.notPlaced || editingPrediction,
+                onUpdated: (prediction) => setState(() => editedPrediction = prediction),
+              );
+            },
+            alternativeBuilder: () => Center(
+              child: LoadingAnimationWidget.fourRotatingDots(
+                size: 32,
+                color: context.colorScheme.primary,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 80,
+          child: FetchableBuilder(
+            fetchable: state.match.awayTeam,
+            waiting: () => createTeamBadgeSkeletonizer(),
+            child: (awayTeam) => TeamBadge(team: awayTeam),
+            error: teamMissingBadge,
+          ),
+        ),
+      ],
+    );
+  }
+
   SizedBox buildFooter(MatchBetCardState state, BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -130,89 +218,6 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           ),
         ],
       ),
-    );
-  }
-
-  Row buildGoalsPredictionRow(MatchBetCardState state) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SizedBox(
-          width: 80,
-          child: FetchableBuilder(
-            fetchable: state.match.homeTeam,
-            waiting: () => createTeamBadgeSkeletonizer(),
-            child: (homeTeam) => TeamBadge(team: homeTeam),
-            error: teamMissingBadge,
-          ),
-        ),
-        SizedBox(
-          width: 160,
-          child: AlternativeInflater(
-            scaleFactor: 0.9,
-            useAlternative: state.betState == BetState.loading,
-            builder: () {
-              if (state.betState == BetState.expired) {
-                return const ExpiredBetGoals();
-              }
-
-              return GoalsPredictionEditor(
-                initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
-                editable: state.betState == BetState.notPlaced || editingPrediction,
-                onUpdated: (prediction) => setState(() => editedPrediction = prediction),
-              );
-            },
-            alternativeBuilder: () => Center(
-              child: LoadingAnimationWidget.fourRotatingDots(
-                size: 32,
-                color: context.colorScheme.primary,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 80,
-          child: FetchableBuilder(
-            fetchable: state.match.awayTeam,
-            waiting: () => createTeamBadgeSkeletonizer(),
-            child: (awayTeam) => TeamBadge(team: awayTeam),
-            error: teamMissingBadge,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Row buildHeader(MatchBetCardState state, bool isAdmin) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const MutedInformationLabel(
-          icon: Icons.emoji_events_outlined,
-          text: 'GRUPA A',
-        ),
-        Visibility(
-          visible: isAdmin,
-          child: PopupMenuButton<AdminAction>(
-            icon: const Icon(Icons.sports_score),
-            offset: const Offset(64, 0),
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: AdminAction.setScore,
-                onTap: () => updateMatchScore(context, ref, state.match.result),
-                child: const IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
-              ),
-              PopupMenuItem(
-                value: AdminAction.remove,
-                onTap: () async => await maybeRemoveMatch(context),
-                child: const IconWithText(icon: Icons.delete, text: 'Usuń'),
-              ),
-            ],
-            onSelected: (action) {},
-          ),
-        ),
-        MatchKickOffStatus(match: state.match),
-      ],
     );
   }
 
