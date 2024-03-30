@@ -22,3 +22,9 @@ enum BetState {
   placed,
   expired,
 }
+
+extension MatchBetConvenienceExtensions on MatchBetCardState {
+  bool canPlaceBet(DateTime now) => betState == BetState.notPlaced && !match.afterKickOff(now);
+
+  bool canUpdateBet(DateTime now) => betState == BetState.placed && !match.afterKickOff(now);
+}

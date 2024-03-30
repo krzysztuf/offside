@@ -5,6 +5,7 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_su
 import 'package:offside/presentation/pages/home_page/profile_sub_page/profile_sub_page.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
+import 'package:offside/presentation/widgets/inflater.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -15,15 +16,21 @@ class HomePage extends ConsumerStatefulWidget {
   }
 }
 
+enum HomePageTab {
+  table,
+  matches,
+  profile,
+}
+
 class _HomePageState extends ConsumerState<HomePage> {
-  var currentIndex = 0;
+  var currentTab = HomePageTab.table;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: IndexedStack(
-          index: currentIndex,
+          index: currentTab.index,
           children: const [
             TableSubPage(),
             MatchesSubPage(),
@@ -31,8 +38,19 @@ class _HomePageState extends ConsumerState<HomePage> {
           ],
         ),
       ),
+      floatingActionButton: Inflater(
+        inflated: currentTab == HomePageTab.matches,
+        child: FloatingActionButton(
+          onPressed: () => ref.read(currentUserProvider).when(
+                data: (user) => print(user),
+                loading: () => print('loading'),
+                error: (error, stackTrace) => print(error),
+              ),
+          child: const Icon(Icons.add),
+        ),
+      ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: currentIndex,
+        selectedIndex: currentTab.index,
         destinations: [
           const NavigationDestination(
             icon: Icon(Icons.table_view),
@@ -53,7 +71,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             tooltip: '',
           ),
         ],
-        onDestinationSelected: (index) => setState(() => currentIndex = index),
+        onDestinationSelected: (index) => setState(() => currentTab = HomePageTab.values[index]),
       ),
     );
   }

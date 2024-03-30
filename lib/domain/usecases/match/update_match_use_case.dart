@@ -11,7 +11,6 @@ class UpdateMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
       throw Exception('UpdateMatchUseCase: match id is required');
     }
 
-    log('updating match: ${match}');
     return matchesRepository.update(match);
   }
 }

@@ -7,7 +7,6 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/expired_bet_goals.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/goals_prediction_editor.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bet_card_controller.dart';
@@ -17,6 +16,7 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/match_bets
 import 'package:offside/presentation/pages/home_page/matches_sub_page/match_kick_off_status.dart';
 import 'package:offside/presentation/pages/home_page/matches_sub_page/set_match_result_dialog.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
+import 'package:offside/presentation/widgets/admin_visible.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
@@ -48,7 +48,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchBetCardControllerProvider);
-    final isAdmin = ref.watch(currentUserIdSettingProvider) == '8YJAzYxecm0OgOWKMW3u';
+
     return Card(
       elevation: 3,
       child: SizedBox(
@@ -57,7 +57,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              buildHeader(state, isAdmin),
+              buildHeader(state),
               buildGoalsPredictionRow(state),
               buildFooter(state, context),
             ].withGaps(48),
@@ -67,7 +67,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  Row buildHeader(MatchBetCardState state, bool isAdmin) {
+  Row buildHeader(MatchBetCardState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,8 +76,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
           icon: Icons.emoji_events_outlined,
           text: 'GRUPA A',
         ),
-        Visibility(
-          visible: isAdmin,
+        AdminVisible(
           child: SizedBox.square(
             dimension: 32,
             child: PopupMenuButton<AdminAction>(
