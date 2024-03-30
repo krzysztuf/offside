@@ -5,6 +5,7 @@ import 'package:offside/presentation/pages/home_page/matches_sub_page/matches_su
 import 'package:offside/presentation/pages/home_page/profile_sub_page/profile_sub_page.dart';
 import 'package:offside/presentation/pages/home_page/table_sub_page/table_sub_page.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
+import 'package:offside/presentation/providers/user_is_admin.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -39,7 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         ),
       ),
       floatingActionButton: Inflater(
-        inflated: currentTab == HomePageTab.matches,
+        inflated: currentTab == HomePageTab.matches && ref.watch(userIsAdminProvider),
         child: FloatingActionButton(
           onPressed: () => ref.read(currentUserProvider).when(
                 data: (user) => print(user),
