@@ -8,6 +8,7 @@ part of 'user.dart';
 
 _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       id: json['id'] as String? ?? '',
+      firebaseId: json['firebaseId'] as String,
       name: json['name'] as String,
       surname: json['surname'] as String,
       nickname: json['nickname'] as String?,
@@ -16,6 +17,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
     <String, dynamic>{
+      'firebaseId': instance.firebaseId,
       'name': instance.name,
       'surname': instance.surname,
       'nickname': instance.nickname,

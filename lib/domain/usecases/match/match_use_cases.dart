@@ -11,6 +11,7 @@ part 'add_match_use_case.dart';
 part 'get_upcoming_matches_use_case.dart';
 part 'match_use_cases.g.dart';
 part 'place_bet_use_case.dart';
+part 'remove_match_use_case.dart';
 part 'update_match_use_case.dart';
 
 @riverpod
@@ -31,4 +32,9 @@ UpdateMatchUseCase updateMatchUseCase(UpdateMatchUseCaseRef ref) {
 @riverpod
 AddMatchUseCase addMatchUseCase(AddMatchUseCaseRef ref) {
   return AddMatchUseCase(ref.watch(matchesRepositoryProvider));
+}
+
+@riverpod
+RemoveMatchUseCase removeMatchUseCase(RemoveMatchUseCaseRef ref) {
+  return RemoveMatchUseCase(ref.watch(matchesRepositoryProvider));
 }

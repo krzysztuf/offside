@@ -41,4 +41,9 @@ class MemoryRepository<T extends Identifiable> implements Repository<T> {
     items.remove(item);
     return Future.value();
   }
+
+  @override
+  Future<List<T>> where(Object field, {Object? isEqualTo, Object? isNotEqualTo}) {
+    return Future.value([]);
+  }
 }

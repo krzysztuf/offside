@@ -10,23 +10,23 @@ import 'package:offside/offside_router.dart';
 import 'package:offside/offside_themes.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 
-import 'presentation/pages/home_page/matches_sub_page/match_bet_card_controller.dart';
+import 'presentation/pages/home/matches_sub_page/match_bet_card_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferencesHolder.initialize();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+
   GetIt.instance.addEntityFirestoreModelsMapping();
 
   initializeDateFormatting('pl', null);
 
-  final stubTime = DateTime(2024, 6, 13, 20);
-
   runApp(
     ProviderScope(
       overrides: [
-        dateTimeProvider.overrideWithValue(stubTime),
+        dateTimeProvider.overrideWithValue(DateTime(2024, 6, 13, 20)),
         matchBetCardControllerProvider
             .overrideWith(() => throw UnimplementedError('MatchBetCardViewModel unavailable')),
       ],

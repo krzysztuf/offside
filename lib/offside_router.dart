@@ -4,9 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'domain/entities/user.dart';
-import 'presentation/pages/home_page/home_page.dart';
-import 'presentation/pages/user_page/user_page.dart';
-import 'presentation/pages/user_page/user_page_controller.dart';
+import 'presentation/pages/home/home_page.dart';
+import 'presentation/pages/login/login_page.dart';
+import 'presentation/pages/user/user_page.dart';
+import 'presentation/pages/user/user_page_controller.dart';
 
 part 'offside_router.g.dart';
 
@@ -30,6 +31,11 @@ GoRouter offsideRouter(OffsideRouterRef ref) {
     routes: [
       GoRoute(
         path: '/',
+        name: 'login',
+        builder: (context, state) => const LoginPage(),
+      ),
+      GoRoute(
+        path: '/home',
         name: 'home',
         builder: (context, state) => const HomePage(),
         routes: [
@@ -47,7 +53,7 @@ GoRouter offsideRouter(OffsideRouterRef ref) {
             },
           ),
         ],
-      ),
+      )
     ],
   );
 }

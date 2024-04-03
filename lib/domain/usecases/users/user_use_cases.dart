@@ -1,28 +1,77 @@
-import 'package:offside/data/repositories/providers.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
+import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
-import 'package:offside/domain/usecases/users/get_all_users_use_case.dart';
-import 'package:offside/domain/usecases/users/get_user_bets_use_case.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:offside/domain/repositories/bets_repository.dart';
+import 'package:offside/domain/repositories/repository.dart';
+import 'package:offside/domain/usecases/async_use_case.dart';
 
-import 'get_current_user_use_case.dart';
+class GetLoggedInUserUseCase implements AsyncUseCase<User?> {
+  final Repository<User> users;
 
-part 'user_use_cases.g.dart';
+  GetLoggedInUserUseCase(this.users);
 
-@riverpod
-GetCurrentUserUseCase getCurrentUserUseCase(GetCurrentUserUseCaseRef ref) {
-  return GetCurrentUserUseCase(
-    ref.read(usersRepositoryProvider),
-    ref.watch(currentUserIdSettingProvider),
-  );
+  @override
+  Future<User?> run() async {
+    final firebaseUser = firebase.FirebaseAuth.instance.currentUser;
+    if (firebaseUser == null) {
+      return null;
+    }
+
+    final usersWithUid = await users.where("firebaseId", isEqualTo: firebaseUser.uid);
+    if (usersWithUid.length > 1) {
+      throw Exception('More than one user with uid: ${firebaseUser.uid}');
+    }
+
+    return usersWithUid.firstOrNull;
+  }
 }
 
-@riverpod
-GetAllUsersUseCase getAllUsersUseCase(GetAllUsersUseCaseRef ref) {
-  return GetAllUsersUseCase(ref.read(usersRepositoryProvider));
+class GetUserBetsUseCase implements AsyncUseCase<List<Bet>> {
+  final BetsRepository repository;
+  final User user;
+
+  GetUserBetsUseCase(this.repository, this.user);
+
+  @override
+  Future<List<Bet>> run() async {
+    return await repository.getUserBets(user);
+  }
 }
 
-@riverpod
-GetUserBetsUseCase getUserBetsUseCase(GetUserBetsUseCaseRef ref, User user) {
-  return GetUserBetsUseCase(ref.read(betsRepositoryProvider), user);
+class GetCurrentUserUseCase implements AsyncUseCase<User?> {
+  final Repository<User> users;
+  final String currentUserId;
+
+  GetCurrentUserUseCase(this.users, this.currentUserId);
+
+  @override
+  Future<User?> run() async {
+    if (currentUserId.isEmpty) {
+      return null;
+    }
+
+    return await users.byId(currentUserId);
+  }
+}
+
+class GetAllUsersUseCase implements AsyncUseCase<List<User>> {
+  final Repository<User> users;
+
+  GetAllUsersUseCase(this.users);
+
+  @override
+  Future<List<User>> run() {
+    return users.all();
+  }
+}
+
+class AddUserUseCase implements AsyncUseCaseWithParam<void, User> {
+  final Repository<User> users;
+
+  AddUserUseCase(this.users);
+
+  @override
+  Future<void> run(User user) {
+    return users.add(user);
+  }
 }

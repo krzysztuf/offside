@@ -6,7 +6,7 @@ part of 'user_is_admin.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userIsAdminHash() => r'2ad9da331627ce92b75b94f3b69e156ba99d4cae';
+String _$userIsAdminHash() => r'c52a4116eb67502c994b21eb087c030570564e94';
 
 /// See also [userIsAdmin].
 @ProviderFor(userIsAdmin)

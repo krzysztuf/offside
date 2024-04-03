@@ -12,7 +12,7 @@ part of 'user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 User _$UserFromJson(Map<String, dynamic> json) {
   return _User.fromJson(json);
@@ -23,6 +23,7 @@ mixin _$User {
 // ignore: invalid_annotation_target
   @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
+  String get firebaseId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
   String? get nickname => throw _privateConstructorUsedError;
@@ -40,6 +41,7 @@ abstract class $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(includeToJson: false) String id,
+      String firebaseId,
       String name,
       String surname,
       String? nickname,
@@ -60,6 +62,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? id = null,
+    Object? firebaseId = null,
     Object? name = null,
     Object? surname = null,
     Object? nickname = freezed,
@@ -69,6 +72,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      firebaseId: null == firebaseId
+          ? _value.firebaseId
+          : firebaseId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -99,6 +106,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(includeToJson: false) String id,
+      String firebaseId,
       String name,
       String surname,
       String? nickname,
@@ -116,6 +124,7 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? firebaseId = null,
     Object? name = null,
     Object? surname = null,
     Object? nickname = freezed,
@@ -125,6 +134,10 @@ class __$$UserImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      firebaseId: null == firebaseId
+          ? _value.firebaseId
+          : firebaseId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -151,6 +164,7 @@ class __$$UserImplCopyWithImpl<$Res>
 class _$UserImpl extends _User {
   const _$UserImpl(
       {@JsonKey(includeToJson: false) this.id = '',
+      required this.firebaseId,
       required this.name,
       required this.surname,
       this.nickname,
@@ -165,6 +179,8 @@ class _$UserImpl extends _User {
   @JsonKey(includeToJson: false)
   final String id;
   @override
+  final String firebaseId;
+  @override
   final String name;
   @override
   final String surname;
@@ -175,7 +191,7 @@ class _$UserImpl extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, surname: $surname, nickname: $nickname, image: $image)';
+    return 'User(id: $id, firebaseId: $firebaseId, name: $name, surname: $surname, nickname: $nickname, image: $image)';
   }
 
   @override
@@ -184,6 +200,8 @@ class _$UserImpl extends _User {
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.firebaseId, firebaseId) ||
+                other.firebaseId == firebaseId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.nickname, nickname) ||
@@ -194,7 +212,7 @@ class _$UserImpl extends _User {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, surname, nickname, image);
+      Object.hash(runtimeType, id, firebaseId, name, surname, nickname, image);
 
   @JsonKey(ignore: true)
   @override
@@ -213,6 +231,7 @@ class _$UserImpl extends _User {
 abstract class _User extends User {
   const factory _User(
       {@JsonKey(includeToJson: false) final String id,
+      required final String firebaseId,
       required final String name,
       required final String surname,
       final String? nickname,
@@ -224,6 +243,8 @@ abstract class _User extends User {
   @override // ignore: invalid_annotation_target
   @JsonKey(includeToJson: false)
   String get id;
+  @override
+  String get firebaseId;
   @override
   String get name;
   @override

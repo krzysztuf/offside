@@ -44,13 +44,15 @@ extension EntityToFirestoreMapping on GetIt {
         entity.id,
         model: UserModel(
           entity.id,
+          entity.firebaseId,
           entity.name,
           entity.surname,
           entity.image,
         ),
       ),
       backward: (document) => User(
-        id: document.id,
+        id: document.value.id,
+        firebaseId: document.value.firebaseId,
         name: document.value.name,
         surname: document.value.surname,
         image: document.value.image,

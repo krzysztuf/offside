@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:offside/core/extensions/firebase/typed_references_extension.dart';
 import 'package:offside/core/mapper/auto_mapper.dart';
@@ -9,15 +7,15 @@ import 'package:offside/domain/repositories/repository.dart';
 class FirestoreRepository<Entity, Model> implements Repository<Entity> {
   final CollectionReference<Model> collection;
 
-  final modelToEntity = AutoMapper<Document<Model>, Entity>().map;
-  final entityToModel = AutoMapper<Entity, Document<Model>>().map;
+  final documentToEntity = AutoMapper<Document<Model>, Entity>().map;
+  final entityToDocument = AutoMapper<Entity, Document<Model>>().map;
 
   FirestoreRepository({required this.collection});
 
   @override
   Future<List<Entity>> all() async {
     final items = await typedReferencesList();
-    return items.map(modelToEntity).toList();
+    return items.map(documentToEntity).toList();
   }
 
   @override
@@ -27,13 +25,12 @@ class FirestoreRepository<Entity, Model> implements Repository<Entity> {
       return null;
     }
 
-    return modelToEntity(Document('', model: snapshot.data()));
+    return documentToEntity(Document('', model: snapshot.data()));
   }
 
   @override
   Future<String> add(Entity item) async {
-    final document = entityToModel(item);
-    log('adding: ${document.id}');
+    final document = entityToDocument(item);
 
     if (document.id.isNotEmpty) {
       throw Exception('$runtimeType: adding item with non empty id');
@@ -50,7 +47,7 @@ class FirestoreRepository<Entity, Model> implements Repository<Entity> {
 
   @override
   Future<void> update(Entity item) async {
-    final document = entityToModel(item);
+    final document = entityToDocument(item);
     if (document.id.isEmpty) {
       throw Exception('$runtimeType: updating item with empty id');
     }
@@ -62,7 +59,14 @@ class FirestoreRepository<Entity, Model> implements Repository<Entity> {
 
   @override
   Future<void> remove(Entity item) {
-    throw UnimplementedError();
+    final document = entityToDocument(item);
+    if (document.id.isEmpty) {
+      throw Exception('$runtimeType: removing item with empty id');
+    }
+
+    final path = '${collection.path}/${document.id}';
+    final ref = FirebaseFirestore.instance.typedDoc<Model>(path);
+    return ref.delete();
   }
 
   Future<List<Document<Model>>> typedReferencesList() async {
@@ -72,5 +76,19 @@ class FirestoreRepository<Entity, Model> implements Repository<Entity> {
         model: snapshot.data(),
       );
     }).toList();
+  }
+
+  @override
+  Future<List<Entity>> where(Object field, {Object? isEqualTo, Object? isNotEqualTo}) async {
+    final query = collection.where(field, isEqualTo: isEqualTo, isNotEqualTo: isNotEqualTo);
+    final documents = await query.get();
+
+    return documents.docs.map((snapshot) {
+      return documentToEntity(_toDocument(snapshot.id, snapshot.data()));
+    }).toList();
+  }
+
+  Document<T> _toDocument<T>(String id, T model) {
+    return Document('${collection.path}/$id', model: model);
   }
 }

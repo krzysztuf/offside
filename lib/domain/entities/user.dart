@@ -12,6 +12,7 @@ class User with _$User implements Identifiable {
   const factory User({
     // ignore: invalid_annotation_target
     @Default('') @JsonKey(includeToJson: false) String id,
+    required String firebaseId,
     required String name,
     required String surname,
     String? nickname,

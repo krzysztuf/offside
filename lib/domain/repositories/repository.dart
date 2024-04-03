@@ -3,6 +3,12 @@ abstract interface class Repository<T> {
 
   Future<T?> byId(String id);
 
+  Future<List<T>> where(
+    Object field, {
+    Object? isEqualTo,
+    Object? isNotEqualTo,
+  });
+
   Future<String> add(T item);
 
   Future<void> remove(T item);
