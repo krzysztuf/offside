@@ -65,13 +65,13 @@ class GetAllUsersUseCase implements AsyncUseCase<List<User>> {
   }
 }
 
-class AddUserUseCase implements AsyncUseCaseWithParam<void, User> {
+class AddUserUseCase implements AsyncUseCaseWithParam<String, User> {
   final Repository<User> users;
 
   AddUserUseCase(this.users);
 
   @override
-  Future<void> run(User user) {
+  Future<String> run(User user) {
     return users.add(user);
   }
 }

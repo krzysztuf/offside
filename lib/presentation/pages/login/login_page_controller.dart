@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/pages/login/login_page_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,15 +11,13 @@ part 'login_page_controller.g.dart';
 class LoginPageController extends _$LoginPageController {
   @override
   LoginPageState build() {
-    log('getting logged in user');
     ref.read(getLoggedInUserUseCaseProvider).run().then((user) {
-      log('controller: got user $user');
-
       if (user == null) {
         state = const LoginPageState(loggedIn: false, gettingUserInfo: false);
         return;
       }
 
+      _updateUserIdSetting(user.id);
       state = state.copyWith(user: user, gettingUserInfo: false, loggedIn: true);
     });
 
@@ -41,10 +38,19 @@ class LoginPageController extends _$LoginPageController {
       surname: 'Test',
     );
 
-    await ref.read(addUserUseCaseProvider).run(newUser);
+    await _addUser(newUser);
+  }
+
+  Future<void> _addUser(User newUser) async {
+    final newUserId = await ref.read(addUserUseCaseProvider).run(newUser);
+    _updateUserIdSetting(newUserId);
   }
 
   Future<void> logout() async {
     await auth.FirebaseAuth.instance.signOut();
+  }
+
+  void _updateUserIdSetting(String id) {
+    ref.read(currentUserIdSettingProvider.notifier).value = id;
   }
 }
