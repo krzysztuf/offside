@@ -194,7 +194,7 @@ class _GetUserBetsUseCaseProviderElement
 }
 
 String _$getLoggedInUserUseCaseHash() =>
-    r'b3df4bf79dcd5a299daa31161e9837ee8bd3687b';
+    r'ada83d6c13af8d47ef8a4749c2ba8b5035623773';
 
 /// See also [getLoggedInUserUseCase].
 @ProviderFor(getLoggedInUserUseCase)

@@ -218,6 +218,21 @@ final betsRepositoryProvider = AutoDisposeProvider<BetsRepository>.internal(
 );
 
 typedef BetsRepositoryRef = AutoDisposeProviderRef<BetsRepository>;
+String _$authRepositoryHash() => r'9cda1c0d5e304f18a13bd17db63762a0808e15c0';
+
+/// See also [authRepository].
+@ProviderFor(authRepository)
+final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
+  authRepository,
+  name: r'authRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
 String _$settingsRepositoryHash() =>
     r'ca060010406df15617fdd8ad7f619fbce1d41685';
 

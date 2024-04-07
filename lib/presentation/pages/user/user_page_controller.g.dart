@@ -22,7 +22,7 @@ final userOfUserPageProvider = AutoDisposeProvider<User>.internal(
 
 typedef UserOfUserPageRef = AutoDisposeProviderRef<User>;
 String _$userPageControllerHash() =>
-    r'91343353fdb42a18252853de64890728fac39456';
+    r'6a0074d8575bf041615ed3d66cdb523b4a435380';
 
 /// See also [UserPageController].
 @ProviderFor(UserPageController)

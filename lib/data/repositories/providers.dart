@@ -8,10 +8,13 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/repositories/auth_repository.dart';
 import 'package:offside/domain/repositories/bets_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/repositories/settings_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'firebase_auth_repository.dart';
 
 part 'providers.g.dart';
 
@@ -39,6 +42,11 @@ Repository<User> usersRepository(UsersRepositoryRef ref) {
 @riverpod
 BetsRepository betsRepository(BetsRepositoryRef ref) {
   return BetsRepositoryImpl();
+}
+
+@riverpod
+AuthRepository authRepository(AuthRepositoryRef ref) {
+  return FirebaseAuthRepository(ref.watch(usersRepositoryProvider));
 }
 
 @Riverpod(keepAlive: true)

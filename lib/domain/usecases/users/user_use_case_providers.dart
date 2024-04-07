@@ -27,7 +27,7 @@ GetUserBetsUseCase getUserBetsUseCase(GetUserBetsUseCaseRef ref, User user) {
 
 @riverpod
 GetLoggedInUserUseCase getLoggedInUserUseCase(GetLoggedInUserUseCaseRef ref) {
-  return GetLoggedInUserUseCase(ref.read(usersRepositoryProvider));
+  return GetLoggedInUserUseCase(ref.read(authRepositoryProvider));
 }
 
 @riverpod

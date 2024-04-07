@@ -1,28 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/repositories/auth_repository.dart';
 import 'package:offside/domain/repositories/bets_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
 
 class GetLoggedInUserUseCase implements AsyncUseCase<User?> {
-  final Repository<User> users;
+  final AuthRepository authRepository;
 
-  GetLoggedInUserUseCase(this.users);
+  GetLoggedInUserUseCase(this.authRepository);
 
   @override
-  Future<User?> run() async {
-    final firebaseUser = firebase.FirebaseAuth.instance.currentUser;
-    if (firebaseUser == null) {
-      return null;
-    }
-
-    final usersWithUid = await users.where("firebaseId", isEqualTo: firebaseUser.uid);
-    if (usersWithUid.length > 1) {
-      throw Exception('More than one user with uid: ${firebaseUser.uid}');
-    }
-
-    return usersWithUid.firstOrNull;
+  Future<User?> run() {
+    return authRepository.currentUser();
   }
 }
 
