@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:offside/core/extensions/date_time_extensions.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/domain/usecases/match/match_use_cases.dart';
+import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -28,7 +28,7 @@ class MatchesSubPageController extends _$MatchesSubPageController {
   }
 
   Future<void> refresh() async {
-    ref.read(getUpcomingMatchesUseCaseProvider).run().then((matches) {
+    ref.read(getAllMatchesUseCaseProvider).run().then((matches) {
       state = MatchesSubPageState(_groupMatchesByDay(matches));
     });
   }

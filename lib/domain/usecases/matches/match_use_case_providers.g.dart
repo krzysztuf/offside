@@ -1,29 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'match_use_cases.dart';
+part of 'match_use_case_providers.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getUpcomingMatchesUseCaseHash() =>
-    r'4dcb41f80a50b30e7a4239206c15a785103f9061';
+String _$getAllMatchesUseCaseHash() =>
+    r'7a8e3e89953a697073b2f52227900135355117cf';
 
-/// See also [getUpcomingMatchesUseCase].
-@ProviderFor(getUpcomingMatchesUseCase)
-final getUpcomingMatchesUseCaseProvider =
-    AutoDisposeProvider<GetUpcomingMatchesUseCase>.internal(
-  getUpcomingMatchesUseCase,
-  name: r'getUpcomingMatchesUseCaseProvider',
+/// See also [getAllMatchesUseCase].
+@ProviderFor(getAllMatchesUseCase)
+final getAllMatchesUseCaseProvider =
+    AutoDisposeProvider<GetAllMatchesUseCase>.internal(
+  getAllMatchesUseCase,
+  name: r'getAllMatchesUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$getUpcomingMatchesUseCaseHash,
+      : _$getAllMatchesUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef GetUpcomingMatchesUseCaseRef
-    = AutoDisposeProviderRef<GetUpcomingMatchesUseCase>;
+typedef GetAllMatchesUseCaseRef = AutoDisposeProviderRef<GetAllMatchesUseCase>;
 String _$placeBetUseCaseHash() => r'7c3e8dfd015d0163d3fb635cd9fbceab6a2e7f1c';
 
 /// Copied from Dart SDK
