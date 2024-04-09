@@ -19,15 +19,38 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
-  final userNameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  final nameController = TextEditingController();
+  final surnameController = TextEditingController();
+
+  bool get credentialsProvided => emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+
+  bool get nameDetailsProvided => nameController.text.isNotEmpty && surnameController.text.isNotEmpty;
+
+  bool userHasAccount = false;
 
   @override
   void initState() {
     log('initializing state');
     super.initState();
-    userNameController.text = 'krzysztof.potrzasaj@gmail.com';
+    emailController.text = 'krzysztof.potrzasaj@gmail.com';
     passwordController.text = 'ecikoWaty2k';
+
+    emailController.addListener(_refresh);
+    passwordController.addListener(_refresh);
+    nameController.addListener(_refresh);
+    surnameController.addListener(_refresh);
+  }
+
+  @override
+  void dispose() {
+    _disposeController(emailController);
+    _disposeController(passwordController);
+    _disposeController(nameController);
+    _disposeController(surnameController);
+    super.dispose();
   }
 
   @override
@@ -56,10 +79,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         child: Padding(
           padding: const EdgeInsets.all(32.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Gap(128),
+              Text(
+                'Zaloguj się',
+                style: context.textTheme.displaySmall,
+              ),
+              const Gap(64),
+              CheckboxListTile(
+                  title: const Text('Już posiadam konto'),
+                  value: userHasAccount,
+                  onChanged: (hasAccount) {
+                    setState(() => userHasAccount = hasAccount ?? false);
+                  }),
+              const Gap(16),
               TextField(
-                controller: userNameController,
+                controller: emailController,
                 decoration: const InputDecoration(
                   hintText: 'E-mail',
                   filled: true,
@@ -75,43 +110,67 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
               ),
               const Gap(32),
-              ElevatedButton(
-                onPressed: () {
-                  ref.read(loginPageControllerProvider.notifier).register(
-                        userNameController.text,
-                        passwordController.text,
-                      );
-                },
-                child: const Text('Zarejestruj się'),
-              ),
-              const Gap(32),
-              Enabled(
-                enabled: !state.loggedIn,
-                child: ElevatedButton(
-                  onPressed: () {
-                    loginWithProvidedCredentials()
-                        .then((_) => context.goNamed('home'))
-                        .onError((error, _) => showErrorDialog(error!, context));
-                  },
-                  child: const Text('Zaloguj'),
-                ),
-              ),
-              const Gap(32),
-              Enabled(
-                enabled: state.loggedIn,
-                child: ElevatedButton(
-                  onPressed: () => ref.read(loginPageControllerProvider.notifier).logout(),
-                  child: const Text('Wyloguj'),
-                ),
-              ),
-              const Gap(32),
               Visibility(
-                visible: state.loggingIn,
-                child: LoadingAnimationWidget.fourRotatingDots(
-                  color: context.colorScheme.primary,
-                  size: 24,
+                visible: !userHasAccount,
+                child: Column(
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Imię',
+                        filled: true,
+                      ),
+                    ),
+                    const Gap(16),
+                    TextField(
+                      controller: surnameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Nazwisko',
+                        filled: true,
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              const Gap(64),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Visibility(
+                    visible: !userHasAccount && !state.loggingIn,
+                    child: Enabled(
+                      enabled: credentialsProvided && nameDetailsProvided,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          registerUser();
+                        },
+                        child: const Text('Zarejestruj'),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: userHasAccount && !state.loggingIn,
+                    child: Enabled(
+                      enabled: credentialsProvided,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          loginWithProvidedCredentials()
+                              .then((_) => context.goNamed('home'))
+                              .onError((error, _) => showErrorDialog(error!, context));
+                        },
+                        child: const Text('Zaloguj'),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: state.loggingIn,
+                    child: LoadingAnimationWidget.fourRotatingDots(
+                      color: context.colorScheme.primary,
+                      size: 24,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -119,9 +178,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     );
   }
 
-  Future<void> loginWithProvidedCredentials() async {
+  Future<void> registerUser() {
+    return ref.read(loginPageControllerProvider.notifier).register(
+          emailController.text,
+          passwordController.text,
+        );
+  }
+
+  Future<void> loginWithProvidedCredentials() {
     return ref.read(loginPageControllerProvider.notifier).login(
-          userNameController.text,
+          emailController.text,
           passwordController.text,
         );
   }
@@ -142,5 +208,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         );
       },
     );
+  }
+
+  void _disposeController(TextEditingController controller) {
+    controller.removeListener(_refresh);
+    controller.dispose();
+  }
+
+  void _refresh() {
+    setState(() {});
   }
 }
