@@ -5,5 +5,5 @@ part 'user_is_admin.g.dart';
 
 @riverpod
 bool userIsAdmin(UserIsAdminRef ref) {
-  return ref.watch(currentUserIdSettingProvider) == '6wibzgYLPSCl9Gt7WAVh29RjW4e3';
+  return ref.watch(currentUserIdSettingProvider) == 'h7yVtQFIwgfdvF66afLo';
 }
