@@ -15,29 +15,37 @@ class FirebaseAuthRepository implements AuthRepository {
       return null;
     }
 
-    final usersWithUid = await users.where("firebaseId", isEqualTo: firebaseUser.uid);
-    if (usersWithUid.length > 1) {
-      throw Exception('More than one user with uid: ${firebaseUser.uid}');
+    return await _findUserWithUid(firebaseUser.uid);
+  }
+
+  @override
+  Future<User> logIn(String email, String password) async {
+    final firebaseUser = await FirebaseAuthSource.signIn(email, password);
+    if (firebaseUser == null) {
+      throw Exception('User not found');
     }
 
-    return usersWithUid.firstOrNull;
+    var user = await _findUserWithUid(firebaseUser.uid);
+    return user ?? User(firebaseId: firebaseUser.uid, name: '', surname: '');
   }
 
   @override
-  Future<User> login(String email, String password) {
-    // TODO: implement login
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logOut() {
+    return FirebaseAuthSource.signOut();
   }
 
   @override
   Future<User> register(String email, String password) {
     // TODO: implement register
     throw UnimplementedError();
+  }
+
+  Future<User?> _findUserWithUid(String uid) async {
+    final usersWithUid = await users.where("firebaseId", isEqualTo: uid);
+    if (usersWithUid.length > 1) {
+      throw Exception('More than one user with uid: $uid');
+    }
+
+    return usersWithUid.firstOrNull;
   }
 }

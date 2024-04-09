@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/pages/login/login_page_state.dart';
@@ -18,6 +19,7 @@ class LoginPageController extends _$LoginPageController {
       }
 
       _updateUserIdSetting(user.id);
+
       state = state.copyWith(user: user, gettingUserInfo: false, loggedIn: true);
     });
 
@@ -25,7 +27,14 @@ class LoginPageController extends _$LoginPageController {
   }
 
   Future<void> login(String email, String password) async {
-    final credentials = await auth.FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    state = state.copyWith(loggingIn: true);
+    try {
+      final userId = await ref.read(logInUseCaseProvider).run(email, password);
+      _updateUserIdSetting(userId);
+    } catch (e) {
+      state = state.copyWith(loggingIn: false);
+      rethrow;
+    }
   }
 
   Future<void> register(String email, String password) async {

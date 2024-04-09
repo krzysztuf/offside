@@ -7,6 +7,7 @@ part 'login_page_state.freezed.dart';
 class LoginPageState with _$LoginPageState {
   const factory LoginPageState({
     @Default(false) bool loggedIn,
+    @Default(false) bool loggingIn,
     @Default(true) bool gettingUserInfo,
     User? user,
   }) = _LoginPageState;

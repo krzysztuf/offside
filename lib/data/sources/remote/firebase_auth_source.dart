@@ -7,7 +7,7 @@ class FirebaseAuthSource {
 
   static User? get currentUser => _firebaseAuth.currentUser;
 
-  static Future<User?> signInWithEmailAndPassword(String email, String password) async {
+  static Future<User?> signIn(String email, String password) async {
     try {
       final UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
@@ -20,7 +20,7 @@ class FirebaseAuthSource {
     }
   }
 
-  static Future<User?> signUpWithEmailAndPassword(String email, String password) async {
+  static Future<User?> signUp(String email, String password) async {
     try {
       final UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,

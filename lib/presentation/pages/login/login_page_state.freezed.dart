@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LoginPageState {
   bool get loggedIn => throw _privateConstructorUsedError;
+  bool get loggingIn => throw _privateConstructorUsedError;
   bool get gettingUserInfo => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
 
@@ -31,7 +32,7 @@ abstract class $LoginPageStateCopyWith<$Res> {
           LoginPageState value, $Res Function(LoginPageState) then) =
       _$LoginPageStateCopyWithImpl<$Res, LoginPageState>;
   @useResult
-  $Res call({bool loggedIn, bool gettingUserInfo, User? user});
+  $Res call({bool loggedIn, bool loggingIn, bool gettingUserInfo, User? user});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -50,6 +51,7 @@ class _$LoginPageStateCopyWithImpl<$Res, $Val extends LoginPageState>
   @override
   $Res call({
     Object? loggedIn = null,
+    Object? loggingIn = null,
     Object? gettingUserInfo = null,
     Object? user = freezed,
   }) {
@@ -57,6 +59,10 @@ class _$LoginPageStateCopyWithImpl<$Res, $Val extends LoginPageState>
       loggedIn: null == loggedIn
           ? _value.loggedIn
           : loggedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loggingIn: null == loggingIn
+          ? _value.loggingIn
+          : loggingIn // ignore: cast_nullable_to_non_nullable
               as bool,
       gettingUserInfo: null == gettingUserInfo
           ? _value.gettingUserInfo
@@ -90,7 +96,7 @@ abstract class _$$LoginPageStateImplCopyWith<$Res>
       __$$LoginPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loggedIn, bool gettingUserInfo, User? user});
+  $Res call({bool loggedIn, bool loggingIn, bool gettingUserInfo, User? user});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -108,6 +114,7 @@ class __$$LoginPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loggedIn = null,
+    Object? loggingIn = null,
     Object? gettingUserInfo = null,
     Object? user = freezed,
   }) {
@@ -115,6 +122,10 @@ class __$$LoginPageStateImplCopyWithImpl<$Res>
       loggedIn: null == loggedIn
           ? _value.loggedIn
           : loggedIn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      loggingIn: null == loggingIn
+          ? _value.loggingIn
+          : loggingIn // ignore: cast_nullable_to_non_nullable
               as bool,
       gettingUserInfo: null == gettingUserInfo
           ? _value.gettingUserInfo
@@ -132,12 +143,18 @@ class __$$LoginPageStateImplCopyWithImpl<$Res>
 
 class _$LoginPageStateImpl extends _LoginPageState {
   const _$LoginPageStateImpl(
-      {this.loggedIn = false, this.gettingUserInfo = true, this.user})
+      {this.loggedIn = false,
+      this.loggingIn = false,
+      this.gettingUserInfo = true,
+      this.user})
       : super._();
 
   @override
   @JsonKey()
   final bool loggedIn;
+  @override
+  @JsonKey()
+  final bool loggingIn;
   @override
   @JsonKey()
   final bool gettingUserInfo;
@@ -146,7 +163,7 @@ class _$LoginPageStateImpl extends _LoginPageState {
 
   @override
   String toString() {
-    return 'LoginPageState(loggedIn: $loggedIn, gettingUserInfo: $gettingUserInfo, user: $user)';
+    return 'LoginPageState(loggedIn: $loggedIn, loggingIn: $loggingIn, gettingUserInfo: $gettingUserInfo, user: $user)';
   }
 
   @override
@@ -156,13 +173,16 @@ class _$LoginPageStateImpl extends _LoginPageState {
             other is _$LoginPageStateImpl &&
             (identical(other.loggedIn, loggedIn) ||
                 other.loggedIn == loggedIn) &&
+            (identical(other.loggingIn, loggingIn) ||
+                other.loggingIn == loggingIn) &&
             (identical(other.gettingUserInfo, gettingUserInfo) ||
                 other.gettingUserInfo == gettingUserInfo) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loggedIn, gettingUserInfo, user);
+  int get hashCode =>
+      Object.hash(runtimeType, loggedIn, loggingIn, gettingUserInfo, user);
 
   @JsonKey(ignore: true)
   @override
@@ -175,12 +195,15 @@ class _$LoginPageStateImpl extends _LoginPageState {
 abstract class _LoginPageState extends LoginPageState {
   const factory _LoginPageState(
       {final bool loggedIn,
+      final bool loggingIn,
       final bool gettingUserInfo,
       final User? user}) = _$LoginPageStateImpl;
   const _LoginPageState._() : super._();
 
   @override
   bool get loggedIn;
+  @override
+  bool get loggingIn;
   @override
   bool get gettingUserInfo;
   @override

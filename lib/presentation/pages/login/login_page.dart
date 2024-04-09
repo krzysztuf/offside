@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 
@@ -20,13 +23,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final passwordController = TextEditingController();
 
   @override
+  void initState() {
+    log('initializing state');
+    super.initState();
+    userNameController.text = 'krzysztof.potrzasaj@gmail.com';
+    passwordController.text = 'ecikoWaty2k';
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(loginPageControllerProvider);
 
+    // log(state.toString());
+
     if (state.gettingUserInfo || state.loggedIn) {
       if (state.loggedIn) {
-        WidgetsBinding.instance.addPostFrameCallback((_) => context.pushNamed('home'));
+        WidgetsBinding.instance.addPostFrameCallback((_) => context.goNamed('home'));
       }
+
       return Scaffold(
         body: Center(
           child: LoadingAnimationWidget.fourRotatingDots(
@@ -75,10 +89,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 enabled: !state.loggedIn,
                 child: ElevatedButton(
                   onPressed: () {
-                    ref.read(loginPageControllerProvider.notifier).login(
-                          userNameController.text,
-                          passwordController.text,
-                        );
+                    loginWithProvidedCredentials()
+                        .then((_) => context.goNamed('home'))
+                        .onError((error, _) => showErrorDialog(error!, context));
                   },
                   child: const Text('Zaloguj'),
                 ),
@@ -91,10 +104,43 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   child: const Text('Wyloguj'),
                 ),
               ),
+              const Gap(32),
+              Visibility(
+                visible: state.loggingIn,
+                child: LoadingAnimationWidget.fourRotatingDots(
+                  color: context.colorScheme.primary,
+                  size: 24,
+                ),
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> loginWithProvidedCredentials() async {
+    return ref.read(loginPageControllerProvider.notifier).login(
+          userNameController.text,
+          passwordController.text,
+        );
+  }
+
+  void showErrorDialog(Object error, BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Błąd logowania'),
+          content: error.toString().text,
+          actions: [
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
     );
   }
 }
