@@ -23,11 +23,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(loginPageControllerProvider);
 
-    if (state.loggedIn) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => context.pushNamed('home'));
-    }
-
-    if (state.gettingUserInfo) {
+    if (state.gettingUserInfo || state.loggedIn) {
+      if (state.loggedIn) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => context.pushNamed('home'));
+      }
       return Scaffold(
         body: Center(
           child: LoadingAnimationWidget.fourRotatingDots(
