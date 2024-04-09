@@ -29,7 +29,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   bool get nameDetailsProvided => nameController.text.isNotEmpty && surnameController.text.isNotEmpty;
 
-  bool userHasAccount = false;
+  bool userNotRegistered = false;
 
   @override
   void initState() {
@@ -87,10 +87,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               ),
               const Gap(64),
               CheckboxListTile(
-                  title: const Text('Już posiadam konto'),
-                  value: userHasAccount,
-                  onChanged: (hasAccount) {
-                    setState(() => userHasAccount = hasAccount ?? false);
+                  title: const Text('Nie posiadam konta'),
+                  subtitle: const Text('Zaznacz, jeśli jeszcze się nie zarejestrowałeś'),
+                  value: userNotRegistered,
+                  onChanged: (notRegistered) {
+                    setState(() => userNotRegistered = notRegistered ?? false);
                   }),
               const Gap(16),
               TextField(
@@ -111,7 +112,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               ),
               const Gap(32),
               Visibility(
-                visible: !userHasAccount,
+                visible: userNotRegistered,
                 child: Column(
                   children: [
                     TextField(
@@ -137,7 +138,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Visibility(
-                    visible: !userHasAccount && !state.loggingIn,
+                    visible: userNotRegistered && !state.loggingIn,
                     child: Enabled(
                       enabled: credentialsProvided && nameDetailsProvided,
                       child: ElevatedButton(
@@ -149,7 +150,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     ),
                   ),
                   Visibility(
-                    visible: userHasAccount && !state.loggingIn,
+                    visible: !userNotRegistered && !state.loggingIn,
                     child: Enabled(
                       enabled: credentialsProvided,
                       child: ElevatedButton(
