@@ -35,11 +35,23 @@ extension ConvenienceMethods on Match {
     return now.isAfter(kickOffDate);
   }
 
-  bool finished(DateTime now) {
-    return now.isAfter(kickOffDate.copyWith(hour: kickOffDate.hour + 2));
-  }
+  bool get finished => result != null;
 
   bool beingPlayed(DateTime now) {
-    return afterKickOff(now) && !finished(now);
+    return afterKickOff(now) && !finished;
+  }
+
+  int pointsFor({required Goals prediction}) {
+    if (result == prediction) {
+      return 3;
+    }
+
+    if (result!.homeTeamWon && prediction.homeTeamWon ||
+        result!.awayTeamWon && prediction.awayTeamWon ||
+        result!.draw && prediction.draw) {
+      return 1;
+    }
+
+    return 0;
   }
 }

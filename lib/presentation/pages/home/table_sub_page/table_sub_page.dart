@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home/table_sub_page/table_sub_page_controller.dart';
+import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'loading_table_skeleton.dart';
@@ -22,13 +24,23 @@ class TableSubPage extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(32),
-            Text(
-              'UEFA Euro 2024',
-              style: context.textTheme.headlineLarge,
-            ),
+            switch (ref.watch(currentUserProvider)) {
+              AsyncData(value: final user) => Text(
+                  'Hej ${user!.name} 👋',
+                  style: context.textTheme.headlineLarge,
+                ),
+              AsyncError() => const Center(child: Text('Error')),
+              _ => Skeletonizer(
+                  enabled: true,
+                  child: Text(
+                    'Hej Użytkowniku 👋',
+                    style: context.textTheme.headlineLarge,
+                  ),
+                ),
+            },
             const Gap(8),
             Text(
-              'Aktywni użytkownicy: 12',
+              'EURO 2024',
               style: context.textTheme.titleMedium,
             ),
             const Gap(32),

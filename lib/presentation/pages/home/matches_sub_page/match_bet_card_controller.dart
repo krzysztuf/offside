@@ -25,7 +25,7 @@ class MatchBetCardController extends _$MatchBetCardController {
   }
 
   Future<void> setResult(Goals result) async {
-    state = state.copyWith(loading: true);
+    setLoading(true);
 
     final updatedMatch = state.match.copyWith(result: result);
     ref.read(updateMatchUseCaseProvider).run(updatedMatch);
@@ -34,6 +34,7 @@ class MatchBetCardController extends _$MatchBetCardController {
   }
 
   void _fetchBets(Match match, String userId) {
+    final currentTime = ref.read(dateTimeProvider);
     match.bets.fetch().then((_) {
       final bet = match.bets.value.find((bet) => bet.userId == userId);
 
@@ -43,7 +44,7 @@ class MatchBetCardController extends _$MatchBetCardController {
         loading: false,
       );
 
-      if (match.afterKickOff(ref.read(dateTimeProvider)) && bet == null) {
+      if (match.afterKickOff(currentTime) && bet == null) {
         updatedState = updatedState.copyWith(betState: BetState.expired);
       }
 

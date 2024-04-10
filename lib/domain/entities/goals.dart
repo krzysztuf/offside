@@ -31,4 +31,6 @@ extension GoalsConvenienceMethods on Goals {
   bool get homeTeamWon => home > away;
 
   bool get awayTeamWon => away > home;
+
+  bool get draw => home == away;
 }

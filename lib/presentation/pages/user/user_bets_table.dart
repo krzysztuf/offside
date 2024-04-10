@@ -59,7 +59,7 @@ class UserBetsTable extends StatelessWidget {
                   ),
                   createCell(m.result?.asString ?? '-', cellStyle),
                   createCell(userBet?.prediction.asString ?? '-', cellStyle),
-                  createCell(calculatePoints(m.result, userBet?.prediction), cellStyle),
+                  createCell(buildPointsText(m.result, userBet?.prediction), cellStyle),
                 ],
               );
             })
@@ -78,7 +78,7 @@ class UserBetsTable extends StatelessWidget {
     );
   }
 
-  String calculatePoints(Goals? result, Goals? prediction) {
+  String buildPointsText(Goals? result, Goals? prediction) {
     if (result == null || prediction == null) {
       return '-';
     }
@@ -87,7 +87,9 @@ class UserBetsTable extends StatelessWidget {
       return '+3';
     }
 
-    if (result.homeTeamWon && prediction.homeTeamWon || result.awayTeamWon && prediction.awayTeamWon) {
+    if (result.homeTeamWon && prediction.homeTeamWon ||
+        result.awayTeamWon && prediction.awayTeamWon ||
+        result.draw && prediction.draw) {
       return '+1';
     }
 
