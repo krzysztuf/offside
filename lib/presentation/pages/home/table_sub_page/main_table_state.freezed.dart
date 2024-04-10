@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainTableState {
-  Map<User, int> get userScores => throw _privateConstructorUsedError;
+  List<UserScores> get userScores => throw _privateConstructorUsedError;
   bool get calculating => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,7 @@ abstract class $MainTableStateCopyWith<$Res> {
           MainTableState value, $Res Function(MainTableState) then) =
       _$MainTableStateCopyWithImpl<$Res, MainTableState>;
   @useResult
-  $Res call({Map<User, int> userScores, bool calculating});
+  $Res call({List<UserScores> userScores, bool calculating});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$MainTableStateCopyWithImpl<$Res, $Val extends MainTableState>
       userScores: null == userScores
           ? _value.userScores
           : userScores // ignore: cast_nullable_to_non_nullable
-              as Map<User, int>,
+              as List<UserScores>,
       calculating: null == calculating
           ? _value.calculating
           : calculating // ignore: cast_nullable_to_non_nullable
@@ -70,7 +70,7 @@ abstract class _$$MainTableStateImplCopyWith<$Res>
       __$$MainTableStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<User, int> userScores, bool calculating});
+  $Res call({List<UserScores> userScores, bool calculating});
 }
 
 /// @nodoc
@@ -91,7 +91,7 @@ class __$$MainTableStateImplCopyWithImpl<$Res>
       userScores: null == userScores
           ? _value._userScores
           : userScores // ignore: cast_nullable_to_non_nullable
-              as Map<User, int>,
+              as List<UserScores>,
       calculating: null == calculating
           ? _value.calculating
           : calculating // ignore: cast_nullable_to_non_nullable
@@ -104,16 +104,16 @@ class __$$MainTableStateImplCopyWithImpl<$Res>
 
 class _$MainTableStateImpl extends _MainTableState {
   const _$MainTableStateImpl(
-      {required final Map<User, int> userScores, this.calculating = true})
+      {required final List<UserScores> userScores, this.calculating = true})
       : _userScores = userScores,
         super._();
 
-  final Map<User, int> _userScores;
+  final List<UserScores> _userScores;
   @override
-  Map<User, int> get userScores {
-    if (_userScores is EqualUnmodifiableMapView) return _userScores;
+  List<UserScores> get userScores {
+    if (_userScores is EqualUnmodifiableListView) return _userScores;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_userScores);
+    return EqualUnmodifiableListView(_userScores);
   }
 
   @override
@@ -150,12 +150,12 @@ class _$MainTableStateImpl extends _MainTableState {
 
 abstract class _MainTableState extends MainTableState {
   const factory _MainTableState(
-      {required final Map<User, int> userScores,
+      {required final List<UserScores> userScores,
       final bool calculating}) = _$MainTableStateImpl;
   const _MainTableState._() : super._();
 
   @override
-  Map<User, int> get userScores;
+  List<UserScores> get userScores;
   @override
   bool get calculating;
   @override

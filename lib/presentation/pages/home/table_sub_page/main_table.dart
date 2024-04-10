@@ -9,6 +9,8 @@ import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/presentation/pages/home/table_sub_page/main_table_controller.dart';
 
+import 'main_table_state.dart';
+
 class MainTable extends ConsumerWidget {
   final List<User> users;
 
@@ -21,19 +23,18 @@ class MainTable extends ConsumerWidget {
 
     return Column(
       children: sortedScores.mapIndexed(
-        (index, userAndScore) {
-          final user = userAndScore.key;
-          final score = userAndScore.value;
+        (index, userScores) {
+          final user = userScores.user;
 
           return ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             leading: buildStandingAndAvatar(context, index + 1, user),
             title: user.fullName.text,
-            subtitle: buildLatestForm(context, user),
+            subtitle: buildRecentForm(context, userScores),
             selected: user.id == ref.watch(currentUserIdSettingProvider),
             trailing: Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: '$score'.styledText(context.textTheme.headlineSmall!),
+              child: '${userScores.totalScore}'.styledText(context.textTheme.headlineSmall!),
             ),
             onTap: () => context.goNamed('userDetails', extra: user),
           );
@@ -42,8 +43,8 @@ class MainTable extends ConsumerWidget {
     );
   }
 
-  List<MapEntry<User, int>> _sortByPoints(Map<User, int> userScores) {
-    return userScores.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+  List<UserScores> _sortByPoints(List<UserScores> userScores) {
+    return [...userScores]..sort((a, b) => b.totalScore.compareTo(a.totalScore));
   }
 
   Widget buildStandingAndAvatar(BuildContext context, int standing, User user) {
@@ -59,36 +60,60 @@ class MainTable extends ConsumerWidget {
     );
   }
 
-  Widget buildLatestForm(BuildContext context, User user) {
+  Widget buildRecentForm(BuildContext context, UserScores userScores) {
+    if (userScores.recentPredictionsScores.isEmpty) {
+      return 'Brak ostatnich typowań'.styledText(context.textTheme.bodySmall!);
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
-          ),
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
-          ),
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: Colors.red.shade500, borderRadius: BorderRadius.circular(4)),
-          ),
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: Colors.lightGreen.shade300, borderRadius: BorderRadius.circular(4)),
-          ),
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
-          ),
+          ...userScores.recentPredictionsScores.map((score) => switch (score) {
+                <= 0 => Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(color: Colors.red.shade500, borderRadius: BorderRadius.circular(4)),
+                  ),
+                1 => Container(
+                    width: 8,
+                    height: 8,
+                    decoration:
+                        BoxDecoration(color: Colors.lightGreen.shade300, borderRadius: BorderRadius.circular(4)),
+                  ),
+                >= 3 => Container(
+                    width: 8,
+                    height: 8,
+                    decoration:
+                        BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+                  ),
+                _ => throw UnimplementedError('Unknown score: $score'),
+              })
+          // Container(
+          //   width: 8,
+          //   height: 8,
+          //   decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+          // ),
+          // Container(
+          //   width: 8,
+          //   height: 8,
+          //   decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+          // ),
+          // Container(
+          //   width: 8,
+          //   height: 8,
+          //   decoration: BoxDecoration(color: Colors.red.shade500, borderRadius: BorderRadius.circular(4)),
+          // ),
+          // Container(
+          //   width: 8,
+          //   height: 8,
+          //   decoration: BoxDecoration(color: Colors.lightGreen.shade300, borderRadius: BorderRadius.circular(4)),
+          // ),
+          // Container(
+          //   width: 8,
+          //   height: 8,
+          //   decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+          // ),
         ].withGaps(8),
       ),
     );

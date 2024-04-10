@@ -14,7 +14,7 @@ class MainTableController extends _$MainTableController {
   @override
   MainTableState build() {
     _loadUserBetsAndCalculatePoints();
-    return const MainTableState(userScores: {});
+    return const MainTableState(userScores: []);
   }
 
   void _loadUserBetsAndCalculatePoints() {
@@ -45,19 +45,28 @@ class MainTableController extends _$MainTableController {
     return userBets;
   }
 
-  Map<User, int> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets) {
+  List<UserScores> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets) {
     final matchesWithResult = matches.where((match) => match.result != null).toList();
 
-    return userBets.map((user, bets) {
-      final userPoints = bets.fold(0, (points, bet) {
+    return userBets.entries.map((userAndBets) {
+      final user = userAndBets.key;
+      final bets = userAndBets.value;
+
+      final userScores = UserScores(user);
+      final totalPoints = bets.fold(0, (points, bet) {
         final match = matchesWithResult.firstWhereOrNull((match) => match.id == bet.matchId);
         if (match == null) {
+          userScores.recentPredictionsScores.add(0);
           return points;
         }
 
-        return points + match.pointsFor(prediction: bet.prediction);
+        var pointsAwardedForThisMatch = match.pointsFor(prediction: bet.prediction);
+        userScores.recentPredictionsScores.add(pointsAwardedForThisMatch);
+
+        return points + pointsAwardedForThisMatch;
       });
-      return MapEntry(user, userPoints);
-    });
+
+      return userScores..totalScore = totalPoints;
+    }).toList();
   }
 }
