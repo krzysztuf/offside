@@ -23,7 +23,7 @@ class UserBetsTable extends StatelessWidget {
     var cellStyle = context.widgetThemes.userBets.cellValue;
 
     return Card(
-      margin: const EdgeInsets.all(32),
+      margin: const EdgeInsets.all(16),
       elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),

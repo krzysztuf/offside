@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
@@ -20,28 +19,18 @@ class MainTable extends ConsumerWidget {
 
     return Column(
       children: sortedScores.map(
-        (userScore) {
-          final user = userScore.key;
-          final score = userScore.value;
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: ListTile(
-              leading: Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: user.avatar(context),
-              ),
-              title: user.fullName.text,
-              subtitle: user.nickname?.text ?? 'tutaj będzie forma'.styledText(context.textTheme.bodySmall!),
-              selected: user.id == ref.watch(currentUserIdSettingProvider),
-              trailing: Column(
-                children: [
-                  '$score'.styledText(context.textTheme.titleLarge!),
-                  const Gap(4),
-                  'punkty'.styledText(context.textTheme.bodySmall!),
-                ],
-              ),
-              onTap: () => context.goNamed('userDetails', extra: user),
-            ),
+        (userAndScore) {
+          final user = userAndScore.key;
+          final score = userAndScore.value;
+          return ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            // dense: true,
+            leading: user.avatar(context, radius: 18, fontSize: 12),
+            title: user.fullName.text,
+            subtitle: user.nickname?.text ?? 'tutaj będzie forma'.styledText(context.textTheme.bodySmall!),
+            selected: user.id == ref.watch(currentUserIdSettingProvider),
+            trailing: '$score'.styledText(context.textTheme.bodyLarge!),
+            onTap: () => context.goNamed('userDetails', extra: user),
           );
         },
       ).toList(),

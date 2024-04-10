@@ -40,9 +40,11 @@ class UserPage extends ConsumerWidget {
           children: [
             const Gap(48),
             Center(
-              child: SizedBox.square(
-                dimension: 192,
-                child: state.user.avatar(context, elevation: 6),
+              child: state.user.avatar(
+                context,
+                elevation: 6,
+                radius: 96,
+                fontSize: 48,
               ),
             ),
             const Gap(48),
@@ -77,7 +79,9 @@ class UserPage extends ConsumerWidget {
                 )
               ],
             ),
+            const Gap(16),
             UserBetsTable(matches: state.matches, userBets: state.bets),
+            const Gap(16),
           ],
         ),
       ),

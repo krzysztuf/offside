@@ -28,12 +28,12 @@ class User with _$User implements Identifiable {
 }
 
 extension UserAvatar on User {
-  Widget avatar(BuildContext context, {bool dense = false, double elevation = 1.5}) {
+  Widget avatar(BuildContext context, {double radius = 12, double fontSize = 10, double elevation = 1.5}) {
     return Avatar(
       elevation: elevation,
-      radius: dense ? 12 : 30,
+      radius: radius,
       image: maybeImage(),
-      child: maybeText(context, dense),
+      child: maybeText(context, fontSize),
     );
   }
 
@@ -41,8 +41,8 @@ extension UserAvatar on User {
     return image != null ? AssetImage(image!) : null;
   }
 
-  Text? maybeText(BuildContext context, bool dense) {
-    final initialsStyle = context.textTheme.bodyMedium!.copyWith(fontSize: dense ? 10 : 14);
+  Text? maybeText(BuildContext context, double fontSize) {
+    final initialsStyle = context.textTheme.bodyMedium!.copyWith(fontSize: fontSize);
     return image == null ? Text(initials, style: initialsStyle) : null;
   }
 }
