@@ -8,6 +8,7 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/match_bet_card_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page_controller.dart';
 import 'package:offside/presentation/widgets/admin_visible.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'match_bet_card.dart';
 
@@ -25,7 +26,8 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(matchesSubPageControllerProvider);
     return RefreshIndicator(
-      onRefresh: ref.read(matchesSubPageControllerProvider.notifier).refresh,
+      notificationPredicate: (_) => true,
+      onRefresh: () => ref.read(matchesSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8),

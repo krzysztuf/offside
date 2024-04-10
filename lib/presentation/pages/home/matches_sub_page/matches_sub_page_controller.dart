@@ -27,7 +27,11 @@ class MatchesSubPageController extends _$MatchesSubPageController {
     });
   }
 
-  Future<void> refresh() async {
+  Future<void> refresh({Duration? delay}) async {
+    if (delay != null) {
+      await Future.delayed(delay);
+    }
+
     ref.read(getAllMatchesUseCaseProvider).run().then((matches) {
       state = MatchesSubPageState(_groupMatchesByDay(matches));
     });

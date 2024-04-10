@@ -176,7 +176,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                   visible: state.match.afterKickOff(ref.read(dateTimeProvider)),
                   child: FilledButton.tonalIcon(
                     icon: const Icon(Icons.group, size: 18),
-                    label: const Text('Typy innych'),
+                    label: const Text('Typy'),
                     onPressed: () => showOtherUsersPredictionsSheet(context, state.match),
                   ),
                 ),
