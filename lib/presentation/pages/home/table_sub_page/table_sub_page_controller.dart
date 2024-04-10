@@ -17,4 +17,12 @@ class TableSubPageController extends _$TableSubPageController {
     final users = await ref.read(getAllUsersUseCaseProvider).run();
     state = MainTableReadyState(users);
   }
+
+  Future<void> refresh({Duration? delay}) async {
+    if (delay != null) {
+      await Future.delayed(delay);
+    }
+
+    loadTable();
+  }
 }

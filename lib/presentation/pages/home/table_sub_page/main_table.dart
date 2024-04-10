@@ -1,6 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
@@ -18,18 +20,21 @@ class MainTable extends ConsumerWidget {
     final sortedScores = _sortByPoints(state.userScores);
 
     return Column(
-      children: sortedScores.map(
-        (userAndScore) {
+      children: sortedScores.mapIndexed(
+        (index, userAndScore) {
           final user = userAndScore.key;
           final score = userAndScore.value;
+
           return ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            // dense: true,
-            leading: user.avatar(context, radius: 18, fontSize: 12),
+            leading: buildStandingAndAvatar(context, index + 1, user),
             title: user.fullName.text,
-            subtitle: user.nickname?.text ?? 'tutaj będzie forma'.styledText(context.textTheme.bodySmall!),
+            subtitle: buildLatestForm(context, user),
             selected: user.id == ref.watch(currentUserIdSettingProvider),
-            trailing: '$score'.styledText(context.textTheme.bodyLarge!),
+            trailing: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: '$score'.styledText(context.textTheme.headlineSmall!),
+            ),
             onTap: () => context.goNamed('userDetails', extra: user),
           );
         },
@@ -39,5 +44,53 @@ class MainTable extends ConsumerWidget {
 
   List<MapEntry<User, int>> _sortByPoints(Map<User, int> userScores) {
     return userScores.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+  }
+
+  Widget buildStandingAndAvatar(BuildContext context, int standing, User user) {
+    return SizedBox(
+      width: 68,
+      child: Row(
+        children: [
+          '$standing'.styledText(context.textTheme.bodyMedium!),
+          const SizedBox(width: 16),
+          user.avatar(context, radius: 20, fontSize: 14),
+        ],
+      ),
+    );
+  }
+
+  Widget buildLatestForm(BuildContext context, User user) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+          ),
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+          ),
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(color: Colors.red.shade500, borderRadius: BorderRadius.circular(4)),
+          ),
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(color: Colors.lightGreen.shade300, borderRadius: BorderRadius.circular(4)),
+          ),
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+          ),
+        ].withGaps(8),
+      ),
+    );
   }
 }

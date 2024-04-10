@@ -17,55 +17,67 @@ class TableSubPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Gap(32),
-            switch (ref.watch(currentUserProvider)) {
-              AsyncData(value: final user) => Text(
-                  'Hej ${user!.name} 👋',
-                  style: context.textTheme.headlineLarge,
-                ),
-              AsyncError() => const Center(child: Text('Error')),
-              _ => Skeletonizer(
-                  enabled: true,
-                  child: Text(
-                    'Hej Użytkowniku 👋',
-                    style: context.textTheme.headlineLarge,
-                  ),
-                ),
-            },
-            const Gap(8),
-            Text(
-              'EURO 2024',
-              style: context.textTheme.titleMedium,
-            ),
-            const Gap(32),
-            switch (ref.watch(tableSubPageControllerProvider)) {
-              LoadingMainTableState() => Card(
-                  child: LoadingTableSkeleton(
-                    key: UniqueKey(),
-                  ),
-                ),
-              MainTableReadyState(:final users) => Inflater(
-                  inflated: true,
-                  duration: 1.seconds,
-                  scaleFactor: 0.9,
-                  child: Card(
-                    elevation: 3,
-                    child: MainTable(
-                      key: UniqueKey(),
-                      users: users,
+    return RefreshIndicator(
+      onRefresh: () => ref.read(tableSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Gap(32),
+                switch (ref.watch(currentUserProvider)) {
+                  AsyncData(value: final user) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        'Hej ${user!.name} 👋',
+                        style: context.textTheme.headlineLarge,
+                      ),
                     ),
+                  AsyncError() => const Center(child: Text('Error')),
+                  _ => Skeletonizer(
+                      enabled: true,
+                      child: Text(
+                        'Hej Użytkowniku 👋',
+                        style: context.textTheme.headlineLarge,
+                      ),
+                    ),
+                },
+                const Gap(8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    'EURO 2024',
+                    style: context.textTheme.titleMedium,
                   ),
                 ),
-              _ => Container(),
-            },
-            const Gap(32),
-          ],
+                const Gap(32),
+                switch (ref.watch(tableSubPageControllerProvider)) {
+                  LoadingMainTableState() => Card(
+                      child: LoadingTableSkeleton(
+                        key: UniqueKey(),
+                      ),
+                    ),
+                  MainTableReadyState(:final users) => Inflater(
+                      inflated: true,
+                      duration: 1.seconds,
+                      scaleFactor: 0.9,
+                      child: Card(
+                        elevation: 3,
+                        child: MainTable(
+                          key: UniqueKey(),
+                          users: users,
+                        ),
+                      ),
+                    ),
+                  _ => Container(),
+                },
+              ],
+            ),
+          ),
         ),
       ),
     );
