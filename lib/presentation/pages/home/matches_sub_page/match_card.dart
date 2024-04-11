@@ -19,6 +19,7 @@ import 'package:offside/presentation/pages/home/matches_sub_page/set_match_resul
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/widgets/admin_visible.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
+import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/icon_with_text.dart';
@@ -47,6 +48,8 @@ class _MatchCardState extends ConsumerState<MatchCard> {
   Goals? editedPrediction;
   Team? penaltiesWinner;
 
+  bool get predictionIsDraw => editedPrediction?.draw ?? true;
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchCardControllerProvider);
@@ -61,6 +64,9 @@ class _MatchCardState extends ConsumerState<MatchCard> {
             children: [
               buildHeader(state),
               buildGoalsPredictionRow(state),
+              if (state.match.knockoutStage || state.bet?.prediction.goals.draw != null) ...[
+                buildPenaltyWinnerRow(state)
+              ],
               buildFooter(state, context),
             ].withGaps(48),
           ),
@@ -193,16 +199,19 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                 Visibility(
                   visible: editingPrediction && editedPrediction != state.bet!.prediction.goals ||
                       state.betState == BetState.notPlaced,
-                  child: FilledButton.tonalIcon(
-                      icon: const Icon(Icons.sports_soccer_rounded, size: 18),
-                      label: const Text('Typuj'),
-                      onPressed: () async {
-                        editedPrediction ??= const Goals();
-                        await ref.read(matchCardControllerProvider.notifier).updatePrediction(
-                              MatchOutcome(goals: editedPrediction!, penaltiesWinnerId: penaltiesWinner?.id),
-                            );
-                        setState(() => editingPrediction = false);
-                      }),
+                  child: Enabled(
+                    enabled: predictionIsDraw && penaltiesWinner != null,
+                    child: FilledButton.tonalIcon(
+                        icon: const Icon(Icons.sports_soccer_rounded, size: 18),
+                        label: const Text('Typuj'),
+                        onPressed: () async {
+                          editedPrediction ??= const Goals();
+                          await ref.read(matchCardControllerProvider.notifier).updatePrediction(
+                                MatchOutcome(goals: editedPrediction!, penaltiesWinnerId: penaltiesWinner?.id),
+                              );
+                          setState(() => editingPrediction = false);
+                        }),
+                  ),
                 ),
                 Visibility(
                   visible: !editingPrediction && state.betState == BetState.placed && !state.match.afterKickOff(now),
@@ -292,6 +301,35 @@ class _MatchCardState extends ConsumerState<MatchCard> {
         name: 'Błąd',
         abbreviation: 'ERR',
         logo: 'assets/images/teams/england.png',
+      ),
+    );
+  }
+
+  Widget buildPenaltyWinnerRow(MatchCardState state) {
+    final match = state.match;
+    if (!state.match.homeTeam.hasValue || !state.match.awayTeam.hasValue) {
+      return const SizedBox.shrink();
+    }
+
+    var betNotPlaced = state.betState == BetState.notPlaced;
+    final shouldShow = match.knockoutStage && (editingPrediction || betNotPlaced || penaltiesWinner != null);
+    return Enabled(
+      enabled: match.knockoutStage && (editedPrediction?.draw ?? true),
+      child: AnimatedContainer(
+        height: shouldShow ? 56 : 0,
+        curve: Curves.fastOutSlowIn,
+        duration: 400.milliseconds,
+        child: ListTile(
+          title: const Text('W karnych wygra'),
+          contentPadding: EdgeInsets.zero,
+          trailing: BorderedDropdownButton<Team>(
+            value: penaltiesWinner,
+            items: [match.homeTeam.value, match.awayTeam.value].map((team) {
+              return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
+            }).toList(),
+            onChanged: (team) => setState(() => penaltiesWinner = team),
+          ),
+        ),
       ),
     );
   }
