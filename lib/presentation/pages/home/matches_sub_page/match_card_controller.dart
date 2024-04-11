@@ -1,6 +1,5 @@
 import 'package:offside/core/extensions/iterable_extensions.dart';
 import 'package:offside/domain/entities/bet.dart';
-import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
@@ -53,7 +52,7 @@ class MatchCardController extends _$MatchCardController {
     });
   }
 
-  Future<void> updatePrediction(Goals prediction) async {
+  Future<void> updatePrediction(MatchOutcome prediction) async {
     if (prediction == state.bet?.prediction) {
       return;
     }
@@ -73,7 +72,7 @@ class MatchCardController extends _$MatchCardController {
     return ref.read(removeMatchUseCaseProvider).run(state.match);
   }
 
-  Future<Bet> _createOrUpdateBet(Goals prediction) async {
+  Future<Bet> _createOrUpdateBet(MatchOutcome prediction) async {
     if (state.bet != null) {
       return await _updateExistingBet(prediction);
     }
@@ -81,13 +80,13 @@ class MatchCardController extends _$MatchCardController {
     return await _createNewBet(prediction);
   }
 
-  Future<Bet> _updateExistingBet(Goals prediction) async {
+  Future<Bet> _updateExistingBet(MatchOutcome prediction) async {
     final bet = state.bet!.copyWith(prediction: prediction);
     await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
     return bet;
   }
 
-  Future<Bet> _createNewBet(Goals prediction) async {
+  Future<Bet> _createNewBet(MatchOutcome prediction) async {
     final bet = Bet(
       matchId: state.match.id,
       userId: ref.read(currentUserIdSettingProvider),

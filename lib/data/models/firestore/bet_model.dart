@@ -6,6 +6,7 @@ class BetModel {
   final String userId;
   final int homeGoalsPrediction;
   final int awayGoalsPrediction;
+  final String? penaltiesWinnerId;
 
   BetModel(
     this.id,
@@ -13,6 +14,7 @@ class BetModel {
     this.userId,
     this.homeGoalsPrediction,
     this.awayGoalsPrediction,
+    this.penaltiesWinnerId,
   );
 
   Map<String, dynamic> toJson() {
@@ -21,6 +23,7 @@ class BetModel {
       'matchId': matchId,
       'homeGoalsPrediction': homeGoalsPrediction,
       'awayGoalsPrediction': awayGoalsPrediction,
+      'penaltiesWinnerId': penaltiesWinnerId
     };
   }
 
@@ -32,6 +35,7 @@ class BetModel {
       json['userId'] as String,
       json['homeGoalsPrediction'] as int,
       json['awayGoalsPrediction'] as int,
+      json['penaltiesWinnerId'] as String?,
     );
   }
 }

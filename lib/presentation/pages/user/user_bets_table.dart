@@ -58,8 +58,8 @@ class UserBetsTable extends StatelessWidget {
                     ),
                   ),
                   createCell(m.outcome?.goals.asString ?? '-', cellStyle),
-                  createCell(userBet?.prediction.asString ?? '-', cellStyle),
-                  createCell(buildPointsText(m.outcome?.goals, userBet?.prediction), cellStyle),
+                  createCell(userBet?.prediction.goals.asString ?? '-', cellStyle),
+                  createCell(buildPointsText(m.outcome?.goals, userBet?.prediction.goals), cellStyle),
                 ],
               );
             })

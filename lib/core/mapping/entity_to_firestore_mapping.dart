@@ -90,17 +90,21 @@ extension EntityToFirestoreMapping on GetIt {
           entity.id,
           entity.matchId,
           entity.userId,
-          entity.prediction.home,
-          entity.prediction.away,
+          entity.prediction.goals.home,
+          entity.prediction.goals.away,
+          entity.prediction.penaltiesWinnerId,
         ),
       ),
       backward: (document) => Bet(
         id: document.id,
         matchId: document.value.matchId,
         userId: document.value.userId,
-        prediction: Goals(
-          home: document.value.homeGoalsPrediction,
-          away: document.value.awayGoalsPrediction,
+        prediction: MatchOutcome(
+          goals: Goals(
+            home: document.value.homeGoalsPrediction,
+            away: document.value.awayGoalsPrediction,
+          ),
+          penaltiesWinnerId: document.value.penaltiesWinnerId,
         ),
       ),
     );
@@ -109,9 +113,12 @@ extension EntityToFirestoreMapping on GetIt {
           id: model.id,
           matchId: model.matchId,
           userId: model.userId,
-          prediction: Goals(
-            home: model.homeGoalsPrediction,
-            away: model.awayGoalsPrediction,
+          prediction: MatchOutcome(
+            goals: Goals(
+              home: model.homeGoalsPrediction,
+              away: model.awayGoalsPrediction,
+            ),
+            penaltiesWinnerId: model.penaltiesWinnerId,
           ),
         ));
   }

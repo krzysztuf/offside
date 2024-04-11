@@ -128,7 +128,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
               }
 
               return GoalsPredictionEditor(
-                initialPrediction: editedPrediction ?? state.bet?.prediction ?? const Goals(),
+                initialPrediction: editedPrediction ?? state.bet?.prediction.goals ?? const Goals(),
                 editable: state.betState == BetState.notPlaced || editingPrediction,
                 onUpdated: (prediction) => setState(() => editedPrediction = prediction),
               );
@@ -196,7 +196,8 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                       label: const Text('Typuj'),
                       onPressed: () async {
                         editedPrediction ??= const Goals();
-                        await ref.read(matchCardControllerProvider.notifier).updatePrediction(editedPrediction!);
+                        // todo: implement
+                        // await ref.read(matchCardControllerProvider.notifier).updatePrediction(editedPrediction!);
                         setState(() => editingPrediction = false);
                       }),
                 ),
@@ -207,7 +208,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                     label: const Text('Zmień'),
                     onPressed: () {
                       setState(() {
-                        editedPrediction = state.bet!.prediction.copyWith();
+                        editedPrediction = state.bet!.prediction.goals.copyWith();
                         editingPrediction = true;
                       });
                     },
