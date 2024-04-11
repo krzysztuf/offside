@@ -39,7 +39,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
   DateTime? kickOff;
   String stage = '';
 
-  bool cupStage = false;
+  bool knockoutStage = false;
 
   final dateTimeController = TextEditingController();
 
@@ -86,8 +86,8 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
               ),
               CheckboxListTile(
                 contentPadding: EdgeInsets.zero,
-                value: cupStage,
-                onChanged: (value) => setState(() => cupStage = value ?? false),
+                value: knockoutStage,
+                onChanged: (value) => setState(() => knockoutStage = value ?? false),
                 title: const Text('Faza pucharowa'),
               ),
             ].withGaps(16)),
@@ -105,6 +105,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
                 homeTeam: LocalFetchable(homeTeam!),
                 awayTeam: LocalFetchable(awayTeam!),
                 stage: stage,
+                knockoutStage: knockoutStage,
                 kickOffDate: kickOff!,
               ));
 

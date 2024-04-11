@@ -19,6 +19,8 @@ class Match with _$Match implements Identifiable {
     @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
     required DateTime kickOffDate,
     required String stage,
+    required bool knockoutStage,
+    String? penaltiesWinnerId,
     @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
     Goals? result,
   }) = _Match;
