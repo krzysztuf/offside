@@ -30,7 +30,7 @@ class BetStatusPill extends StatelessWidget {
             color: preset.background,
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.only(left: 10, right: 14),
             child: Center(
               child: _createStatusWidget(preset),
             ),
