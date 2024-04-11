@@ -31,9 +31,7 @@ class BetStatusPill extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 10, right: 14),
-            child: Center(
-              child: _createStatusWidget(preset),
-            ),
+            child: Center(child: _createStatusWidget(preset)),
           ),
         ),
       ),

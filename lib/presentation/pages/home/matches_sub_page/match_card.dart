@@ -115,7 +115,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
           child: FetchableBuilder(
             fetchable: state.match.homeTeam,
             waiting: () => createTeamBadgeSkeletonizer(),
-            child: (homeTeam) => TeamBadge(team: homeTeam),
+            child: (homeTeam) => TeamBadge(team: homeTeam, badgeRadius: 28),
             error: teamMissingBadge,
           ),
         ),
@@ -148,7 +148,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
           child: FetchableBuilder(
             fetchable: state.match.awayTeam,
             waiting: () => createTeamBadgeSkeletonizer(),
-            child: (awayTeam) => TeamBadge(team: awayTeam),
+            child: (awayTeam) => TeamBadge(team: awayTeam, badgeRadius: 28),
             error: teamMissingBadge,
           ),
         ),

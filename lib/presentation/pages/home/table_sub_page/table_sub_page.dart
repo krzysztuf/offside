@@ -54,7 +54,7 @@ class TableSubPage extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
-                    'EURO 2024',
+                    'Witaj w Offside na EURO 2024',
                     style: context.textTheme.titleMedium,
                   ),
                 ),
