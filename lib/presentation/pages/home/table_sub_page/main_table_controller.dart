@@ -17,11 +17,15 @@ class MainTableController extends _$MainTableController {
     return const MainTableState(userScores: []);
   }
 
-  void _loadUserBetsAndCalculatePoints() {
+  Future<void> refresh() async {
+    await _loadUserBetsAndCalculatePoints();
+  }
+
+  Future<void> _loadUserBetsAndCalculatePoints() async {
     final matchesFuture = ref.read(getAllMatchesUseCaseProvider).run();
     final usersFuture = ref.read(getAllUsersUseCaseProvider).run();
 
-    Future.wait([matchesFuture, usersFuture]).then((values) async {
+    await Future.wait([matchesFuture, usersFuture]).then((values) async {
       final matches = values[0] as List<Match>;
       final users = values[1] as List<User>;
 

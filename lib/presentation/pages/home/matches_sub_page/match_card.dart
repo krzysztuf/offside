@@ -6,6 +6,7 @@ import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/match_outcome.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_controller.dart';
@@ -44,6 +45,7 @@ enum AdminAction {
 class _MatchCardState extends ConsumerState<MatchCard> {
   var editingPrediction = false;
   Goals? editedPrediction;
+  Team? penaltiesWinner;
 
   @override
   Widget build(BuildContext context) {
@@ -182,22 +184,23 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                   ),
                 ),
                 Visibility(
-                  visible: editingPrediction && editedPrediction == state.bet!.prediction,
+                  visible: editingPrediction && editedPrediction == state.bet!.prediction.goals,
                   child: FilledButton.tonalIcon(
                       icon: const Icon(Icons.cancel, size: 18),
                       label: const Text('Anuluj'),
                       onPressed: () => setState(() => editingPrediction = false)),
                 ),
                 Visibility(
-                  visible: editingPrediction && editedPrediction != state.bet!.prediction ||
+                  visible: editingPrediction && editedPrediction != state.bet!.prediction.goals ||
                       state.betState == BetState.notPlaced,
                   child: FilledButton.tonalIcon(
                       icon: const Icon(Icons.sports_soccer_rounded, size: 18),
                       label: const Text('Typuj'),
                       onPressed: () async {
                         editedPrediction ??= const Goals();
-                        // todo: implement
-                        // await ref.read(matchCardControllerProvider.notifier).updatePrediction(editedPrediction!);
+                        await ref.read(matchCardControllerProvider.notifier).updatePrediction(
+                              MatchOutcome(goals: editedPrediction!, penaltiesWinnerId: penaltiesWinner?.id),
+                            );
                         setState(() => editingPrediction = false);
                       }),
                 ),

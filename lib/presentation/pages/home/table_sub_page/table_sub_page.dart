@@ -10,6 +10,7 @@ import 'package:supercharged/supercharged.dart';
 
 import 'loading_table_skeleton.dart';
 import 'main_table.dart';
+import 'main_table_controller.dart';
 import 'table_sub_page_states.dart';
 
 class TableSubPage extends ConsumerWidget {
@@ -18,7 +19,10 @@ class TableSubPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return RefreshIndicator(
-      onRefresh: () => ref.read(tableSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds),
+      onRefresh: () async {
+        await ref.read(tableSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds);
+        await ref.read(mainTableControllerProvider.notifier).refresh();
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: SizedBox(
