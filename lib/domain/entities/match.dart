@@ -2,6 +2,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/domain/entities/identifiable.dart';
+import 'package:offside/domain/entities/match_outcome.dart';
 
 import 'bet.dart';
 import 'fetchable.dart';
@@ -20,9 +21,8 @@ class Match with _$Match implements Identifiable {
     required DateTime kickOffDate,
     required String stage,
     required bool knockoutStage,
-    String? penaltiesWinnerId,
+    MatchOutcome? outcome,
     @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
-    Goals? result,
   }) = _Match;
 
   const Match._();
@@ -38,20 +38,21 @@ extension ConvenienceMethods on Match {
     return now.isAfter(kickOffDate);
   }
 
-  bool get finished => result != null;
+  bool get finished => outcome?.goals != null;
 
   bool beingPlayed(DateTime now) {
     return afterKickOff(now) && !finished;
   }
 
   int pointsFor({required Goals prediction}) {
+    final result = outcome!.goals;
     if (result == prediction) {
       return 3;
     }
 
-    if (result!.homeTeamWon && prediction.homeTeamWon ||
-        result!.awayTeamWon && prediction.awayTeamWon ||
-        result!.draw && prediction.draw) {
+    if (result.homeTeamWon && prediction.homeTeamWon ||
+        result.awayTeamWon && prediction.awayTeamWon ||
+        result.draw && prediction.draw) {
       return 1;
     }
 

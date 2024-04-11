@@ -46,7 +46,7 @@ class MainTableController extends _$MainTableController {
   }
 
   List<UserScores> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets) {
-    final matchesWithResult = matches.where((match) => match.result != null).toList();
+    final matchesWithResult = matches.where((match) => match.outcome?.goals != null).toList();
 
     return userBets.entries.map((userAndBets) {
       final user = userAndBets.key;

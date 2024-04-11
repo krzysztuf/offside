@@ -86,7 +86,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
               itemBuilder: (context) => [
                 PopupMenuItem(
                   value: AdminAction.setScore,
-                  onTap: () => updateMatchScore(context, ref, state.match.result),
+                  onTap: () => updateMatchScore(context, ref, state.match),
                   child: const IconWithText(icon: Icons.edit_note, text: 'Ustaw wynik'),
                 ),
                 PopupMenuItem(
@@ -155,6 +155,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
   }
 
   SizedBox buildFooter(MatchCardState state, BuildContext context) {
+    var now = ref.read(dateTimeProvider);
     return SizedBox(
       width: double.infinity,
       child: Row(
@@ -173,7 +174,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
             child: Row(
               children: [
                 Visibility(
-                  visible: state.match.afterKickOff(ref.read(dateTimeProvider)),
+                  visible: state.match.afterKickOff(now),
                   child: FilledButton.tonalIcon(
                     icon: const Icon(Icons.group, size: 18),
                     label: const Text('Typy'),
@@ -200,7 +201,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                       }),
                 ),
                 Visibility(
-                  visible: !editingPrediction && state.betState == BetState.placed,
+                  visible: !editingPrediction && state.betState == BetState.placed && !state.match.afterKickOff(now),
                   child: FilledButton.tonalIcon(
                     icon: const Icon(Icons.edit, size: 18),
                     label: const Text('Zmień'),
@@ -275,9 +276,9 @@ class _MatchCardState extends ConsumerState<MatchCard> {
         });
   }
 
-  Future<void> updateMatchScore(BuildContext context, WidgetRef ref, Goals? goals) {
-    return SetMatchResultDialog.show(context, goals, (result) {
-      ref.read(matchCardControllerProvider.notifier).setResult(result);
+  Future<void> updateMatchScore(BuildContext context, WidgetRef ref, Match match) {
+    return SetMatchResultDialog.show(context, match, (outcome) {
+      ref.read(matchCardControllerProvider.notifier).setResult(outcome);
     });
   }
 

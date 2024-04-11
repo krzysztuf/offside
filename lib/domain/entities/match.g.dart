@@ -11,10 +11,9 @@ _$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
       kickOffDate: DateTime.parse(json['kickOffDate'] as String),
       stage: json['stage'] as String,
       knockoutStage: json['knockoutStage'] as bool,
-      penaltiesWinnerId: json['penaltiesWinnerId'] as String?,
-      result: json['result'] == null
+      outcome: json['outcome'] == null
           ? null
-          : Goals.fromJson(json['result'] as Map<String, dynamic>),
+          : MatchOutcome.fromJson(json['outcome'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>
@@ -23,6 +22,5 @@ Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>
       'kickOffDate': instance.kickOffDate.toIso8601String(),
       'stage': instance.stage,
       'knockoutStage': instance.knockoutStage,
-      'penaltiesWinnerId': instance.penaltiesWinnerId,
-      'result': instance.result,
+      'outcome': instance.outcome,
     };

@@ -12,6 +12,7 @@ import 'package:offside/data/sources/remote/firestore_document_fetchable.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/match_outcome.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 
@@ -27,9 +28,9 @@ extension EntityToFirestoreMapping on GetIt {
           Timestamp.fromDate(entity.kickOffDate),
           entity.stage,
           entity.knockoutStage,
-          entity.penaltiesWinnerId,
+          entity.outcome?.penaltiesWinnerId,
           DocumentCollection<BetModel>('matches/${entity.id}/bets'),
-          entity.result?.toJson(),
+          entity.outcome?.goals.toJson(),
         ),
       ),
       backward: (document) => Match(
@@ -39,9 +40,8 @@ extension EntityToFirestoreMapping on GetIt {
         kickOffDate: document.value.kickOffDate.toDate(),
         stage: document.value.stage,
         knockoutStage: document.value.knockoutStage,
-        penaltiesWinnerId: document.value.penaltiesWinnerId,
+        outcome: _buildOutcome(document.value),
         bets: FirestoreCollectionFetchable<Bet, BetModel>(document.value.bets),
-        result: document.value.result != null ? Goals.fromJson(document.value.result!) : null,
       ),
     );
 
@@ -114,5 +114,11 @@ extension EntityToFirestoreMapping on GetIt {
             away: model.awayGoalsPrediction,
           ),
         ));
+  }
+
+  MatchOutcome? _buildOutcome(MatchModel match) {
+    return match.result != null
+        ? MatchOutcome(penaltiesWinnerId: match.penaltiesWinnerId, goals: Goals.fromJson(match.result!))
+        : null;
   }
 }

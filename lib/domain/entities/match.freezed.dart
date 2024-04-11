@@ -28,10 +28,9 @@ mixin _$Match {
   DateTime get kickOffDate => throw _privateConstructorUsedError;
   String get stage => throw _privateConstructorUsedError;
   bool get knockoutStage => throw _privateConstructorUsedError;
-  String? get penaltiesWinnerId => throw _privateConstructorUsedError;
+  MatchOutcome? get outcome => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets => throw _privateConstructorUsedError;
-  Goals? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,11 +49,10 @@ abstract class $MatchCopyWith<$Res> {
       DateTime kickOffDate,
       String stage,
       bool knockoutStage,
-      String? penaltiesWinnerId,
-      @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
-      Goals? result});
+      MatchOutcome? outcome,
+      @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets});
 
-  $GoalsCopyWith<$Res>? get result;
+  $MatchOutcomeCopyWith<$Res>? get outcome;
 }
 
 /// @nodoc
@@ -76,9 +74,8 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
     Object? kickOffDate = null,
     Object? stage = null,
     Object? knockoutStage = null,
-    Object? penaltiesWinnerId = freezed,
+    Object? outcome = freezed,
     Object? bets = null,
-    Object? result = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -105,30 +102,26 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
           ? _value.knockoutStage
           : knockoutStage // ignore: cast_nullable_to_non_nullable
               as bool,
-      penaltiesWinnerId: freezed == penaltiesWinnerId
-          ? _value.penaltiesWinnerId
-          : penaltiesWinnerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      outcome: freezed == outcome
+          ? _value.outcome
+          : outcome // ignore: cast_nullable_to_non_nullable
+              as MatchOutcome?,
       bets: null == bets
           ? _value.bets
           : bets // ignore: cast_nullable_to_non_nullable
               as Fetchable<List<Bet>>,
-      result: freezed == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as Goals?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $GoalsCopyWith<$Res>? get result {
-    if (_value.result == null) {
+  $MatchOutcomeCopyWith<$Res>? get outcome {
+    if (_value.outcome == null) {
       return null;
     }
 
-    return $GoalsCopyWith<$Res>(_value.result!, (value) {
-      return _then(_value.copyWith(result: value) as $Val);
+    return $MatchOutcomeCopyWith<$Res>(_value.outcome!, (value) {
+      return _then(_value.copyWith(outcome: value) as $Val);
     });
   }
 }
@@ -147,12 +140,11 @@ abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
       DateTime kickOffDate,
       String stage,
       bool knockoutStage,
-      String? penaltiesWinnerId,
-      @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
-      Goals? result});
+      MatchOutcome? outcome,
+      @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets});
 
   @override
-  $GoalsCopyWith<$Res>? get result;
+  $MatchOutcomeCopyWith<$Res>? get outcome;
 }
 
 /// @nodoc
@@ -172,9 +164,8 @@ class __$$MatchImplCopyWithImpl<$Res>
     Object? kickOffDate = null,
     Object? stage = null,
     Object? knockoutStage = null,
-    Object? penaltiesWinnerId = freezed,
+    Object? outcome = freezed,
     Object? bets = null,
-    Object? result = freezed,
   }) {
     return _then(_$MatchImpl(
       id: null == id
@@ -201,18 +192,14 @@ class __$$MatchImplCopyWithImpl<$Res>
           ? _value.knockoutStage
           : knockoutStage // ignore: cast_nullable_to_non_nullable
               as bool,
-      penaltiesWinnerId: freezed == penaltiesWinnerId
-          ? _value.penaltiesWinnerId
-          : penaltiesWinnerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      outcome: freezed == outcome
+          ? _value.outcome
+          : outcome // ignore: cast_nullable_to_non_nullable
+              as MatchOutcome?,
       bets: null == bets
           ? _value.bets
           : bets // ignore: cast_nullable_to_non_nullable
               as Fetchable<List<Bet>>,
-      result: freezed == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as Goals?,
     ));
   }
 }
@@ -227,9 +214,8 @@ class _$MatchImpl extends _Match {
       required this.kickOffDate,
       required this.stage,
       required this.knockoutStage,
-      this.penaltiesWinnerId,
-      @JsonKey(includeFromJson: false) this.bets = const NoOpFetchable(),
-      this.result})
+      this.outcome,
+      @JsonKey(includeFromJson: false) this.bets = const NoOpFetchable()})
       : super._();
 
   factory _$MatchImpl.fromJson(Map<String, dynamic> json) =>
@@ -251,16 +237,14 @@ class _$MatchImpl extends _Match {
   @override
   final bool knockoutStage;
   @override
-  final String? penaltiesWinnerId;
+  final MatchOutcome? outcome;
   @override
   @JsonKey(includeFromJson: false)
   final Fetchable<List<Bet>> bets;
-  @override
-  final Goals? result;
 
   @override
   String toString() {
-    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, kickOffDate: $kickOffDate, stage: $stage, knockoutStage: $knockoutStage, penaltiesWinnerId: $penaltiesWinnerId, bets: $bets, result: $result)';
+    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, kickOffDate: $kickOffDate, stage: $stage, knockoutStage: $knockoutStage, outcome: $outcome, bets: $bets)';
   }
 
   @override
@@ -278,16 +262,14 @@ class _$MatchImpl extends _Match {
             (identical(other.stage, stage) || other.stage == stage) &&
             (identical(other.knockoutStage, knockoutStage) ||
                 other.knockoutStage == knockoutStage) &&
-            (identical(other.penaltiesWinnerId, penaltiesWinnerId) ||
-                other.penaltiesWinnerId == penaltiesWinnerId) &&
-            (identical(other.bets, bets) || other.bets == bets) &&
-            (identical(other.result, result) || other.result == result));
+            (identical(other.outcome, outcome) || other.outcome == outcome) &&
+            (identical(other.bets, bets) || other.bets == bets));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, homeTeam, awayTeam,
-      kickOffDate, stage, knockoutStage, penaltiesWinnerId, bets, result);
+      kickOffDate, stage, knockoutStage, outcome, bets);
 
   @JsonKey(ignore: true)
   @override
@@ -305,15 +287,15 @@ class _$MatchImpl extends _Match {
 
 abstract class _Match extends Match {
   const factory _Match(
-      {final String id,
-      @JsonKey(includeFromJson: false) final Fetchable<Team> homeTeam,
-      @JsonKey(includeFromJson: false) final Fetchable<Team> awayTeam,
-      required final DateTime kickOffDate,
-      required final String stage,
-      required final bool knockoutStage,
-      final String? penaltiesWinnerId,
-      @JsonKey(includeFromJson: false) final Fetchable<List<Bet>> bets,
-      final Goals? result}) = _$MatchImpl;
+          {final String id,
+          @JsonKey(includeFromJson: false) final Fetchable<Team> homeTeam,
+          @JsonKey(includeFromJson: false) final Fetchable<Team> awayTeam,
+          required final DateTime kickOffDate,
+          required final String stage,
+          required final bool knockoutStage,
+          final MatchOutcome? outcome,
+          @JsonKey(includeFromJson: false) final Fetchable<List<Bet>> bets}) =
+      _$MatchImpl;
   const _Match._() : super._();
 
   factory _Match.fromJson(Map<String, dynamic> json) = _$MatchImpl.fromJson;
@@ -333,12 +315,10 @@ abstract class _Match extends Match {
   @override
   bool get knockoutStage;
   @override
-  String? get penaltiesWinnerId;
+  MatchOutcome? get outcome;
   @override
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets;
-  @override
-  Goals? get result;
   @override
   @JsonKey(ignore: true)
   _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>

@@ -12,6 +12,15 @@ class TeamBadge extends StatelessWidget {
   final double badgeRadius;
   final TextStyle? textStyle;
 
+  factory TeamBadge.dense(Team team, BuildContext context) {
+    return TeamBadge(
+      team: team,
+      direction: Axis.horizontal,
+      badgeRadius: 6,
+      textStyle: context.textTheme.bodyMedium,
+    );
+  }
+
   const TeamBadge({
     super.key,
     required this.team,

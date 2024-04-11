@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
@@ -29,9 +30,9 @@ class MatchKickOffStatus extends ConsumerWidget {
       return const BeingPlayedIndicator();
     }
 
-    return const MutedInformationLabel(
+    return MutedInformationLabel(
       icon: Icons.event_available,
-      text: 'ZAKOŃCZONY',
+      text: 'ZAKOŃCZONY (${match.outcome!.goals.asString})',
     );
   }
 }

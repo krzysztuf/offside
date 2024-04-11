@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:offside/domain/entities/goals.dart';
+import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/match_outcome.dart';
+import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/goals_prediction_editor.dart';
+import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
+import 'package:offside/presentation/widgets/enabled.dart';
+import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
 class SetMatchResultDialog extends ConsumerStatefulWidget {
-  final Goals? goals;
-  final Function(Goals) onScoreSet;
+  final Match match;
+  final Function(MatchOutcome) onScoreSet;
 
   const SetMatchResultDialog({
     super.key,
-    required this.goals,
+    required this.match,
     required this.onScoreSet,
   });
 
-  static Future<void> show(BuildContext context, Goals? goals, Function(Goals) onScoreSet) async {
+  static Future<void> show(BuildContext context, Match match, Function(MatchOutcome) onScoreSet) async {
     return showDialog(
       context: context,
       builder: (context) => SetMatchResultDialog(
-        goals: goals,
+        match: match,
         onScoreSet: onScoreSet,
       ),
     );
@@ -28,12 +35,26 @@ class SetMatchResultDialog extends ConsumerStatefulWidget {
 }
 
 class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
-  late Goals editedGoals;
+  late MatchOutcome outcome;
+
+  Team? get penaltiesWinnerTeam {
+    final winnerId = outcome.penaltiesWinnerId;
+    final match = widget.match;
+
+    if (winnerId == match.homeTeam.value.id) {
+      return match.homeTeam.value;
+    } else if (winnerId == match.awayTeam.value.id) {
+      return match.awayTeam.value;
+    }
+
+    return null;
+  }
 
   @override
   void initState() {
     super.initState();
-    editedGoals = widget.goals ?? const Goals();
+
+    outcome = widget.match.outcome ?? const MatchOutcome(goals: Goals());
   }
 
   @override
@@ -41,13 +62,36 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
     return AlertDialog(
       title: const Text('Wynik meczu'),
       content: SizedBox(
-        height: 160,
-        child: Center(
-          child: GoalsPredictionEditor(
-            initialPrediction: editedGoals,
-            editable: true,
-            onUpdated: (prediction) => editedGoals = prediction,
-          ),
+        height: 200,
+        child: Column(
+          children: [
+            Center(
+              child: GoalsPredictionEditor(
+                initialPrediction: outcome.goals,
+                editable: true,
+                onUpdated: (prediction) {
+                  setState(() => outcome = outcome.copyWith(goals: prediction));
+                },
+              ),
+            ),
+            const Gap(16),
+            Enabled(
+              enabled: widget.match.knockoutStage && outcome.goals.draw,
+              child: ListTile(
+                title: const Text('Zwycięzca w karnych'),
+                contentPadding: EdgeInsets.zero,
+                trailing: BorderedDropdownButton<Team>(
+                  value: penaltiesWinnerTeam,
+                  items: [widget.match.homeTeam.value, widget.match.awayTeam.value].map((team) {
+                    return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
+                  }).toList(),
+                  onChanged: (team) => setState(() {
+                    outcome = outcome.copyWith(penaltiesWinnerId: team!.id);
+                  }),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       actions: [
@@ -57,7 +101,11 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
         ),
         TextButton(
           onPressed: () {
-            widget.onScoreSet(editedGoals);
+            if (!outcome.goals.draw) {
+              outcome = outcome.copyWith(penaltiesWinnerId: null);
+            }
+
+            widget.onScoreSet(outcome);
             Navigator.of(context).pop();
           },
           child: const Text('Zapisz'),

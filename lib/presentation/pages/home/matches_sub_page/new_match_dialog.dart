@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
-import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/fetchable.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
@@ -59,7 +58,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
                 trailing: BorderedDropdownButton<Team>(
                   value: homeTeam,
                   items: state.teams
-                      .map((team) => DropdownMenuItem(value: team, child: buildDenseTeamBadge(team, context)))
+                      .map((team) => DropdownMenuItem(value: team, child: TeamBadge.dense(team, context)))
                       .toList(),
                   onChanged: (team) => setState(() => homeTeam = team),
                 ),
@@ -70,7 +69,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
                 trailing: BorderedDropdownButton<Team>(
                   value: awayTeam,
                   items: state.teams
-                      .map((team) => DropdownMenuItem(value: team, child: buildDenseTeamBadge(team, context)))
+                      .map((team) => DropdownMenuItem(value: team, child: TeamBadge.dense(team, context)))
                       .toList(),
                   onChanged: (team) => setState(() => awayTeam = team),
                 ),
@@ -115,15 +114,6 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
           ),
         ),
       ],
-    );
-  }
-
-  TeamBadge buildDenseTeamBadge(Team team, BuildContext context) {
-    return TeamBadge(
-      team: team,
-      direction: Axis.horizontal,
-      badgeRadius: 6,
-      textStyle: context.textTheme.bodyMedium,
     );
   }
 
