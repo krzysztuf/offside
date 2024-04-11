@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/presentation/pages/home/matches_sub_page/match_bet_card_state.dart';
+import 'package:offside/presentation/pages/home/matches_sub_page/match_card_state.dart';
 import 'package:offside/presentation/theme/color_preset.dart';
 import 'package:supercharged/supercharged.dart';
 

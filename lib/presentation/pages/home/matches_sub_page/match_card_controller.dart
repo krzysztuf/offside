@@ -8,20 +8,20 @@ import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_pag
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'match_bet_card_state.dart';
+import 'match_card_state.dart';
 
-part 'match_bet_card_controller.g.dart';
+part 'match_card_controller.g.dart';
 
 @riverpod
-class MatchBetCardController extends _$MatchBetCardController {
+class MatchCardController extends _$MatchCardController {
   @override
-  MatchBetCardState build() {
+  MatchCardState build() {
     final match = ref.read(currentCardMatchProvider);
     final userId = ref.watch(currentUserIdSettingProvider);
 
     _fetchBets(match, userId);
 
-    return MatchBetCardState(match: match, loading: true);
+    return MatchCardState(match: match, loading: true);
   }
 
   Future<void> setResult(Goals result) async {

@@ -5,12 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/presentation/pages/home/matches_sub_page/match_bet_card_controller.dart';
+import 'package:offside/presentation/pages/home/matches_sub_page/match_card_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page_controller.dart';
 import 'package:offside/presentation/widgets/admin_visible.dart';
 import 'package:supercharged/supercharged.dart';
 
-import 'match_bet_card.dart';
+import 'match_card.dart';
 
 class MatchesSubPage extends ConsumerStatefulWidget {
   const MatchesSubPage({super.key});
@@ -81,12 +81,12 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
             for (final match in matchesThisDay)
               ProviderScope(
                 overrides: [
-                  matchBetCardControllerProvider.overrideWith(() => MatchBetCardController()),
+                  matchCardControllerProvider.overrideWith(() => MatchCardController()),
                   currentCardMatchProvider.overrideWith((_) => match),
                 ],
                 child: const Column(
                   children: [
-                    MatchBetCard(),
+                    MatchCard(),
                     Gap(32),
                   ],
                 ),

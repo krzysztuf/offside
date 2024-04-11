@@ -9,6 +9,7 @@ part of 'match.dart';
 _$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
       id: json['id'] as String? ?? '',
       kickOffDate: DateTime.parse(json['kickOffDate'] as String),
+      stage: json['stage'] as String,
       result: json['result'] == null
           ? null
           : Goals.fromJson(json['result'] as Map<String, dynamic>),
@@ -18,5 +19,6 @@ Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'kickOffDate': instance.kickOffDate.toIso8601String(),
+      'stage': instance.stage,
       'result': instance.result,
     };

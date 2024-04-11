@@ -2,18 +2,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 
-part 'match_bet_card_state.freezed.dart';
+part 'match_card_state.freezed.dart';
 
 @freezed
-class MatchBetCardState with _$MatchBetCardState {
-  const factory MatchBetCardState({
+class MatchCardState with _$MatchCardState {
+  const factory MatchCardState({
     required Match match,
     Bet? bet,
     @Default(BetState.notPlaced) BetState betState,
     @Default(false) bool loading,
-  }) = _MatchBetCardState;
+  }) = _MatchCardState;
 
-  const MatchBetCardState._();
+  const MatchCardState._();
 }
 
 enum BetState {
@@ -23,7 +23,7 @@ enum BetState {
   expired,
 }
 
-extension MatchBetConvenienceExtensions on MatchBetCardState {
+extension MatchBetConvenienceExtensions on MatchCardState {
   bool canPlaceBet(DateTime now) => betState == BetState.notPlaced && !match.afterKickOff(now);
 
   bool canUpdateBet(DateTime now) => betState == BetState.placed && !match.afterKickOff(now);

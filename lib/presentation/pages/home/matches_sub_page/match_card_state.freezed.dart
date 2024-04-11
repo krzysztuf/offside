@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'match_bet_card_state.dart';
+part of 'match_card_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,22 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$MatchBetCardState {
+mixin _$MatchCardState {
   Match get match => throw _privateConstructorUsedError;
   Bet? get bet => throw _privateConstructorUsedError;
   BetState get betState => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MatchBetCardStateCopyWith<MatchBetCardState> get copyWith =>
+  $MatchCardStateCopyWith<MatchCardState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MatchBetCardStateCopyWith<$Res> {
-  factory $MatchBetCardStateCopyWith(
-          MatchBetCardState value, $Res Function(MatchBetCardState) then) =
-      _$MatchBetCardStateCopyWithImpl<$Res, MatchBetCardState>;
+abstract class $MatchCardStateCopyWith<$Res> {
+  factory $MatchCardStateCopyWith(
+          MatchCardState value, $Res Function(MatchCardState) then) =
+      _$MatchCardStateCopyWithImpl<$Res, MatchCardState>;
   @useResult
   $Res call({Match match, Bet? bet, BetState betState, bool loading});
 
@@ -39,9 +39,9 @@ abstract class $MatchBetCardStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MatchBetCardStateCopyWithImpl<$Res, $Val extends MatchBetCardState>
-    implements $MatchBetCardStateCopyWith<$Res> {
-  _$MatchBetCardStateCopyWithImpl(this._value, this._then);
+class _$MatchCardStateCopyWithImpl<$Res, $Val extends MatchCardState>
+    implements $MatchCardStateCopyWith<$Res> {
+  _$MatchCardStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -98,11 +98,11 @@ class _$MatchBetCardStateCopyWithImpl<$Res, $Val extends MatchBetCardState>
 }
 
 /// @nodoc
-abstract class _$$MatchBetCardStateImplCopyWith<$Res>
-    implements $MatchBetCardStateCopyWith<$Res> {
-  factory _$$MatchBetCardStateImplCopyWith(_$MatchBetCardStateImpl value,
-          $Res Function(_$MatchBetCardStateImpl) then) =
-      __$$MatchBetCardStateImplCopyWithImpl<$Res>;
+abstract class _$$MatchCardStateImplCopyWith<$Res>
+    implements $MatchCardStateCopyWith<$Res> {
+  factory _$$MatchCardStateImplCopyWith(_$MatchCardStateImpl value,
+          $Res Function(_$MatchCardStateImpl) then) =
+      __$$MatchCardStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Match match, Bet? bet, BetState betState, bool loading});
@@ -114,11 +114,11 @@ abstract class _$$MatchBetCardStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$MatchBetCardStateImplCopyWithImpl<$Res>
-    extends _$MatchBetCardStateCopyWithImpl<$Res, _$MatchBetCardStateImpl>
-    implements _$$MatchBetCardStateImplCopyWith<$Res> {
-  __$$MatchBetCardStateImplCopyWithImpl(_$MatchBetCardStateImpl _value,
-      $Res Function(_$MatchBetCardStateImpl) _then)
+class __$$MatchCardStateImplCopyWithImpl<$Res>
+    extends _$MatchCardStateCopyWithImpl<$Res, _$MatchCardStateImpl>
+    implements _$$MatchCardStateImplCopyWith<$Res> {
+  __$$MatchCardStateImplCopyWithImpl(
+      _$MatchCardStateImpl _value, $Res Function(_$MatchCardStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -129,7 +129,7 @@ class __$$MatchBetCardStateImplCopyWithImpl<$Res>
     Object? betState = null,
     Object? loading = null,
   }) {
-    return _then(_$MatchBetCardStateImpl(
+    return _then(_$MatchCardStateImpl(
       match: null == match
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
@@ -152,8 +152,8 @@ class __$$MatchBetCardStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MatchBetCardStateImpl extends _MatchBetCardState {
-  const _$MatchBetCardStateImpl(
+class _$MatchCardStateImpl extends _MatchCardState {
+  const _$MatchCardStateImpl(
       {required this.match,
       this.bet,
       this.betState = BetState.notPlaced,
@@ -173,14 +173,14 @@ class _$MatchBetCardStateImpl extends _MatchBetCardState {
 
   @override
   String toString() {
-    return 'MatchBetCardState(match: $match, bet: $bet, betState: $betState, loading: $loading)';
+    return 'MatchCardState(match: $match, bet: $bet, betState: $betState, loading: $loading)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MatchBetCardStateImpl &&
+            other is _$MatchCardStateImpl &&
             (identical(other.match, match) || other.match == match) &&
             (identical(other.bet, bet) || other.bet == bet) &&
             (identical(other.betState, betState) ||
@@ -194,18 +194,18 @@ class _$MatchBetCardStateImpl extends _MatchBetCardState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MatchBetCardStateImplCopyWith<_$MatchBetCardStateImpl> get copyWith =>
-      __$$MatchBetCardStateImplCopyWithImpl<_$MatchBetCardStateImpl>(
+  _$$MatchCardStateImplCopyWith<_$MatchCardStateImpl> get copyWith =>
+      __$$MatchCardStateImplCopyWithImpl<_$MatchCardStateImpl>(
           this, _$identity);
 }
 
-abstract class _MatchBetCardState extends MatchBetCardState {
-  const factory _MatchBetCardState(
+abstract class _MatchCardState extends MatchCardState {
+  const factory _MatchCardState(
       {required final Match match,
       final Bet? bet,
       final BetState betState,
-      final bool loading}) = _$MatchBetCardStateImpl;
-  const _MatchBetCardState._() : super._();
+      final bool loading}) = _$MatchCardStateImpl;
+  const _MatchCardState._() : super._();
 
   @override
   Match get match;
@@ -217,6 +217,6 @@ abstract class _MatchBetCardState extends MatchBetCardState {
   bool get loading;
   @override
   @JsonKey(ignore: true)
-  _$$MatchBetCardStateImplCopyWith<_$MatchBetCardStateImpl> get copyWith =>
+  _$$MatchCardStateImplCopyWith<_$MatchCardStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

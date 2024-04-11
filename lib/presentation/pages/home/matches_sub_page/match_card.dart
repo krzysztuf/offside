@@ -11,8 +11,8 @@ import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/expired_bet_goals.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/goals_prediction_editor.dart';
-import 'package:offside/presentation/pages/home/matches_sub_page/match_bet_card_controller.dart';
-import 'package:offside/presentation/pages/home/matches_sub_page/match_bet_card_state.dart';
+import 'package:offside/presentation/pages/home/matches_sub_page/match_card_controller.dart';
+import 'package:offside/presentation/pages/home/matches_sub_page/match_card_state.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/match_kick_off_status.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/set_match_result_dialog.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
@@ -29,11 +29,11 @@ import 'package:supercharged/supercharged.dart';
 
 import 'bets/bet_status_pill.dart';
 
-class MatchBetCard extends ConsumerStatefulWidget {
-  const MatchBetCard({super.key});
+class MatchCard extends ConsumerStatefulWidget {
+  const MatchCard({super.key});
 
   @override
-  ConsumerState<MatchBetCard> createState() => _MatchBetCardState();
+  ConsumerState<MatchCard> createState() => _MatchCardState();
 }
 
 enum AdminAction {
@@ -41,13 +41,13 @@ enum AdminAction {
   setScore,
 }
 
-class _MatchBetCardState extends ConsumerState<MatchBetCard> {
+class _MatchCardState extends ConsumerState<MatchCard> {
   var editingPrediction = false;
   Goals? editedPrediction;
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(matchBetCardControllerProvider);
+    final state = ref.watch(matchCardControllerProvider);
 
     return Card(
       elevation: 3,
@@ -67,14 +67,14 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  Row buildHeader(MatchBetCardState state) {
+  Row buildHeader(MatchCardState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const MutedInformationLabel(
+        MutedInformationLabel(
           icon: Icons.emoji_events_outlined,
-          text: 'GRUPA A',
+          text: state.match.stage,
         ),
         AdminVisible(
           child: SizedBox.square(
@@ -104,7 +104,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  Row buildGoalsPredictionRow(MatchBetCardState state) {
+  Row buildGoalsPredictionRow(MatchCardState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -154,7 +154,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
     );
   }
 
-  SizedBox buildFooter(MatchBetCardState state, BuildContext context) {
+  SizedBox buildFooter(MatchCardState state, BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: Row(
@@ -195,7 +195,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
                       label: const Text('Typuj'),
                       onPressed: () async {
                         editedPrediction ??= const Goals();
-                        await ref.read(matchBetCardControllerProvider.notifier).updatePrediction(editedPrediction!);
+                        await ref.read(matchCardControllerProvider.notifier).updatePrediction(editedPrediction!);
                         setState(() => editingPrediction = false);
                       }),
                 ),
@@ -266,7 +266,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
             ),
             TextButton(
               onPressed: () {
-                ref.read(matchBetCardControllerProvider.notifier).removeMatch();
+                ref.read(matchCardControllerProvider.notifier).removeMatch();
                 Navigator.of(context).pop();
               },
               child: const Text('Usuń'),
@@ -277,7 +277,7 @@ class _MatchBetCardState extends ConsumerState<MatchBetCard> {
 
   Future<void> updateMatchScore(BuildContext context, WidgetRef ref, Goals? goals) {
     return SetMatchResultDialog.show(context, goals, (result) {
-      ref.read(matchBetCardControllerProvider.notifier).setResult(result);
+      ref.read(matchCardControllerProvider.notifier).setResult(result);
     });
   }
 

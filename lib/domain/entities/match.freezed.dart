@@ -26,6 +26,7 @@ mixin _$Match {
   @JsonKey(includeFromJson: false)
   Fetchable<Team> get awayTeam => throw _privateConstructorUsedError;
   DateTime get kickOffDate => throw _privateConstructorUsedError;
+  String get stage => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets => throw _privateConstructorUsedError;
   Goals? get result => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $MatchCopyWith<$Res> {
       @JsonKey(includeFromJson: false) Fetchable<Team> homeTeam,
       @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
       DateTime kickOffDate,
+      String stage,
       @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
       Goals? result});
 
@@ -68,6 +70,7 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
     Object? homeTeam = null,
     Object? awayTeam = null,
     Object? kickOffDate = null,
+    Object? stage = null,
     Object? bets = null,
     Object? result = freezed,
   }) {
@@ -88,6 +91,10 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
           ? _value.kickOffDate
           : kickOffDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      stage: null == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as String,
       bets: null == bets
           ? _value.bets
           : bets // ignore: cast_nullable_to_non_nullable
@@ -124,6 +131,7 @@ abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
       @JsonKey(includeFromJson: false) Fetchable<Team> homeTeam,
       @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
       DateTime kickOffDate,
+      String stage,
       @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
       Goals? result});
 
@@ -146,6 +154,7 @@ class __$$MatchImplCopyWithImpl<$Res>
     Object? homeTeam = null,
     Object? awayTeam = null,
     Object? kickOffDate = null,
+    Object? stage = null,
     Object? bets = null,
     Object? result = freezed,
   }) {
@@ -166,6 +175,10 @@ class __$$MatchImplCopyWithImpl<$Res>
           ? _value.kickOffDate
           : kickOffDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      stage: null == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as String,
       bets: null == bets
           ? _value.bets
           : bets // ignore: cast_nullable_to_non_nullable
@@ -186,6 +199,7 @@ class _$MatchImpl extends _Match {
       @JsonKey(includeFromJson: false) this.homeTeam = const NoOpFetchable(),
       @JsonKey(includeFromJson: false) this.awayTeam = const NoOpFetchable(),
       required this.kickOffDate,
+      required this.stage,
       @JsonKey(includeFromJson: false) this.bets = const NoOpFetchable(),
       this.result})
       : super._();
@@ -205,6 +219,8 @@ class _$MatchImpl extends _Match {
   @override
   final DateTime kickOffDate;
   @override
+  final String stage;
+  @override
   @JsonKey(includeFromJson: false)
   final Fetchable<List<Bet>> bets;
   @override
@@ -212,7 +228,7 @@ class _$MatchImpl extends _Match {
 
   @override
   String toString() {
-    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, kickOffDate: $kickOffDate, bets: $bets, result: $result)';
+    return 'Match(id: $id, homeTeam: $homeTeam, awayTeam: $awayTeam, kickOffDate: $kickOffDate, stage: $stage, bets: $bets, result: $result)';
   }
 
   @override
@@ -227,6 +243,7 @@ class _$MatchImpl extends _Match {
                 other.awayTeam == awayTeam) &&
             (identical(other.kickOffDate, kickOffDate) ||
                 other.kickOffDate == kickOffDate) &&
+            (identical(other.stage, stage) || other.stage == stage) &&
             (identical(other.bets, bets) || other.bets == bets) &&
             (identical(other.result, result) || other.result == result));
   }
@@ -234,7 +251,7 @@ class _$MatchImpl extends _Match {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, homeTeam, awayTeam, kickOffDate, bets, result);
+      runtimeType, id, homeTeam, awayTeam, kickOffDate, stage, bets, result);
 
   @JsonKey(ignore: true)
   @override
@@ -256,6 +273,7 @@ abstract class _Match extends Match {
       @JsonKey(includeFromJson: false) final Fetchable<Team> homeTeam,
       @JsonKey(includeFromJson: false) final Fetchable<Team> awayTeam,
       required final DateTime kickOffDate,
+      required final String stage,
       @JsonKey(includeFromJson: false) final Fetchable<List<Bet>> bets,
       final Goals? result}) = _$MatchImpl;
   const _Match._() : super._();
@@ -272,6 +290,8 @@ abstract class _Match extends Match {
   Fetchable<Team> get awayTeam;
   @override
   DateTime get kickOffDate;
+  @override
+  String get stage;
   @override
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets;

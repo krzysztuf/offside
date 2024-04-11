@@ -10,6 +10,7 @@ class MatchModel {
   final Document<TeamModel> homeTeam;
   final Document<TeamModel> awayTeam;
   final Timestamp kickOffDate;
+  final String stage;
   final DocumentCollection<BetModel> bets;
   final Map<String, dynamic>? result;
 
@@ -18,6 +19,7 @@ class MatchModel {
     this.homeTeam,
     this.awayTeam,
     this.kickOffDate,
+    this.stage,
     this.bets,
     this.result,
   );
@@ -27,6 +29,7 @@ class MatchModel {
       'homeTeamRef': homeTeam.path,
       'awayTeamRef': awayTeam.path,
       'kickOffDate': kickOffDate,
+      'stage': stage,
       'result': result,
     };
   }
@@ -39,6 +42,7 @@ class MatchModel {
       Document(json['homeTeamRef'] as String),
       Document(json['awayTeamRef'] as String),
       json['kickOffDate'] as Timestamp,
+      json['stage'] as String,
       DocumentCollection('matches/${snapshot.id}/bets'),
       json['result'] as Map<String, dynamic>?,
     );

@@ -104,10 +104,8 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
               widget.onCreated(Match(
                 homeTeam: LocalFetchable(homeTeam!),
                 awayTeam: LocalFetchable(awayTeam!),
+                stage: stage,
                 kickOffDate: kickOff!,
-                // todo: add missing properties
-                // stage: stage,
-                // cupStage: cupStage,
               ));
 
               Navigator.of(context).pop();
@@ -133,7 +131,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(50.days),
+      lastDate: DateTime.now().add(150.days),
     ).then((date) {
       if (date == null) {
         return;
