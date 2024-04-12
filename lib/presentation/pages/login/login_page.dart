@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/presentation/pages/login/login_page_state.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'login_page_controller.dart';
 
@@ -16,12 +18,14 @@ class LoginPage extends ConsumerStatefulWidget {
   ConsumerState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProviderStateMixin {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   final nameController = TextEditingController();
   final surnameController = TextEditingController();
+
+  late TabController tabController;
 
   bool get credentialsProvided => emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
 
@@ -39,6 +43,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     passwordController.addListener(_refresh);
     nameController.addListener(_refresh);
     surnameController.addListener(_refresh);
+
+    tabController = TabController(length: 2, vsync: this)..addListener(_refresh);
   }
 
   @override
@@ -53,9 +59,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(loginPageControllerProvider);
-
-    // log(state.toString());
-
     if (state.gettingUserInfo || state.loggedIn) {
       if (state.loggedIn) {
         WidgetsBinding.instance.addPostFrameCallback((_) => context.goNamed('home'));
@@ -73,103 +76,38 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     return Scaffold(
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Zaloguj się',
-                style: context.textTheme.displaySmall,
-              ),
-              const Gap(64),
-              CheckboxListTile(
-                  title: const Text('Nie posiadam konta'),
-                  subtitle: const Text('Zaznacz, jeśli jeszcze się nie zarejestrowałeś'),
-                  value: userNotRegistered,
-                  onChanged: (notRegistered) {
-                    setState(() => userNotRegistered = notRegistered ?? false);
-                  }),
-              const Gap(16),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  hintText: 'E-mail',
-                  filled: true,
-                ),
-              ),
-              const Gap(16),
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  hintText: 'Hasło',
-                  filled: true,
-                ),
-              ),
-              const Gap(32),
-              Visibility(
-                visible: userNotRegistered,
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: nameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Imię',
-                        filled: true,
-                      ),
-                    ),
-                    const Gap(16),
-                    TextField(
-                      controller: surnameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Nazwisko',
-                        filled: true,
-                      ),
-                    ),
+        child: Card(
+          elevation: 4.0,
+          margin: const EdgeInsets.all(16),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TabBar(
+                  controller: tabController,
+                  tabs: const [
+                    Tab(icon: Icon(Icons.lock_open), text: "Logowanie"),
+                    Tab(icon: Icon(Icons.person_add), text: "Rejestracja"),
                   ],
+                  indicatorColor: Colors.blue,
+                  labelColor: Colors.blue,
+                  unselectedLabelColor: Colors.grey,
                 ),
-              ),
-              const Gap(64),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Visibility(
-                    visible: userNotRegistered && !state.loggingIn,
-                    child: Enabled(
-                      enabled: credentialsProvided && nameDetailsProvided,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          registerUser();
-                        },
-                        child: const Text('Zarejestruj'),
-                      ),
-                    ),
+                AnimatedContainer(
+                  height: tabController.index == 0 ? 220 : 360, // Adjust the height as needed
+                  duration: 200.milliseconds,
+                  curve: Curves.fastOutSlowIn,
+                  child: TabBarView(
+                    controller: tabController,
+                    children: [
+                      buildLoginView(state),
+                      buildRegisterView(state),
+                    ],
                   ),
-                  Visibility(
-                    visible: !userNotRegistered && !state.loggingIn,
-                    child: Enabled(
-                      enabled: credentialsProvided,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          loginWithProvidedCredentials()
-                              .then((_) => context.goNamed('home'))
-                              .onError((error, _) => showErrorDialog(error!, context));
-                        },
-                        child: const Text('Zaloguj'),
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: state.loggingIn,
-                    child: LoadingAnimationWidget.fourRotatingDots(
-                      color: context.colorScheme.primary,
-                      size: 24,
-                    ),
-                  ),
-                ],
-              )
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -215,5 +153,123 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   void _refresh() {
     setState(() {});
+  }
+
+  Widget buildLoginView(LoginPageState state) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextField(
+          controller: emailController,
+          decoration: const InputDecoration(
+            hintText: 'E-mail',
+            filled: true,
+          ),
+        ),
+        const Gap(16),
+        TextField(
+          controller: passwordController,
+          obscureText: true,
+          decoration: const InputDecoration(
+            hintText: 'Hasło',
+            filled: true,
+          ),
+        ),
+        const Gap(32),
+        Visibility(
+          visible: !state.loggingIn,
+          child: Enabled(
+            enabled: credentialsProvided,
+            child: SizedBox(
+              height: 32,
+              child: ElevatedButton(
+                onPressed: () {
+                  loginWithProvidedCredentials()
+                      .then((_) => context.goNamed('home'))
+                      .onError((error, _) => showErrorDialog(error!, context));
+                },
+                child: const Text('Zaloguj'),
+              ),
+            ),
+          ),
+        ),
+        Visibility(
+          visible: state.loggingIn,
+          child: SizedBox(
+            height: 32,
+            child: LoadingAnimationWidget.fourRotatingDots(
+              color: context.colorScheme.primary,
+              size: 24,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildRegisterView(LoginPageState state) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextField(
+          controller: emailController,
+          decoration: const InputDecoration(
+            hintText: 'E-mail',
+            filled: true,
+          ),
+        ),
+        const Gap(16),
+        TextField(
+          controller: passwordController,
+          obscureText: true,
+          decoration: const InputDecoration(
+            hintText: 'Hasło',
+            filled: true,
+          ),
+        ),
+        const Gap(32),
+        Column(
+          children: [
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                hintText: 'Imię',
+                filled: true,
+              ),
+            ),
+            const Gap(16),
+            TextField(
+              controller: surnameController,
+              decoration: const InputDecoration(
+                hintText: 'Nazwisko',
+                filled: true,
+              ),
+            ),
+          ],
+        ),
+        const Gap(32),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Enabled(
+              enabled: credentialsProvided && nameDetailsProvided,
+              child: ElevatedButton(
+                onPressed: () {
+                  registerUser();
+                },
+                child: const Text('Zarejestruj'),
+              ),
+            ),
+            Visibility(
+              visible: state.loggingIn,
+              child: LoadingAnimationWidget.fourRotatingDots(
+                color: context.colorScheme.primary,
+                size: 24,
+              ),
+            ),
+          ],
+        )
+      ],
+    );
   }
 }

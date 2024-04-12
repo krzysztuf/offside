@@ -131,8 +131,8 @@ class UserBetsTable extends StatelessWidget {
     }
 
     return switch (match.pointsFor(prediction: prediction)) {
-      > 3 => cellStyle.copyWith(color: theme.threePointsColor),
-      1 => cellStyle.copyWith(color: theme.onePointsColor),
+      >= 3 => cellStyle.copyWith(color: theme.threePointsColor),
+      >= 1 => cellStyle.copyWith(color: theme.onePointsColor),
       0 => cellStyle.copyWith(color: theme.noPointsColor),
       _ => cellStyle,
     };

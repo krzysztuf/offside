@@ -17,22 +17,22 @@ class RecentFormDots extends StatelessWidget {
       child: Row(
         children: [
           ...userScores.recentPredictionsScores.map((score) => switch (score) {
-                <= 0 => Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(color: sharedTheme.noPointsColor, borderRadius: BorderRadius.circular(4)),
-                  ),
-                1 => Container(
-                    width: 8,
-                    height: 8,
-                    decoration:
-                        BoxDecoration(color: sharedTheme.onePointsColor, borderRadius: BorderRadius.circular(4)),
-                  ),
                 >= 3 => Container(
                     width: 8,
                     height: 8,
                     decoration:
                         BoxDecoration(color: sharedTheme.threePointsColor, borderRadius: BorderRadius.circular(4)),
+                  ),
+                >= 1 => Container(
+                    width: 8,
+                    height: 8,
+                    decoration:
+                        BoxDecoration(color: sharedTheme.onePointsColor, borderRadius: BorderRadius.circular(4)),
+                  ),
+                <= 0 => Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(color: sharedTheme.noPointsColor, borderRadius: BorderRadius.circular(4)),
                   ),
                 _ => throw UnimplementedError('Unknown score: $score'),
               })

@@ -45,13 +45,21 @@ extension ConvenienceMethods on Match {
   }
 
   int pointsFor({required MatchOutcome prediction}) {
-    final result = outcome!.goals;
+    final result = outcome?.goals;
+    if (result == null) {
+      return 0;
+    }
+
     if (result == prediction.goals) {
       if (knockoutStage && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
         return 4;
       }
 
       return 3;
+    }
+
+    if (knockoutStage && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
+      return 2;
     }
 
     final predictedGoals = prediction.goals;
