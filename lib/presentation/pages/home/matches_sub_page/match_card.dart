@@ -358,7 +358,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
         child: AlternativeInflater(
           useAlternative: editingPrediction || state.betState == BetState.notPlaced,
           builder: () => Padding(
-            padding: const EdgeInsets.only(left: 16),
+            padding: const EdgeInsets.only(left: 14),
             child: TeamBadge.dense(penaltiesWinner!, context),
           ),
           alternativeBuilder: () => Enabled(
