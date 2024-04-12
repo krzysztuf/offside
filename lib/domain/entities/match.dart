@@ -63,4 +63,16 @@ extension ConvenienceMethods on Match {
 
     return 0;
   }
+
+  Team? teamFor({required String id}) {
+    if (homeTeam.value.id == id) {
+      return homeTeam.value;
+    }
+
+    if (awayTeam.value.id == id) {
+      return awayTeam.value;
+    }
+
+    return null;
+  }
 }

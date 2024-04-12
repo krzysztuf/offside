@@ -32,6 +32,7 @@ class UserBetsTable extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Table(
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           columnWidths: const {
             0: FlexColumnWidth(),
             1: FixedColumnWidth(56),
@@ -41,10 +42,10 @@ class UserBetsTable extends StatelessWidget {
           children: [
             TableRow(
               children: [
-                createCell('MECZ', columnTitleStyle),
-                createCell('WYNIK', columnTitleStyle),
-                createCell('TYP', columnTitleStyle),
-                createCell('PKT', columnTitleStyle),
+                createTextCell('MECZ', columnTitleStyle),
+                createTextCell('WYNIK', columnTitleStyle),
+                createTextCell('TYP', columnTitleStyle),
+                createTextCell('PKT', columnTitleStyle),
               ],
             ),
             ...matches.map((m) {
@@ -58,9 +59,9 @@ class UserBetsTable extends StatelessWidget {
                       userBet: userBet,
                     ),
                   ),
-                  createCell(m.outcome?.goals.asString ?? '-', cellStyle),
-                  createCell(userBet?.prediction.goals.asString ?? '-', cellStyle),
-                  createCell(buildPointsText(m, userBet?.prediction), cellStyle),
+                  createOutcomeCell(m, m.outcome, cellStyle),
+                  createOutcomeCell(m, userBet?.prediction, cellStyle),
+                  createTextCell(buildPointsText(m, userBet?.prediction), cellStyle),
                 ],
               );
             })
@@ -70,11 +71,38 @@ class UserBetsTable extends StatelessWidget {
     );
   }
 
-  Widget createCell(String text, TextStyle style) {
+  Widget createTextCell(String text, TextStyle style) {
+    return createCell(Text(text, style: style));
+  }
+
+  Widget createCell(Widget child) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(text, style: style),
+        child: child,
+      ),
+    );
+  }
+
+  Widget createOutcomeCell(Match match, MatchOutcome? outcome, TextStyle style) {
+    if (outcome == null) {
+      return createTextCell('-', style);
+    }
+
+    if (!match.knockoutStage || outcome.penaltiesWinnerId == null) {
+      return createTextCell(outcome.goals.asString, style);
+    }
+
+    return createCell(
+      Column(
+        children: [
+          Text(outcome.goals.asString, style: style),
+          Opacity(
+            opacity: 0.7,
+            child: Text(match.teamFor(id: outcome.penaltiesWinnerId!)?.abbreviation ?? '-',
+                style: style.copyWith(fontSize: 10)),
+          ),
+        ],
       ),
     );
   }

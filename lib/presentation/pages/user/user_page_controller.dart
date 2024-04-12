@@ -12,12 +12,18 @@ class UserPageController extends _$UserPageController {
   Future<UserPageState> build() async {
     final user = ref.read(userOfUserPageProvider);
     final bets = await ref.read(getUserBetsUseCaseProvider(user)).run();
-    final allMatches = await ref.read(getAllMatchesUseCaseProvider).run();
+    final matches = await ref.read(getAllMatchesUseCaseProvider).run();
+    final teamFetches =
+        matches.map((m) => [m.homeTeam.fetch(), m.awayTeam.fetch()]).fold(<Future<void>>[], (all, future) {
+      return all..addAll(future);
+    });
+
+    await Future.wait(teamFetches);
 
     return UserPageState(
       user: user,
       bets: bets,
-      matches: allMatches,
+      matches: matches,
     );
   }
 }
