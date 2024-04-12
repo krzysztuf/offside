@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
+import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home/table_sub_page/main_table_state.dart';
 
 class RecentFormDots extends StatelessWidget {
@@ -9,6 +10,8 @@ class RecentFormDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sharedTheme = context.widgetThemes.sharedWidgets;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
@@ -17,19 +20,19 @@ class RecentFormDots extends StatelessWidget {
                 <= 0 => Container(
                     width: 8,
                     height: 8,
-                    decoration: BoxDecoration(color: Colors.red.shade500, borderRadius: BorderRadius.circular(4)),
+                    decoration: BoxDecoration(color: sharedTheme.noPointsColor, borderRadius: BorderRadius.circular(4)),
                   ),
                 1 => Container(
                     width: 8,
                     height: 8,
                     decoration:
-                        BoxDecoration(color: Colors.lightGreen.shade300, borderRadius: BorderRadius.circular(4)),
+                        BoxDecoration(color: sharedTheme.onePointsColor, borderRadius: BorderRadius.circular(4)),
                   ),
                 >= 3 => Container(
                     width: 8,
                     height: 8,
                     decoration:
-                        BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
+                        BoxDecoration(color: sharedTheme.threePointsColor, borderRadius: BorderRadius.circular(4)),
                   ),
                 _ => throw UnimplementedError('Unknown score: $score'),
               })

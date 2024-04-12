@@ -17,4 +17,19 @@ class SharedWidgetsTheme extends WidgetTheme {
           dark: const Color(0xff2e5a2e),
         ),
       );
+
+  Color get noPointsColor => theme.variant(
+        light: Colors.red.shade400,
+        dark: Colors.red.shade600,
+      );
+
+  Color get onePointsColor => theme.variant(
+        light: Colors.green.shade300,
+        dark: Colors.green.shade300,
+      );
+
+  Color get threePointsColor => theme.variant(
+        light: Colors.green.shade700,
+        dark: Colors.green.shade700,
+      );
 }
