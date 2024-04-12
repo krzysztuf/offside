@@ -1,8 +1,8 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
@@ -47,12 +47,29 @@ class _MatchCardState extends ConsumerState<MatchCard> {
   var editingPrediction = false;
   Goals? editedPrediction;
   Team? penaltiesWinner;
+  Team? editedPenaltiesWinner;
 
-  bool get predictionIsDraw => editedPrediction?.draw ?? true;
+  bool get editedPredictionIsDraw => editedPrediction?.draw ?? true;
+
+  bool get editedPenaltiesWinnerIsDifferent {
+    return editedPenaltiesWinner != null && editedPenaltiesWinner != penaltiesWinner;
+  }
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchCardControllerProvider);
+    final teamsLoaded = state.match.homeTeam.hasValue && state.match.awayTeam.hasValue;
+    if (penaltiesWinner == null && teamsLoaded) {
+      if (state.bet != null) {
+        penaltiesWinner = state.bet!.prediction.penaltiesWinnerId == state.match.homeTeam.value.id
+            ? state.match.homeTeam.value
+            : state.match.awayTeam.value;
+
+        penaltiesWinner ??= state.match.homeTeam.value;
+      } else {
+        penaltiesWinner = state.match.homeTeam.value;
+      }
+    }
 
     return Card(
       elevation: 3,
@@ -63,12 +80,16 @@ class _MatchCardState extends ConsumerState<MatchCard> {
           child: Column(
             children: [
               buildHeader(state),
+              const Gap(32),
               buildGoalsPredictionRow(state),
-              if (state.match.knockoutStage || state.bet?.prediction.goals.draw != null) ...[
-                buildPenaltyWinnerRow(state)
+              const Gap(24),
+              if (state.match.knockoutStage) ...[
+                buildPenaltyWinnerRow(state),
+                const Gap(24),
               ],
+              const Gap(32),
               buildFooter(state, context),
-            ].withGaps(48),
+            ],
           ),
         ),
       ),
@@ -190,26 +211,32 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                   ),
                 ),
                 Visibility(
-                  visible: editingPrediction && editedPrediction == state.bet!.prediction.goals,
+                  visible: editingPrediction &&
+                      editedPrediction == state.bet!.prediction.goals &&
+                      !editedPenaltiesWinnerIsDifferent,
                   child: FilledButton.tonalIcon(
                       icon: const Icon(Icons.cancel, size: 18),
                       label: const Text('Anuluj'),
-                      onPressed: () => setState(() => editingPrediction = false)),
+                      onPressed: () => setState(() => _finishEditing())),
                 ),
                 Visibility(
                   visible: editingPrediction && editedPrediction != state.bet!.prediction.goals ||
-                      state.betState == BetState.notPlaced,
+                      state.betState == BetState.notPlaced ||
+                      editedPenaltiesWinnerIsDifferent,
                   child: Enabled(
-                    enabled: predictionIsDraw && penaltiesWinner != null,
+                    enabled: (editedPredictionIsDraw && editedPenaltiesWinner != null) ||
+                        !editedPredictionIsDraw ||
+                        !state.match.knockoutStage,
                     child: FilledButton.tonalIcon(
                         icon: const Icon(Icons.sports_soccer_rounded, size: 18),
                         label: const Text('Typuj'),
                         onPressed: () async {
                           editedPrediction ??= const Goals();
+                          penaltiesWinner = editedPenaltiesWinner;
                           await ref.read(matchCardControllerProvider.notifier).updatePrediction(
                                 MatchOutcome(goals: editedPrediction!, penaltiesWinnerId: penaltiesWinner?.id),
                               );
-                          setState(() => editingPrediction = false);
+                          _finishEditing();
                         }),
                   ),
                 ),
@@ -221,6 +248,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                     onPressed: () {
                       setState(() {
                         editedPrediction = state.bet!.prediction.goals.copyWith();
+                        editedPenaltiesWinner = penaltiesWinner?.copyWith();
                         editingPrediction = true;
                       });
                     },
@@ -232,6 +260,14 @@ class _MatchCardState extends ConsumerState<MatchCard> {
         ],
       ),
     );
+  }
+
+  void _finishEditing() {
+    setState(() {
+      editedPrediction = null;
+      editedPenaltiesWinner = null;
+      editingPrediction = false;
+    });
   }
 
   Skeletonizer createTeamBadgeSkeletonizer() {
@@ -307,27 +343,34 @@ class _MatchCardState extends ConsumerState<MatchCard> {
 
   Widget buildPenaltyWinnerRow(MatchCardState state) {
     final match = state.match;
-    if (!state.match.homeTeam.hasValue || !state.match.awayTeam.hasValue) {
+    if (!match.homeTeam.hasValue || !match.awayTeam.hasValue) {
       return const SizedBox.shrink();
     }
 
-    var betNotPlaced = state.betState == BetState.notPlaced;
-    final shouldShow = match.knockoutStage && (editingPrediction || betNotPlaced || penaltiesWinner != null);
-    return Enabled(
-      enabled: match.knockoutStage && (editedPrediction?.draw ?? true),
-      child: AnimatedContainer(
-        height: shouldShow ? 56 : 0,
-        curve: Curves.fastOutSlowIn,
-        duration: 400.milliseconds,
-        child: ListTile(
-          title: const Text('W karnych wygra'),
-          contentPadding: EdgeInsets.zero,
-          trailing: BorderedDropdownButton<Team>(
-            value: penaltiesWinner,
-            items: [match.homeTeam.value, match.awayTeam.value].map((team) {
-              return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
-            }).toList(),
-            onChanged: (team) => setState(() => penaltiesWinner = team),
+    return ListTile(
+      title: const Text('W karnych wygra'),
+
+      // leading: const Icon(Icons.sports_soccer_rounded),
+      contentPadding: const EdgeInsets.only(left: 48, right: 16),
+      trailing: SizedBox(
+        width: 120,
+        height: 48,
+        child: AlternativeInflater(
+          useAlternative: editingPrediction || state.betState == BetState.notPlaced,
+          builder: () => Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: TeamBadge.dense(penaltiesWinner!, context),
+          ),
+          alternativeBuilder: () => Enabled(
+            enabled: editedPredictionIsDraw,
+            child: BorderedDropdownButton<Team>(
+              value: editedPenaltiesWinner ?? penaltiesWinner,
+              height: 40,
+              items: [match.homeTeam.value, match.awayTeam.value].map((team) {
+                return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
+              }).toList(),
+              onChanged: (team) => setState(() => editedPenaltiesWinner = team),
+            ),
           ),
         ),
       ),

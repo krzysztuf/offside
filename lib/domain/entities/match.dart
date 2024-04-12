@@ -44,15 +44,20 @@ extension ConvenienceMethods on Match {
     return afterKickOff(now) && !finished;
   }
 
-  int pointsFor({required Goals prediction}) {
+  int pointsFor({required MatchOutcome prediction}) {
     final result = outcome!.goals;
-    if (result == prediction) {
+    if (result == prediction.goals) {
+      if (knockoutStage && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
+        return 4;
+      }
+
       return 3;
     }
 
-    if (result.homeTeamWon && prediction.homeTeamWon ||
-        result.awayTeamWon && prediction.awayTeamWon ||
-        result.draw && prediction.draw) {
+    final predictedGoals = prediction.goals;
+    if (result.homeTeamWon && predictedGoals.homeTeamWon ||
+        result.awayTeamWon && predictedGoals.awayTeamWon ||
+        result.draw && predictedGoals.draw) {
       return 1;
     }
 

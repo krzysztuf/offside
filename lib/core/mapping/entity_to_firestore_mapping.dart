@@ -84,17 +84,19 @@ extension EntityToFirestoreMapping on GetIt {
     );
 
     addBidirectionalMapper<Bet, Document<BetModel>>(
-      forward: (entity) => Document(
-        entity.id,
-        model: BetModel(
+      forward: (entity) {
+        return Document(
           entity.id,
-          entity.matchId,
-          entity.userId,
-          entity.prediction.goals.home,
-          entity.prediction.goals.away,
-          entity.prediction.penaltiesWinnerId,
-        ),
-      ),
+          model: BetModel(
+            entity.id,
+            entity.matchId,
+            entity.userId,
+            entity.prediction.goals.home,
+            entity.prediction.goals.away,
+            entity.prediction.penaltiesWinnerId,
+          ),
+        );
+      },
       backward: (document) => Bet(
         id: document.id,
         matchId: document.value.matchId,

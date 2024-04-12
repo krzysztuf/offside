@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -33,7 +31,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   void initState() {
-    log('initializing state');
     super.initState();
     emailController.text = 'krzysztof.potrzasaj@gmail.com';
     passwordController.text = 'ecikoWaty2k';

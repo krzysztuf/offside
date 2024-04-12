@@ -64,7 +64,7 @@ class MainTableController extends _$MainTableController {
           return points;
         }
 
-        var pointsAwardedForThisMatch = match.pointsFor(prediction: bet.prediction.goals);
+        var pointsAwardedForThisMatch = match.pointsFor(prediction: bet.prediction);
         userScores.recentPredictionsScores.add(pointsAwardedForThisMatch);
 
         return points + pointsAwardedForThisMatch;

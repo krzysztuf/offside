@@ -4,6 +4,7 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/match_outcome.dart';
 
 import 'match_rivals_abbreviations_row.dart';
 
@@ -59,7 +60,7 @@ class UserBetsTable extends StatelessWidget {
                   ),
                   createCell(m.outcome?.goals.asString ?? '-', cellStyle),
                   createCell(userBet?.prediction.goals.asString ?? '-', cellStyle),
-                  createCell(buildPointsText(m.outcome?.goals, userBet?.prediction.goals), cellStyle),
+                  createCell(buildPointsText(m, userBet?.prediction), cellStyle),
                 ],
               );
             })
@@ -78,21 +79,12 @@ class UserBetsTable extends StatelessWidget {
     );
   }
 
-  String buildPointsText(Goals? result, Goals? prediction) {
-    if (result == null || prediction == null) {
+  String buildPointsText(Match match, MatchOutcome? prediction) {
+    if (match.outcome == null || prediction == null) {
       return '-';
     }
 
-    if (result == prediction) {
-      return '+3';
-    }
-
-    if (result.homeTeamWon && prediction.homeTeamWon ||
-        result.awayTeamWon && prediction.awayTeamWon ||
-        result.draw && prediction.draw) {
-      return '+1';
-    }
-
-    return '0';
+    var points = match.pointsFor(prediction: prediction);
+    return points > 0 ? '+$points' : '0';
   }
 }
