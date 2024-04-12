@@ -2,12 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/presentation/pages/home/table_sub_page/main_table_controller.dart';
+import 'package:offside/presentation/widgets/offside/recent_form_dots.dart';
 
 import 'main_table_state.dart';
 
@@ -65,57 +65,6 @@ class MainTable extends ConsumerWidget {
       return 'Brak ostatnich typowań'.styledText(context.textTheme.bodySmall!);
     }
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        children: [
-          ...userScores.recentPredictionsScores.map((score) => switch (score) {
-                <= 0 => Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(color: Colors.red.shade500, borderRadius: BorderRadius.circular(4)),
-                  ),
-                1 => Container(
-                    width: 8,
-                    height: 8,
-                    decoration:
-                        BoxDecoration(color: Colors.lightGreen.shade300, borderRadius: BorderRadius.circular(4)),
-                  ),
-                >= 3 => Container(
-                    width: 8,
-                    height: 8,
-                    decoration:
-                        BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
-                  ),
-                _ => throw UnimplementedError('Unknown score: $score'),
-              })
-          // Container(
-          //   width: 8,
-          //   height: 8,
-          //   decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
-          // ),
-          // Container(
-          //   width: 8,
-          //   height: 8,
-          //   decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
-          // ),
-          // Container(
-          //   width: 8,
-          //   height: 8,
-          //   decoration: BoxDecoration(color: Colors.red.shade500, borderRadius: BorderRadius.circular(4)),
-          // ),
-          // Container(
-          //   width: 8,
-          //   height: 8,
-          //   decoration: BoxDecoration(color: Colors.lightGreen.shade300, borderRadius: BorderRadius.circular(4)),
-          // ),
-          // Container(
-          //   width: 8,
-          //   height: 8,
-          //   decoration: BoxDecoration(color: Colors.lightGreen.shade700, borderRadius: BorderRadius.circular(4)),
-          // ),
-        ].withGaps(8),
-      ),
-    );
+    return RecentFormDots(userScores: userScores);
   }
 }
