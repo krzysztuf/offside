@@ -5,6 +5,7 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
+import 'package:offside/presentation/theme/shared_widgets_theme.dart';
 
 import 'match_rivals_abbreviations_row.dart';
 
@@ -61,7 +62,15 @@ class UserBetsTable extends StatelessWidget {
                   ),
                   createOutcomeCell(m, m.outcome, cellStyle),
                   createOutcomeCell(m, userBet?.prediction, cellStyle),
-                  createTextCell(buildPointsText(m, userBet?.prediction), cellStyle),
+                  createTextCell(
+                    buildPointsText(m, userBet?.prediction),
+                    applyPointsColor(
+                      cellStyle,
+                      m,
+                      context.widgetThemes.sharedWidgets,
+                      userBet?.prediction,
+                    ),
+                  ),
                 ],
               );
             })
@@ -114,5 +123,18 @@ class UserBetsTable extends StatelessWidget {
 
     var points = match.pointsFor(prediction: prediction);
     return points > 0 ? '+$points' : '0';
+  }
+
+  TextStyle applyPointsColor(TextStyle cellStyle, Match match, SharedWidgetsTheme theme, MatchOutcome? prediction) {
+    if (prediction == null) {
+      return cellStyle;
+    }
+
+    return switch (match.pointsFor(prediction: prediction)) {
+      > 3 => cellStyle.copyWith(color: theme.threePointsColor),
+      1 => cellStyle.copyWith(color: theme.onePointsColor),
+      0 => cellStyle.copyWith(color: theme.noPointsColor),
+      _ => cellStyle,
+    };
   }
 }

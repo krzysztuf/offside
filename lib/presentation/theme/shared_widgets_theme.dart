@@ -20,7 +20,7 @@ class SharedWidgetsTheme extends WidgetTheme {
 
   Color get noPointsColor => theme.variant(
         light: Colors.red.shade400,
-        dark: Colors.red.shade600,
+        dark: Colors.red.shade400,
       );
 
   Color get onePointsColor => theme.variant(
@@ -30,6 +30,6 @@ class SharedWidgetsTheme extends WidgetTheme {
 
   Color get threePointsColor => theme.variant(
         light: Colors.green.shade700,
-        dark: Colors.green.shade700,
+        dark: Colors.green.shade600,
       );
 }
