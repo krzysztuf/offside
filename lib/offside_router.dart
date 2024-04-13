@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:offside/presentation/pages/home/matches_sub_page/matches_history.dart';
+import 'package:offside/presentation/pages/home/matches_sub_page/history/matches_history.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'domain/entities/user.dart';

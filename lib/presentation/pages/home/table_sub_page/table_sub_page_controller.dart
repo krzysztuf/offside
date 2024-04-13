@@ -19,9 +19,6 @@ class TableSubPageController extends _$TableSubPageController {
   Future<void> loadTable() async {
     final users = await ref.read(getAllUsersUseCaseProvider).run();
     state = MainTableReadyState(users);
-
-    final matches = await ref.read(offsideRepositoryProvider).matchesHistory();
-    log('matches: $matches');
   }
 
   Future<void> refresh({Duration? delay}) async {

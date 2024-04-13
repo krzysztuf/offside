@@ -26,7 +26,6 @@ import 'package:offside/presentation/widgets/icon_with_text.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'bets/bet_status_pill.dart';
@@ -141,7 +140,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
           width: 80,
           child: FetchableBuilder(
             fetchable: state.match.homeTeam,
-            waiting: () => createTeamBadgeSkeletonizer(),
+            waiting: () => TeamBadge.skeleton(),
             child: (homeTeam) => TeamBadge(team: homeTeam, badgeRadius: 28),
             error: teamMissingBadge,
           ),
@@ -174,7 +173,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
           width: 80,
           child: FetchableBuilder(
             fetchable: state.match.awayTeam,
-            waiting: () => createTeamBadgeSkeletonizer(),
+            waiting: () => TeamBadge.skeleton(),
             child: (awayTeam) => TeamBadge(team: awayTeam, badgeRadius: 28),
             error: teamMissingBadge,
           ),
@@ -268,18 +267,6 @@ class _MatchCardState extends ConsumerState<MatchCard> {
       editedPenaltiesWinner = null;
       editingPrediction = false;
     });
-  }
-
-  Skeletonizer createTeamBadgeSkeletonizer() {
-    return Skeletonizer(
-      child: TeamBadge(
-        team: Team(
-          name: 'Dummy',
-          abbreviation: 'ASB',
-          logo: 'assets/images/teams/england.png',
-        ),
-      ),
-    );
   }
 
   void showOtherUsersPredictionsSheet(BuildContext context, Match match) {

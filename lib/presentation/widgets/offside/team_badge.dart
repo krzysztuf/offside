@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/widgets/avatar.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class TeamBadge extends StatelessWidget {
   final Team team;
@@ -18,6 +19,19 @@ class TeamBadge extends StatelessWidget {
       direction: Axis.horizontal,
       badgeRadius: 6,
       textStyle: context.textTheme.bodyMedium,
+    );
+  }
+
+  static skeleton({double badgeRadius = 24}) {
+    return Skeletonizer(
+      child: TeamBadge(
+        badgeRadius: badgeRadius,
+        team: Team(
+          name: 'Dummy',
+          abbreviation: 'ASB',
+          logo: 'assets/images/teams/england.png',
+        ),
+      ),
     );
   }
 
