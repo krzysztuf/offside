@@ -7,7 +7,7 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 import 'package:offside/presentation/theme/shared_widgets_theme.dart';
 
-import 'match_rivals_abbreviations_row.dart';
+import '../../widgets/offside/match_rivals_abbreviations_row.dart';
 
 class UserBetsTable extends StatelessWidget {
   final List<Match> matches;
@@ -22,7 +22,7 @@ class UserBetsTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var columnTitleStyle = context.widgetThemes.userBets.columnTitle;
-    var cellStyle = context.widgetThemes.userBets.cellValue;
+    final cellStyle = context.textTheme.bodyLarge!;
 
     return Card(
       margin: const EdgeInsets.all(16),
@@ -55,10 +55,7 @@ class UserBetsTable extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: MatchRivalsAbbreviationsRow(
-                      match: m,
-                      userBet: userBet,
-                    ),
+                    child: MatchRivalsAbbreviationsRow(match: m),
                   ),
                   createOutcomeCell(m, m.outcome, cellStyle),
                   createOutcomeCell(m, userBet?.prediction, cellStyle),

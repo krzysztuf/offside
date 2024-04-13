@@ -13,8 +13,6 @@ class UserPageTheme extends WidgetTheme {
         fontSize: 12,
       );
 
-  TextStyle get cellValue => theme.textTheme.bodyLarge!;
-
   TextStyle get userStatTitle => theme.textTheme.titleMedium!.copyWith(
         color: theme.variant(
           light: const Color(0xff007fd5),

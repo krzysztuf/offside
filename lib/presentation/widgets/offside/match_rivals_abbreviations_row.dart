@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/offside/being_played_indicator.dart';
@@ -12,16 +11,12 @@ import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
 class MatchRivalsAbbreviationsRow extends ConsumerWidget {
   final Match match;
-  final Bet? userBet;
 
-  const MatchRivalsAbbreviationsRow({
-    super.key,
-    required this.match,
-    required this.userBet,
-  });
+  const MatchRivalsAbbreviationsRow({super.key, required this.match});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final cellValue = context.textTheme.bodyLarge!;
     return Row(
       children: [
         Expanded(
@@ -41,7 +36,7 @@ class MatchRivalsAbbreviationsRow extends ConsumerWidget {
                     direction: Axis.horizontal,
                     useAbbreviation: true,
                     mirrored: true,
-                    textStyle: context.widgetThemes.userBets.cellValue,
+                    textStyle: cellValue,
                   ),
                 ),
               ),
@@ -50,7 +45,7 @@ class MatchRivalsAbbreviationsRow extends ConsumerWidget {
         ),
         SizedBox(
           width: 32,
-          child: Center(child: '-'.styledText(context.widgetThemes.userBets.cellValue)),
+          child: Center(child: '-'.styledText(cellValue)),
         ),
         Expanded(
           child: FetchableBuilder(
@@ -64,7 +59,7 @@ class MatchRivalsAbbreviationsRow extends ConsumerWidget {
               badgeRadius: 8,
               direction: Axis.horizontal,
               useAbbreviation: true,
-              textStyle: context.widgetThemes.userBets.cellValue,
+              textStyle: cellValue,
             ),
           ),
         ),
