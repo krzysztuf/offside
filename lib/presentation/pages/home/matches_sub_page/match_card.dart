@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/domain/entities/fetchable.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
@@ -136,49 +137,49 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SizedBox(
-          width: 80,
-          child: FetchableBuilder(
-            fetchable: state.match.homeTeam,
-            waiting: () => TeamBadge.skeleton(),
-            child: (homeTeam) => TeamBadge(team: homeTeam, badgeRadius: 28),
-            error: teamMissingBadge,
-          ),
-        ),
-        SizedBox(
-          width: 160,
-          child: AlternativeInflater(
-            scaleFactor: 0.9,
-            useAlternative: state.betState == BetState.loading,
-            builder: () {
-              if (state.betState == BetState.expired) {
-                return const ExpiredBetGoals();
-              }
-
-              return GoalsPredictionEditor(
-                initialPrediction: editedPrediction ?? state.bet?.prediction.goals ?? const Goals(),
-                editable: state.betState == BetState.notPlaced || editingPrediction,
-                onUpdated: (prediction) => setState(() => editedPrediction = prediction),
-              );
-            },
-            alternativeBuilder: () => Center(
-              child: LoadingAnimationWidget.fourRotatingDots(
-                size: 32,
-                color: context.colorScheme.primary,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 80,
-          child: FetchableBuilder(
-            fetchable: state.match.awayTeam,
-            waiting: () => TeamBadge.skeleton(),
-            child: (awayTeam) => TeamBadge(team: awayTeam, badgeRadius: 28),
-            error: teamMissingBadge,
-          ),
-        ),
+        fetchAndBuildTeamBadge(state.match.homeTeam),
+        buildScorePrediction(state),
+        fetchAndBuildTeamBadge(state.match.awayTeam),
       ],
+    );
+  }
+
+  SizedBox buildScorePrediction(MatchCardState state) {
+    return SizedBox(
+      width: 160,
+      child: AlternativeInflater(
+        scaleFactor: 0.9,
+        useAlternative: state.betState == BetState.loading,
+        builder: () {
+          if (state.betState == BetState.expired) {
+            return const ExpiredBetGoals();
+          }
+
+          return GoalsPredictionEditor(
+            initialPrediction: editedPrediction ?? state.bet?.prediction.goals ?? const Goals(),
+            editable: state.betState == BetState.notPlaced || editingPrediction,
+            onUpdated: (prediction) => setState(() => editedPrediction = prediction),
+          );
+        },
+        alternativeBuilder: () => Center(
+          child: LoadingAnimationWidget.fourRotatingDots(
+            size: 32,
+            color: context.colorScheme.primary,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget fetchAndBuildTeamBadge(Fetchable<Team> teamFetchable) {
+    return SizedBox(
+      width: 80,
+      child: FetchableBuilder(
+        fetchable: teamFetchable,
+        waiting: () => TeamBadge.skeleton(),
+        child: (homeTeam) => TeamBadge(team: homeTeam, badgeRadius: 24),
+        error: teamMissingBadge,
+      ),
     );
   }
 
