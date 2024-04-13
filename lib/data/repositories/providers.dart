@@ -1,6 +1,6 @@
 import 'package:offside/data/models/firestore/bet_model.dart';
-import 'package:offside/data/repositories/bets_repository_impl.dart';
 import 'package:offside/data/repositories/firestore_repository.dart';
+import 'package:offside/data/repositories/offside_repository_impl.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/data/sources/remote/firestore_source.dart';
@@ -9,7 +9,7 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
-import 'package:offside/domain/repositories/bets_repository.dart';
+import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/repositories/settings_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -40,8 +40,8 @@ Repository<User> usersRepository(UsersRepositoryRef ref) {
 }
 
 @riverpod
-BetsRepository betsRepository(BetsRepositoryRef ref) {
-  return BetsRepositoryImpl();
+OffsideRepository offsideRepository(OffsideRepositoryRef ref) {
+  return OffsideRepositoryImpl();
 }
 
 @riverpod

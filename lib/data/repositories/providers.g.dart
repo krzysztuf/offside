@@ -203,21 +203,22 @@ final usersRepositoryProvider = AutoDisposeProvider<Repository<User>>.internal(
 );
 
 typedef UsersRepositoryRef = AutoDisposeProviderRef<Repository<User>>;
-String _$betsRepositoryHash() => r'039397d6cfc951072326a03168f9e3e6e0fb8174';
+String _$offsideRepositoryHash() => r'73334bdccf67892108367c94ad9a3310c3430872';
 
-/// See also [betsRepository].
-@ProviderFor(betsRepository)
-final betsRepositoryProvider = AutoDisposeProvider<BetsRepository>.internal(
-  betsRepository,
-  name: r'betsRepositoryProvider',
+/// See also [offsideRepository].
+@ProviderFor(offsideRepository)
+final offsideRepositoryProvider =
+    AutoDisposeProvider<OffsideRepository>.internal(
+  offsideRepository,
+  name: r'offsideRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$betsRepositoryHash,
+      : _$offsideRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef BetsRepositoryRef = AutoDisposeProviderRef<BetsRepository>;
+typedef OffsideRepositoryRef = AutoDisposeProviderRef<OffsideRepository>;
 String _$authRepositoryHash() => r'9cda1c0d5e304f18a13bd17db63762a0808e15c0';
 
 /// See also [authRepository].

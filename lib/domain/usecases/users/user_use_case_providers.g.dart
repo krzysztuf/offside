@@ -42,7 +42,7 @@ final getAllUsersUseCaseProvider =
 
 typedef GetAllUsersUseCaseRef = AutoDisposeProviderRef<GetAllUsersUseCase>;
 String _$getUserBetsUseCaseHash() =>
-    r'267eaa9f25eea76edd775381b2c2f9e0ed74efc8';
+    r'c147e0b4b804f40c2295e44df37bacb94244d066';
 
 /// Copied from Dart SDK
 class _SystemHash {

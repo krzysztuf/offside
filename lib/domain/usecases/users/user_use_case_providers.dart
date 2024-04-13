@@ -22,7 +22,7 @@ GetAllUsersUseCase getAllUsersUseCase(GetAllUsersUseCaseRef ref) {
 
 @riverpod
 GetUserBetsUseCase getUserBetsUseCase(GetUserBetsUseCaseRef ref, User user) {
-  return GetUserBetsUseCase(ref.read(betsRepositoryProvider), user);
+  return GetUserBetsUseCase(ref.read(offsideRepositoryProvider), user);
 }
 
 @riverpod
