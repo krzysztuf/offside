@@ -12,6 +12,7 @@ import 'package:offside/domain/repositories/auth_repository.dart';
 import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/repositories/settings_repository.dart';
+import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'firebase_auth_repository.dart';
@@ -41,7 +42,7 @@ Repository<User> usersRepository(UsersRepositoryRef ref) {
 
 @riverpod
 OffsideRepository offsideRepository(OffsideRepositoryRef ref) {
-  return OffsideRepositoryImpl();
+  return OffsideRepositoryImpl(ref.read(dateTimeProvider));
 }
 
 @riverpod

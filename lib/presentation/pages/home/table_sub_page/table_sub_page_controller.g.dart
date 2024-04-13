@@ -7,7 +7,7 @@ part of 'table_sub_page_controller.dart';
 // **************************************************************************
 
 String _$tableSubPageControllerHash() =>
-    r'0e336596723b37660ff5e5d2106d9b78e57328e7';
+    r'dde96198a9c18a7cc22730a77a93f2d6329cfe3e';
 
 /// See also [TableSubPageController].
 @ProviderFor(TableSubPageController)

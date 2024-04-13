@@ -24,7 +24,7 @@ class GetUserBetsUseCase implements AsyncUseCase<List<Bet>> {
 
   @override
   Future<List<Bet>> run() async {
-    return await repository.getUserBets(user);
+    return await repository.userBets(user);
   }
 }
 

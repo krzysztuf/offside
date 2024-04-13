@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,6 +19,9 @@ class TableSubPageController extends _$TableSubPageController {
   Future<void> loadTable() async {
     final users = await ref.read(getAllUsersUseCaseProvider).run();
     state = MainTableReadyState(users);
+
+    final matches = await ref.read(offsideRepositoryProvider).matchesHistory();
+    log('matches: $matches');
   }
 
   Future<void> refresh({Duration? delay}) async {

@@ -203,7 +203,7 @@ final usersRepositoryProvider = AutoDisposeProvider<Repository<User>>.internal(
 );
 
 typedef UsersRepositoryRef = AutoDisposeProviderRef<Repository<User>>;
-String _$offsideRepositoryHash() => r'73334bdccf67892108367c94ad9a3310c3430872';
+String _$offsideRepositoryHash() => r'9f9a6edbfe40839bcb9a711c12e4f64e2304cd90';
 
 /// See also [offsideRepository].
 @ProviderFor(offsideRepository)

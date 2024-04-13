@@ -123,6 +123,17 @@ extension EntityToFirestoreMapping on GetIt {
             penaltiesWinnerId: model.penaltiesWinnerId,
           ),
         ));
+
+    addMapper<MatchModel, Match>((model) => Match(
+          id: model.id,
+          homeTeam: FirestoreFetchable(model.homeTeam),
+          awayTeam: FirestoreFetchable(model.awayTeam),
+          kickOffDate: model.kickOffDate.toDate(),
+          stage: model.stage,
+          knockoutStage: model.knockoutStage,
+          outcome: _buildOutcome(model),
+          bets: FirestoreCollectionFetchable<Bet, BetModel>(model.bets),
+        ));
   }
 
   MatchOutcome? _buildOutcome(MatchModel match) {
