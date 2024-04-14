@@ -34,7 +34,7 @@ class UserPage extends ConsumerWidget {
   Widget _buildUserPage(UserPageState state, BuildContext context) {
     final statStyle = context.widgetThemes.userBets.userStatValue;
     return Inflater(
-      scaleFactor: 0.9,
+      scaleFactor: 0.95,
       child: SingleChildScrollView(
         child: Column(
           children: [

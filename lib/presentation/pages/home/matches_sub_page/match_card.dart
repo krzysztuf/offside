@@ -342,6 +342,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
       curve: Curves.fastOutSlowIn,
       height: shouldShowPenaltiesWinner ? 48 : 0,
       child: Inflater(
+        scaleFactor: 1,
         inflated: shouldShowPenaltiesWinner,
         child: ListTile(
           title: const Text('W karnych wygra'),

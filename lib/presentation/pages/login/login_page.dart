@@ -90,9 +90,9 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
                     Tab(icon: Icon(Icons.lock_open), text: "Logowanie"),
                     Tab(icon: Icon(Icons.person_add), text: "Rejestracja"),
                   ],
-                  indicatorColor: Colors.blue,
-                  labelColor: Colors.blue,
-                  unselectedLabelColor: Colors.grey,
+                  // indicatorColor: Colors.blue,
+                  // labelColor: Colors.blue,
+                  // unselectedLabelColor: Colors.grey,
                 ),
                 AnimatedContainer(
                   height: tabController.index == 0 ? 220 : 360, // Adjust the height as needed

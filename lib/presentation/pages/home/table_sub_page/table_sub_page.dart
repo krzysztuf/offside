@@ -68,7 +68,7 @@ class TableSubPage extends ConsumerWidget {
                   MainTableReadyState(:final users) => Inflater(
                       inflated: true,
                       duration: 1.seconds,
-                      scaleFactor: 0.9,
+                      scaleFactor: 0.95,
                       child: Card(
                         elevation: 3,
                         child: MainTable(
