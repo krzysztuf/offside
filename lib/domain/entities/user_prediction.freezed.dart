@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserPrediction {
   User get user => throw _privateConstructorUsedError;
-  Goals? get prediction => throw _privateConstructorUsedError;
+  MatchOutcome? get prediction => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserPredictionCopyWith<UserPrediction> get copyWith =>
@@ -30,10 +30,10 @@ abstract class $UserPredictionCopyWith<$Res> {
           UserPrediction value, $Res Function(UserPrediction) then) =
       _$UserPredictionCopyWithImpl<$Res, UserPrediction>;
   @useResult
-  $Res call({User user, Goals? prediction});
+  $Res call({User user, MatchOutcome? prediction});
 
   $UserCopyWith<$Res> get user;
-  $GoalsCopyWith<$Res>? get prediction;
+  $MatchOutcomeCopyWith<$Res>? get prediction;
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$UserPredictionCopyWithImpl<$Res, $Val extends UserPrediction>
       prediction: freezed == prediction
           ? _value.prediction
           : prediction // ignore: cast_nullable_to_non_nullable
-              as Goals?,
+              as MatchOutcome?,
     ) as $Val);
   }
 
@@ -74,12 +74,12 @@ class _$UserPredictionCopyWithImpl<$Res, $Val extends UserPrediction>
 
   @override
   @pragma('vm:prefer-inline')
-  $GoalsCopyWith<$Res>? get prediction {
+  $MatchOutcomeCopyWith<$Res>? get prediction {
     if (_value.prediction == null) {
       return null;
     }
 
-    return $GoalsCopyWith<$Res>(_value.prediction!, (value) {
+    return $MatchOutcomeCopyWith<$Res>(_value.prediction!, (value) {
       return _then(_value.copyWith(prediction: value) as $Val);
     });
   }
@@ -93,12 +93,12 @@ abstract class _$$UserPredictionImplCopyWith<$Res>
       __$$UserPredictionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User user, Goals? prediction});
+  $Res call({User user, MatchOutcome? prediction});
 
   @override
   $UserCopyWith<$Res> get user;
   @override
-  $GoalsCopyWith<$Res>? get prediction;
+  $MatchOutcomeCopyWith<$Res>? get prediction;
 }
 
 /// @nodoc
@@ -123,7 +123,7 @@ class __$$UserPredictionImplCopyWithImpl<$Res>
       prediction: freezed == prediction
           ? _value.prediction
           : prediction // ignore: cast_nullable_to_non_nullable
-              as Goals?,
+              as MatchOutcome?,
     ));
   }
 }
@@ -137,7 +137,7 @@ class _$UserPredictionImpl extends _UserPrediction {
   @override
   final User user;
   @override
-  final Goals? prediction;
+  final MatchOutcome? prediction;
 
   @override
   String toString() {
@@ -168,13 +168,13 @@ class _$UserPredictionImpl extends _UserPrediction {
 abstract class _UserPrediction extends UserPrediction {
   const factory _UserPrediction(
       {required final User user,
-      required final Goals? prediction}) = _$UserPredictionImpl;
+      required final MatchOutcome? prediction}) = _$UserPredictionImpl;
   const _UserPrediction._() : super._();
 
   @override
   User get user;
   @override
-  Goals? get prediction;
+  MatchOutcome? get prediction;
   @override
   @JsonKey(ignore: true)
   _$$UserPredictionImplCopyWith<_$UserPredictionImpl> get copyWith =>

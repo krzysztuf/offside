@@ -85,7 +85,6 @@ class _MatchCardState extends ConsumerState<MatchCard> {
               const Gap(24),
               if (state.match.knockoutStage) ...[
                 buildPenaltyWinnerRow(state),
-                const Gap(24),
               ],
               const Gap(32),
               buildFooter(state, context),
@@ -224,14 +223,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                     child: FilledButton.tonalIcon(
                         icon: const Icon(Icons.sports_soccer_rounded, size: 18),
                         label: const Text('Typuj'),
-                        onPressed: () async {
-                          editedPrediction ??= const Goals();
-                          penaltiesWinner = editedPenaltiesWinner;
-                          await ref.read(matchCardControllerProvider.notifier).updatePrediction(
-                                MatchOutcome(goals: editedPrediction!, penaltiesWinnerId: penaltiesWinner?.id),
-                              );
-                          _finishEditing();
-                        }),
+                        onPressed: () async => await _saveUserPrediction()),
                   ),
                 ),
                 Visibility(
@@ -254,6 +246,20 @@ class _MatchCardState extends ConsumerState<MatchCard> {
         ],
       ),
     );
+  }
+
+  Future<void> _saveUserPrediction() async {
+    editedPrediction ??= const Goals();
+    penaltiesWinner = editedPenaltiesWinner;
+
+    await ref.read(matchCardControllerProvider.notifier).updatePrediction(
+          MatchOutcome(
+            goals: editedPrediction!,
+            penaltiesWinnerId: editedPredictionIsDraw ? penaltiesWinner?.id : null,
+          ),
+        );
+
+    _finishEditing();
   }
 
   void _finishEditing() {
@@ -329,29 +335,37 @@ class _MatchCardState extends ConsumerState<MatchCard> {
       return const SizedBox.shrink();
     }
 
-    return ListTile(
-      title: const Text('W karnych wygra'),
-
-      // leading: const Icon(Icons.sports_soccer_rounded),
-      contentPadding: const EdgeInsets.only(left: 48, right: 16),
-      trailing: SizedBox(
-        width: 120,
-        height: 48,
-        child: AlternativeInflater(
-          useAlternative: editingPrediction || state.betState == BetState.notPlaced,
-          builder: () => Padding(
-            padding: const EdgeInsets.only(left: 14),
-            child: TeamBadge.dense(penaltiesWinner!, context),
-          ),
-          alternativeBuilder: () => Enabled(
-            enabled: editedPredictionIsDraw,
-            child: BorderedDropdownButton<Team>(
-              value: editedPenaltiesWinner ?? penaltiesWinner,
-              height: 40,
-              items: [match.homeTeam.value, match.awayTeam.value].map((team) {
-                return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
-              }).toList(),
-              onChanged: (team) => setState(() => editedPenaltiesWinner = team),
+    final shouldShowPenaltiesWinner =
+        state.betState == BetState.notPlaced || editingPrediction || (state.bet?.prediction.goals.draw ?? false);
+    return AnimatedContainer(
+      duration: 400.milliseconds,
+      curve: Curves.fastOutSlowIn,
+      height: shouldShowPenaltiesWinner ? 48 : 0,
+      child: Inflater(
+        inflated: shouldShowPenaltiesWinner,
+        child: ListTile(
+          title: const Text('W karnych wygra'),
+          contentPadding: const EdgeInsets.only(left: 48, right: 16),
+          trailing: SizedBox(
+            width: 120,
+            height: 48,
+            child: AlternativeInflater(
+              useAlternative: editingPrediction || state.betState == BetState.notPlaced,
+              builder: () => Padding(
+                padding: const EdgeInsets.only(left: 14),
+                child: TeamBadge.dense(penaltiesWinner!, context),
+              ),
+              alternativeBuilder: () => Enabled(
+                enabled: editedPredictionIsDraw,
+                child: BorderedDropdownButton<Team>(
+                  value: editedPenaltiesWinner ?? penaltiesWinner,
+                  height: 40,
+                  items: [match.homeTeam.value, match.awayTeam.value].map((team) {
+                    return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
+                  }).toList(),
+                  onChanged: (team) => setState(() => editedPenaltiesWinner = team),
+                ),
+              ),
             ),
           ),
         ),

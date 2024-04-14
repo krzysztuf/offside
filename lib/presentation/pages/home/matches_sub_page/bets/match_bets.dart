@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/loading_table_skeleton.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_controller.dart';
@@ -55,18 +56,22 @@ class MatchBets extends ConsumerWidget {
             ),
             title: '${bet.user.name} ${bet.user.surname}'.text,
             trailing: SizedBox(
-              width: 100,
-              child: Card(
-                elevation: 1,
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      buildGoalsText(bet.prediction?.home, context),
-                      buildGoalsText(' : ', context),
-                      buildGoalsText(bet.prediction?.away, context),
+              width: 80,
+              child: Center(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        buildGoalsText(bet.prediction?.goals.home, context),
+                        buildGoalsText(' : ', context),
+                        buildGoalsText(bet.prediction?.goals.away, context),
+                      ],
+                    ),
+                    if (state.match.knockoutStage && (bet.prediction?.goals.draw ?? false)) ...[
+                      const Text('ENG'),
                     ],
-                  ),
+                  ],
                 ),
               ),
             ),

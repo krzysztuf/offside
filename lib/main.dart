@@ -26,8 +26,10 @@ Future<void> main() async {
   runApp(
     ProviderScope(
       overrides: [
-        dateTimeProvider.overrideWithValue(DateTime(2024, 6, 13, 20)),
-        matchCardControllerProvider.overrideWith(() => throw UnimplementedError('MatchBetCardViewModel unavailable')),
+        dateTimeProvider.overrideWithValue(DateTime(2024, 6, 10, 20)),
+        matchCardControllerProvider.overrideWith(
+          () => throw UnimplementedError('MatchCardController unavailable'),
+        ),
       ],
       child: const OffsideApp(),
     ),
