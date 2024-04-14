@@ -81,7 +81,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
             children: [
               buildHeader(state),
               const Gap(32),
-              buildGoalsPredictionRow(state),
+              buildTeamGoalsPredictionRow(state),
               const Gap(24),
               if (state.match.knockoutStage) ...[
                 buildPenaltyWinnerRow(state),
@@ -133,7 +133,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     );
   }
 
-  Row buildGoalsPredictionRow(MatchCardState state) {
+  Row buildTeamGoalsPredictionRow(MatchCardState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -146,20 +146,17 @@ class _MatchCardState extends ConsumerState<MatchCard> {
 
   SizedBox buildScorePrediction(MatchCardState state) {
     return SizedBox(
-      width: 160,
+      width: 140,
       child: AlternativeInflater(
         scaleFactor: 0.9,
         useAlternative: state.betState == BetState.loading,
-        builder: () {
-          if (state.betState == BetState.expired) {
-            return const ExpiredBetGoals();
-          }
-
-          return GoalsPredictionEditor(
-            initialPrediction: editedPrediction ?? state.bet?.prediction.goals ?? const Goals(),
-            editable: state.betState == BetState.notPlaced || editingPrediction,
-            onUpdated: (prediction) => setState(() => editedPrediction = prediction),
-          );
+        builder: () => switch (state.betState) {
+          BetState.expired => const ExpiredBetGoals(),
+          _ => GoalsPredictionEditor(
+              initialPrediction: editedPrediction ?? state.bet?.prediction.goals ?? const Goals(),
+              editable: state.betState == BetState.notPlaced || editingPrediction,
+              onUpdated: (prediction) => setState(() => editedPrediction = prediction),
+            ),
         },
         alternativeBuilder: () => Center(
           child: LoadingAnimationWidget.fourRotatingDots(
@@ -172,14 +169,11 @@ class _MatchCardState extends ConsumerState<MatchCard> {
   }
 
   Widget fetchAndBuildTeamBadge(Fetchable<Team> teamFetchable) {
-    return SizedBox(
-      width: 80,
-      child: FetchableBuilder(
-        fetchable: teamFetchable,
-        waiting: () => TeamBadge.skeleton(),
-        child: (homeTeam) => TeamBadge(team: homeTeam, badgeRadius: 24),
-        error: teamMissingBadge,
-      ),
+    return FetchableBuilder(
+      fetchable: teamFetchable,
+      waiting: () => TeamBadge.skeleton(),
+      child: (homeTeam) => TeamBadge(team: homeTeam, badgeRadius: 24),
+      error: teamMissingBadge,
     );
   }
 
