@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
@@ -35,11 +36,13 @@ class MainSubPage extends ConsumerWidget {
               children: [
                 const Gap(32),
                 buildUserGreeting(ref, context),
-                const Gap(8),
+                const Gap(4),
                 buildGreetingSubtitle(context),
-                const Gap(32),
+                const Gap(24),
                 const CompetitionWinnerPicker(),
-                const Gap(32),
+                const Gap(24),
+                buildTableHeadline(context),
+                const Gap(16),
                 buildMainTable(ref),
               ],
             ),
@@ -100,5 +103,25 @@ class MainSubPage extends ConsumerWidget {
           ),
         ),
     };
+  }
+
+  Widget buildTableHeadline(BuildContext context) {
+    var bodyMedium = context.textTheme.bodyMedium;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: 'Euro 2024'.styledText(context.textTheme.headlineSmall),
+        ),
+        const Gap(2),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: 'Główna tabela z wszystkimi użytkownikami'.styledText(
+            bodyMedium!.copyWith(color: bodyMedium.color!.withOpacity(0.5)),
+          ),
+        ),
+      ],
+    );
   }
 }

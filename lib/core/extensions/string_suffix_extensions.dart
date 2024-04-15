@@ -3,7 +3,7 @@
 extension StringToTextWidgetExtension on String {
   Text get text => Text(this);
 
-  Text styledText(TextStyle style) => Text(this, style: style);
+  Text styledText(TextStyle? style) => Text(this, style: style);
 
   String or(String alternative) {
     return isEmpty ? alternative : this;
