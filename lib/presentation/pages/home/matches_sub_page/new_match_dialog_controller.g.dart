@@ -7,7 +7,7 @@ part of 'new_match_dialog_controller.dart';
 // **************************************************************************
 
 String _$newMatchDialogControllerHash() =>
-    r'2580774e9c5eb0e92f4359f8c6390348ad09df69';
+    r'c9ed3a2985887b082d8195decb3f85bba657e33e';
 
 /// See also [NewMatchDialogController].
 @ProviderFor(NewMatchDialogController)

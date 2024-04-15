@@ -10,6 +10,6 @@ part 'get_all_teams_use_case.dart';
 part 'teams_use_cases.g.dart';
 
 @riverpod
-GetAllTeamsUseCase allTeamsUseCase(AllTeamsUseCaseRef ref) {
+GetAllTeamsUseCase getAllTeamsUseCase(GetAllTeamsUseCaseRef ref) {
   return GetAllTeamsUseCase(ref.watch(teamsRepositoryProvider));
 }

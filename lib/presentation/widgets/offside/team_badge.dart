@@ -11,7 +11,19 @@ class TeamBadge extends StatelessWidget {
   final bool useAbbreviation;
   final bool mirrored;
   final double badgeRadius;
+  final double spacing;
   final TextStyle? textStyle;
+
+  const TeamBadge({
+    super.key,
+    required this.team,
+    this.direction = Axis.vertical,
+    this.useAbbreviation = false,
+    this.mirrored = false,
+    this.badgeRadius = 24,
+    this.textStyle,
+    this.spacing = 8,
+  });
 
   factory TeamBadge.dense(Team team, BuildContext context) {
     return TeamBadge(
@@ -35,16 +47,6 @@ class TeamBadge extends StatelessWidget {
     );
   }
 
-  const TeamBadge({
-    super.key,
-    required this.team,
-    this.direction = Axis.vertical,
-    this.useAbbreviation = false,
-    this.mirrored = false,
-    this.badgeRadius = 24,
-    this.textStyle,
-  });
-
   @override
   Widget build(BuildContext context) {
     final teamBadgeAndName = [
@@ -53,7 +55,7 @@ class TeamBadge extends StatelessWidget {
         radius: badgeRadius,
         elevation: 2,
       ),
-      const Gap(8),
+      Gap(spacing),
       buildTeamName(context),
     ];
 

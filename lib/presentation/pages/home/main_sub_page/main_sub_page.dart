@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -33,57 +34,71 @@ class MainSubPage extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Gap(32),
-                switch (ref.watch(currentUserProvider)) {
-                  AsyncData(value: final user) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Text(
-                        'Hej ${user!.name} 👋',
-                        style: context.textTheme.headlineLarge,
-                      ),
-                    ),
-                  AsyncError() => const Center(child: Text('Error')),
-                  _ => Skeletonizer(
-                      enabled: true,
-                      child: Text(
-                        'Hej Użytkowniku 👋',
-                        style: context.textTheme.headlineLarge,
-                      ),
-                    ),
-                },
+                buildUserGreeting(ref, context),
                 const Gap(8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    'Witaj w Offside na EURO 2024',
-                    style: context.textTheme.titleMedium,
-                  ),
-                ),
+                buildGreetingSubtitle(context),
                 const Gap(32),
-                switch (ref.watch(mainSubPageControllerProvider)) {
-                  LoadingMainTableState() => Card(
-                      child: LoadingTableSkeleton(
-                        key: UniqueKey(),
-                      ),
-                    ),
-                  MainTableReadyState(:final users) => Inflater(
-                      inflated: true,
-                      duration: 1.seconds,
-                      scaleFactor: 0.95,
-                      child: Card(
-                        elevation: 3,
-                        child: MainTable(
-                          key: UniqueKey(),
-                          users: users,
-                        ),
-                      ),
-                    ),
-                  _ => Container(),
-                },
+                const CompetitionWinnerPicker(),
+                const Gap(32),
+                buildMainTable(ref),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  StatelessWidget buildMainTable(WidgetRef ref) {
+    return switch (ref.watch(mainSubPageControllerProvider)) {
+      LoadingMainTableState() => Card(
+          child: LoadingTableSkeleton(
+            key: UniqueKey(),
+          ),
+        ),
+      MainTableReadyState(:final users) => Inflater(
+          inflated: true,
+          duration: 1.seconds,
+          scaleFactor: 0.95,
+          child: Card(
+            elevation: 3,
+            child: MainTable(
+              key: UniqueKey(),
+              users: users,
+            ),
+          ),
+        ),
+      _ => Container(),
+    };
+  }
+
+  Padding buildGreetingSubtitle(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Text(
+        'Witaj w Offside na EURO 2024',
+        style: context.textTheme.titleMedium,
+      ),
+    );
+  }
+
+  Widget buildUserGreeting(WidgetRef ref, BuildContext context) {
+    return switch (ref.watch(currentUserProvider)) {
+      AsyncData(value: final user) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            'Hej ${user!.name} 👋',
+            style: context.textTheme.headlineLarge,
+          ),
+        ),
+      AsyncError() => const Center(child: Text('Error')),
+      _ => Skeletonizer(
+          enabled: true,
+          child: Text(
+            'Hej Użytkowniku 👋',
+            style: context.textTheme.headlineLarge,
+          ),
+        ),
+    };
   }
 }

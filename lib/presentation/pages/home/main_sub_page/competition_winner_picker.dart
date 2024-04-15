@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
+import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/domain/entities/team.dart';
+import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
+import 'package:offside/presentation/widgets/offside/team_badge.dart';
+
+import 'competition_winner_picker_controller.dart';
+
+class CompetitionWinnerPicker extends ConsumerStatefulWidget {
+  const CompetitionWinnerPicker({super.key});
+
+  @override
+  ConsumerState createState() => _CompetitionWinnerPickerState();
+}
+
+class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicker> {
+  Team? selectedWinner;
+
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(competitionWinnerPickerControllerProvider);
+    return SizedBox(
+      // height: 56,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.emoji_events_rounded),
+                title: const Text('Wytypuj zwycięzcę'),
+                subtitle: 'Ten typ będzie zamknięty po rozpoczęciu turnieju,\na za poprawny otrzymasz 10 punktów!'
+                    .styledText(context.textTheme.bodySmall!),
+                contentPadding: const EdgeInsets.only(left: 8),
+              ),
+              const Gap(16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  BorderedDropdownButton<Team>(
+                    value: selectedWinner,
+                    height: 34,
+                    items: state.teams.map((team) {
+                      return DropdownMenuItem(
+                          value: team,
+                          child: TeamBadge(
+                            team: team,
+                            badgeRadius: 10,
+                            textStyle: context.textTheme.bodyMedium!,
+                            spacing: 12,
+                            direction: Axis.horizontal,
+                          ));
+                    }).toList(),
+                    onChanged: (team) => setState(() => selectedWinner = team),
+                  ),
+                  FilledButton.tonal(
+                    onPressed: () {},
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.save),
+                        Gap(8),
+                        Text('Zapisz'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const Gap(16),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

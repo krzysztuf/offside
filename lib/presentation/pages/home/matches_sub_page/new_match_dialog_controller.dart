@@ -9,7 +9,7 @@ part 'new_match_dialog_controller.g.dart';
 class NewMatchDialogController extends _$NewMatchDialogController {
   @override
   NewMatchDialogState build() {
-    ref.read(allTeamsUseCaseProvider).run().then((teams) {
+    ref.read(getAllTeamsUseCaseProvider).run().then((teams) {
       state = state.copyWith(teams: teams, loading: false);
     });
 
