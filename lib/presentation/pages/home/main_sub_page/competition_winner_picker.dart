@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker_state.dart';
 import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
@@ -37,43 +38,48 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
                 contentPadding: const EdgeInsets.only(left: 8),
               ),
               const Gap(16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  BorderedDropdownButton<Team>(
-                    value: selectedWinner,
-                    height: 34,
-                    items: state.teams.map((team) {
-                      return DropdownMenuItem(
-                          value: team,
-                          child: TeamBadge(
-                            team: team,
-                            badgeRadius: 10,
-                            textStyle: context.textTheme.bodyMedium!,
-                            spacing: 12,
-                            direction: Axis.horizontal,
-                          ));
-                    }).toList(),
-                    onChanged: (team) => setState(() => selectedWinner = team),
-                  ),
-                  FilledButton.tonal(
-                    onPressed: () {},
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.save),
-                        Gap(8),
-                        Text('Zapisz'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              buildWinnerSelectionRow(state, context),
               const Gap(16),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Row buildWinnerSelectionRow(CompetitionWinnerPickerState state, BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        BorderedDropdownButton<Team>(
+          value: selectedWinner,
+          height: 34,
+          items: state.teams.map((team) {
+            return DropdownMenuItem(
+              value: team,
+              child: TeamBadge(
+                team: team,
+                badgeRadius: 10,
+                textStyle: context.textTheme.bodyMedium!,
+                spacing: 12,
+                direction: Axis.horizontal,
+              ),
+            );
+          }).toList(),
+          onChanged: (team) => setState(() => selectedWinner = team),
+        ),
+        FilledButton.tonal(
+          onPressed: () {},
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.save),
+              Gap(8),
+              Text('Zapisz'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
