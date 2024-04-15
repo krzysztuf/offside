@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/presentation/pages/home/table_sub_page/main_table_state.dart';
+import 'package:offside/presentation/pages/home/main_sub_page/main_table_state.dart';
 
 class RecentFormDots extends StatelessWidget {
   final UserScores userScores;

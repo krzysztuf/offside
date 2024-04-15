@@ -6,9 +6,9 @@ import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
-import 'package:offside/presentation/pages/home/table_sub_page/main_table_controller.dart';
 import 'package:offside/presentation/widgets/offside/recent_form_dots.dart';
 
+import 'main_table_controller.dart';
 import 'main_table_state.dart';
 
 class MainTable extends ConsumerWidget {

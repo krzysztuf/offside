@@ -4,8 +4,9 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
-import 'package:offside/presentation/pages/home/table_sub_page/main_table_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'main_table_state.dart';
 
 part 'main_table_controller.g.dart';
 

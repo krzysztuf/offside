@@ -4,12 +4,12 @@ import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/new_match_dialog.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page.dart';
-import 'package:offside/presentation/pages/home/table_sub_page/table_sub_page.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/providers/user_is_admin.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 
 import 'home_page_controller.dart';
+import 'main_sub_page/main_sub_page.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -36,7 +36,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         child: IndexedStack(
           index: currentTab.index,
           children: const [
-            TableSubPage(),
+            MainSubPage(),
             MatchesSubPage(),
             ProfileSubPage(),
           ],
@@ -55,8 +55,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         selectedIndex: currentTab.index,
         destinations: [
           const NavigationDestination(
-            icon: Icon(Icons.table_view),
-            label: 'Tabela',
+            icon: Icon(Icons.home),
+            label: 'Główna',
             tooltip: '',
           ),
           const NavigationDestination(

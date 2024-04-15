@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/presentation/pages/home/table_sub_page/table_sub_page_controller.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'loading_table_skeleton.dart';
+import 'main_sub_page_controller.dart';
+import 'main_sub_page_states.dart';
 import 'main_table.dart';
 import 'main_table_controller.dart';
-import 'table_sub_page_states.dart';
 
-class TableSubPage extends ConsumerWidget {
-  const TableSubPage({super.key});
+class MainSubPage extends ConsumerWidget {
+  const MainSubPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return RefreshIndicator(
       onRefresh: () async {
-        await ref.read(tableSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds);
+        await ref.read(mainSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds);
         await ref.read(mainTableControllerProvider.notifier).refresh();
       },
       child: Padding(
@@ -59,7 +59,7 @@ class TableSubPage extends ConsumerWidget {
                   ),
                 ),
                 const Gap(32),
-                switch (ref.watch(tableSubPageControllerProvider)) {
+                switch (ref.watch(mainSubPageControllerProvider)) {
                   LoadingMainTableState() => Card(
                       child: LoadingTableSkeleton(
                         key: UniqueKey(),

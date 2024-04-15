@@ -1,17 +1,14 @@
-import 'dart:developer';
-
-import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'table_sub_page_states.dart';
+import 'main_sub_page_states.dart';
 
-part 'table_sub_page_controller.g.dart';
+part 'main_sub_page_controller.g.dart';
 
 @riverpod
-class TableSubPageController extends _$TableSubPageController {
+class MainSubPageController extends _$MainSubPageController {
   @override
-  TableSubPageState build() {
+  MainSubPageState build() {
     loadTable();
     return LoadingMainTableState();
   }
