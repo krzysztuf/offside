@@ -13,6 +13,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       surname: json['surname'] as String,
       nickname: json['nickname'] as String?,
       image: json['image'] as String?,
+      winnerPredictionId: json['winnerPredictionId'] as String?,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'surname': instance.surname,
       'nickname': instance.nickname,
       'image': instance.image,
+      'winnerPredictionId': instance.winnerPredictionId,
     };

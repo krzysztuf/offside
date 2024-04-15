@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/team.dart';
+import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker_state.dart';
+import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
+import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
 import 'competition_winner_picker_controller.dart';
@@ -68,18 +72,39 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
           }).toList(),
           onChanged: (team) => setState(() => selectedWinner = team),
         ),
-        FilledButton.tonal(
-          onPressed: () {},
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.save),
-              Gap(8),
-              Text('Zapisz'),
-            ],
-          ),
+        Enabled(
+          enabled: selectedWinner != state.winnerPrediction,
+          child: switch (ref.read(currentUserProvider)) {
+            AsyncData(value: final user) => buildSaveButton(state, user!, context),
+            _ => const SizedBox(),
+          },
         ),
       ],
+    );
+  }
+
+  FilledButton buildSaveButton(CompetitionWinnerPickerState state, User user, BuildContext context) {
+    return FilledButton.tonal(
+      onPressed: () {
+        ref.read(competitionWinnerPickerControllerProvider.notifier).selectWinner(user, selectedWinner!);
+      },
+      child: SizedBox(
+        width: 78,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: switch (state.saving) {
+            true => [
+                LoadingAnimationWidget.horizontalRotatingDots(color: context.colorScheme.primary, size: 20),
+              ],
+            false => const [
+                Icon(Icons.save),
+                Gap(8),
+                Text('Zapisz'),
+              ],
+          },
+        ),
+      ),
     );
   }
 }

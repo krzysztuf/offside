@@ -34,3 +34,8 @@ GetLoggedInUserUseCase getLoggedInUserUseCase(GetLoggedInUserUseCaseRef ref) {
 AddUserUseCase addUserUseCase(AddUserUseCaseRef ref) {
   return AddUserUseCase(ref.read(usersRepositoryProvider));
 }
+
+@riverpod
+UpdateUserUseCase updateUserUseCase(UpdateUserUseCaseRef ref) {
+  return UpdateUserUseCase(ref.read(usersRepositoryProvider));
+}

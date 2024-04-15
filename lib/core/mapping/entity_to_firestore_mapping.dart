@@ -54,6 +54,7 @@ extension EntityToFirestoreMapping on GetIt {
           entity.name,
           entity.surname,
           entity.image,
+          entity.winnerPredictionId,
         ),
       ),
       backward: (document) => User(
@@ -62,6 +63,7 @@ extension EntityToFirestoreMapping on GetIt {
         name: document.value.name,
         surname: document.value.surname,
         image: document.value.image,
+        winnerPredictionId: document.value.winnerPredictionId,
       ),
     );
 

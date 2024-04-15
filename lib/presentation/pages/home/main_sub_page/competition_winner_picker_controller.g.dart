@@ -7,7 +7,7 @@ part of 'competition_winner_picker_controller.dart';
 // **************************************************************************
 
 String _$competitionWinnerPickerControllerHash() =>
-    r'5d9ad54ad4e725f1a9c5807a9ce7d2cfcb76ca3d';
+    r'4d344cfd502ecf63912cb5eab56f4fca3280d958';
 
 /// See also [CompetitionWinnerPickerController].
 @ProviderFor(CompetitionWinnerPickerController)

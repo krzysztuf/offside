@@ -6,6 +6,7 @@ class UserModel {
   final String name;
   final String surname;
   final String? image;
+  final String? winnerPredictionId;
 
   UserModel(
     this.id,
@@ -13,6 +14,7 @@ class UserModel {
     this.name,
     this.surname,
     this.image,
+    this.winnerPredictionId,
   );
 
   Map<String, dynamic> toJson() {
@@ -21,6 +23,7 @@ class UserModel {
       'name': name,
       'surname': surname,
       'image': image,
+      'winnerPredictionId': winnerPredictionId,
     };
   }
 
@@ -32,6 +35,7 @@ class UserModel {
       json['name'] as String,
       json['surname'] as String,
       json['image'] as String?,
+      json['winnerPredictionId'] as String?,
     );
   }
 }

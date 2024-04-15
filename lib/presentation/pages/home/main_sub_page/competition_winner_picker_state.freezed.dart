@@ -19,6 +19,7 @@ mixin _$CompetitionWinnerPickerState {
   Team? get winnerPrediction => throw _privateConstructorUsedError;
   List<Team> get teams => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  bool get saving => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CompetitionWinnerPickerStateCopyWith<CompetitionWinnerPickerState>
@@ -33,7 +34,8 @@ abstract class $CompetitionWinnerPickerStateCopyWith<$Res> {
       _$CompetitionWinnerPickerStateCopyWithImpl<$Res,
           CompetitionWinnerPickerState>;
   @useResult
-  $Res call({Team? winnerPrediction, List<Team> teams, bool loading});
+  $Res call(
+      {Team? winnerPrediction, List<Team> teams, bool loading, bool saving});
 
   $TeamCopyWith<$Res>? get winnerPrediction;
 }
@@ -55,6 +57,7 @@ class _$CompetitionWinnerPickerStateCopyWithImpl<$Res,
     Object? winnerPrediction = freezed,
     Object? teams = null,
     Object? loading = null,
+    Object? saving = null,
   }) {
     return _then(_value.copyWith(
       winnerPrediction: freezed == winnerPrediction
@@ -68,6 +71,10 @@ class _$CompetitionWinnerPickerStateCopyWithImpl<$Res,
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      saving: null == saving
+          ? _value.saving
+          : saving // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -94,7 +101,8 @@ abstract class _$$CompetitionWinnerPickerStateImplCopyWith<$Res>
       __$$CompetitionWinnerPickerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Team? winnerPrediction, List<Team> teams, bool loading});
+  $Res call(
+      {Team? winnerPrediction, List<Team> teams, bool loading, bool saving});
 
   @override
   $TeamCopyWith<$Res>? get winnerPrediction;
@@ -116,6 +124,7 @@ class __$$CompetitionWinnerPickerStateImplCopyWithImpl<$Res>
     Object? winnerPrediction = freezed,
     Object? teams = null,
     Object? loading = null,
+    Object? saving = null,
   }) {
     return _then(_$CompetitionWinnerPickerStateImpl(
       winnerPrediction: freezed == winnerPrediction
@@ -130,6 +139,10 @@ class __$$CompetitionWinnerPickerStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      saving: null == saving
+          ? _value.saving
+          : saving // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -140,7 +153,8 @@ class _$CompetitionWinnerPickerStateImpl extends _CompetitionWinnerPickerState {
   const _$CompetitionWinnerPickerStateImpl(
       {this.winnerPrediction,
       final List<Team> teams = const [],
-      this.loading = true})
+      this.loading = true,
+      this.saving = false})
       : _teams = teams,
         super._();
 
@@ -158,10 +172,13 @@ class _$CompetitionWinnerPickerStateImpl extends _CompetitionWinnerPickerState {
   @override
   @JsonKey()
   final bool loading;
+  @override
+  @JsonKey()
+  final bool saving;
 
   @override
   String toString() {
-    return 'CompetitionWinnerPickerState(winnerPrediction: $winnerPrediction, teams: $teams, loading: $loading)';
+    return 'CompetitionWinnerPickerState(winnerPrediction: $winnerPrediction, teams: $teams, loading: $loading, saving: $saving)';
   }
 
   @override
@@ -172,12 +189,13 @@ class _$CompetitionWinnerPickerStateImpl extends _CompetitionWinnerPickerState {
             (identical(other.winnerPrediction, winnerPrediction) ||
                 other.winnerPrediction == winnerPrediction) &&
             const DeepCollectionEquality().equals(other._teams, _teams) &&
-            (identical(other.loading, loading) || other.loading == loading));
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.saving, saving) || other.saving == saving));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, winnerPrediction,
-      const DeepCollectionEquality().hash(_teams), loading);
+      const DeepCollectionEquality().hash(_teams), loading, saving);
 
   @JsonKey(ignore: true)
   @override
@@ -193,7 +211,8 @@ abstract class _CompetitionWinnerPickerState
   const factory _CompetitionWinnerPickerState(
       {final Team? winnerPrediction,
       final List<Team> teams,
-      final bool loading}) = _$CompetitionWinnerPickerStateImpl;
+      final bool loading,
+      final bool saving}) = _$CompetitionWinnerPickerStateImpl;
   const _CompetitionWinnerPickerState._() : super._();
 
   @override
@@ -202,6 +221,8 @@ abstract class _CompetitionWinnerPickerState
   List<Team> get teams;
   @override
   bool get loading;
+  @override
+  bool get saving;
   @override
   @JsonKey(ignore: true)
   _$$CompetitionWinnerPickerStateImplCopyWith<

@@ -9,6 +9,7 @@ class CompetitionWinnerPickerState with _$CompetitionWinnerPickerState {
     Team? winnerPrediction,
     @Default([]) List<Team> teams,
     @Default(true) bool loading,
+    @Default(false) bool saving,
   }) = _CompetitionWinnerPickerState;
 
   const CompetitionWinnerPickerState._();

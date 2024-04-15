@@ -17,6 +17,7 @@ class User with _$User implements Identifiable {
     required String surname,
     String? nickname,
     String? image,
+    String? winnerPredictionId,
   }) = _User;
 
   const User._();

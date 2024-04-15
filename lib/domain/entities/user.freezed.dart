@@ -28,6 +28,7 @@ mixin _$User {
   String get surname => throw _privateConstructorUsedError;
   String? get nickname => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  String? get winnerPredictionId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $UserCopyWith<$Res> {
       String name,
       String surname,
       String? nickname,
-      String? image});
+      String? image,
+      String? winnerPredictionId});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? surname = null,
     Object? nickname = freezed,
     Object? image = freezed,
+    Object? winnerPredictionId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,6 +96,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      winnerPredictionId: freezed == winnerPredictionId
+          ? _value.winnerPredictionId
+          : winnerPredictionId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -110,7 +117,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       String surname,
       String? nickname,
-      String? image});
+      String? image,
+      String? winnerPredictionId});
 }
 
 /// @nodoc
@@ -129,6 +137,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? surname = null,
     Object? nickname = freezed,
     Object? image = freezed,
+    Object? winnerPredictionId = freezed,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -155,6 +164,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      winnerPredictionId: freezed == winnerPredictionId
+          ? _value.winnerPredictionId
+          : winnerPredictionId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -168,7 +181,8 @@ class _$UserImpl extends _User {
       required this.name,
       required this.surname,
       this.nickname,
-      this.image})
+      this.image,
+      this.winnerPredictionId})
       : super._();
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -188,10 +202,12 @@ class _$UserImpl extends _User {
   final String? nickname;
   @override
   final String? image;
+  @override
+  final String? winnerPredictionId;
 
   @override
   String toString() {
-    return 'User(id: $id, firebaseId: $firebaseId, name: $name, surname: $surname, nickname: $nickname, image: $image)';
+    return 'User(id: $id, firebaseId: $firebaseId, name: $name, surname: $surname, nickname: $nickname, image: $image, winnerPredictionId: $winnerPredictionId)';
   }
 
   @override
@@ -206,13 +222,15 @@ class _$UserImpl extends _User {
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.nickname, nickname) ||
                 other.nickname == nickname) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.winnerPredictionId, winnerPredictionId) ||
+                other.winnerPredictionId == winnerPredictionId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firebaseId, name, surname, nickname, image);
+  int get hashCode => Object.hash(runtimeType, id, firebaseId, name, surname,
+      nickname, image, winnerPredictionId);
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +253,8 @@ abstract class _User extends User {
       required final String name,
       required final String surname,
       final String? nickname,
-      final String? image}) = _$UserImpl;
+      final String? image,
+      final String? winnerPredictionId}) = _$UserImpl;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -253,6 +272,8 @@ abstract class _User extends User {
   String? get nickname;
   @override
   String? get image;
+  @override
+  String? get winnerPredictionId;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
