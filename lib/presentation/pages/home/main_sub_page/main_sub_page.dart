@@ -79,7 +79,7 @@ class MainSubPage extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Text(
-        'Witaj w Offside na EURO 2024',
+        'Witaj w Typowniku na EURO 2024',
         style: context.textTheme.titleMedium,
       ),
     );

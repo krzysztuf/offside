@@ -86,7 +86,21 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
   FilledButton buildSaveButton(CompetitionWinnerPickerState state, User user, BuildContext context) {
     return FilledButton.tonal(
       onPressed: () {
-        ref.read(competitionWinnerPickerControllerProvider.notifier).selectWinner(user, selectedWinner!);
+        ref.read(competitionWinnerPickerControllerProvider.notifier).selectWinner(user, selectedWinner!).then(
+          (_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  children: [
+                    Icon(Icons.check, color: context.colorScheme.background),
+                    const Gap(8),
+                    'ZWYCIĘZCA TURNIEJU ZAPISANY'.text,
+                  ],
+                ),
+              ),
+            );
+          },
+        );
       },
       child: SizedBox(
         width: 78,
