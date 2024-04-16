@@ -34,7 +34,10 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Gap(16),
-              Text('Nadchodzące mecze', style: context.textTheme.headlineSmall),
+              Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Text('Nadchodzące mecze', style: context.textTheme.headlineSmall),
+              ),
               unfoldMatches(state.matches),
               const AdminVisible(child: SizedBox(height: 46)),
             ],

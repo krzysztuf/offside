@@ -1,7 +1,9 @@
+import 'package:collection/collection.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/teams/teams_use_cases.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
+import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'competition_winner_picker_state.dart';
@@ -10,6 +12,8 @@ part 'competition_winner_picker_controller.g.dart';
 
 @riverpod
 class CompetitionWinnerPickerController extends _$CompetitionWinnerPickerController {
+  late User user;
+
   @override
   CompetitionWinnerPickerState build() {
     _loadData();
@@ -17,11 +21,25 @@ class CompetitionWinnerPickerController extends _$CompetitionWinnerPickerControl
   }
 
   Future<void> _loadData() async {
-    final teams = await ref.read(getAllTeamsUseCaseProvider).run();
-    state = state.copyWith(teams: teams, loading: false);
+    switch (ref.watch(currentUserProvider)) {
+      case AsyncData(value: final currentUser):
+        await buildFinalState(currentUser);
+        break;
+      default:
+        return;
+    }
+
+    state = state.copyWith(loading: false);
   }
 
-  Future<void> selectWinner(User user, Team team) async {
+  Future<void> buildFinalState(User? currentUser) async {
+    user = currentUser!;
+    final teams = await ref.read(getAllTeamsUseCaseProvider).run();
+    final winnerPrediction = teams.firstWhereOrNull((team) => team.id == currentUser.winnerPredictionId);
+    state = state.copyWith(teams: teams, loading: false, winnerPrediction: winnerPrediction);
+  }
+
+  Future<void> selectWinner(Team team) async {
     state = state.copyWith(saving: true);
     await Future.delayed(const Duration(seconds: 1));
     await ref.read(updateUserUseCaseProvider).run(user.copyWith(winnerPredictionId: team.id));

@@ -5,9 +5,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/team.dart';
-import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker_state.dart';
-import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
@@ -27,6 +25,8 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(competitionWinnerPickerControllerProvider);
+    selectedWinner ??= state.winnerPrediction;
+
     return SizedBox(
       // height: 56,
       child: Card(
@@ -74,19 +74,16 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
         ),
         Enabled(
           enabled: selectedWinner != state.winnerPrediction,
-          child: switch (ref.read(currentUserProvider)) {
-            AsyncData(value: final user) => buildSaveButton(state, user!, context),
-            _ => const SizedBox(),
-          },
+          child: buildSaveButton(state, context),
         ),
       ],
     );
   }
 
-  FilledButton buildSaveButton(CompetitionWinnerPickerState state, User user, BuildContext context) {
+  FilledButton buildSaveButton(CompetitionWinnerPickerState state, BuildContext context) {
     return FilledButton.tonal(
       onPressed: () {
-        ref.read(competitionWinnerPickerControllerProvider.notifier).selectWinner(user, selectedWinner!).then(
+        ref.read(competitionWinnerPickerControllerProvider.notifier).selectWinner(selectedWinner!).then(
           (_) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

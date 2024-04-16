@@ -112,7 +112,7 @@ class MainSubPage extends ConsumerWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: 'Euro 2024'.styledText(context.textTheme.headlineSmall),
+          child: 'Tabela'.styledText(context.textTheme.headlineSmall),
         ),
         const Gap(2),
         Padding(
