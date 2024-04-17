@@ -87,11 +87,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    user.avatar(
-                      context,
-                      elevation: 6,
-                      radius: 64,
-                    ),
+                    user.avatar(context, ref, elevation: 6, radius: 64, fontSize: 24),
                     const Gap(24),
                     user.fullName.styledText(context.textTheme.headlineSmall),
                     const Gap(32),

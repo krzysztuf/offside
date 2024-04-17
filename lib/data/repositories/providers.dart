@@ -1,4 +1,5 @@
 import 'package:offside/data/models/firestore/bet_model.dart';
+import 'package:offside/data/repositories/firebase_image_repository.dart';
 import 'package:offside/data/repositories/firestore_repository.dart';
 import 'package:offside/data/repositories/offside_repository_impl.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
@@ -9,6 +10,7 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
+import 'package:offside/domain/repositories/image_repository.dart';
 import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/repositories/settings_repository.dart';
@@ -48,6 +50,11 @@ OffsideRepository offsideRepository(OffsideRepositoryRef ref) {
 @riverpod
 AuthRepository authRepository(AuthRepositoryRef ref) {
   return FirebaseAuthRepository(ref.watch(usersRepositoryProvider));
+}
+
+@riverpod
+ImageRepository imageRepository(ImageRepositoryRef ref) {
+  return FirebaseImageRepository();
 }
 
 @Riverpod(keepAlive: true)

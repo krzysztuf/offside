@@ -1,6 +1,12 @@
+import 'dart:developer';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/identifiable.dart';
 import 'package:offside/presentation/widgets/avatar.dart';
 
@@ -29,22 +35,49 @@ class User with _$User implements Identifiable {
 }
 
 extension UserAvatar on User {
-  Widget avatar(BuildContext context, {double radius = 12, double fontSize = 10, double elevation = 1.5}) {
-    return Avatar(
-      elevation: elevation,
-      radius: radius,
-      image: maybeImage(),
-      child: maybeText(context, fontSize),
+  Widget avatar(
+    BuildContext context,
+    WidgetRef ref, {
+    double radius = 12,
+    double fontSize = 10,
+    double elevation = 1.5,
+  }) {
+    final initialsText = buildInitialsText(context, fontSize);
+    return FutureBuilder(
+      future: getDownloadableUrl(ref),
+      builder: (context, snapshot) {
+        final initialsAvatar = Avatar(elevation: elevation, radius: radius, child: initialsText);
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return initialsAvatar;
+        }
+
+        final url = snapshot.data;
+        if (url == null) {
+          return initialsAvatar;
+        }
+
+        log('Avatar url: $url');
+        return Avatar(
+          elevation: elevation,
+          radius: radius,
+          image: CachedNetworkImageProvider(url),
+        );
+      },
     );
   }
 
-  ImageProvider<Object>? maybeImage() {
-    return image != null ? AssetImage(image!) : null;
+  Future<String?> getDownloadableUrl(WidgetRef ref) async {
+    if (image == null) {
+      return null;
+    }
+
+    return await ref.read(imageRepositoryProvider).getUrl(image!);
   }
 
-  Text? maybeText(BuildContext context, double fontSize) {
+  Text? buildInitialsText(BuildContext context, double fontSize) {
     final initialsStyle = context.textTheme.bodyMedium!.copyWith(fontSize: fontSize);
-    return image == null ? Text(initials, style: initialsStyle) : null;
+    return initials.styledText(initialsStyle);
   }
 }
 

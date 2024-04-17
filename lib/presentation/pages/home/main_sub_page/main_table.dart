@@ -28,7 +28,7 @@ class MainTable extends ConsumerWidget {
 
           return ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            leading: buildStandingAndAvatar(context, index + 1, user),
+            leading: buildStandingAndAvatar(context, ref, index + 1, user),
             title: user.fullName.text,
             subtitle: buildRecentForm(context, userScores),
             selected: user.id == ref.watch(currentUserIdSettingProvider),
@@ -47,14 +47,14 @@ class MainTable extends ConsumerWidget {
     return [...userScores]..sort((a, b) => b.totalScore.compareTo(a.totalScore));
   }
 
-  Widget buildStandingAndAvatar(BuildContext context, int standing, User user) {
+  Widget buildStandingAndAvatar(BuildContext context, WidgetRef ref, int standing, User user) {
     return SizedBox(
       width: 68,
       child: Row(
         children: [
           '$standing'.styledText(context.textTheme.bodyMedium!),
           const SizedBox(width: 16),
-          user.avatar(context, radius: 20, fontSize: 14),
+          user.avatar(context, ref, radius: 20, fontSize: 14),
         ],
       ),
     );

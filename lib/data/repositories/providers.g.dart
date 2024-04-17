@@ -234,6 +234,21 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
 );
 
 typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
+String _$imageRepositoryHash() => r'797eb267f0cc11dde88e04570d3a9d71b645f08a';
+
+/// See also [imageRepository].
+@ProviderFor(imageRepository)
+final imageRepositoryProvider = AutoDisposeProvider<ImageRepository>.internal(
+  imageRepository,
+  name: r'imageRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$imageRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ImageRepositoryRef = AutoDisposeProviderRef<ImageRepository>;
 String _$settingsRepositoryHash() =>
     r'ca060010406df15617fdd8ad7f619fbce1d41685';
 

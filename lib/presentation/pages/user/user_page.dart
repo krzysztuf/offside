@@ -24,14 +24,14 @@ class UserPage extends ConsumerWidget {
         title: ref.read(userOfUserPageProvider).fullName.text,
       ),
       body: switch (ref.watch(userPageControllerProvider)) {
-        AsyncData(value: final state) => _buildUserPage(state, context),
+        AsyncData(value: final state) => _buildUserPage(state, ref, context),
         AsyncError() => const Center(child: Text('Error')),
         _ => Center(child: LoadingAnimationWidget.fourRotatingDots(color: context.colorScheme.primary, size: 48)),
       },
     );
   }
 
-  Widget _buildUserPage(UserPageState state, BuildContext context) {
+  Widget _buildUserPage(UserPageState state, WidgetRef ref, BuildContext context) {
     final statStyle = context.widgetThemes.userBets.userStatValue;
     return Inflater(
       scaleFactor: 0.95,
@@ -42,6 +42,7 @@ class UserPage extends ConsumerWidget {
             Center(
               child: state.user.avatar(
                 context,
+                ref,
                 elevation: 6,
                 radius: 96,
                 fontSize: 48,

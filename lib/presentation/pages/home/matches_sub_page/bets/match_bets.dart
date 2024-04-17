@@ -37,14 +37,14 @@ class MatchBets extends ConsumerWidget {
           const Gap(48),
           AnimatedSwitcher(
             duration: 400.milliseconds,
-            child: state.loading ? const LoadingBetsSkeleton() : buildUserPredictionsList(state, context),
+            child: state.loading ? const LoadingBetsSkeleton() : buildUserPredictionsList(state, ref, context),
           ),
         ],
       ),
     );
   }
 
-  Widget buildUserPredictionsList(MatchBetsState state, BuildContext context) {
+  Widget buildUserPredictionsList(MatchBetsState state, WidgetRef ref, BuildContext context) {
     return Column(
       children: [
         for (final bet in state.bets)
@@ -52,7 +52,7 @@ class MatchBets extends ConsumerWidget {
             contentPadding: const EdgeInsets.only(bottom: 16),
             leading: Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: bet.user.avatar(context),
+              child: bet.user.avatar(context, ref),
             ),
             title: '${bet.user.name} ${bet.user.surname}'.text,
             trailing: SizedBox(
