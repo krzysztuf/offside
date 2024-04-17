@@ -8,6 +8,7 @@ import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker_state.dart';
 import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
+import 'package:offside/presentation/widgets/icon_text.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
 import 'competition_winner_picker_controller.dart';
@@ -30,6 +31,7 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
     return SizedBox(
       // height: 56,
       child: Card(
+        elevation: 2,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -101,18 +103,10 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
       },
       child: SizedBox(
         width: 78,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: switch (state.saving) {
-            true => [
-                LoadingAnimationWidget.horizontalRotatingDots(color: context.colorScheme.primary, size: 20),
-              ],
-            false => const [
-                Icon(Icons.save),
-                Gap(8),
-                Text('Zapisz'),
-              ],
+        child: Center(
+          child: switch (state.saving) {
+            true => LoadingAnimationWidget.horizontalRotatingDots(color: context.colorScheme.primary, size: 20),
+            false => const IconText(icon: Icons.save, text: 'Zapisz'),
           },
         ),
       ),

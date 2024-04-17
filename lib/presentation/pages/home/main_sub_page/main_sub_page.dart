@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker.dart';
+import 'package:offside/presentation/pages/home/main_sub_page/private_tables.dart';
+import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -40,10 +41,21 @@ class MainSubPage extends ConsumerWidget {
                 buildGreetingSubtitle(context),
                 const Gap(24),
                 const CompetitionWinnerPicker(),
-                const Gap(24),
-                buildTableHeadline(context),
+                const Gap(48),
+                const SubtitledHeadline(
+                  title: 'Tabela',
+                  subtitle: 'Główna tabela z wszystkimi użytkownikami',
+                ),
                 const Gap(16),
                 buildMainTable(ref),
+                const Gap(48),
+                const SubtitledHeadline(
+                  title: 'Moje tabele',
+                  subtitle: 'Stwórz własne tabele i zaproś innych',
+                ),
+                const Gap(32),
+                const PrivateTables(),
+                const Gap(32),
               ],
             ),
           ),
@@ -103,25 +115,5 @@ class MainSubPage extends ConsumerWidget {
           ),
         ),
     };
-  }
-
-  Widget buildTableHeadline(BuildContext context) {
-    var bodyMedium = context.textTheme.bodyMedium;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: 'Tabela'.styledText(context.textTheme.headlineSmall),
-        ),
-        const Gap(2),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: 'Główna tabela z wszystkimi użytkownikami'.styledText(
-            bodyMedium!.copyWith(color: bodyMedium.color!.withOpacity(0.5)),
-          ),
-        ),
-      ],
-    );
   }
 }
