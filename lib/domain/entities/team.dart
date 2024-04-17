@@ -11,7 +11,6 @@ class Team with _$Team implements Identifiable {
     @Default('') @JsonKey(includeToJson: false) String id,
     required String name,
     required String abbreviation,
-    required String logo,
   }) = _Team;
 
   Team._();
@@ -20,4 +19,8 @@ class Team with _$Team implements Identifiable {
 
   @override
   String get identifier => id;
+}
+
+extension TeamLogo on Team {
+  String get logo => 'assets/images/teams/$id.png';
 }

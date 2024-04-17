@@ -58,6 +58,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
             //     },
             //   ),
             // ),
+            const Gap(16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

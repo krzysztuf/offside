@@ -22,7 +22,7 @@ final currentCardMatchProvider = AutoDisposeProvider<Match>.internal(
 
 typedef CurrentCardMatchRef = AutoDisposeProviderRef<Match>;
 String _$matchCardControllerHash() =>
-    r'd15298d8fa363be61e46a95fa1c0615015876735';
+    r'e8c0dd97c29198db5b56d40bb7674064f0c3c370';
 
 /// See also [MatchCardController].
 @ProviderFor(MatchCardController)

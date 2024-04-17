@@ -74,14 +74,12 @@ extension EntityToFirestoreMapping on GetIt {
           entity.id,
           entity.name,
           entity.abbreviation,
-          entity.logo,
         ),
       ),
       backward: (document) => Team(
         id: document.id,
         name: document.value.name,
         abbreviation: document.value.abbreviation,
-        logo: document.value.logo,
       ),
     );
 

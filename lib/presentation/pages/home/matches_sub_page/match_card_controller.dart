@@ -57,6 +57,11 @@ class MatchCardController extends _$MatchCardController {
       return;
     }
 
+    final now = ref.read(dateTimeProvider);
+    if (state.match.afterKickOff(now)) {
+      return;
+    }
+
     setLoading(true);
 
     state = state.copyWith(

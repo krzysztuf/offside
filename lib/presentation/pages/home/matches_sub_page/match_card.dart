@@ -324,7 +324,6 @@ class _MatchCardState extends ConsumerState<MatchCard> {
       team: Team(
         name: 'Błąd',
         abbreviation: 'ERR',
-        logo: 'assets/images/teams/england.png',
       ),
     );
   }

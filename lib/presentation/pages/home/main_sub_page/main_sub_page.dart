@@ -35,7 +35,7 @@ class MainSubPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Gap(32),
+                const Gap(16),
                 buildUserGreeting(ref, context),
                 const Gap(4),
                 buildGreetingSubtitle(context),

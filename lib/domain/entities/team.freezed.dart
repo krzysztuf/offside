@@ -25,7 +25,6 @@ mixin _$Team {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get abbreviation => throw _privateConstructorUsedError;
-  String get logo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,8 +39,7 @@ abstract class $TeamCopyWith<$Res> {
   $Res call(
       {@JsonKey(includeToJson: false) String id,
       String name,
-      String abbreviation,
-      String logo});
+      String abbreviation});
 }
 
 /// @nodoc
@@ -60,7 +58,6 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
     Object? id = null,
     Object? name = null,
     Object? abbreviation = null,
-    Object? logo = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -74,10 +71,6 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
       abbreviation: null == abbreviation
           ? _value.abbreviation
           : abbreviation // ignore: cast_nullable_to_non_nullable
-              as String,
-      logo: null == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -93,8 +86,7 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
   $Res call(
       {@JsonKey(includeToJson: false) String id,
       String name,
-      String abbreviation,
-      String logo});
+      String abbreviation});
 }
 
 /// @nodoc
@@ -110,7 +102,6 @@ class __$$TeamImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? abbreviation = null,
-    Object? logo = null,
   }) {
     return _then(_$TeamImpl(
       id: null == id
@@ -125,10 +116,6 @@ class __$$TeamImplCopyWithImpl<$Res>
           ? _value.abbreviation
           : abbreviation // ignore: cast_nullable_to_non_nullable
               as String,
-      logo: null == logo
-          ? _value.logo
-          : logo // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -139,8 +126,7 @@ class _$TeamImpl extends _Team {
   _$TeamImpl(
       {@JsonKey(includeToJson: false) this.id = '',
       required this.name,
-      required this.abbreviation,
-      required this.logo})
+      required this.abbreviation})
       : super._();
 
   factory _$TeamImpl.fromJson(Map<String, dynamic> json) =>
@@ -154,12 +140,10 @@ class _$TeamImpl extends _Team {
   final String name;
   @override
   final String abbreviation;
-  @override
-  final String logo;
 
   @override
   String toString() {
-    return 'Team(id: $id, name: $name, abbreviation: $abbreviation, logo: $logo)';
+    return 'Team(id: $id, name: $name, abbreviation: $abbreviation)';
   }
 
   @override
@@ -170,13 +154,12 @@ class _$TeamImpl extends _Team {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.abbreviation, abbreviation) ||
-                other.abbreviation == abbreviation) &&
-            (identical(other.logo, logo) || other.logo == logo));
+                other.abbreviation == abbreviation));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, abbreviation, logo);
+  int get hashCode => Object.hash(runtimeType, id, name, abbreviation);
 
   @JsonKey(ignore: true)
   @override
@@ -196,8 +179,7 @@ abstract class _Team extends Team {
   factory _Team(
       {@JsonKey(includeToJson: false) final String id,
       required final String name,
-      required final String abbreviation,
-      required final String logo}) = _$TeamImpl;
+      required final String abbreviation}) = _$TeamImpl;
   _Team._() : super._();
 
   factory _Team.fromJson(Map<String, dynamic> json) = _$TeamImpl.fromJson;
@@ -209,8 +191,6 @@ abstract class _Team extends Team {
   String get name;
   @override
   String get abbreviation;
-  @override
-  String get logo;
   @override
   @JsonKey(ignore: true)
   _$$TeamImplCopyWith<_$TeamImpl> get copyWith =>

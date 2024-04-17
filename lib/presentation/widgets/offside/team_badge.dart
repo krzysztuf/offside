@@ -41,7 +41,6 @@ class TeamBadge extends StatelessWidget {
         team: Team(
           name: 'Dummy',
           abbreviation: 'ASB',
-          logo: 'assets/images/teams/england.png',
         ),
       ),
     );
