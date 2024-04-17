@@ -57,12 +57,31 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
             //     },
             //   ),
             // ),
-            const SubtitledHeadline(
-              title: 'Profil',
-              subtitle: 'Zarządzaj swoim profilem',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SubtitledHeadline(
+                  title: 'Profil',
+                  subtitle: 'Zarządzaj swoim profilem',
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    ref.read(profileSubPageControllerProvider.notifier).logOut().then((_) {
+                      context.goNamed('login');
+                    });
+                  },
+                  icon: const Icon(Icons.logout),
+                  label: 'Wyloguj'.text,
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: context.widgetThemes.sharedWidgets.destructive.foreground,
+                    backgroundColor: context.widgetThemes.sharedWidgets.destructive.background,
+                  ),
+                ),
+              ],
             ),
             const Gap(48),
             Card(
+              elevation: 2,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -104,24 +123,6 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
               ),
             ),
             const Gap(64),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    ref.read(profileSubPageControllerProvider.notifier).logOut().then((_) {
-                      context.goNamed('login');
-                    });
-                  },
-                  icon: const Icon(Icons.logout),
-                  label: 'Wyloguj'.text,
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: context.widgetThemes.sharedWidgets.destructive.foreground,
-                    backgroundColor: context.widgetThemes.sharedWidgets.destructive.background,
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),
