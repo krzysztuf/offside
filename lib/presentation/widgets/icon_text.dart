@@ -4,11 +4,13 @@ import 'package:gap/gap.dart';
 class IconText extends StatelessWidget {
   final IconData icon;
   final double gap;
+  final double iconSize;
   final String text;
 
   const IconText({
     super.key,
     required this.icon,
+    this.iconSize = 18,
     required this.text,
     this.gap = 8,
   });
@@ -18,7 +20,7 @@ class IconText extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon),
+        Icon(icon, size: iconSize),
         Gap(gap),
         Text(text),
       ],

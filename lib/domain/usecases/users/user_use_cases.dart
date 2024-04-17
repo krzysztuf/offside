@@ -76,3 +76,14 @@ class UpdateUserUseCase implements AsyncUseCaseWithParam<void, User> {
     return users.update(user);
   }
 }
+
+class UploadUserAvatarUseCase implements AsyncUseCaseWithParam<void, User> {
+  final Repository<User> users;
+
+  UploadUserAvatarUseCase(this.users);
+
+  @override
+  Future<void> run(User user) {
+    return users.update(user);
+  }
+}

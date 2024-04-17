@@ -18,6 +18,18 @@ class SharedWidgetsTheme extends WidgetTheme {
         ),
       );
 
+  ColorPreset get destructive => ColorPreset(
+        theme,
+        foreground: theme.variant(
+          light: const Color(0xff980000),
+          dark: const Color(0xffff8080),
+        ),
+        background: theme.variant(
+          light: const Color(0xffffe7e7),
+          dark: const Color(0xff5a2e2e),
+        ),
+      );
+
   Color get noPointsColor => theme.variant(
         light: Colors.red.shade400,
         dark: Colors.red.shade400,

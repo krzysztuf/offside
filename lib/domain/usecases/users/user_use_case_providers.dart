@@ -39,3 +39,8 @@ AddUserUseCase addUserUseCase(AddUserUseCaseRef ref) {
 UpdateUserUseCase updateUserUseCase(UpdateUserUseCaseRef ref) {
   return UpdateUserUseCase(ref.read(usersRepositoryProvider));
 }
+
+@riverpod
+UploadUserAvatarUseCase uploadUserAvatarUseCase(UploadUserAvatarUseCaseRef ref) {
+  return UploadUserAvatarUseCase(ref.read(usersRepositoryProvider));
+}

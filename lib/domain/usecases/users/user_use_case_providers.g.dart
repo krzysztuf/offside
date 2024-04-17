@@ -242,5 +242,23 @@ final updateUserUseCaseProvider =
 );
 
 typedef UpdateUserUseCaseRef = AutoDisposeProviderRef<UpdateUserUseCase>;
+String _$uploadUserAvatarUseCaseHash() =>
+    r'2fbd3f9a9a80d9b651459fefe35d87edc0478245';
+
+/// See also [uploadUserAvatarUseCase].
+@ProviderFor(uploadUserAvatarUseCase)
+final uploadUserAvatarUseCaseProvider =
+    AutoDisposeProvider<UploadUserAvatarUseCase>.internal(
+  uploadUserAvatarUseCase,
+  name: r'uploadUserAvatarUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$uploadUserAvatarUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UploadUserAvatarUseCaseRef
+    = AutoDisposeProviderRef<UploadUserAvatarUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
