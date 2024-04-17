@@ -42,5 +42,5 @@ UpdateUserUseCase updateUserUseCase(UpdateUserUseCaseRef ref) {
 
 @riverpod
 UploadUserAvatarUseCase uploadUserAvatarUseCase(UploadUserAvatarUseCaseRef ref) {
-  return UploadUserAvatarUseCase(ref.read(usersRepositoryProvider));
+  return UploadUserAvatarUseCase(ref.read(usersRepositoryProvider), ref.read(imageRepositoryProvider));
 }

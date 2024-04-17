@@ -7,7 +7,7 @@ part of 'profile_sub_page_controller.dart';
 // **************************************************************************
 
 String _$profileSubPageControllerHash() =>
-    r'b495a7a544bda48866509215285c5f7ed3265e5d';
+    r'c426cfbdc984414157752ddb73b180ea0c582b06';
 
 /// See also [ProfileSubPageController].
 @ProviderFor(ProfileSubPageController)

@@ -8,6 +8,7 @@ class ProfileSubPageState with _$ProfileSubPageState {
   const factory ProfileSubPageState({
     User? user,
     required bool loading,
+    @Default(false) bool uploading,
   }) = _ProfileSubPageState;
 
   const ProfileSubPageState._();

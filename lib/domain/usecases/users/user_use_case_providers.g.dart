@@ -243,7 +243,7 @@ final updateUserUseCaseProvider =
 
 typedef UpdateUserUseCaseRef = AutoDisposeProviderRef<UpdateUserUseCase>;
 String _$uploadUserAvatarUseCaseHash() =>
-    r'2fbd3f9a9a80d9b651459fefe35d87edc0478245';
+    r'984b49a1577405e578a3156d0bb07eb1bd23bc20';
 
 /// See also [uploadUserAvatarUseCase].
 @ProviderFor(uploadUserAvatarUseCase)

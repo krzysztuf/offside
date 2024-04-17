@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_state.dart';
+import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_sub_page_controller.g.dart';
@@ -19,8 +22,19 @@ class ProfileSubPageController extends _$ProfileSubPageController {
   }
 
   Future<void> updateProfileImage(String imagePath) async {
-    // state = state.copyWith(user: state.user!.copyWith(imagePath: imagePath));
-    // await ref.read(updateUserUseCaseProvider).run(state.user!);
+    state = state.copyWith(uploading: true);
+
+    try {
+      final updatedUser = await ref.read(uploadUserAvatarUseCaseProvider).run(state.user!, imagePath);
+      ref.invalidate(currentUserProvider);
+      state = state.copyWith(user: updatedUser, uploading: false);
+    } catch (e) {
+      log(e.toString());
+      state = state.copyWith(uploading: false);
+      rethrow;
+    }
+
+    state = state.copyWith(uploading: false);
   }
 
   Future<void> logOut() async {

@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
+import 'package:offside/domain/repositories/image_repository.dart';
 import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
@@ -77,13 +80,20 @@ class UpdateUserUseCase implements AsyncUseCaseWithParam<void, User> {
   }
 }
 
-class UploadUserAvatarUseCase implements AsyncUseCaseWithParam<void, User> {
+class UploadUserAvatarUseCase implements AsyncUseCaseWithParams<User, User, String> {
   final Repository<User> users;
+  final ImageRepository imageRepository;
 
-  UploadUserAvatarUseCase(this.users);
+  UploadUserAvatarUseCase(this.users, this.imageRepository);
 
   @override
-  Future<void> run(User user) {
-    return users.update(user);
+  Future<User> run(User user, String imagePath) async {
+    final id = await imageRepository.upload(imagePath);
+    log('Image uploaded: $id');
+
+    var updatedUser = user.copyWith(image: id);
+    users.update(updatedUser);
+
+    return updatedUser;
   }
 }

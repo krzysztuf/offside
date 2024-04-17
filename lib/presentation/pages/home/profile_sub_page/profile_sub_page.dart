@@ -9,6 +9,9 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_controller.dart';
+import 'package:offside/presentation/widgets/inflater.dart';
+
+import 'profile_sub_page_state.dart';
 
 class ProfileSubPage extends ConsumerStatefulWidget {
   const ProfileSubPage({super.key});
@@ -18,8 +21,6 @@ class ProfileSubPage extends ConsumerStatefulWidget {
 }
 
 class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
-  String? imagePath;
-
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(profileSubPageControllerProvider);
@@ -29,15 +30,15 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
       );
     }
 
-    return buildProfilePage(state.user!);
+    return buildProfilePage(state);
   }
 
-  Widget buildProfilePage(User user) {
+  Widget buildProfilePage(ProfileSubPageState state) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // AdminVisible(
             //   child: FutureBuilder(
@@ -87,9 +88,9 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    user.avatar(context, ref, elevation: 6, radius: 64, fontSize: 24),
+                    state.user!.avatar(context, ref, elevation: 6, radius: 64, fontSize: 24),
                     const Gap(24),
-                    user.fullName.styledText(context.textTheme.headlineSmall),
+                    state.user!.fullName.styledText(context.textTheme.headlineSmall),
                     const Gap(32),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,8 +108,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                           onPressed: () async {
                             final path = await pickImage();
                             if (path != null) {
-                              await cropImage(path);
-                              setState(() => imagePath = path);
+                              ref.read(profileSubPageControllerProvider.notifier).updateProfileImage(path);
                             }
                           },
                         ),
@@ -119,6 +119,13 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
               ),
             ),
             const Gap(64),
+            Inflater(
+              inflated: state.uploading,
+              child: LoadingAnimationWidget.fourRotatingDots(
+                color: context.colorScheme.primary,
+                size: 64,
+              ),
+            ),
           ],
         ),
       ),
@@ -154,25 +161,5 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
         cropping: true);
 
     return image.isNotEmpty ? image.first.path : null;
-  }
-
-  Future<void> cropImage(String path) async {
-    // await Future.delayed(200.milliseconds);
-    // log('cropping image: $path');
-    // try {
-    //   final image = await HLImagePicker().openCropper(
-    //     path,
-    //     cropOptions: const HLCropOptions(
-    //       aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-    //       compressFormat: CompressFormat.jpg,
-    //     ),
-    //   );
-    //
-    //   log('cropped image: ${image.path}');
-    //
-    //   setState(() => imagePath = image.path);
-    // } catch (e) {
-    //   log('error cropping image: $e');
-    // }
   }
 }

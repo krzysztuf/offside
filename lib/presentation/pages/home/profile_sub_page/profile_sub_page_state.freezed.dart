@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileSubPageState {
   User? get user => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  bool get uploading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileSubPageStateCopyWith<ProfileSubPageState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $ProfileSubPageStateCopyWith<$Res> {
           ProfileSubPageState value, $Res Function(ProfileSubPageState) then) =
       _$ProfileSubPageStateCopyWithImpl<$Res, ProfileSubPageState>;
   @useResult
-  $Res call({User? user, bool loading});
+  $Res call({User? user, bool loading, bool uploading});
 
   $UserCopyWith<$Res>? get user;
 }
@@ -50,6 +51,7 @@ class _$ProfileSubPageStateCopyWithImpl<$Res, $Val extends ProfileSubPageState>
   $Res call({
     Object? user = freezed,
     Object? loading = null,
+    Object? uploading = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -59,6 +61,10 @@ class _$ProfileSubPageStateCopyWithImpl<$Res, $Val extends ProfileSubPageState>
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      uploading: null == uploading
+          ? _value.uploading
+          : uploading // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -84,7 +90,7 @@ abstract class _$$ProfileSubPageStateImplCopyWith<$Res>
       __$$ProfileSubPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? user, bool loading});
+  $Res call({User? user, bool loading, bool uploading});
 
   @override
   $UserCopyWith<$Res>? get user;
@@ -103,6 +109,7 @@ class __$$ProfileSubPageStateImplCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? loading = null,
+    Object? uploading = null,
   }) {
     return _then(_$ProfileSubPageStateImpl(
       user: freezed == user
@@ -113,6 +120,10 @@ class __$$ProfileSubPageStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      uploading: null == uploading
+          ? _value.uploading
+          : uploading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -120,17 +131,21 @@ class __$$ProfileSubPageStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileSubPageStateImpl extends _ProfileSubPageState {
-  const _$ProfileSubPageStateImpl({this.user, required this.loading})
+  const _$ProfileSubPageStateImpl(
+      {this.user, required this.loading, this.uploading = false})
       : super._();
 
   @override
   final User? user;
   @override
   final bool loading;
+  @override
+  @JsonKey()
+  final bool uploading;
 
   @override
   String toString() {
-    return 'ProfileSubPageState(user: $user, loading: $loading)';
+    return 'ProfileSubPageState(user: $user, loading: $loading, uploading: $uploading)';
   }
 
   @override
@@ -139,11 +154,13 @@ class _$ProfileSubPageStateImpl extends _ProfileSubPageState {
         (other.runtimeType == runtimeType &&
             other is _$ProfileSubPageStateImpl &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.loading, loading) || other.loading == loading));
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.uploading, uploading) ||
+                other.uploading == uploading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, loading);
+  int get hashCode => Object.hash(runtimeType, user, loading, uploading);
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +173,16 @@ class _$ProfileSubPageStateImpl extends _ProfileSubPageState {
 abstract class _ProfileSubPageState extends ProfileSubPageState {
   const factory _ProfileSubPageState(
       {final User? user,
-      required final bool loading}) = _$ProfileSubPageStateImpl;
+      required final bool loading,
+      final bool uploading}) = _$ProfileSubPageStateImpl;
   const _ProfileSubPageState._() : super._();
 
   @override
   User? get user;
   @override
   bool get loading;
+  @override
+  bool get uploading;
   @override
   @JsonKey(ignore: true)
   _$$ProfileSubPageStateImplCopyWith<_$ProfileSubPageStateImpl> get copyWith =>

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -57,7 +55,6 @@ extension UserAvatar on User {
           return initialsAvatar;
         }
 
-        log('Avatar url: $url');
         return Avatar(
           elevation: elevation,
           radius: radius,
@@ -72,7 +69,7 @@ extension UserAvatar on User {
       return null;
     }
 
-    return await ref.read(imageRepositoryProvider).getUrl(image!);
+    return await ref.read(imageRepositoryProvider).getDownloadUrl(image!);
   }
 
   Text? buildInitialsText(BuildContext context, double fontSize) {

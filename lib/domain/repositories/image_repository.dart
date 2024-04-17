@@ -1,5 +1,5 @@
-
-
 abstract interface class ImageRepository {
-  Future<String?> getUrl(String path);
+  Future<String?> getDownloadUrl(String id);
+
+  Future<String> upload(String imagePath);
 }
