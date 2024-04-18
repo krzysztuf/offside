@@ -36,9 +36,6 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
-    emailController.text = 'krzysztof.potrzasaj@gmail.com';
-    passwordController.text = 'ecikoWaty2k';
-
     emailController.addListener(_refresh);
     passwordController.addListener(_refresh);
     nameController.addListener(_refresh);
@@ -161,6 +158,7 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
       children: [
         TextField(
           controller: emailController,
+          keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
             hintText: 'E-mail',
             filled: true,
