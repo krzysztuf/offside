@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
@@ -16,7 +14,7 @@ class UserStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final points = _calculatePointsBets();
+    final pointStats = _calculatePointStatistics();
     return Card(
       elevation: 2,
       child: Column(
@@ -35,21 +33,21 @@ class UserStats extends StatelessWidget {
             leading: const Icon(Icons.scoreboard_outlined),
             title: 'Doskonałe typy'.text,
             subtitle: buildSubtitle('Liczba typów za 3 lub 4 punkty', context),
-            trailing: buildValueWidget(points[3], context),
+            trailing: buildValueWidget(pointStats[3], context),
           ),
           const Divider(height: 1),
           ListTile(
             leading: const Icon(Icons.scoreboard_outlined),
             title: 'Dobre typy'.text,
             subtitle: buildSubtitle('Liczba typów za 1 lub 2 punkty', context),
-            trailing: buildValueWidget(points[1], context),
+            trailing: buildValueWidget(pointStats[1], context),
           ),
           const Divider(height: 1),
           ListTile(
             leading: const Icon(Icons.scoreboard_outlined),
             title: 'Nietrafione typy'.text,
             subtitle: buildSubtitle('Liczba typów za 0 punktów', context),
-            trailing: buildValueWidget(points[0], context),
+            trailing: buildValueWidget(pointStats[0], context),
           ),
         ],
       ),
@@ -60,24 +58,23 @@ class UserStats extends StatelessWidget {
     return '$value'.styledText(context.textTheme.titleLarge);
   }
 
-  Map<int, int> _calculatePointsBets() {
-    return state.matches.fold({0: 0, 1: 0, 3: 0}, (pointCounts, match) {
+  Map<int, int> _calculatePointStatistics() {
+    return state.matches.fold({0: 0, 1: 0, 3: 0}, (pointStatistics, match) {
       final matchBet = state.bets.firstWhereOrNull((bet) => bet.matchId == match.id);
       if (matchBet == null) {
-        return pointCounts;
+        return pointStatistics;
       }
 
       final pointsAwarded = match.pointsFor(prediction: matchBet.prediction);
       if (pointsAwarded == 3 || pointsAwarded == 4) {
-        pointCounts[3] = pointCounts[3]! + 1;
+        pointStatistics[3] = pointStatistics[3]! + 1;
       } else if (pointsAwarded == 1 || pointsAwarded == 2) {
-        pointCounts[1] = pointCounts[1]! + 1;
+        pointStatistics[1] = pointStatistics[1]! + 1;
       } else {
-        pointCounts[0] = pointCounts[0]! + 1;
+        pointStatistics[0] = pointStatistics[0]! + 1;
       }
 
-      log('$pointCounts');
-      return pointCounts;
+      return pointStatistics;
     });
   }
 

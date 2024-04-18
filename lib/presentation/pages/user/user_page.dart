@@ -48,7 +48,7 @@ class UserPage extends ConsumerWidget {
               const Gap(16),
               UserStats(state: state),
               const Gap(48),
-              'Wszystkie typy'.styledText(context.textTheme.headlineMedium),
+              'Typy użytkownika'.styledText(context.textTheme.headlineMedium),
               const Gap(16),
               UserBetsTable(matches: state.matches, userBets: state.bets),
               const Gap(16),

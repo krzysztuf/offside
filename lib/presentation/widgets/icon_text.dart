@@ -5,13 +5,13 @@ class IconText extends StatelessWidget {
   final IconData icon;
   final double gap;
   final double iconSize;
-  final String text;
+  final Widget child;
 
   const IconText({
     super.key,
     required this.icon,
     this.iconSize = 18,
-    required this.text,
+    required this.child,
     this.gap = 8,
   });
 
@@ -22,7 +22,7 @@ class IconText extends StatelessWidget {
       children: [
         Icon(icon, size: iconSize),
         Gap(gap),
-        Text(text),
+        child,
       ],
     );
   }

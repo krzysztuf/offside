@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -58,6 +59,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
                 trailing: BorderedDropdownButton<Team>(
                   value: homeTeam,
                   items: state.teams
+                      .sorted((a, b) => a.name.compareTo(b.name))
                       .map((team) => DropdownMenuItem(value: team, child: TeamBadge.dense(team, context)))
                       .toList(),
                   onChanged: (team) => setState(() => homeTeam = team),
@@ -118,11 +120,12 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
   }
 
   void promptMatchKickOffDate() {
+    final startingDate = DateTime(2024, 6, 14);
     showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(150.days),
+      initialDate: startingDate,
+      firstDate: startingDate,
+      lastDate: startingDate.add(150.days),
     ).then((date) {
       if (date == null) {
         return;

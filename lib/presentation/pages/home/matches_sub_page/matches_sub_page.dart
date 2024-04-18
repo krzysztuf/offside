@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -52,7 +53,7 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
       key: UniqueKey(),
       children: matches.entries.map((entry) {
         final kickOffDay = entry.key;
-        final matchesThisDay = entry.value;
+        final matchesThisDay = entry.value.sorted((a, b) => a.kickOffDate.compareTo(b.kickOffDate));
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -22,5 +22,5 @@ class Team with _$Team implements Identifiable {
 }
 
 extension TeamLogo on Team {
-  String get logo => 'assets/images/teams/$id.png';
+  String? get logo => id.isNotEmpty ? 'assets/images/teams/$id.png' : null;
 }

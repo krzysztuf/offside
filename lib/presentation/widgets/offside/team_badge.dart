@@ -50,7 +50,7 @@ class TeamBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final teamBadgeAndName = [
       Avatar(
-        image: AssetImage(team.logo),
+        image: team.logo != null ? AssetImage(team.logo!) : null,
         radius: badgeRadius,
         elevation: 2,
       ),

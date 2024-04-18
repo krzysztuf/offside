@@ -1,6 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:offside/core/extensions/date_time_extensions.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
@@ -8,12 +11,15 @@ import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/theme/shared_widgets_theme.dart';
+import 'package:offside/presentation/widgets/icon_text.dart';
 
 import '../../widgets/offside/match_rivals_abbreviations_row.dart';
 
 class UserBetsTable extends ConsumerWidget {
   final List<Match> matches;
   final List<Bet> userBets;
+
+  Map<DateTime, List<Match>> get matchesByDate => groupBy(matches.where((m) => m.finished), (m) => m.kickOffDate.date);
 
   const UserBetsTable({
     super.key,
@@ -28,9 +34,6 @@ class UserBetsTable extends ConsumerWidget {
 
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Table(
@@ -50,31 +53,68 @@ class UserBetsTable extends ConsumerWidget {
                 createTextCell('PKT', columnTitleStyle),
               ],
             ),
-            ...matches.map((m) {
-              var userBet = userBets.firstWhereOrNull((bet) => bet.matchId == m.id);
-              return TableRow(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MatchRivalsAbbreviationsRow(match: m),
-                  ),
-                  createOutcomeCell(m, m.outcome, cellStyle),
-                  createPredictionCell(m, userBet?.prediction, cellStyle, ref.read(dateTimeProvider)),
-                  createTextCell(
-                    buildPointsText(m, userBet?.prediction),
-                    applyPointsColor(
-                      cellStyle,
-                      m,
-                      context.widgetThemes.sharedWidgets,
-                      userBet?.prediction,
+            ...(matchesByDate.entries.sorted((a, b) => a.key.compareTo(b.key)).map((m) {
+              final date = m.key;
+              final thisDayMatches = m.value;
+
+              final dateRow = buildMatchDateRow(date, context);
+
+              final matchRows = thisDayMatches.map((m) {
+                var userBet = userBets.firstWhereOrNull((bet) => bet.matchId == m.id);
+                return TableRow(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MatchRivalsAbbreviationsRow(match: m),
                     ),
-                  ),
-                ],
-              );
-            })
+                    createOutcomeCell(m, m.outcome, cellStyle),
+                    createPredictionCell(m, userBet?.prediction, cellStyle, ref.read(dateTimeProvider)),
+                    createTextCell(
+                      buildPointsText(m, userBet?.prediction),
+                      applyPointsColor(
+                        cellStyle,
+                        m,
+                        context.widgetThemes.sharedWidgets,
+                        userBet?.prediction,
+                      ),
+                    ),
+                  ],
+                );
+              });
+
+              return [
+                dateRow,
+                ...matchRows,
+              ];
+            })).fold([], (allRows, currentDay) => allRows.toList()..addAll(currentDay)),
           ],
         ),
       ),
+    );
+  }
+
+  TableRow buildMatchDateRow(DateTime date, BuildContext context) {
+    final dateCell = DateFormat('d MMMM', 'pl').format(date).styledText(
+          context.textTheme.bodyMedium!.copyWith(fontSize: 12),
+        );
+
+    return TableRow(
+      children: [
+        createCell(
+          Opacity(
+            opacity: 0.5,
+            child: IconText(
+              icon: Icons.calendar_month,
+              iconSize: 12,
+              gap: 4,
+              child: dateCell,
+            ),
+          ),
+        ),
+        createCell(Container()),
+        createCell(Container()),
+        createCell(Container()),
+      ],
     );
   }
 

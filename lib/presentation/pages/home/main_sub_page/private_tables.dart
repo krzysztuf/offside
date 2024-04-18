@@ -12,7 +12,7 @@ class PrivateTables extends ConsumerWidget {
         onPressed: null,
         child: IconText(
           icon: Icons.add,
-          text: 'Nowa tabela',
+          child: Text('Nowa tabela'),
         ),
       ),
     );

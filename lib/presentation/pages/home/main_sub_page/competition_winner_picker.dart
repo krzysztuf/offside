@@ -106,7 +106,7 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
         child: Center(
           child: switch (state.saving) {
             true => LoadingAnimationWidget.horizontalRotatingDots(color: context.colorScheme.primary, size: 20),
-            false => const IconText(icon: Icons.save, text: 'Zapisz'),
+            false => const IconText(icon: Icons.save, child: Text('Zapisz')),
           },
         ),
       ),
