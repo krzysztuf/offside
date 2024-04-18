@@ -148,24 +148,18 @@ class _MatchCardState extends ConsumerState<MatchCard> {
   SizedBox buildScorePrediction(MatchCardState state) {
     return SizedBox(
       width: 140,
-      child: AlternativeInflater(
-        scaleFactor: 0.9,
-        useAlternative: state.betState == BetState.loading,
-        builder: () => switch (state.betState) {
-          BetState.expired => const ExpiredBetGoals(),
-          _ => GoalsPredictionEditor(
-              initialPrediction: editedPrediction ?? state.bet?.prediction.goals ?? const Goals(),
-              editable: state.betState == BetState.notPlaced || editingPrediction,
-              onUpdated: (prediction) => setState(() => editedPrediction = prediction),
-            ),
-        },
-        alternativeBuilder: () => Center(
-          child: LoadingAnimationWidget.fourRotatingDots(
+      child: switch (state.betState) {
+        BetState.loading => LoadingAnimationWidget.fourRotatingDots(
             size: 32,
             color: context.colorScheme.primary,
           ),
-        ),
-      ),
+        BetState.expired => const ExpiredBetGoals(),
+        _ => GoalsPredictionEditor(
+            initialPrediction: editedPrediction ?? state.bet?.prediction.goals ?? const Goals(),
+            editable: state.betState == BetState.notPlaced || editingPrediction,
+            onUpdated: (prediction) => setState(() => editedPrediction = prediction),
+          ),
+      },
     );
   }
 
@@ -194,13 +188,12 @@ class _MatchCardState extends ConsumerState<MatchCard> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           BetStatusPill(betState: state.betState),
-          Inflater(
-            inflated: state.loading,
-            child: LoadingAnimationWidget.fourRotatingDots(
+          if (state.loading) ...[
+            LoadingAnimationWidget.fourRotatingDots(
               color: context.colorScheme.primary,
               size: 32,
             ),
-          ),
+          ],
           Enabled(
             enabled: !state.loading,
             child: Row(

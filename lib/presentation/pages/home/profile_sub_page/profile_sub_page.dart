@@ -9,7 +9,6 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_controller.dart';
-import 'package:offside/presentation/widgets/inflater.dart';
 
 import 'profile_sub_page_state.dart';
 
@@ -26,7 +25,10 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
     final state = ref.watch(profileSubPageControllerProvider);
     if (state.loading) {
       return Center(
-        child: LoadingAnimationWidget.fourRotatingDots(color: context.colorScheme.primary, size: 64),
+        child: LoadingAnimationWidget.fourRotatingDots(
+          color: context.colorScheme.primary,
+          size: 64,
+        ),
       );
     }
 
@@ -120,13 +122,12 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
               ),
             ),
             const Gap(64),
-            Inflater(
-              inflated: state.uploading,
-              child: LoadingAnimationWidget.fourRotatingDots(
+            if (state.loading) ...[
+              LoadingAnimationWidget.fourRotatingDots(
                 color: context.colorScheme.primary,
                 size: 64,
               ),
-            ),
+            ]
           ],
         ),
       ),

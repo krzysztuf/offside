@@ -193,16 +193,15 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
             ),
           ),
         ),
-        Visibility(
-          visible: state.loggingIn,
-          child: SizedBox(
+        if (state.loggingIn) ...[
+          SizedBox(
             height: 32,
             child: LoadingAnimationWidget.fourRotatingDots(
               color: context.colorScheme.primary,
               size: 24,
             ),
           ),
-        ),
+        ]
       ],
     );
   }
@@ -260,13 +259,12 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
                 child: const Text('Zarejestruj'),
               ),
             ),
-            Visibility(
-              visible: state.loggingIn,
-              child: LoadingAnimationWidget.fourRotatingDots(
+            if (state.loggingIn) ...[
+              LoadingAnimationWidget.fourRotatingDots(
                 color: context.colorScheme.primary,
                 size: 24,
               ),
-            ),
+            ],
           ],
         )
       ],

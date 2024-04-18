@@ -26,7 +26,12 @@ class UserPage extends ConsumerWidget {
       body: switch (ref.watch(userPageControllerProvider)) {
         AsyncData(value: final state) => _buildUserPage(state, ref, context),
         AsyncError() => const Center(child: Text('Error')),
-        _ => Center(child: LoadingAnimationWidget.fourRotatingDots(color: context.colorScheme.primary, size: 48)),
+        _ => Center(
+            child: LoadingAnimationWidget.fourRotatingDots(
+              color: context.colorScheme.primary,
+              size: 48,
+            ),
+          ),
       },
     );
   }
