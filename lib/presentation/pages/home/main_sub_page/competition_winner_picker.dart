@@ -31,17 +31,14 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
     final state = ref.watch(competitionWinnerPickerControllerProvider);
     selectedWinner ??= state.winnerPrediction;
 
-    return SizedBox(
-      // height: 56,
-      child: Card(
-        elevation: 2,
-        child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: switch (ref.read(dateTimeProvider).isBefore(competitionStartDate)) {
-              true => buildTeamPicker(state, context),
-              false => const Center(child: Text('Typowanie zwycięzcy turnieju jest już zamknięte!')),
-            }),
-      ),
+    return Card(
+      elevation: 2,
+      child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: switch (ref.read(dateTimeProvider).isBefore(competitionStartDate)) {
+            true => buildTeamPicker(state, context),
+            false => const Center(child: Text('Typowanie zwycięzcy turnieju jest już zamknięte!')),
+          }),
     );
   }
 
@@ -107,7 +104,32 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
 
   Widget buildTeamPicker(CompetitionWinnerPickerState state, BuildContext context) {
     if (ref.read(competitionStartedProvider)) {
-      return Container();
+      return SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.emoji_events_rounded),
+            title: 'Twój typ zwycięzcy'.text,
+            subtitle: 'Turniej już się rozpoczął, nie możesz zmienić swojego typu'.styledText(
+              context.textTheme.bodySmall!,
+            ),
+            trailing: SizedBox(
+              width: 64,
+              child: switch (state.winnerPrediction != null) {
+                true => TeamBadge(
+                    team: state.winnerPrediction!,
+                    badgeRadius: 12,
+                    textStyle: context.textTheme.bodySmall,
+                  ),
+                false => TeamBadge.skeleton(badgeRadius: 12),
+              },
+            ),
+            horizontalTitleGap: 24,
+          ),
+        ),
+      );
     }
 
     return Column(
