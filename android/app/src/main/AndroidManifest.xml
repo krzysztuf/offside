@@ -12,7 +12,7 @@
             android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
     <application
-            android:label="offside"
+            android:label="Typownik"
             android:name="${applicationName}"
             android:icon="@mipmap/ic_launcher">
         <activity

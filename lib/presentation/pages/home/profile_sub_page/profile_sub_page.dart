@@ -100,7 +100,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                           context: context,
                           icon: Icons.edit,
                           text: 'Edytuj',
-                          onPressed: () {},
+                          onPressed: null,
                         ),
                         _buildActionButton(
                           context: context,
@@ -137,7 +137,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
     required BuildContext context,
     required IconData icon,
     required String text,
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
   }) {
     return FilledButton.tonalIcon(
       onPressed: onPressed,

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
 import 'user_page_state.dart';
 
@@ -27,6 +29,7 @@ class UserStats extends StatelessWidget {
               context,
             ),
             trailing: buildValueWidget(state.bets.length, context),
+            horizontalTitleGap: 24,
           ),
           const Divider(height: 1),
           ListTile(
@@ -34,6 +37,7 @@ class UserStats extends StatelessWidget {
             title: 'Doskonałe typy'.text,
             subtitle: buildSubtitle('Liczba typów za 3 lub 4 punkty', context),
             trailing: buildValueWidget(pointStats[3], context),
+            horizontalTitleGap: 24,
           ),
           const Divider(height: 1),
           ListTile(
@@ -41,6 +45,7 @@ class UserStats extends StatelessWidget {
             title: 'Dobre typy'.text,
             subtitle: buildSubtitle('Liczba typów za 1 lub 2 punkty', context),
             trailing: buildValueWidget(pointStats[1], context),
+            horizontalTitleGap: 24,
           ),
           const Divider(height: 1),
           ListTile(
@@ -48,6 +53,18 @@ class UserStats extends StatelessWidget {
             title: 'Nietrafione typy'.text,
             subtitle: buildSubtitle('Liczba typów za 0 punktów', context),
             trailing: buildValueWidget(pointStats[0], context),
+            horizontalTitleGap: 24,
+          ),
+          const Divider(height: 1),
+          ListTile(
+            leading: const Icon(Icons.emoji_events_rounded),
+            title: 'Zwycięzca Euro 2024'.text,
+            subtitle: buildSubtitle(
+              'Jaką drużynę ${state.user.name} ${state.user.genderVariant('wytypował', 'wytypowała')} jako zwycięzcę turnieju',
+              context,
+            ),
+            trailing: buildCompetitionWinnerWidget(context),
+            horizontalTitleGap: 24,
           ),
         ],
       ),
@@ -80,5 +97,38 @@ class UserStats extends StatelessWidget {
 
   Widget buildSubtitle(String text, BuildContext context) {
     return text.styledText(context.textTheme.bodySmall);
+  }
+
+  Widget buildCompetitionWinnerWidget(BuildContext context) {
+    if (state.user.winnerPredictionId == null) {
+      return 'Brak typu 🫠'.styledText(const TextStyle(color: Colors.grey));
+    }
+
+    final winnerTeam = findWinnerTeam();
+    return SizedBox(
+      width: 68,
+      child: Row(
+        children: [
+          Expanded(child: Container()),
+          TeamBadge(
+            team: winnerTeam,
+            badgeRadius: 12,
+            textStyle: context.textTheme.bodySmall,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Team findWinnerTeam() {
+    Team? winnerTeam;
+    for (var match in state.matches) {
+      winnerTeam = match.teamFor(id: state.user.winnerPredictionId!);
+      if (winnerTeam != null) {
+        break;
+      }
+    }
+
+    return winnerTeam!;
   }
 }

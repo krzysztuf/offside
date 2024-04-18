@@ -51,7 +51,7 @@ class MainTableController extends _$MainTableController {
   }
 
   List<UserScores> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets) {
-    final matchesWithResult = matches.where((match) => match.outcome?.goals != null).toList();
+    final matchesWithResult = matches.where((match) => match.finished).toList();
 
     return userBets.entries.map((userAndBets) {
       final user = userAndBets.key;
@@ -61,7 +61,6 @@ class MainTableController extends _$MainTableController {
       final totalPoints = bets.fold(0, (points, bet) {
         final match = matchesWithResult.firstWhereOrNull((match) => match.id == bet.matchId);
         if (match == null) {
-          userScores.recentPredictionsScores.add(0);
           return points;
         }
 

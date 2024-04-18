@@ -136,9 +136,11 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        fetchAndBuildTeamBadge(state.match.homeTeam),
+        fetchAndBuildTeamBadge(state.match.homeTeam, context),
+        const Gap(4),
         buildScorePrediction(state),
-        fetchAndBuildTeamBadge(state.match.awayTeam),
+        const Gap(4),
+        fetchAndBuildTeamBadge(state.match.awayTeam, context),
       ],
     );
   }
@@ -167,12 +169,20 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     );
   }
 
-  Widget fetchAndBuildTeamBadge(Fetchable<Team> teamFetchable) {
-    return FetchableBuilder(
-      fetchable: teamFetchable,
-      waiting: () => TeamBadge.skeleton(),
-      child: (homeTeam) => TeamBadge(team: homeTeam, badgeRadius: 24),
-      error: teamMissingBadge,
+  Widget fetchAndBuildTeamBadge(Fetchable<Team> teamFetchable, BuildContext context) {
+    final textStyle = context.textTheme.bodyLarge;
+    return SizedBox(
+      width: 88,
+      child: FetchableBuilder(
+        fetchable: teamFetchable,
+        waiting: () => TeamBadge.skeleton(),
+        child: (homeTeam) => TeamBadge(
+          team: homeTeam,
+          badgeRadius: 22,
+          textStyle: textStyle,
+        ),
+        error: teamMissingBadge,
+      ),
     );
   }
 
@@ -321,10 +331,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
 
   Widget teamMissingBadge() {
     return TeamBadge(
-      team: Team(
-        name: 'Błąd',
-        abbreviation: 'ERR',
-      ),
+      team: Team(name: 'Błąd', abbreviation: 'ERR'),
     );
   }
 
