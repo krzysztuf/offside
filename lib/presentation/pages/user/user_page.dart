@@ -10,7 +10,7 @@ import 'package:offside/presentation/pages/user/user_page_state.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 
 import 'user_page_controller.dart';
-import 'user_stat_card.dart';
+import 'user_stats.dart';
 
 class UserPage extends ConsumerWidget {
   const UserPage({
@@ -32,64 +32,30 @@ class UserPage extends ConsumerWidget {
   }
 
   Widget _buildUserPage(UserPageState state, WidgetRef ref, BuildContext context) {
-    final statStyle = context.widgetThemes.userBets.userStatValue;
     return Inflater(
       scaleFactor: 0.95,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Gap(48),
-            Center(
-              child: state.user.avatar(
-                context,
-                ref,
-                elevation: 6,
-                radius: 96,
-                fontSize: 48,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const Gap(48),
+              Center(
+                child: state.user.avatar(context, ref, elevation: 6, radius: 64, fontSize: 48),
               ),
-            ),
-            const Gap(48),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    UserStatCard(
-                      title: 'PUNKTY',
-                      child: buildStandardStat(24, statStyle),
-                    ),
-                    UserStatCard(
-                      title: 'FORMA',
-                      child: buildStandardStat('*****', statStyle),
-                    ),
-                  ],
-                ),
-                const Gap(32),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    UserStatCard(
-                      title: 'TYPY ZA 3 PKT',
-                      child: buildStandardStat(4, statStyle),
-                    ),
-                    UserStatCard(
-                      title: 'TYPY ZA 1 PKT',
-                      child: buildStandardStat(6, statStyle),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            const Gap(16),
-            UserBetsTable(matches: state.matches, userBets: state.bets),
-            const Gap(16),
-          ],
+              const Gap(48),
+              'Statystyki'.styledText(context.textTheme.headlineMedium),
+              const Gap(16),
+              UserStats(state: state),
+              const Gap(48),
+              'Wszystkie typy'.styledText(context.textTheme.headlineMedium),
+              const Gap(16),
+              UserBetsTable(matches: state.matches, userBets: state.bets),
+              const Gap(16),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  Text buildStandardStat(dynamic text, TextStyle style) {
-    return Text('$text', style: style);
   }
 }

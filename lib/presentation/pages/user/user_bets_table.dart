@@ -27,8 +27,7 @@ class UserBetsTable extends ConsumerWidget {
     final cellStyle = context.textTheme.bodyLarge!;
 
     return Card(
-      margin: const EdgeInsets.all(16),
-      elevation: 3,
+      elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),

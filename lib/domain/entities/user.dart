@@ -87,3 +87,11 @@ extension NameExtensions on User {
 extension AdminExtension on User {
   bool get isAdmin => name == 'Krzysztof';
 }
+
+extension GenderExtensions on User {
+  bool get isFemale => name.endsWith('a');
+
+  String genderVariant(String forMale, String forFemale) {
+    return isFemale ? forFemale : forMale;
+  }
+}
