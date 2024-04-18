@@ -1,15 +1,17 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
+import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/theme/shared_widgets_theme.dart';
 
 import '../../widgets/offside/match_rivals_abbreviations_row.dart';
 
-class UserBetsTable extends StatelessWidget {
+class UserBetsTable extends ConsumerWidget {
   final List<Match> matches;
   final List<Bet> userBets;
 
@@ -20,7 +22,7 @@ class UserBetsTable extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var columnTitleStyle = context.widgetThemes.userBets.columnTitle;
     final cellStyle = context.textTheme.bodyLarge!;
 
@@ -58,7 +60,7 @@ class UserBetsTable extends StatelessWidget {
                     child: MatchRivalsAbbreviationsRow(match: m),
                   ),
                   createOutcomeCell(m, m.outcome, cellStyle),
-                  createOutcomeCell(m, userBet?.prediction, cellStyle),
+                  createPredictionCell(m, userBet?.prediction, cellStyle, ref.read(dateTimeProvider)),
                   createTextCell(
                     buildPointsText(m, userBet?.prediction),
                     applyPointsColor(
@@ -123,6 +125,10 @@ class UserBetsTable extends StatelessWidget {
   }
 
   TextStyle applyPointsColor(TextStyle cellStyle, Match match, SharedWidgetsTheme theme, MatchOutcome? prediction) {
+    if (!match.finished) {
+      return cellStyle;
+    }
+
     if (prediction == null) {
       return cellStyle;
     }
@@ -133,5 +139,13 @@ class UserBetsTable extends StatelessWidget {
       0 => cellStyle.copyWith(color: theme.noPointsColor),
       _ => cellStyle,
     };
+  }
+
+  Widget createPredictionCell(Match match, MatchOutcome? prediction, TextStyle style, DateTime now) {
+    if (!match.afterKickOff(now)) {
+      return createTextCell('-', style);
+    }
+
+    return createOutcomeCell(match, prediction, style);
   }
 }
