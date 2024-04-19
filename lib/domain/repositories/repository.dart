@@ -1,6 +1,10 @@
 abstract interface class Repository<T> {
   Future<List<T>> all();
 
+  Future<List<T>> first(int count);
+
+  Future<String> add(T item);
+
   Future<T?> byId(String id);
 
   Future<List<T>> where(
@@ -8,8 +12,6 @@ abstract interface class Repository<T> {
     Object? isEqualTo,
     Object? isNotEqualTo,
   });
-
-  Future<String> add(T item);
 
   Future<void> remove(T item);
 

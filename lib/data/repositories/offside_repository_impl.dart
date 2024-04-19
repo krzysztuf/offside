@@ -21,6 +21,20 @@ class OffsideRepositoryImpl implements OffsideRepository {
   }
 
   @override
+  Future<List<Match>> lastTenMatches() async {
+    final matches = await FirestoreSource.collectionGroup<MatchModel>('match')
+        .where(
+          'kickOffDate',
+          isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()),
+        )
+        .orderBy('kickOffDate', descending: false)
+        .limit(10)
+        .get();
+
+    return matches.docs.map((match) => AutoMapper<MatchModel, Match>().map(match.data())).toList();
+  }
+
+  @override
   Future<List<Match>> upcomingMatches() {
     return FirestoreSource.collectionGroup<MatchModel>('matches')
         .where(

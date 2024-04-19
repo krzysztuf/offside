@@ -1,5 +1,6 @@
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
 
@@ -64,5 +65,16 @@ class RemoveMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
   @override
   Future<void> run(Match match) {
     return matchesRepository.remove(match);
+  }
+}
+
+class GetLastTenMatchesUseCase implements AsyncUseCase<List<Match>> {
+  final OffsideRepository offsideRepository;
+
+  GetLastTenMatchesUseCase(this.offsideRepository);
+
+  @override
+  Future<List<Match>> run() {
+    return offsideRepository.lastTenMatches();
   }
 }

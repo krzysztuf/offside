@@ -5,6 +5,8 @@ import 'package:offside/domain/entities/user.dart';
 abstract interface class OffsideRepository {
   Future<List<Bet>> userBets(User userId);
 
+  Future<List<Match>> lastTenMatches();
+
   Future<List<Match>> upcomingMatches();
 
   Future<List<Match>> matchesHistory();

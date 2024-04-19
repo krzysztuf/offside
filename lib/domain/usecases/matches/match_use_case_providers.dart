@@ -29,3 +29,8 @@ AddMatchUseCase addMatchUseCase(AddMatchUseCaseRef ref) {
 RemoveMatchUseCase removeMatchUseCase(RemoveMatchUseCaseRef ref) {
   return RemoveMatchUseCase(ref.watch(matchesRepositoryProvider));
 }
+
+@riverpod
+GetLastTenMatchesUseCase getLastTenMatchesUseCase(GetLastTenMatchesUseCaseRef ref) {
+  return GetLastTenMatchesUseCase(ref.watch(offsideRepositoryProvider));
+}

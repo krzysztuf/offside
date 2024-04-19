@@ -222,5 +222,23 @@ final removeMatchUseCaseProvider =
 );
 
 typedef RemoveMatchUseCaseRef = AutoDisposeProviderRef<RemoveMatchUseCase>;
+String _$getLastTenMatchesUseCaseHash() =>
+    r'5e4c9764454968cb184ee682e2c01f73e48556de';
+
+/// See also [getLastTenMatchesUseCase].
+@ProviderFor(getLastTenMatchesUseCase)
+final getLastTenMatchesUseCaseProvider =
+    AutoDisposeProvider<GetLastTenMatchesUseCase>.internal(
+  getLastTenMatchesUseCase,
+  name: r'getLastTenMatchesUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getLastTenMatchesUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetLastTenMatchesUseCaseRef
+    = AutoDisposeProviderRef<GetLastTenMatchesUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

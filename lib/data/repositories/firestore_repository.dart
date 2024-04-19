@@ -19,6 +19,12 @@ class FirestoreRepository<Entity, Model> implements Repository<Entity> {
   }
 
   @override
+  Future<List<Entity>> first(int count) async {
+    final items = await typedReferencesList();
+    return items.take(count).map(documentToEntity).toList();
+  }
+
+  @override
   Future<Entity?> byId(String id) async {
     final snapshot = await collection.doc(id).get();
     if (!snapshot.exists) {
