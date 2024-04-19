@@ -24,6 +24,14 @@ class UserStats extends ConsumerWidget {
       child: Column(
         children: [
           ListTile(
+            leading: const Icon(Icons.emoji_events_rounded),
+            title: 'Zwycięzca Euro 2024'.text,
+            subtitle: buildCupWinnerSubtitle(context),
+            trailing: buildCompetitionWinnerWidget(context, ref),
+            horizontalTitleGap: 24,
+          ),
+          const Divider(height: 1),
+          ListTile(
             leading: const Icon(Icons.sports_soccer),
             title: 'Wytypowane mecze'.text,
             subtitle: buildSubtitle(
@@ -55,14 +63,6 @@ class UserStats extends ConsumerWidget {
             title: 'Nietrafione typy'.text,
             subtitle: buildSubtitle('Liczba typów za 0 punktów', context),
             trailing: buildValueWidget(pointStats[0], context),
-            horizontalTitleGap: 24,
-          ),
-          const Divider(height: 1),
-          ListTile(
-            leading: const Icon(Icons.emoji_events_rounded),
-            title: 'Zwycięzca Euro 2024'.text,
-            subtitle: buildCupWinnerSubtitle(context),
-            trailing: buildCompetitionWinnerWidget(context, ref),
             horizontalTitleGap: 24,
           ),
         ],
