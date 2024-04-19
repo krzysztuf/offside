@@ -3,6 +3,7 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
+import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -23,6 +24,8 @@ class MainTableController extends _$MainTableController {
   }
 
   Future<void> _loadUserBetsAndCalculatePoints() async {
+    final winnerId = await ref.read(getWinnerTeamIdUseCaseProvider).run();
+
     final matchesFuture = ref.read(getAllMatchesUseCaseProvider).run();
     final usersFuture = ref.read(getAllUsersUseCaseProvider).run();
 
@@ -31,9 +34,9 @@ class MainTableController extends _$MainTableController {
       final users = values[1] as List<User>;
 
       final userBets = await _fetchBetsAndGroupByUser(users);
-      final userPoints = _calculateUserPoints(matches, userBets);
+      final userPoints = _calculateUserPoints(matches, userBets, winnerId);
 
-      state = state.copyWith(userScores: userPoints);
+      state = state.copyWith(userScores: userPoints, winnerId: winnerId);
     });
   }
 
@@ -50,7 +53,7 @@ class MainTableController extends _$MainTableController {
     return userBets;
   }
 
-  List<UserScores> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets) {
+  List<UserScores> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets, String winnerId) {
     final matchesWithResult = matches.where((match) => match.finished).toList();
 
     return userBets.entries.map((userAndBets) {
@@ -58,7 +61,7 @@ class MainTableController extends _$MainTableController {
       final bets = userAndBets.value;
 
       final userScores = UserScores(user);
-      final totalPoints = bets.fold(0, (points, bet) {
+      userScores.totalScore = bets.fold(0, (points, bet) {
         final match = matchesWithResult.firstWhereOrNull((match) => match.id == bet.matchId);
         if (match == null) {
           return points;
@@ -70,7 +73,11 @@ class MainTableController extends _$MainTableController {
         return points + pointsAwardedForThisMatch;
       });
 
-      return userScores..totalScore = totalPoints;
+      if (winnerId == user.winnerPredictionId) {
+        userScores.totalScore += 10;
+      }
+
+      return userScores;
     }).toList();
   }
 }

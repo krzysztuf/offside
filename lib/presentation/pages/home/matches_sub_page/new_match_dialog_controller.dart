@@ -1,4 +1,4 @@
-import 'package:offside/domain/usecases/teams/teams_use_cases.dart';
+import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'new_match_dialog_state.dart';

@@ -1,15 +1,25 @@
-library teams_use_cases;
-
-import 'package:offside/data/repositories/providers.dart';
+import 'package:offside/data/sources/remote/firestore_source.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'get_all_teams_use_case.dart';
-part 'teams_use_cases.g.dart';
+class GetAllTeamsUseCase implements AsyncUseCase<List<Team>> {
+  final Repository<Team> teams;
 
-@riverpod
-GetAllTeamsUseCase getAllTeamsUseCase(GetAllTeamsUseCaseRef ref) {
-  return GetAllTeamsUseCase(ref.watch(teamsRepositoryProvider));
+  GetAllTeamsUseCase(this.teams);
+
+  @override
+  Future<List<Team>> run() {
+    return teams.all();
+  }
+}
+
+class GetWinnerTeamIdUseCase implements AsyncUseCase<String> {
+  GetWinnerTeamIdUseCase();
+
+  @override
+  Future<String> run() async {
+    final winnerIdSnapshot = await FirestoreSource.settings.doc('winnerId').get();
+    return winnerIdSnapshot.data()!.value;
+  }
 }

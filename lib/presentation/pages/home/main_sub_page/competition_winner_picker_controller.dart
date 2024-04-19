@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/domain/usecases/teams/teams_use_cases.dart';
+import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

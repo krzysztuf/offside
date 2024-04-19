@@ -16,6 +16,7 @@ class MainTableState with _$MainTableState {
   const factory MainTableState({
     required List<UserScores> userScores,
     @Default(true) bool calculating,
+    @Default('') String winnerId,
   }) = _MainTableState;
 
   const MainTableState._();
