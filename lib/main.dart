@@ -26,7 +26,7 @@ Future<void> main() async {
   runApp(
     ProviderScope(
       overrides: [
-        dateTimeProvider.overrideWithValue(DateTime(2024, 4, 10, 20)),
+        dateTimeProvider.overrideWithValue(DateTime(2024, 5, 15, 20)),
         matchCardControllerProvider.overrideWith(
           () => throw UnimplementedError('MatchCardController unavailable'),
         ),

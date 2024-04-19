@@ -5,10 +5,8 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/team.dart';
-import 'package:offside/presentation/constants.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker_state.dart';
 import 'package:offside/presentation/providers/competition_started_provider.dart';
-import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:offside/presentation/widgets/icon_text.dart';
@@ -31,14 +29,16 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
     final state = ref.watch(competitionWinnerPickerControllerProvider);
     selectedWinner ??= state.winnerPrediction;
 
+    if (ref.read(competitionStartedProvider)) {
+      return const SizedBox.shrink();
+    }
+
     return Card(
       elevation: 2,
       child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: switch (ref.read(dateTimeProvider).isBefore(competitionStartDate)) {
-            true => buildTeamPicker(state, context),
-            false => const Center(child: Text('Typowanie zwycięzcy turnieju jest już zamknięte!')),
-          }),
+        padding: const EdgeInsets.all(8.0),
+        child: buildTeamPicker(state, context),
+      ),
     );
   }
 

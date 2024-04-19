@@ -7,5 +7,5 @@ part 'competition_started_provider.g.dart';
 
 @riverpod
 bool competitionStarted(CompetitionStartedRef ref) {
-  return ref.watch(dateTimeProvider).isBefore(competitionStartDate);
+  return ref.watch(dateTimeProvider).isAfter(competitionStartDate);
 }

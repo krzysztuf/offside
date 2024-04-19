@@ -5,6 +5,7 @@ import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
+import 'package:offside/presentation/providers/competition_started_provider.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -39,8 +40,10 @@ class MainSubPage extends ConsumerWidget {
                 buildUserGreeting(ref, context),
                 const Gap(4),
                 buildGreetingSubtitle(context),
-                const Gap(24),
-                const CompetitionWinnerPicker(),
+                if (!ref.read(competitionStartedProvider)) ...[
+                  const Gap(16),
+                  const CompetitionWinnerPicker(),
+                ],
                 const Gap(48),
                 const SubtitledHeadline(
                   title: 'Tabela',

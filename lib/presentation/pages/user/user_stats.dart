@@ -1,21 +1,23 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/presentation/providers/competition_started_provider.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
 import 'user_page_state.dart';
 
-class UserStats extends StatelessWidget {
+class UserStats extends ConsumerWidget {
   final UserPageState state;
 
   const UserStats({super.key, required this.state});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final pointStats = _calculatePointStatistics();
     return Card(
       elevation: 2,
@@ -34,7 +36,7 @@ class UserStats extends StatelessWidget {
           const Divider(height: 1),
           ListTile(
             leading: const Icon(Icons.scoreboard_outlined),
-            title: 'Doskonałe typy'.text,
+            title: 'Super typy'.text,
             subtitle: buildSubtitle('Liczba typów za 3 lub 4 punkty', context),
             trailing: buildValueWidget(pointStats[3], context),
             horizontalTitleGap: 24,
@@ -63,7 +65,7 @@ class UserStats extends StatelessWidget {
               'Jaką drużynę ${state.user.name} ${state.user.genderVariant('wytypował', 'wytypowała')} jako zwycięzcę turnieju',
               context,
             ),
-            trailing: buildCompetitionWinnerWidget(context),
+            trailing: buildCompetitionWinnerWidget(context, ref),
             horizontalTitleGap: 24,
           ),
         ],
@@ -77,7 +79,7 @@ class UserStats extends StatelessWidget {
 
   Map<int, int> _calculatePointStatistics() {
     return state.matches.fold({0: 0, 1: 0, 3: 0}, (pointStatistics, match) {
-      final matchBet = state.bets.firstWhereOrNull((bet) => bet.matchId == match.id);
+      final matchBet = state.bets.firstWhereOrNull((bet) => match.finished && bet.matchId == match.id);
       if (matchBet == null) {
         return pointStatistics;
       }
@@ -99,7 +101,11 @@ class UserStats extends StatelessWidget {
     return text.styledText(context.textTheme.bodySmall);
   }
 
-  Widget buildCompetitionWinnerWidget(BuildContext context) {
+  Widget buildCompetitionWinnerWidget(BuildContext context, WidgetRef ref) {
+    if (!ref.read(competitionStartedProvider)) {
+      return const Icon(Icons.hourglass_bottom);
+    }
+
     if (state.user.winnerPredictionId == null) {
       return 'Brak typu 🫠'.styledText(const TextStyle(color: Colors.grey));
     }
