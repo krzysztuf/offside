@@ -61,15 +61,26 @@ class UserStats extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.emoji_events_rounded),
             title: 'Zwycięzca Euro 2024'.text,
-            subtitle: buildSubtitle(
-              'Jaką drużynę ${state.user.name} ${state.user.genderVariant('wytypował', 'wytypowała')} jako zwycięzcę turnieju',
-              context,
-            ),
+            subtitle: buildCupWinnerSubtitle(context),
             trailing: buildCompetitionWinnerWidget(context, ref),
             horizontalTitleGap: 24,
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildCupWinnerSubtitle(BuildContext context) {
+    if (state.winnerId == state.user.winnerPredictionId) {
+      return buildSubtitle(
+        '🏆 ${state.user.name} ${state.user.genderVariant('otrzymał', 'otrzymała')} 10 punktów za poprawny typ!',
+        context,
+      );
+    }
+
+    return buildSubtitle(
+      'Drużyną którą ${state.user.name} ${state.user.genderVariant('wytypował', 'wytypowała')} jako zwycięzcę turnieju',
+      context,
     );
   }
 

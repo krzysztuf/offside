@@ -11,6 +11,7 @@ class UserPageState with _$UserPageState {
     required User user,
     required List<Bet> bets,
     required List<Match> matches,
+    required String winnerId,
   }) = _UserPageState;
 
   const UserPageState._();

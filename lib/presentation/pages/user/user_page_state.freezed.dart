@@ -19,6 +19,7 @@ mixin _$UserPageState {
   User get user => throw _privateConstructorUsedError;
   List<Bet> get bets => throw _privateConstructorUsedError;
   List<Match> get matches => throw _privateConstructorUsedError;
+  String get winnerId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserPageStateCopyWith<UserPageState> get copyWith =>
@@ -31,7 +32,7 @@ abstract class $UserPageStateCopyWith<$Res> {
           UserPageState value, $Res Function(UserPageState) then) =
       _$UserPageStateCopyWithImpl<$Res, UserPageState>;
   @useResult
-  $Res call({User user, List<Bet> bets, List<Match> matches});
+  $Res call({User user, List<Bet> bets, List<Match> matches, String winnerId});
 
   $UserCopyWith<$Res> get user;
 }
@@ -52,6 +53,7 @@ class _$UserPageStateCopyWithImpl<$Res, $Val extends UserPageState>
     Object? user = null,
     Object? bets = null,
     Object? matches = null,
+    Object? winnerId = null,
   }) {
     return _then(_value.copyWith(
       user: null == user
@@ -66,6 +68,10 @@ class _$UserPageStateCopyWithImpl<$Res, $Val extends UserPageState>
           ? _value.matches
           : matches // ignore: cast_nullable_to_non_nullable
               as List<Match>,
+      winnerId: null == winnerId
+          ? _value.winnerId
+          : winnerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -86,7 +92,7 @@ abstract class _$$UserPageStateImplCopyWith<$Res>
       __$$UserPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User user, List<Bet> bets, List<Match> matches});
+  $Res call({User user, List<Bet> bets, List<Match> matches, String winnerId});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -106,6 +112,7 @@ class __$$UserPageStateImplCopyWithImpl<$Res>
     Object? user = null,
     Object? bets = null,
     Object? matches = null,
+    Object? winnerId = null,
   }) {
     return _then(_$UserPageStateImpl(
       user: null == user
@@ -120,6 +127,10 @@ class __$$UserPageStateImplCopyWithImpl<$Res>
           ? _value._matches
           : matches // ignore: cast_nullable_to_non_nullable
               as List<Match>,
+      winnerId: null == winnerId
+          ? _value.winnerId
+          : winnerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -130,7 +141,8 @@ class _$UserPageStateImpl extends _UserPageState {
   const _$UserPageStateImpl(
       {required this.user,
       required final List<Bet> bets,
-      required final List<Match> matches})
+      required final List<Match> matches,
+      required this.winnerId})
       : _bets = bets,
         _matches = matches,
         super._();
@@ -154,8 +166,11 @@ class _$UserPageStateImpl extends _UserPageState {
   }
 
   @override
+  final String winnerId;
+
+  @override
   String toString() {
-    return 'UserPageState(user: $user, bets: $bets, matches: $matches)';
+    return 'UserPageState(user: $user, bets: $bets, matches: $matches, winnerId: $winnerId)';
   }
 
   @override
@@ -165,7 +180,9 @@ class _$UserPageStateImpl extends _UserPageState {
             other is _$UserPageStateImpl &&
             (identical(other.user, user) || other.user == user) &&
             const DeepCollectionEquality().equals(other._bets, _bets) &&
-            const DeepCollectionEquality().equals(other._matches, _matches));
+            const DeepCollectionEquality().equals(other._matches, _matches) &&
+            (identical(other.winnerId, winnerId) ||
+                other.winnerId == winnerId));
   }
 
   @override
@@ -173,7 +190,8 @@ class _$UserPageStateImpl extends _UserPageState {
       runtimeType,
       user,
       const DeepCollectionEquality().hash(_bets),
-      const DeepCollectionEquality().hash(_matches));
+      const DeepCollectionEquality().hash(_matches),
+      winnerId);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +204,8 @@ abstract class _UserPageState extends UserPageState {
   const factory _UserPageState(
       {required final User user,
       required final List<Bet> bets,
-      required final List<Match> matches}) = _$UserPageStateImpl;
+      required final List<Match> matches,
+      required final String winnerId}) = _$UserPageStateImpl;
   const _UserPageState._() : super._();
 
   @override
@@ -195,6 +214,8 @@ abstract class _UserPageState extends UserPageState {
   List<Bet> get bets;
   @override
   List<Match> get matches;
+  @override
+  String get winnerId;
   @override
   @JsonKey(ignore: true)
   _$$UserPageStateImplCopyWith<_$UserPageStateImpl> get copyWith =>
