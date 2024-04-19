@@ -83,7 +83,7 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
                 trailing: BorderedDropdownButton<Team>(
                   value: penaltiesWinnerTeam,
                   items: [widget.match.homeTeam.value, widget.match.awayTeam.value].map((team) {
-                    return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
+                    return DropdownMenuItem(value: team, child: TeamBadge.dense(context, team));
                   }).toList(),
                   onChanged: (team) => setState(() {
                     outcome = outcome.copyWith(penaltiesWinnerId: team!.id);

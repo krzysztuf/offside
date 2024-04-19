@@ -7,7 +7,7 @@ part of 'competition_started_provider.dart';
 // **************************************************************************
 
 String _$competitionStartedHash() =>
-    r'954fc8c618c66e369b740042ffec5719cdcb5090';
+    r'857ccc1da7460cd65ea757fc3a6aba91c9f6374e';
 
 /// See also [competitionStarted].
 @ProviderFor(competitionStarted)

@@ -83,4 +83,8 @@ extension ConvenienceMethods on Match {
 
     return null;
   }
+  
+  List<Bet> get superBets {
+    return bets.value.where((bet) => pointsFor(prediction: bet.prediction) >= 3).toList();
+  }
 }

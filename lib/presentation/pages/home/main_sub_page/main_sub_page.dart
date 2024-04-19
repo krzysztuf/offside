@@ -16,6 +16,7 @@ import 'main_sub_page_controller.dart';
 import 'main_sub_page_states.dart';
 import 'main_table.dart';
 import 'main_table_controller.dart';
+import 'super_bets_list.dart';
 
 class MainSubPage extends ConsumerWidget {
   const MainSubPage({super.key});
@@ -38,20 +39,30 @@ class MainSubPage extends ConsumerWidget {
               children: [
                 const Gap(16),
                 buildUserGreeting(ref, context),
-                const Gap(4),
-                buildGreetingSubtitle(context),
                 if (!ref.read(competitionStartedProvider)) ...[
                   const Gap(16),
                   const CompetitionWinnerPicker(),
                 ],
-                const Gap(48),
+                if (ref.read(competitionStartedProvider)) ...[
+                  const Gap(16),
+                  const SubtitledHeadline(
+                    title: 'Super typy',
+                    subtitle: 'Zdobywcy max punktów w ostatnich 6 meczach',
+                  ),
+                  const Gap(16),
+                  const SizedBox(
+                    height: 88,
+                    child: SuperBetsList(),
+                  ),
+                ],
+                const Gap(32),
                 const SubtitledHeadline(
                   title: 'Tabela',
                   subtitle: 'Główna tabela z wszystkimi użytkownikami',
                 ),
                 const Gap(16),
                 buildMainTable(ref),
-                const Gap(48),
+                const Gap(32),
                 const SubtitledHeadline(
                   title: 'Moje tabele',
                   subtitle: 'Stwórz własne tabele i zaproś innych',

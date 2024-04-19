@@ -353,7 +353,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
               useAlternative: editingPrediction || state.betState == BetState.notPlaced,
               builder: () => Padding(
                 padding: const EdgeInsets.only(left: 14),
-                child: TeamBadge.dense(penaltiesWinner!, context),
+                child: TeamBadge.dense(context, penaltiesWinner!),
               ),
               alternativeBuilder: () => Enabled(
                 enabled: editedPredictionIsDraw,
@@ -361,7 +361,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                   value: editedPenaltiesWinner ?? penaltiesWinner,
                   height: 40,
                   items: [match.homeTeam.value, match.awayTeam.value].map((team) {
-                    return DropdownMenuItem(value: team, child: TeamBadge.dense(team, context));
+                    return DropdownMenuItem(value: team, child: TeamBadge.dense(context, team));
                   }).toList(),
                   onChanged: (team) => setState(() => editedPenaltiesWinner = team),
                 ),

@@ -60,7 +60,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
                   value: homeTeam,
                   items: state.teams
                       .sorted((a, b) => a.name.compareTo(b.name))
-                      .map((team) => DropdownMenuItem(value: team, child: TeamBadge.dense(team, context)))
+                      .map((team) => DropdownMenuItem(value: team, child: TeamBadge.dense(context, team)))
                       .toList(),
                   onChanged: (team) => setState(() => homeTeam = team),
                 ),
@@ -71,7 +71,7 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
                 trailing: BorderedDropdownButton<Team>(
                   value: awayTeam,
                   items: state.teams
-                      .map((team) => DropdownMenuItem(value: team, child: TeamBadge.dense(team, context)))
+                      .map((team) => DropdownMenuItem(value: team, child: TeamBadge.dense(context, team)))
                       .toList(),
                   onChanged: (team) => setState(() => awayTeam = team),
                 ),

@@ -68,13 +68,22 @@ class RemoveMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
   }
 }
 
-class GetLastTenMatchesUseCase implements AsyncUseCase<List<Match>> {
+class GetRecentMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool> {
   final OffsideRepository offsideRepository;
 
-  GetLastTenMatchesUseCase(this.offsideRepository);
+  GetRecentMatchesUseCase(this.offsideRepository);
 
   @override
-  Future<List<Match>> run() {
-    return offsideRepository.lastTenMatches();
+  Future<List<Match>> run(bool fetchData) async {
+    final matches = await offsideRepository.lastTenMatches();
+    if (fetchData) {
+      await Future.wait([
+        ...matches.map((m) => m.bets.fetch()),
+        ...matches.map((m) => m.homeTeam.fetch()),
+        ...matches.map((m) => m.awayTeam.fetch()),
+      ]);
+    }
+
+    return matches;
   }
 }

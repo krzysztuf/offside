@@ -22,10 +22,11 @@ class OffsideRepositoryImpl implements OffsideRepository {
 
   @override
   Future<List<Match>> lastTenMatches() async {
-    final matches = await FirestoreSource.collectionGroup<MatchModel>('match')
+    final matches = await FirestoreSource.matches
         .where(
           'kickOffDate',
-          isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()),
+          // isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()),
+          isLessThanOrEqualTo: Timestamp.fromDate(DateTime(2024, 6, 17, 18)),
         )
         .orderBy('kickOffDate', descending: false)
         .limit(10)
@@ -36,7 +37,7 @@ class OffsideRepositoryImpl implements OffsideRepository {
 
   @override
   Future<List<Match>> upcomingMatches() {
-    return FirestoreSource.collectionGroup<MatchModel>('matches')
+    return FirestoreSource.matches
         .where(
           'kickOffDate',
           isGreaterThan: Timestamp.fromDate(now),

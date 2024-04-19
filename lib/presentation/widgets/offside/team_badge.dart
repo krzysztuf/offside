@@ -25,12 +25,21 @@ class TeamBadge extends StatelessWidget {
     this.spacing = 8,
   });
 
-  factory TeamBadge.dense(Team team, BuildContext context) {
+  factory TeamBadge.dense(
+    BuildContext context,
+    Team team, {
+    bool useAbbreviation = false,
+    bool mirrored = false,
+    double spacing = 8,
+  }) {
     return TeamBadge(
       team: team,
       direction: Axis.horizontal,
       badgeRadius: 6,
       textStyle: context.textTheme.bodyMedium,
+      useAbbreviation: useAbbreviation,
+      mirrored: mirrored,
+      spacing: spacing,
     );
   }
 
@@ -60,6 +69,7 @@ class TeamBadge extends StatelessWidget {
 
     if (direction == Axis.horizontal) {
       return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: mirrored ? teamBadgeAndName.reversed.toList() : teamBadgeAndName,
       );
     }
