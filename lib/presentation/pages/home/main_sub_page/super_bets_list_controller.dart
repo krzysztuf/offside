@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
@@ -16,18 +14,11 @@ class SuperBetsListController extends _$SuperBetsListController {
     final usersList = await ref.read(getAllUsersUseCaseProvider).run();
     final users = usersList.associateBy((user) => user.id);
 
-    try {
-      final recentMatches = await ref.read(getRecentMatchesUseCaseProvider).run(true);
-      final result = recentMatches.associate((match) {
-        return MapEntry(match, match.superBets.map((b) => users[b.userId]!).toList());
-      });
+    final recentMatches = await ref.read(getRecentMatchesUseCaseProvider).run(true);
+    final result = recentMatches.associate((match) {
+      return MapEntry(match, match.superBets.map((b) => users[b.userId]!).toList());
+    });
 
-      log('SuperBetsListController: result: $result, recentMatches: $recentMatches');
-
-      return result;
-    } catch (e) {
-      log(e.toString());
-    }
-    return {};
+    return result;
   }
 }

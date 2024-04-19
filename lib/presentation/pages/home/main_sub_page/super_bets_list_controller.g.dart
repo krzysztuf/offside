@@ -7,7 +7,7 @@ part of 'super_bets_list_controller.dart';
 // **************************************************************************
 
 String _$superBetsListControllerHash() =>
-    r'6a5ebf5241a466488528cc368de5391cc1aee711';
+    r'f389331210b69dd0bca50cd45152cf2a4da0a615';
 
 /// See also [SuperBetsListController].
 @ProviderFor(SuperBetsListController)
