@@ -9,3 +9,8 @@ part 'private_tables_use_case_providers.g.dart';
 GetAllPrivateTablesUseCase getAllPrivateTablesUseCase(GetAllPrivateTablesUseCaseRef ref) {
   return GetAllPrivateTablesUseCase(ref.read(privateTablesRepositoryProvider));
 }
+
+@riverpod
+UpdatePrivateTableUseCase updatePrivateTableUseCase(UpdatePrivateTableUseCaseRef ref) {
+  return UpdatePrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
+}

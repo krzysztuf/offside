@@ -12,3 +12,14 @@ class GetAllPrivateTablesUseCase implements AsyncUseCase<List<PrivateTable>> {
     return repository.all();
   }
 }
+
+class UpdatePrivateTableUseCase implements AsyncUseCaseWithParam<void, PrivateTable> {
+  final Repository<PrivateTable> repository;
+
+  UpdatePrivateTableUseCase(this.repository);
+
+  @override
+  Future<void> run(PrivateTable table) {
+    return repository.update(table);
+  }
+}
