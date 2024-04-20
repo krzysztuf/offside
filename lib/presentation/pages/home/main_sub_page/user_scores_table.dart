@@ -11,32 +11,43 @@ import 'package:offside/presentation/widgets/offside/recent_form_dots.dart';
 
 class UserScoresTable extends ConsumerWidget {
   final List<UserScoreSummary> userScores;
+  final Widget? header;
 
-  const UserScoresTable({super.key, required this.userScores});
+  const UserScoresTable({
+    super.key,
+    required this.userScores,
+    this.header,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       elevation: 2,
       child: Column(
-        children: userScores.mapIndexed(
-          (index, userScores) {
-            final user = userScores.user;
+        children: [
+          if (header != null) ...[
+            header!,
+            const Divider(height: 1),
+          ],
+          ...userScores.mapIndexed(
+            (index, userScores) {
+              final user = userScores.user;
 
-            return ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              leading: buildStandingAndAvatar(context, ref, index + 1, user),
-              title: user.fullName.text,
-              subtitle: buildRecentForm(context, userScores),
-              selected: user.id == ref.watch(currentUserIdSettingProvider),
-              trailing: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: '${userScores.totalScore}'.styledText(context.textTheme.headlineSmall!),
-              ),
-              onTap: () => context.goNamed('userDetails', extra: user),
-            );
-          },
-        ).toList(),
+              return ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                leading: buildStandingAndAvatar(context, ref, index + 1, user),
+                title: user.fullName.text,
+                subtitle: buildRecentForm(context, userScores),
+                selected: user.id == ref.watch(currentUserIdSettingProvider),
+                trailing: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: '${userScores.totalScore}'.styledText(context.textTheme.headlineSmall!),
+                ),
+                onTap: () => context.goNamed('userDetails', extra: user),
+              );
+            },
+          )
+        ].toList(),
       ),
     );
   }

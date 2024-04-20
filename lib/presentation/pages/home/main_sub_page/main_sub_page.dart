@@ -61,9 +61,10 @@ class MainSubPage extends ConsumerWidget {
                 const Gap(32),
                 const SubtitledHeadline(
                   title: 'Moje tabele',
-                  subtitle: 'Stwórz własne tabele i zaproś innych',
+                  subtitle:
+                      'Stwórz tabele i zaproś innych. Tabele są prywatne, widoczne tylko dla zaproszonych użytkowników.',
                 ),
-                const Gap(32),
+                const Gap(16),
                 PrivateTables(userScores: state.userScores),
                 const Gap(32),
               ],
