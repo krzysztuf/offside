@@ -19,3 +19,8 @@ UpdatePrivateTableUseCase updatePrivateTableUseCase(UpdatePrivateTableUseCaseRef
 AddPrivateTableUseCase addPrivateTableUseCase(AddPrivateTableUseCaseRef ref) {
   return AddPrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
 }
+
+@riverpod
+RemovePrivateTableUseCase removePrivateTableUseCase(RemovePrivateTableUseCaseRef ref) {
+  return RemovePrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
+}

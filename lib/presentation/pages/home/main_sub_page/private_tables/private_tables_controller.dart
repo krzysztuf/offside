@@ -24,6 +24,11 @@ class PrivateTablesController extends _$PrivateTablesController {
     state = state.copyWith(tables: [...state.tables, table]);
   }
 
+  Future<void> remove(PrivateTable table) async {
+    await ref.read(removePrivateTableUseCaseProvider).run(table);
+    state = state.copyWith(tables: state.tables.where((t) => t.id != table.id).toList());
+  }
+
   Future<void> refresh() async {
     final tables = await ref.read(getAllPrivateTablesUseCaseProvider).run();
     state = state.copyWith(tables: tables);

@@ -97,7 +97,7 @@ class PrivateTables extends ConsumerWidget {
           ),
           IconButton(
             icon: const Icon(Icons.delete),
-            onPressed: () {},
+            onPressed: () => promptDeleteTable(context, ref, table),
           ),
         ],
       ),
@@ -125,6 +125,31 @@ class PrivateTables extends ConsumerWidget {
         );
 
         await ref.read(privateTablesControllerProvider.notifier).add(table);
+      },
+    );
+  }
+
+  Future<void> promptDeleteTable(BuildContext context, WidgetRef ref, PrivateTable table) async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Usuń tabelę'),
+          content: const Text('Czy na pewno chcesz usunąć tę tabelę?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Anuluj'),
+            ),
+            TextButton(
+              onPressed: () {
+                ref.read(privateTablesControllerProvider.notifier).remove(table);
+                Navigator.of(context).pop();
+              },
+              child: const Text('Usuń'),
+            ),
+          ],
+        );
       },
     );
   }

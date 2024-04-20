@@ -34,3 +34,14 @@ class AddPrivateTableUseCase implements AsyncUseCaseWithParam<void, PrivateTable
     return repository.add(table);
   }
 }
+
+class RemovePrivateTableUseCase implements AsyncUseCaseWithParam<void, PrivateTable> {
+  final Repository<PrivateTable> repository;
+
+  RemovePrivateTableUseCase(this.repository);
+
+  @override
+  Future<void> run(PrivateTable table) {
+    return repository.remove(table);
+  }
+}
