@@ -7,6 +7,7 @@ import 'package:offside/domain/entities/private_table.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/presentation/pages/home/main_sub_page/private_tables/new_private_table_dialog.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_controller.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_state.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/user_scores_table.dart';
@@ -15,6 +16,8 @@ import 'table_members_picker.dart';
 
 class PrivateTables extends ConsumerWidget {
   final List<UserScoreSummary> userScores;
+
+  List<User> get users => userScores.map((us) => us.user).toList();
 
   const PrivateTables({
     super.key,
@@ -33,7 +36,7 @@ class PrivateTables extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FilledButton.tonalIcon(
-              onPressed: null,
+              onPressed: () => addNewTable(context, ref),
               icon: const Icon(Icons.add),
               label: const Text('Nowa tabela'),
             ),
@@ -61,22 +64,17 @@ class PrivateTables extends ConsumerWidget {
               leading: const Icon(Icons.leaderboard_outlined),
               trailing: Visibility(
                 visible: table.ownerId == currentUserId,
-                child: buildOwnerControls(
-                  context,
-                  ref,
-                  table,
-                  userScores.map((us) => us.user).toList(),
-                ),
+                child: buildOwnerControls(context, ref, table, users),
               ),
             ),
           ),
-          const Gap(16),
+          const Gap(32),
         ],
       );
     });
   }
 
-  buildOwnerControls(BuildContext context, WidgetRef ref, PrivateTable table, List<User> users) {
+  Widget buildOwnerControls(BuildContext context, WidgetRef ref, PrivateTable table, List<User> users) {
     return SizedBox(
       width: 80,
       child: Row(
@@ -89,7 +87,10 @@ class PrivateTables extends ConsumerWidget {
                 members: table.memberIds.toSet(),
                 users: users,
                 onSaved: (selectedMembers) {
-                  ref.read(privateTablesControllerProvider.notifier).updateMembers(table, selectedMembers);
+                  ref.read(privateTablesControllerProvider.notifier).updateMembers(
+                        table,
+                        selectedMembers,
+                      );
                 },
               );
             },
@@ -100,6 +101,31 @@ class PrivateTables extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> addNewTable(BuildContext context, WidgetRef ref) async {
+    await NewPrivateTableDialog.show(
+      context,
+      onAccepted: (name) async {
+        final ownerId = ref.read(currentUserIdSettingProvider);
+        var table = PrivateTable(
+          name: name,
+          ownerId: ownerId,
+          memberIds: [ownerId],
+        );
+
+        await TableMembersPicker.bottomSheet(
+          context,
+          members: table.memberIds.toSet(),
+          users: users,
+          onSaved: (selectedMembers) {
+            table = table.copyWith(memberIds: selectedMembers.toList());
+          },
+        );
+
+        await ref.read(privateTablesControllerProvider.notifier).add(table);
+      },
     );
   }
 }

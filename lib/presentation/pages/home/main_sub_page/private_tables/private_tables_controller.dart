@@ -9,10 +9,7 @@ part 'private_tables_controller.g.dart';
 class PrivateTablesController extends _$PrivateTablesController {
   @override
   PrivateTablesState build() {
-    ref.read(getAllPrivateTablesUseCaseProvider).run().then((tables) {
-      state = state.copyWith(tables: tables);
-    });
-
+    refresh();
     return const PrivateTablesState(tables: []);
   }
 
@@ -20,5 +17,15 @@ class PrivateTablesController extends _$PrivateTablesController {
     final updatedTable = table.copyWith(memberIds: selectedMembers.toList());
     await ref.read(updatePrivateTableUseCaseProvider).run(updatedTable);
     state = state.copyWith(tables: state.tables.map((t) => t.id == table.id ? updatedTable : t).toList());
+  }
+
+  Future<void> add(PrivateTable table) async {
+    await ref.read(addPrivateTableUseCaseProvider).run(table);
+    state = state.copyWith(tables: [...state.tables, table]);
+  }
+
+  Future<void> refresh() async {
+    final tables = await ref.read(getAllPrivateTablesUseCaseProvider).run();
+    state = state.copyWith(tables: tables);
   }
 }

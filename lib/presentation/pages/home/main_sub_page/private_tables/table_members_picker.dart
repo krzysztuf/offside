@@ -21,13 +21,13 @@ class TableMembersPicker extends ConsumerStatefulWidget {
     this.scrollController,
   });
 
-  static void bottomSheet(
+  static Future<void> bottomSheet(
     BuildContext context, {
     required Set<String> members,
     required List<User> users,
     required Function(Set<String> memberIds) onSaved,
-  }) {
-    showFlexibleBottomSheet(
+  }) async {
+    return showFlexibleBottomSheet(
       context: context,
       duration: 400.milliseconds,
       isSafeArea: true,

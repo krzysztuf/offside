@@ -42,5 +42,23 @@ final updatePrivateTableUseCaseProvider =
 
 typedef UpdatePrivateTableUseCaseRef
     = AutoDisposeProviderRef<UpdatePrivateTableUseCase>;
+String _$addPrivateTableUseCaseHash() =>
+    r'f68833e75ab952016a2f2179500e6b85d1d6742c';
+
+/// See also [addPrivateTableUseCase].
+@ProviderFor(addPrivateTableUseCase)
+final addPrivateTableUseCaseProvider =
+    AutoDisposeProvider<AddPrivateTableUseCase>.internal(
+  addPrivateTableUseCase,
+  name: r'addPrivateTableUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$addPrivateTableUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AddPrivateTableUseCaseRef
+    = AutoDisposeProviderRef<AddPrivateTableUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

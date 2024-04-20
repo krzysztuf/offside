@@ -14,3 +14,8 @@ GetAllPrivateTablesUseCase getAllPrivateTablesUseCase(GetAllPrivateTablesUseCase
 UpdatePrivateTableUseCase updatePrivateTableUseCase(UpdatePrivateTableUseCaseRef ref) {
   return UpdatePrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
 }
+
+@riverpod
+AddPrivateTableUseCase addPrivateTableUseCase(AddPrivateTableUseCaseRef ref) {
+  return AddPrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
+}
