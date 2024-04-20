@@ -7,7 +7,7 @@ part of 'private_tables_controller.dart';
 // **************************************************************************
 
 String _$privateTablesControllerHash() =>
-    r'5faab9330f778ff92d0d3a5d38d0bd7ede2488ae';
+    r'10202960c9f9082447e4c9586c10b56abc850d3a';
 
 /// See also [PrivateTablesController].
 @ProviderFor(PrivateTablesController)

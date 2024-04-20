@@ -33,4 +33,10 @@ class PrivateTablesController extends _$PrivateTablesController {
     final tables = await ref.read(getAllPrivateTablesUseCaseProvider).run();
     state = state.copyWith(tables: tables);
   }
+
+  Future<void> removeMember(String userId, PrivateTable table) async {
+    final updatedTable = table.copyWith(memberIds: table.memberIds.where((mid) => mid != userId).toList());
+    await ref.read(updatePrivateTableUseCaseProvider).run(updatedTable);
+    state = state.copyWith(tables: state.tables.map((t) => t.id == table.id ? updatedTable : t).toList());
+  }
 }

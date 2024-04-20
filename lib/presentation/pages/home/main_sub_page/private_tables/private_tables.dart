@@ -62,46 +62,13 @@ class PrivateTables extends ConsumerWidget {
               contentPadding: const EdgeInsets.only(left: 16, right: 8),
               title: table.name.text,
               leading: const Icon(Icons.leaderboard_outlined),
-              trailing: Visibility(
-                visible: table.ownerId == currentUserId,
-                child: buildOwnerControls(context, ref, table, users),
-              ),
+              trailing: buildTableActions(context, ref, table, users),
             ),
           ),
           const Gap(32),
         ],
       );
     });
-  }
-
-  Widget buildOwnerControls(BuildContext context, WidgetRef ref, PrivateTable table, List<User> users) {
-    return SizedBox(
-      width: 80,
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.group_add_rounded),
-            onPressed: () {
-              TableMembersPicker.bottomSheet(
-                context,
-                members: table.memberIds.toSet(),
-                users: users,
-                onSaved: (selectedMembers) {
-                  ref.read(privateTablesControllerProvider.notifier).updateMembers(
-                        table,
-                        selectedMembers,
-                      );
-                },
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => promptDeleteTable(context, ref, table),
-          ),
-        ],
-      ),
-    );
   }
 
   Future<void> addNewTable(BuildContext context, WidgetRef ref) async {
@@ -151,6 +118,80 @@ class PrivateTables extends ConsumerWidget {
           ],
         );
       },
+    );
+  }
+
+  Widget buildTableActions(BuildContext context, WidgetRef ref, PrivateTable table, List<User> users) {
+    if (table.ownerId == ref.read(currentUserIdSettingProvider)) {
+      return buildOwnerControls(context, ref, table, users);
+    }
+
+    return buildMemberControls(context, ref, table);
+  }
+
+  Widget buildOwnerControls(BuildContext context, WidgetRef ref, PrivateTable table, List<User> users) {
+    return SizedBox(
+      width: 80,
+      child: Row(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.group_add_rounded),
+            onPressed: () {
+              TableMembersPicker.bottomSheet(
+                context,
+                members: table.memberIds.toSet(),
+                users: users,
+                onSaved: (selectedMembers) {
+                  ref.read(privateTablesControllerProvider.notifier).updateMembers(
+                        table,
+                        selectedMembers,
+                      );
+                },
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () => promptDeleteTable(context, ref, table),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildMemberControls(BuildContext context, WidgetRef ref, PrivateTable table) {
+    return SizedBox(
+      width: 40,
+      child: IconButton(
+        icon: const Icon(Icons.person_remove_rounded),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text('Opuść tabelę'),
+                content: const Text('Czy na pewno chcesz opuścić tę tabelę?'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Anuluj'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      ref.read(privateTablesControllerProvider.notifier).removeMember(
+                            ref.read(currentUserIdSettingProvider),
+                            table,
+                          );
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Opuść'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
