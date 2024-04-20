@@ -1,15 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
 
-part 'main_table_state.freezed.dart';
+part 'main_sub_page_state.freezed.dart';
 
 @freezed
-class MainTableState with _$MainTableState {
-  const factory MainTableState({
+class MainSubPageState with _$MainSubPageState {
+  const factory MainSubPageState({
     required List<UserScoreSummary> userScores,
     @Default(true) bool calculating,
     @Default('') String winnerId,
-  }) = _MainTableState;
+  }) = _MainSubPageState;
 
-  const MainTableState._();
+  const MainSubPageState._();
 }

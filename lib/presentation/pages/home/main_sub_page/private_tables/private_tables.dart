@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
+import 'package:offside/domain/entities/user_score_summary.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_controller.dart';
 import 'package:offside/presentation/widgets/icon_text.dart';
 
 class PrivateTables extends ConsumerWidget {
-  const PrivateTables({super.key});
+  final List<UserScoreSummary> userScores;
+
+  const PrivateTables({super.key, required this.userScores});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

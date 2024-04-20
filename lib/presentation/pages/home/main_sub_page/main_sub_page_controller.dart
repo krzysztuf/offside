@@ -1,7 +1,14 @@
+import 'package:collection/collection.dart';
+import 'package:offside/domain/entities/bet.dart';
+import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/entities/user_score_summary.dart';
+import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
+import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'main_sub_page_states.dart';
+import 'main_sub_page_state.dart';
 
 part 'main_sub_page_controller.g.dart';
 
@@ -9,13 +16,8 @@ part 'main_sub_page_controller.g.dart';
 class MainSubPageController extends _$MainSubPageController {
   @override
   MainSubPageState build() {
-    loadTable();
-    return LoadingMainTableState();
-  }
-
-  Future<void> loadTable() async {
-    final users = await ref.read(getAllUsersUseCaseProvider).run();
-    state = MainTableReadyState(users);
+    _loadUserBetsAndCalculatePoints();
+    return const MainSubPageState(userScores: []);
   }
 
   Future<void> refresh({Duration? delay}) async {
@@ -23,6 +25,68 @@ class MainSubPageController extends _$MainSubPageController {
       await Future.delayed(delay);
     }
 
-    loadTable();
+    _loadUserBetsAndCalculatePoints();
+  }
+
+  Future<void> _loadUserBetsAndCalculatePoints() async {
+    final winnerId = await ref.read(getWinnerTeamIdUseCaseProvider).run();
+
+    final matchesFuture = ref.read(getAllMatchesUseCaseProvider).run();
+    final usersFuture = ref.read(getAllUsersUseCaseProvider).run();
+
+    await Future.wait([matchesFuture, usersFuture]).then((values) async {
+      final matches = values[0] as List<Match>;
+      final users = values[1] as List<User>;
+
+      final userBets = await _fetchBetsAndGroupByUser(users);
+      final userPoints = _calculateUserPoints(matches, userBets, winnerId);
+
+      state = state.copyWith(userScores: _sortByPoints(userPoints), winnerId: winnerId);
+    });
+  }
+
+  Future<Map<User, List<Bet>>> _fetchBetsAndGroupByUser(List<User> users) async {
+    final userBetsFutures = users.map((user) {
+      return Future.wait([Future.value(user), ref.read(getUserBetsUseCaseProvider(user)).run()]);
+    }).toList();
+
+    final userBetsResults = await Future.wait(userBetsFutures);
+
+    final Map<User, List<Bet>> userBets = {
+      for (var result in userBetsResults) result[0] as User: result[1] as List<Bet>,
+    };
+    return userBets;
+  }
+
+  List<UserScoreSummary> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets, String winnerId) {
+    final matchesWithResult = matches.where((match) => match.finished).toList();
+
+    return userBets.entries.map((userAndBets) {
+      final user = userAndBets.key;
+      final bets = userAndBets.value;
+
+      final userScores = UserScoreSummary(user);
+      userScores.totalScore = bets.fold(0, (points, bet) {
+        final match = matchesWithResult.firstWhereOrNull((match) => match.id == bet.matchId);
+        if (match == null) {
+          return points;
+        }
+
+        var pointsAwardedForThisMatch = match.pointsFor(prediction: bet.prediction);
+        userScores.recentPredictionsScores.add(pointsAwardedForThisMatch);
+
+        return points + pointsAwardedForThisMatch;
+      });
+
+      if (winnerId == user.winnerPredictionId) {
+        userScores.totalScore += 10;
+      }
+
+      return userScores;
+    }).toList();
+  }
+
+  List<UserScoreSummary> _sortByPoints(List<UserScoreSummary> userScore) {
+    return [...userScore]..sort((a, b) => b.totalScore.compareTo(a.totalScore));
   }
 }

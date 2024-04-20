@@ -7,26 +7,22 @@ import 'package:offside/presentation/pages/home/main_sub_page/private_tables/pri
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/providers/competition_started_provider.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
-import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
-import 'loading_table_skeleton.dart';
 import 'main_sub_page_controller.dart';
-import 'main_sub_page_states.dart';
-import 'main_table.dart';
-import 'main_table_controller.dart';
 import 'super_bets_list.dart';
+import 'user_scores_table.dart';
 
 class MainSubPage extends ConsumerWidget {
   const MainSubPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(mainSubPageControllerProvider);
     return RefreshIndicator(
       onRefresh: () async {
         await ref.read(mainSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds);
-        await ref.read(mainTableControllerProvider.notifier).refresh();
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -61,14 +57,14 @@ class MainSubPage extends ConsumerWidget {
                   subtitle: 'Główna tabela z wszystkimi użytkownikami',
                 ),
                 const Gap(16),
-                buildMainTable(ref),
+                UserScoresTable(userScores: state.userScores),
                 const Gap(32),
                 const SubtitledHeadline(
                   title: 'Moje tabele',
                   subtitle: 'Stwórz własne tabele i zaproś innych',
                 ),
                 const Gap(32),
-                const PrivateTables(),
+                PrivateTables(userScores: state.userScores),
                 const Gap(32),
               ],
             ),
@@ -76,29 +72,6 @@ class MainSubPage extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  StatelessWidget buildMainTable(WidgetRef ref) {
-    return switch (ref.watch(mainSubPageControllerProvider)) {
-      LoadingMainTableState() => Card(
-          child: LoadingTableSkeleton(
-            key: UniqueKey(),
-          ),
-        ),
-      MainTableReadyState(:final users) => Inflater(
-          inflated: true,
-          duration: 1.seconds,
-          scaleFactor: 0.95,
-          child: Card(
-            elevation: 3,
-            child: MainTable(
-              key: UniqueKey(),
-              users: users,
-            ),
-          ),
-        ),
-      _ => Container(),
-    };
   }
 
   Padding buildGreetingSubtitle(BuildContext context) {
