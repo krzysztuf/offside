@@ -19,7 +19,9 @@ class UserBetsTable extends ConsumerWidget {
   final List<Match> matches;
   final List<Bet> userBets;
 
-  Map<DateTime, List<Match>> get matchesByDate => groupBy(matches.where((m) => m.finished), (m) => m.kickOffDate.date);
+  Map<DateTime, List<Match>> matchesByDate(DateTime now) {
+    return groupBy(matches.where((m) => m.finished || m.afterKickOff(now)), (m) => m.kickOffDate.date);
+  }
 
   const UserBetsTable({
     super.key,
@@ -53,7 +55,7 @@ class UserBetsTable extends ConsumerWidget {
                 createTextCell('PKT', columnTitleStyle),
               ],
             ),
-            ...(matchesByDate.entries.sorted((a, b) => a.key.compareTo(b.key)).map((m) {
+            ...(matchesByDate(ref.read(dateTimeProvider)).entries.sorted((a, b) => a.key.compareTo(b.key)).map((m) {
               final date = m.key;
               final thisDayMatches = m.value;
 
