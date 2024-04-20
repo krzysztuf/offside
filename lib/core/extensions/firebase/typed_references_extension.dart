@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:offside/data/models/firestore/bet_model.dart';
 import 'package:offside/data/models/firestore/match_model.dart';
+import 'package:offside/data/models/firestore/private_table_model.dart';
 import 'package:offside/data/models/firestore/setting_model.dart';
 import 'package:offside/data/models/firestore/team_model.dart';
 import 'package:offside/data/models/firestore/user_model.dart';
@@ -41,5 +42,6 @@ extension TypedReferencesExtension on FirebaseFirestore {
     TeamModel: (snapshot, _) => TeamModel.fromJson(snapshot),
     MatchModel: (snapshot, _) => MatchModel.fromJson(snapshot),
     SettingModel: (snapshot, _) => SettingModel.fromJson(snapshot),
+    PrivateTableModel: (snapshot, _) => PrivateTableModel.fromJson(snapshot),
   };
 }

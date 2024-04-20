@@ -5,9 +5,8 @@ import 'package:offside/core/utils/firestore/document.dart';
 import 'package:offside/domain/entities/fetchable.dart';
 
 class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
-  Entity? _entity;
-
   final Document<Model> document;
+  Entity? _entity;
 
   FirestoreFetchable(this.document);
 
@@ -19,7 +18,7 @@ class FirestoreFetchable<Entity, Model> implements Fetchable<Entity> {
 
   @override
   Future<void> fetch({bool force = false}) async {
-    if (_entity != null && !force) {
+    if (hasValue && !force) {
       return;
     }
 

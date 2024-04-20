@@ -5,11 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/entities/user_score_summary.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/presentation/widgets/offside/recent_form_dots.dart';
 
 import 'main_table_controller.dart';
-import 'main_table_state.dart';
 
 class MainTable extends ConsumerWidget {
   final List<User> users;
@@ -43,8 +43,8 @@ class MainTable extends ConsumerWidget {
     );
   }
 
-  List<UserScores> _sortByPoints(List<UserScores> userScores) {
-    return [...userScores]..sort((a, b) => b.totalScore.compareTo(a.totalScore));
+  List<UserScoreSummary> _sortByPoints(List<UserScoreSummary> userScore) {
+    return [...userScore]..sort((a, b) => b.totalScore.compareTo(a.totalScore));
   }
 
   Widget buildStandingAndAvatar(BuildContext context, WidgetRef ref, int standing, User user) {
@@ -60,11 +60,11 @@ class MainTable extends ConsumerWidget {
     );
   }
 
-  Widget buildRecentForm(BuildContext context, UserScores userScores) {
+  Widget buildRecentForm(BuildContext context, UserScoreSummary userScores) {
     if (userScores.recentPredictionsScores.isEmpty) {
       return 'Brak ostatnich typowań'.styledText(context.textTheme.bodySmall!);
     }
 
-    return RecentFormDots(userScores: userScores);
+    return RecentFormDots(userScore: userScores);
   }
 }

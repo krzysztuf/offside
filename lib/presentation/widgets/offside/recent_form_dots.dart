@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:offside/core/extensions/list_with_gaps.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/presentation/pages/home/main_sub_page/main_table_state.dart';
+import 'package:offside/domain/entities/user_score_summary.dart';
 
 class RecentFormDots extends StatelessWidget {
-  final UserScores userScores;
+  final UserScoreSummary userScore;
 
-  const RecentFormDots({super.key, required this.userScores});
+  const RecentFormDots({super.key, required this.userScore});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class RecentFormDots extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
-          ...userScores.recentPredictionsScores.map((score) => switch (score) {
+          ...userScore.recentPredictionsScores.map((score) => switch (score) {
                 >= 3 => Container(
                     width: 8,
                     height: 8,

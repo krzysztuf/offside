@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker.dart';
-import 'package:offside/presentation/pages/home/main_sub_page/private_tables.dart';
+import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/providers/competition_started_provider.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';

@@ -203,6 +203,24 @@ final usersRepositoryProvider = AutoDisposeProvider<Repository<User>>.internal(
 );
 
 typedef UsersRepositoryRef = AutoDisposeProviderRef<Repository<User>>;
+String _$privateTablesRepositoryHash() =>
+    r'4ef3bcb50024047d6cacf21e4037ac27a5c9397b';
+
+/// See also [privateTablesRepository].
+@ProviderFor(privateTablesRepository)
+final privateTablesRepositoryProvider =
+    AutoDisposeProvider<Repository<PrivateTable>>.internal(
+  privateTablesRepository,
+  name: r'privateTablesRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$privateTablesRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef PrivateTablesRepositoryRef
+    = AutoDisposeProviderRef<Repository<PrivateTable>>;
 String _$offsideRepositoryHash() => r'9f9a6edbfe40839bcb9a711c12e4f64e2304cd90';
 
 /// See also [offsideRepository].

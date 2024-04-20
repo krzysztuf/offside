@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/entities/user_score_summary.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
 import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
@@ -53,14 +54,14 @@ class MainTableController extends _$MainTableController {
     return userBets;
   }
 
-  List<UserScores> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets, String winnerId) {
+  List<UserScoreSummary> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets, String winnerId) {
     final matchesWithResult = matches.where((match) => match.finished).toList();
 
     return userBets.entries.map((userAndBets) {
       final user = userAndBets.key;
       final bets = userAndBets.value;
 
-      final userScores = UserScores(user);
+      final userScores = UserScoreSummary(user);
       userScores.totalScore = bets.fold(0, (points, bet) {
         final match = matchesWithResult.firstWhereOrNull((match) => match.id == bet.matchId);
         if (match == null) {

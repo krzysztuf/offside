@@ -7,6 +7,7 @@ import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/data/sources/remote/firestore_source.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/private_table.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
@@ -40,6 +41,11 @@ Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
 @riverpod
 Repository<User> usersRepository(UsersRepositoryRef ref) {
   return FirestoreRepository(collection: FirestoreSource.users);
+}
+
+@riverpod
+Repository<PrivateTable> privateTablesRepository(PrivateTablesRepositoryRef ref) {
+  return FirestoreRepository(collection: FirestoreSource.tables);
 }
 
 @riverpod

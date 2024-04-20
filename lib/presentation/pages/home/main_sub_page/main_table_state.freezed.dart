@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainTableState {
-  List<UserScores> get userScores => throw _privateConstructorUsedError;
+  List<UserScoreSummary> get userScores => throw _privateConstructorUsedError;
   bool get calculating => throw _privateConstructorUsedError;
   String get winnerId => throw _privateConstructorUsedError;
 
@@ -31,7 +31,8 @@ abstract class $MainTableStateCopyWith<$Res> {
           MainTableState value, $Res Function(MainTableState) then) =
       _$MainTableStateCopyWithImpl<$Res, MainTableState>;
   @useResult
-  $Res call({List<UserScores> userScores, bool calculating, String winnerId});
+  $Res call(
+      {List<UserScoreSummary> userScores, bool calculating, String winnerId});
 }
 
 /// @nodoc
@@ -55,7 +56,7 @@ class _$MainTableStateCopyWithImpl<$Res, $Val extends MainTableState>
       userScores: null == userScores
           ? _value.userScores
           : userScores // ignore: cast_nullable_to_non_nullable
-              as List<UserScores>,
+              as List<UserScoreSummary>,
       calculating: null == calculating
           ? _value.calculating
           : calculating // ignore: cast_nullable_to_non_nullable
@@ -76,7 +77,8 @@ abstract class _$$MainTableStateImplCopyWith<$Res>
       __$$MainTableStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<UserScores> userScores, bool calculating, String winnerId});
+  $Res call(
+      {List<UserScoreSummary> userScores, bool calculating, String winnerId});
 }
 
 /// @nodoc
@@ -98,7 +100,7 @@ class __$$MainTableStateImplCopyWithImpl<$Res>
       userScores: null == userScores
           ? _value._userScores
           : userScores // ignore: cast_nullable_to_non_nullable
-              as List<UserScores>,
+              as List<UserScoreSummary>,
       calculating: null == calculating
           ? _value.calculating
           : calculating // ignore: cast_nullable_to_non_nullable
@@ -115,15 +117,15 @@ class __$$MainTableStateImplCopyWithImpl<$Res>
 
 class _$MainTableStateImpl extends _MainTableState {
   const _$MainTableStateImpl(
-      {required final List<UserScores> userScores,
+      {required final List<UserScoreSummary> userScores,
       this.calculating = true,
       this.winnerId = ''})
       : _userScores = userScores,
         super._();
 
-  final List<UserScores> _userScores;
+  final List<UserScoreSummary> _userScores;
   @override
-  List<UserScores> get userScores {
+  List<UserScoreSummary> get userScores {
     if (_userScores is EqualUnmodifiableListView) return _userScores;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_userScores);
@@ -168,13 +170,13 @@ class _$MainTableStateImpl extends _MainTableState {
 
 abstract class _MainTableState extends MainTableState {
   const factory _MainTableState(
-      {required final List<UserScores> userScores,
+      {required final List<UserScoreSummary> userScores,
       final bool calculating,
       final String winnerId}) = _$MainTableStateImpl;
   const _MainTableState._() : super._();
 
   @override
-  List<UserScores> get userScores;
+  List<UserScoreSummary> get userScores;
   @override
   bool get calculating;
   @override

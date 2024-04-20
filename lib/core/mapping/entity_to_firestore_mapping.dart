@@ -5,6 +5,7 @@ import 'package:offside/core/utils/firestore/document.dart';
 import 'package:offside/core/utils/firestore/document_collection.dart';
 import 'package:offside/data/models/firestore/bet_model.dart';
 import 'package:offside/data/models/firestore/match_model.dart';
+import 'package:offside/data/models/firestore/private_table_model.dart';
 import 'package:offside/data/models/firestore/team_model.dart';
 import 'package:offside/data/models/firestore/user_model.dart';
 import 'package:offside/data/sources/remote/firestore_collection_fetchable.dart';
@@ -13,6 +14,7 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
+import 'package:offside/domain/entities/private_table.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 
@@ -110,6 +112,26 @@ extension EntityToFirestoreMapping on GetIt {
         ),
       ),
     );
+
+    addBidirectionalMapper<PrivateTable, Document<PrivateTableModel>>(
+      forward: (entity) => Document(
+        entity.id,
+        model: PrivateTableModel(
+          entity.id,
+          entity.name,
+          entity.ownerId,
+          entity.memberIds,
+        ),
+      ),
+      backward: (document) => PrivateTable(
+        id: document.id,
+        name: document.value.name,
+        ownerId: document.value.ownerId,
+        memberIds: document.value.memberIds,
+      ),
+    );
+
+    // ----
 
     addMapper<BetModel, Bet>((model) => Bet(
           id: model.id,

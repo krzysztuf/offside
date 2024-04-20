@@ -7,7 +7,7 @@ part of 'main_table_controller.dart';
 // **************************************************************************
 
 String _$mainTableControllerHash() =>
-    r'e0ff91e15f69876b15f881e14b28137915cb76d8';
+    r'757e2e0a9de8423cfe52918ce380d63c3a0e484d';
 
 /// See also [MainTableController].
 @ProviderFor(MainTableController)
