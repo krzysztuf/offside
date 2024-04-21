@@ -7,8 +7,6 @@ part 'main_sub_page_state.freezed.dart';
 class MainSubPageState with _$MainSubPageState {
   const factory MainSubPageState({
     required List<UserScoreSummary> userScores,
-    @Default(true) bool calculating,
-    @Default('') String winnerId,
   }) = _MainSubPageState;
 
   const MainSubPageState._();

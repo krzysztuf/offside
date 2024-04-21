@@ -17,8 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MainSubPageState {
   List<UserScoreSummary> get userScores => throw _privateConstructorUsedError;
-  bool get calculating => throw _privateConstructorUsedError;
-  String get winnerId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MainSubPageStateCopyWith<MainSubPageState> get copyWith =>
@@ -31,8 +29,7 @@ abstract class $MainSubPageStateCopyWith<$Res> {
           MainSubPageState value, $Res Function(MainSubPageState) then) =
       _$MainSubPageStateCopyWithImpl<$Res, MainSubPageState>;
   @useResult
-  $Res call(
-      {List<UserScoreSummary> userScores, bool calculating, String winnerId});
+  $Res call({List<UserScoreSummary> userScores});
 }
 
 /// @nodoc
@@ -49,22 +46,12 @@ class _$MainSubPageStateCopyWithImpl<$Res, $Val extends MainSubPageState>
   @override
   $Res call({
     Object? userScores = null,
-    Object? calculating = null,
-    Object? winnerId = null,
   }) {
     return _then(_value.copyWith(
       userScores: null == userScores
           ? _value.userScores
           : userScores // ignore: cast_nullable_to_non_nullable
               as List<UserScoreSummary>,
-      calculating: null == calculating
-          ? _value.calculating
-          : calculating // ignore: cast_nullable_to_non_nullable
-              as bool,
-      winnerId: null == winnerId
-          ? _value.winnerId
-          : winnerId // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -77,8 +64,7 @@ abstract class _$$MainSubPageStateImplCopyWith<$Res>
       __$$MainSubPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<UserScoreSummary> userScores, bool calculating, String winnerId});
+  $Res call({List<UserScoreSummary> userScores});
 }
 
 /// @nodoc
@@ -93,22 +79,12 @@ class __$$MainSubPageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userScores = null,
-    Object? calculating = null,
-    Object? winnerId = null,
   }) {
     return _then(_$MainSubPageStateImpl(
       userScores: null == userScores
           ? _value._userScores
           : userScores // ignore: cast_nullable_to_non_nullable
               as List<UserScoreSummary>,
-      calculating: null == calculating
-          ? _value.calculating
-          : calculating // ignore: cast_nullable_to_non_nullable
-              as bool,
-      winnerId: null == winnerId
-          ? _value.winnerId
-          : winnerId // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -117,9 +93,7 @@ class __$$MainSubPageStateImplCopyWithImpl<$Res>
 
 class _$MainSubPageStateImpl extends _MainSubPageState {
   const _$MainSubPageStateImpl(
-      {required final List<UserScoreSummary> userScores,
-      this.calculating = true,
-      this.winnerId = ''})
+      {required final List<UserScoreSummary> userScores})
       : _userScores = userScores,
         super._();
 
@@ -132,15 +106,8 @@ class _$MainSubPageStateImpl extends _MainSubPageState {
   }
 
   @override
-  @JsonKey()
-  final bool calculating;
-  @override
-  @JsonKey()
-  final String winnerId;
-
-  @override
   String toString() {
-    return 'MainSubPageState(userScores: $userScores, calculating: $calculating, winnerId: $winnerId)';
+    return 'MainSubPageState(userScores: $userScores)';
   }
 
   @override
@@ -149,16 +116,12 @@ class _$MainSubPageStateImpl extends _MainSubPageState {
         (other.runtimeType == runtimeType &&
             other is _$MainSubPageStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._userScores, _userScores) &&
-            (identical(other.calculating, calculating) ||
-                other.calculating == calculating) &&
-            (identical(other.winnerId, winnerId) ||
-                other.winnerId == winnerId));
+                .equals(other._userScores, _userScores));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_userScores), calculating, winnerId);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_userScores));
 
   @JsonKey(ignore: true)
   @override
@@ -170,17 +133,12 @@ class _$MainSubPageStateImpl extends _MainSubPageState {
 
 abstract class _MainSubPageState extends MainSubPageState {
   const factory _MainSubPageState(
-      {required final List<UserScoreSummary> userScores,
-      final bool calculating,
-      final String winnerId}) = _$MainSubPageStateImpl;
+          {required final List<UserScoreSummary> userScores}) =
+      _$MainSubPageStateImpl;
   const _MainSubPageState._() : super._();
 
   @override
   List<UserScoreSummary> get userScores;
-  @override
-  bool get calculating;
-  @override
-  String get winnerId;
   @override
   @JsonKey(ignore: true)
   _$$MainSubPageStateImplCopyWith<_$MainSubPageStateImpl> get copyWith =>

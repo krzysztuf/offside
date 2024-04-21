@@ -4,6 +4,7 @@ import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/new_match_dialog.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page.dart';
+import 'package:offside/presentation/pages/home/tables_sub_page/tables_sub_page.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:offside/presentation/providers/user_is_admin.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
@@ -21,13 +22,14 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 enum HomePageTab {
-  table,
+  home,
+  tables,
   matches,
   profile,
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  var currentTab = HomePageTab.table;
+  var currentTab = HomePageTab.home;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           index: currentTab.index,
           children: const [
             MainSubPage(),
+            TablesSubPage(),
             MatchesSubPage(),
             ProfileSubPage(),
           ],
@@ -57,6 +60,11 @@ class _HomePageState extends ConsumerState<HomePage> {
           const NavigationDestination(
             icon: Icon(Icons.home),
             label: 'Główna',
+            tooltip: '',
+          ),
+          const NavigationDestination(
+            icon: Icon(Icons.leaderboard_outlined),
+            label: 'Tabele',
             tooltip: '',
           ),
           const NavigationDestination(

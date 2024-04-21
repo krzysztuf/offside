@@ -131,7 +131,7 @@ class PrivateTables extends ConsumerWidget {
 
   Widget buildOwnerControls(BuildContext context, WidgetRef ref, PrivateTable table, List<User> users) {
     return SizedBox(
-      width: 80,
+      width: 96,
       child: Row(
         children: [
           IconButton(

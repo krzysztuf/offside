@@ -8,16 +8,14 @@ import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'main_sub_page_state.dart';
-
-part 'main_sub_page_controller.g.dart';
+part 'user_scores.g.dart';
 
 @riverpod
-class MainSubPageController extends _$MainSubPageController {
+class UserScores extends _$UserScores {
   @override
-  MainSubPageState build() {
+  FutureOr<List<UserScoreSummary>> build() {
     _loadUserBetsAndCalculatePoints();
-    return const MainSubPageState(userScores: []);
+    return [];
   }
 
   Future<void> refresh({Duration? delay}) async {
@@ -29,6 +27,7 @@ class MainSubPageController extends _$MainSubPageController {
   }
 
   Future<void> _loadUserBetsAndCalculatePoints() async {
+    state = const AsyncLoading();
     final winnerId = await ref.read(getWinnerTeamIdUseCaseProvider).run();
 
     final matchesFuture = ref.read(getAllMatchesUseCaseProvider).run();
@@ -41,7 +40,7 @@ class MainSubPageController extends _$MainSubPageController {
       final userBets = await _fetchBetsAndGroupByUser(users);
       final userPoints = _calculateUserPoints(matches, userBets, winnerId);
 
-      state = state.copyWith(userScores: _sortByPoints(userPoints), winnerId: winnerId);
+      state = AsyncData(_sortByPoints(userPoints));
     });
   }
 
