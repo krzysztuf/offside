@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
@@ -89,11 +87,21 @@ class UploadUserAvatarUseCase implements AsyncUseCaseWithParams<User, User, Stri
   @override
   Future<User> run(User user, String imagePath) async {
     final id = await imageRepository.upload(imagePath);
-    log('Image uploaded: $id');
 
     var updatedUser = user.copyWith(image: id);
     users.update(updatedUser);
 
     return updatedUser;
+  }
+}
+
+class EmailIsWhiteListedUseCase implements AsyncUseCaseWithParam<bool, String> {
+  final AuthRepository authRepository;
+
+  EmailIsWhiteListedUseCase(this.authRepository);
+
+  @override
+  Future<bool> run(String email) {
+    return authRepository.isEmailWhitelisted(email);
   }
 }

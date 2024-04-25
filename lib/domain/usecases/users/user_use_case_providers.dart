@@ -44,3 +44,8 @@ UpdateUserUseCase updateUserUseCase(UpdateUserUseCaseRef ref) {
 UploadUserAvatarUseCase uploadUserAvatarUseCase(UploadUserAvatarUseCaseRef ref) {
   return UploadUserAvatarUseCase(ref.read(usersRepositoryProvider), ref.read(imageRepositoryProvider));
 }
+
+@riverpod
+EmailIsWhiteListedUseCase emailIsWhiteListedUseCase(EmailIsWhiteListedUseCaseRef ref) {
+  return EmailIsWhiteListedUseCase(ref.read(authRepositoryProvider));
+}

@@ -8,4 +8,6 @@ abstract interface class AuthRepository {
   Future<void> logOut();
 
   Future<User?> currentUser();
+
+  Future<bool> isEmailWhitelisted(String email);
 }

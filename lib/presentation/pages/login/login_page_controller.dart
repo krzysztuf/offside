@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
@@ -38,16 +40,19 @@ class LoginPageController extends _$LoginPageController {
   }
 
   Future<void> register(String email, String password) async {
-    final credentials =
-        await auth.FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    final emailWhitelisted = await ref.read(emailIsWhiteListedUseCaseProvider).run(email);
+    log('Email whitelisted: $emailWhitelisted');
 
-    final newUser = User(
-      firebaseId: credentials.user!.uid,
-      name: 'Test',
-      surname: 'Test',
-    );
-
-    await _addUser(newUser);
+    // final credentials =
+    //     await auth.FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    //
+    // final newUser = User(
+    //   firebaseId: credentials.user!.uid,
+    //   name: 'Test',
+    //   surname: 'Test',
+    // );
+    //
+    // await _addUser(newUser);
   }
 
   Future<void> _addUser(User newUser) async {

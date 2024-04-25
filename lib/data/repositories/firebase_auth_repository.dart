@@ -1,4 +1,5 @@
 import 'package:offside/data/sources/remote/firebase_auth_source.dart';
+import 'package:offside/data/sources/remote/firestore_source.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
@@ -47,5 +48,13 @@ class FirebaseAuthRepository implements AuthRepository {
     }
 
     return usersWithUid.firstOrNull;
+  }
+
+  @override
+  Future<bool> isEmailWhitelisted(String email) async {
+    final result = await FirestoreSource.settings.doc('whitelist').get();
+    
+    final whitelist = result.data()!.value.split(',');
+    return whitelist.contains(email);
   }
 }

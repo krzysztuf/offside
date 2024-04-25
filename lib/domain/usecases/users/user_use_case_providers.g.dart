@@ -260,5 +260,23 @@ final uploadUserAvatarUseCaseProvider =
 
 typedef UploadUserAvatarUseCaseRef
     = AutoDisposeProviderRef<UploadUserAvatarUseCase>;
+String _$emailIsWhiteListedUseCaseHash() =>
+    r'5f93b0b8515611977c24cf2bfdda8c47a28790f2';
+
+/// See also [emailIsWhiteListedUseCase].
+@ProviderFor(emailIsWhiteListedUseCase)
+final emailIsWhiteListedUseCaseProvider =
+    AutoDisposeProvider<EmailIsWhiteListedUseCase>.internal(
+  emailIsWhiteListedUseCase,
+  name: r'emailIsWhiteListedUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$emailIsWhiteListedUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef EmailIsWhiteListedUseCaseRef
+    = AutoDisposeProviderRef<EmailIsWhiteListedUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
