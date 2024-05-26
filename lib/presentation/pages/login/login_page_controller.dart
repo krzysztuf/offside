@@ -42,17 +42,6 @@ class LoginPageController extends _$LoginPageController {
   Future<void> register(String email, String password) async {
     final emailWhitelisted = await ref.read(emailIsWhiteListedUseCaseProvider).run(email);
     log('Email whitelisted: $emailWhitelisted');
-
-    // final credentials =
-    //     await auth.FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-    //
-    // final newUser = User(
-    //   firebaseId: credentials.user!.uid,
-    //   name: 'Test',
-    //   surname: 'Test',
-    // );
-    //
-    // await _addUser(newUser);
   }
 
   Future<void> _addUser(User newUser) async {

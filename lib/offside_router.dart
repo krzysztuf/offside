@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:offside/presentation/pages/delete_user/delete_user_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'domain/entities/user.dart';
@@ -33,6 +34,13 @@ GoRouter offsideRouter(OffsideRouterRef ref) {
         path: '/',
         name: 'login',
         builder: (context, state) => const LoginPage(),
+      ),
+      GoRoute(
+        path: '/deleteUser',
+        name: 'deleteUser',
+        builder: (context, state) {
+          return const DeleteUserPage();
+        },
       ),
       GoRoute(
         path: '/home',

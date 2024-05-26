@@ -41,6 +41,14 @@ class FirebaseAuthRepository implements AuthRepository {
     throw UnimplementedError();
   }
 
+  @override
+  Future<bool> isEmailWhitelisted(String email) async {
+    final result = await FirestoreSource.settings.doc('whitelist').get();
+
+    final whitelist = result.data()!.value.split(',');
+    return whitelist.contains(email);
+  }
+
   Future<User?> _findUserWithUid(String uid) async {
     final usersWithUid = await users.where("firebaseId", isEqualTo: uid);
     if (usersWithUid.length > 1) {
@@ -48,13 +56,5 @@ class FirebaseAuthRepository implements AuthRepository {
     }
 
     return usersWithUid.firstOrNull;
-  }
-
-  @override
-  Future<bool> isEmailWhitelisted(String email) async {
-    final result = await FirestoreSource.settings.doc('whitelist').get();
-    
-    final whitelist = result.data()!.value.split(',');
-    return whitelist.contains(email);
   }
 }
