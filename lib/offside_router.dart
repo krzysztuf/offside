@@ -7,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'domain/entities/user.dart';
 import 'presentation/pages/home/home_page.dart';
 import 'presentation/pages/login/login_page.dart';
+import 'presentation/pages/privacy_page.dart';
 import 'presentation/pages/user/user_page.dart';
 import 'presentation/pages/user/user_page_controller.dart';
 
@@ -40,6 +41,13 @@ GoRouter offsideRouter(OffsideRouterRef ref) {
         name: 'deleteUser',
         builder: (context, state) {
           return const DeleteUserPage();
+        },
+      ),
+      GoRoute(
+        path: '/privacy',
+        name: 'privacy',
+        builder: (context, state) {
+          return const PrivatePolicyPage();
         },
       ),
       GoRoute(
