@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
+import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/presentation/pages/delete_user/delete_user_page_controller.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 
@@ -43,7 +44,16 @@ class _DeleteUserPageState extends ConsumerState<DeleteUserPage> with SingleTick
           margin: const EdgeInsets.all(16),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: buildLoginView(),
+            child: Column(
+              children: [
+                'Usuń użytkownika'.styledText(context.textTheme.titleLarge),
+                const Gap(8),
+                'Podaj e-mail i hasło użytkownika aplikacji Typownik, którego chcesz usunąć. Uwaga: operacja jest nieodwracalna.'
+                    .text,
+                const Gap(16),
+                buildLoginView(),
+              ],
+            ),
           ),
         ),
       ),
