@@ -33,7 +33,7 @@ class PrivatePolicyPage extends StatelessWidget {
                 style: titleStyle,
               ),
               Text(
-                'Administrator danych osobowych – ShakeIT Krzysztof Potrząsaj, adres: [Adres siedziby firmy lub adres zamieszkania], e-mail: krzysztof.shakeit@gmail.com.',
+                'Administrator danych osobowych – ShakeIT Krzysztof Potrząsaj, e-mail: krzysztof.shakeit@gmail.com.',
                 style: textStyle,
               ),
               Text(
