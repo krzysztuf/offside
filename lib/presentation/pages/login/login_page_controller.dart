@@ -37,21 +37,18 @@ class LoginPageController extends _$LoginPageController {
     }
   }
 
-  Future<void> register(String email, String password) async {
+  Future<void> register(String email, String password, String name, String surname) async {
     final emailWhitelisted = await ref.read(emailIsWhiteListedUseCaseProvider).run(email);
     if (!emailWhitelisted) {
       throw Exception('Użytownik z tym adresem email nie ma dostępu do aplikacji');
     }
 
-    final credentials =
-        await auth.FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-
-    final newUser = User(
-      firebaseId: credentials.user!.uid,
-      name: 'Test',
-      surname: 'Test',
+    final credentials = await auth.FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
     );
 
+    final newUser = User(firebaseId: credentials.user!.uid, name: name, surname: surname);
     await _addUser(newUser);
   }
 

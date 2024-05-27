@@ -115,6 +115,8 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
     await ref.read(loginPageControllerProvider.notifier).register(
           emailController.text,
           passwordController.text,
+          nameController.text,
+          surnameController.text,
         );
 
     await ref.read(loginPageControllerProvider.notifier).login(
@@ -256,9 +258,7 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
             Enabled(
               enabled: credentialsProvided && nameDetailsProvided,
               child: ElevatedButton(
-                onPressed: () {
-                  registerUser();
-                },
+                onPressed: () => registerUser(),
                 child: const Text('Zarejestruj'),
               ),
             ),
