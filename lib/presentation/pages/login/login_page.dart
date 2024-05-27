@@ -111,8 +111,13 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
     );
   }
 
-  Future<void> registerUser() {
-    return ref.read(loginPageControllerProvider.notifier).register(
+  Future<void> registerUser() async {
+    await ref.read(loginPageControllerProvider.notifier).register(
+          emailController.text,
+          passwordController.text,
+        );
+
+    await ref.read(loginPageControllerProvider.notifier).login(
           emailController.text,
           passwordController.text,
         );
