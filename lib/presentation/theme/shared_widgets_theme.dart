@@ -30,6 +30,11 @@ class SharedWidgetsTheme extends WidgetTheme {
         ),
       );
 
+  Color get mainPageBackgroundColor => theme.variant(
+        light: const Color(0xfffdfdfd),
+        dark: const Color(0xff090909),
+      );
+
   Color get noPointsColor => theme.variant(
         light: Colors.red.shade400,
         dark: Colors.red.shade400,

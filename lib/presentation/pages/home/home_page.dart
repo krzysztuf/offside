@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/new_match_dialog.dart';
@@ -34,6 +35,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.widgetThemes.sharedWidgets.mainPageBackgroundColor,
       body: SafeArea(
         child: IndexedStack(
           index: currentTab.index,
