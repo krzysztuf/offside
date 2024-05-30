@@ -66,6 +66,10 @@ extension ConvenienceMethods on Match {
     if (result.homeTeamWon && predictedGoals.homeTeamWon ||
         result.awayTeamWon && predictedGoals.awayTeamWon ||
         result.draw && predictedGoals.draw) {
+      if (result.goalDifference == predictedGoals.goalDifference) {
+        return 2;
+      }
+
       return 1;
     }
 
@@ -83,7 +87,7 @@ extension ConvenienceMethods on Match {
 
     return null;
   }
-  
+
   List<Bet> get superBets {
     return bets.value.where((bet) => pointsFor(prediction: bet.prediction) >= 3).toList();
   }

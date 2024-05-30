@@ -80,7 +80,7 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
               SnackBar(
                 content: Row(
                   children: [
-                    Icon(Icons.check, color: context.colorScheme.background),
+                    Icon(Icons.check, color: context.colorScheme.surface),
                     const Gap(8),
                     'ZWYCIĘZCA TURNIEJU ZAPISANY'.text,
                   ],

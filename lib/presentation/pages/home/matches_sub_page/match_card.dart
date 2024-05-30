@@ -226,7 +226,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                     child: FilledButton.tonalIcon(
                         icon: const Icon(Icons.sports_soccer_rounded, size: 18),
                         label: const Text('Typuj'),
-                        onPressed: () async => await _saveUserPrediction()),
+                        onPressed: () async => await _saveUserPrediction(state.match, now)),
                   ),
                 ),
                 Visibility(
@@ -251,7 +251,12 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     );
   }
 
-  Future<void> _saveUserPrediction() async {
+  Future<void> _saveUserPrediction(Match match, DateTime now) async {
+    if (match.beingPlayed(now)) {
+      _showErrorDialog('Mecz już się zaczął');
+      return;
+    }
+
     editedPrediction ??= const Goals();
     penaltiesWinner = editedPenaltiesWinner;
 
@@ -370,6 +375,24 @@ class _MatchCardState extends ConsumerState<MatchCard> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Błąd'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

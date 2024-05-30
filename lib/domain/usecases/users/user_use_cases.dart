@@ -46,13 +46,14 @@ class GetCurrentUserUseCase implements AsyncUseCase<User?> {
 }
 
 class GetAllUsersUseCase implements AsyncUseCase<List<User>> {
-  final Repository<User> users;
+  final Repository<User> usersRepository;
 
-  GetAllUsersUseCase(this.users);
+  GetAllUsersUseCase(this.usersRepository);
 
   @override
-  Future<List<User>> run() {
-    return users.all();
+  Future<List<User>> run() async {
+    final users = await usersRepository.all();
+    return users.where((user) => user.firebaseId != "vxLxo3VBnHSJYMUi0Xy1sOYodpd2").toList();
   }
 }
 

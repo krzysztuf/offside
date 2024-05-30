@@ -7,14 +7,10 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
-import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_controller.dart';
-import 'package:offside/presentation/widgets/admin_visible.dart';
 
 import 'profile_sub_page_state.dart';
-import 'user_dropdown.dart';
 
 class ProfileSubPage extends ConsumerStatefulWidget {
   const ProfileSubPage({super.key});
@@ -46,24 +42,24 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AdminVisible(
-              child: FutureBuilder(
-                future: ref.watch(getAllUsersUseCaseProvider).run(),
-                builder: (context, snapshot) {
-                  return switch (snapshot.connectionState) {
-                    ConnectionState.waiting => LoadingAnimationWidget.fourRotatingDots(
-                        color: context.colorScheme.primary,
-                        size: 64,
-                      ),
-                    ConnectionState.done => UserDropdown(
-                        users: snapshot.data!,
-                        onChanged: (user) => ref.read(currentUserIdSettingProvider.notifier).value = user.id,
-                      ),
-                    _ => 'Done'.text,
-                  };
-                },
-              ),
-            ),
+            // AdminVisible(
+            //   child: FutureBuilder(
+            //     future: ref.watch(getAllUsersUseCaseProvider).run(),
+            //     builder: (context, snapshot) {
+            //       return switch (snapshot.connectionState) {
+            //         ConnectionState.waiting => LoadingAnimationWidget.fourRotatingDots(
+            //             color: context.colorScheme.primary,
+            //             size: 64,
+            //           ),
+            //         ConnectionState.done => UserDropdown(
+            //             users: snapshot.data!,
+            //             onChanged: (user) => ref.read(currentUserIdSettingProvider.notifier).value = user.id,
+            //           ),
+            //         _ => 'Done'.text,
+            //       };
+            //     },
+            //   ),
+            // ),
             const Gap(16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

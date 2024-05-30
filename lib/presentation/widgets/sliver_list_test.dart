@@ -22,7 +22,7 @@ class SliverListTest extends StatelessWidget {
                   elevation: 4,
                   shape: CircleBorder(
                     side: BorderSide(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   child: const CircleAvatar(
@@ -57,7 +57,7 @@ class SliverListTest extends StatelessWidget {
                   elevation: 4,
                   shape: CircleBorder(
                     side: BorderSide(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   child: const CircleAvatar(
