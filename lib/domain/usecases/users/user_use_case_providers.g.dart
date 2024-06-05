@@ -226,6 +226,22 @@ final addUserUseCaseProvider = AutoDisposeProvider<AddUserUseCase>.internal(
 );
 
 typedef AddUserUseCaseRef = AutoDisposeProviderRef<AddUserUseCase>;
+String _$removeUserUseCaseHash() => r'9097c84cc19c7f68ac62851f117a2f30d5d874f0';
+
+/// See also [removeUserUseCase].
+@ProviderFor(removeUserUseCase)
+final removeUserUseCaseProvider =
+    AutoDisposeProvider<RemoveUserUseCase>.internal(
+  removeUserUseCase,
+  name: r'removeUserUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$removeUserUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef RemoveUserUseCaseRef = AutoDisposeProviderRef<RemoveUserUseCase>;
 String _$updateUserUseCaseHash() => r'd86ae5d7bf7aafb37a0d6ef80feec12a43a3eb13';
 
 /// See also [updateUserUseCase].

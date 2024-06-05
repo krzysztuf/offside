@@ -36,6 +36,11 @@ AddUserUseCase addUserUseCase(AddUserUseCaseRef ref) {
 }
 
 @riverpod
+RemoveUserUseCase removeUserUseCase(RemoveUserUseCaseRef ref) {
+  return RemoveUserUseCase(ref.read(usersRepositoryProvider));
+}
+
+@riverpod
 UpdateUserUseCase updateUserUseCase(UpdateUserUseCaseRef ref) {
   return UpdateUserUseCase(ref.read(usersRepositoryProvider));
 }

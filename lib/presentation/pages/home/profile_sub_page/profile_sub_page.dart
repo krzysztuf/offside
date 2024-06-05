@@ -127,7 +127,41 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                 color: context.colorScheme.primary,
                 size: 64,
               ),
-            ]
+            ],
+            ElevatedButton.icon(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Usuwanie konta'),
+                      content: const Text('Operacja jest nieodwracalna'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('Anuluj'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            ref.read(profileSubPageControllerProvider.notifier).removeUser().then((_) {
+                              context.goNamed('login');
+                            }).then((_) => context.goNamed('login'));
+                          },
+                          child: const Text('Usuń konto'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(Icons.person_off),
+              label: 'Usuń konto'.text,
+              style: ElevatedButton.styleFrom(
+                foregroundColor: context.widgetThemes.sharedWidgets.destructive.foreground,
+                backgroundColor: context.widgetThemes.sharedWidgets.destructive.background,
+              ),
+            ),
+            const Gap(64),
           ],
         ),
       ),

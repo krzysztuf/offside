@@ -37,6 +37,15 @@ class ProfileSubPageController extends _$ProfileSubPageController {
     state = state.copyWith(uploading: false);
   }
 
+  Future<void> removeUser() async {
+    try {
+      await ref.read(removeUserUseCaseProvider).run(state.user!);
+      await logOut();
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   Future<void> logOut() async {
     return ref.read(logOutUseCaseProvider).run();
   }

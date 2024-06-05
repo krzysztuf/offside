@@ -68,6 +68,17 @@ class AddUserUseCase implements AsyncUseCaseWithParam<String, User> {
   }
 }
 
+class RemoveUserUseCase implements AsyncUseCaseWithParam<void, User> {
+  final Repository<User> users;
+
+  RemoveUserUseCase(this.users);
+
+  @override
+  Future<void> run(User user) {
+    return users.remove(user);
+  }
+}
+
 class UpdateUserUseCase implements AsyncUseCaseWithParam<void, User> {
   final Repository<User> users;
 
