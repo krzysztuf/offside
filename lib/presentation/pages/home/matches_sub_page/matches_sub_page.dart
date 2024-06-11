@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/core/mixin/scroll_to_top_mixin.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/match_card_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page_controller.dart';
@@ -17,11 +18,22 @@ class MatchesSubPage extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _MatchesSubPageState();
+    return MatchesSubPageState();
   }
 }
 
-class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
+class MatchesSubPageState extends ConsumerState<MatchesSubPage> with ScrollToTopMixin<MatchesSubPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  ScrollController get scrollController => _scrollController;
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchesSubPageControllerProvider);
@@ -29,6 +41,7 @@ class _MatchesSubPageState extends ConsumerState<MatchesSubPage> {
       notificationPredicate: (_) => true,
       onRefresh: () => ref.read(matchesSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds),
       child: SingleChildScrollView(
+        controller: _scrollController,
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(

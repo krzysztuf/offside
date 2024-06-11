@@ -33,7 +33,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   var currentTab = HomePageTab.home;
   final mainPageKey = GlobalKey<MainSubPageState>();
   final tablesPageKey = GlobalKey<TablesSubPageState>();
-  final matchesPageKey = GlobalKey<MainSubPageState>();
+  final matchesPageKey = GlobalKey<MatchesSubPageState>();
 
   @override
   Widget build(BuildContext context) {
