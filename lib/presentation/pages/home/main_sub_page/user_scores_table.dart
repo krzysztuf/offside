@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
@@ -34,7 +35,7 @@ class UserScoresTable extends ConsumerWidget {
               final user = userScores.user;
 
               return ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
                 leading: buildStandingAndAvatar(context, ref, index + 1, user),
                 title: user.fullName.text,
                 subtitle: buildRecentForm(context, userScores),
@@ -54,11 +55,14 @@ class UserScoresTable extends ConsumerWidget {
 
   Widget buildStandingAndAvatar(BuildContext context, WidgetRef ref, int standing, User user) {
     return SizedBox(
-      width: 68,
+      width: 80,
       child: Row(
         children: [
-          '$standing'.styledText(context.textTheme.bodyMedium!),
-          const SizedBox(width: 16),
+          SizedBox(
+            width: 18,
+            child: Center(child: '$standing'.styledText(context.textTheme.bodyMedium!)),
+          ),
+          const Gap(12),
           user.avatar(context, ref, radius: 20, fontSize: 14),
         ],
       ),

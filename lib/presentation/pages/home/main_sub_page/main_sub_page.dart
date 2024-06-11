@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -15,17 +17,39 @@ import '../../../providers/user_scores.dart';
 import 'super_bets_list.dart';
 import 'user_scores_table.dart';
 
-class MainSubPage extends ConsumerWidget {
+class MainSubPage extends ConsumerStatefulWidget {
   const MainSubPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MainSubPage> createState() => MainSubPageState();
+}
+
+class MainSubPageState extends ConsumerState<MainSubPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
     final userScoresAsync = ref.watch(userScoresProvider);
-    return switch (userScoresAsync) {
-      AsyncData(value: final userScores) => _buildMainSubPage(context, ref, userScores),
-      AsyncError() => const Center(child: Text('Error')),
-      _ => const Center(child: CircularProgressIndicator()),
-    };
+    return userScoresAsync.when(
+      data: (userScores) => _buildMainSubPage(context, ref, userScores),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (_, __) => const Center(child: Text('Error')),
+    );
+  }
+
+  void scrollToTop() {
+    log('scrolling !!');
+    _scrollController.animateTo(
+      0,
+      duration: 400.milliseconds,
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   Padding buildGreetingSubtitle(BuildContext context) {
@@ -39,23 +63,23 @@ class MainSubPage extends ConsumerWidget {
   }
 
   Widget buildUserGreeting(WidgetRef ref, BuildContext context) {
-    return switch (ref.watch(currentUserProvider)) {
-      AsyncData(value: final user) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            'Hej ${user!.name} 👋',
-            style: context.textTheme.headlineLarge,
+    return ref.watch(currentUserProvider).when(
+          data: (user) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+              'Hej ${user!.name} 👋',
+              style: context.textTheme.headlineLarge,
+            ),
           ),
-        ),
-      AsyncError() => const Center(child: Text('Error')),
-      _ => Skeletonizer(
-          enabled: true,
-          child: Text(
-            'Hej Użytkowniku 👋',
-            style: context.textTheme.headlineLarge,
+          loading: () => Skeletonizer(
+            enabled: true,
+            child: Text(
+              'Hej Użytkowniku 👋',
+              style: context.textTheme.headlineLarge,
+            ),
           ),
-        ),
-    };
+          error: (_, __) => const Center(child: Text('Error')),
+        );
   }
 
   Widget _buildMainSubPage(BuildContext context, WidgetRef ref, List<UserScoreSummary> userScores) {
@@ -70,6 +94,7 @@ class MainSubPage extends ConsumerWidget {
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
+            controller: _scrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

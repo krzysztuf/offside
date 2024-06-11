@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
@@ -31,6 +33,7 @@ enum HomePageTab {
 
 class _HomePageState extends ConsumerState<HomePage> {
   var currentTab = HomePageTab.home;
+  final mainSubPageKey = GlobalKey<MainSubPageState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +42,11 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: SafeArea(
         child: IndexedStack(
           index: currentTab.index,
-          children: const [
-            MainSubPage(),
-            TablesSubPage(),
-            MatchesSubPage(),
-            ProfileSubPage(),
+          children: [
+            MainSubPage(key: mainSubPageKey),
+            const TablesSubPage(),
+            const MatchesSubPage(),
+            const ProfileSubPage(),
           ],
         ),
       ),
@@ -84,7 +87,15 @@ class _HomePageState extends ConsumerState<HomePage> {
             tooltip: '',
           ),
         ],
-        onDestinationSelected: (index) => setState(() => currentTab = HomePageTab.values[index]),
+        onDestinationSelected: (index) {
+          if (index == currentTab.index) {
+            log('--- ${mainSubPageKey.currentState}');
+            mainSubPageKey.currentState?.scrollToTop();
+            return;
+          }
+
+          setState(() => currentTab = HomePageTab.values[index]);
+        },
       ),
     );
   }

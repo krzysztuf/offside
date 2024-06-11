@@ -46,7 +46,7 @@ class UserPage extends ConsumerWidget {
             children: [
               const Gap(48),
               Center(
-                child: state.user.avatar(context, ref, elevation: 6, radius: 64, fontSize: 48),
+                child: state.user.avatar(context, ref, elevation: 6, radius: 80, fontSize: 48),
               ),
               const Gap(48),
               'Statystyki'.styledText(context.textTheme.headlineMedium),

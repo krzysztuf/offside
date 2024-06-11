@@ -55,7 +55,7 @@ class UserBetsTable extends ConsumerWidget {
                 createTextCell('PKT', columnTitleStyle),
               ],
             ),
-            ...(matchesByDate(ref.read(dateTimeProvider)).entries.sorted((a, b) => a.key.compareTo(b.key)).map((m) {
+            ...(matchesByDate(ref.read(dateTimeProvider)).entries.sorted((a, b) => b.key.compareTo(a.key)).map((m) {
               final date = m.key;
               final thisDayMatches = m.value;
 
