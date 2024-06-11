@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/core/mixin/scroll_to_top_mixin.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/competition_winner_picker.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_controller.dart';
@@ -24,8 +23,11 @@ class MainSubPage extends ConsumerStatefulWidget {
   ConsumerState<MainSubPage> createState() => MainSubPageState();
 }
 
-class MainSubPageState extends ConsumerState<MainSubPage> {
+class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<MainSubPage> {
   final ScrollController _scrollController = ScrollController();
+
+  @override
+  ScrollController get scrollController => _scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,6 @@ class MainSubPageState extends ConsumerState<MainSubPage> {
       data: (userScores) => _buildMainSubPage(context, ref, userScores),
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (_, __) => const Center(child: Text('Error')),
-    );
-  }
-
-  void scrollToTop() {
-    log('scrolling !!');
-    _scrollController.animateTo(
-      0,
-      duration: 400.milliseconds,
-      curve: Curves.fastOutSlowIn,
     );
   }
 
