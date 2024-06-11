@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
@@ -33,7 +31,9 @@ enum HomePageTab {
 
 class _HomePageState extends ConsumerState<HomePage> {
   var currentTab = HomePageTab.home;
-  final mainSubPageKey = GlobalKey<MainSubPageState>();
+  final mainPageKey = GlobalKey<MainSubPageState>();
+  final tablesPageKey = GlobalKey<TablesSubPageState>();
+  final matchesPageKey = GlobalKey<MainSubPageState>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +43,9 @@ class _HomePageState extends ConsumerState<HomePage> {
         child: IndexedStack(
           index: currentTab.index,
           children: [
-            MainSubPage(key: mainSubPageKey),
-            const TablesSubPage(),
-            const MatchesSubPage(),
+            MainSubPage(key: mainPageKey),
+            TablesSubPage(key: tablesPageKey),
+            MatchesSubPage(key: matchesPageKey),
             const ProfileSubPage(),
           ],
         ),
@@ -89,8 +89,14 @@ class _HomePageState extends ConsumerState<HomePage> {
         ],
         onDestinationSelected: (index) {
           if (index == currentTab.index) {
-            log('--- ${mainSubPageKey.currentState}');
-            mainSubPageKey.currentState?.scrollToTop();
+            if (currentTab == HomePageTab.home) {
+              mainPageKey.currentState?.scrollToTop();
+            } else if (currentTab == HomePageTab.tables) {
+              tablesPageKey.currentState?.scrollToTop();
+            } else if (currentTab == HomePageTab.matches) {
+              matchesPageKey.currentState?.scrollToTop();
+            }
+
             return;
           }
 
