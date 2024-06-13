@@ -1,9 +1,13 @@
+import 'dart:developer';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/presentation/pages/user/user_bets_table.dart';
 import 'package:offside/presentation/pages/user/user_page_state.dart';
@@ -45,8 +49,16 @@ class UserPage extends ConsumerWidget {
           child: Column(
             children: [
               const Gap(48),
-              Center(
-                child: state.user.avatar(context, ref, elevation: 6, radius: 80, fontSize: 48),
+              GestureDetector(
+                child: Center(
+                  child: state.user.avatar(context, ref, elevation: 6, radius: 80, fontSize: 48),
+                ),
+                onTap: () {
+                  log('tapped ${state.user.image}');
+                  if (state.user.image != null) {
+                    showUserProfilePictureSheet(context, ref, state.user);
+                  }
+                },
               ),
               const Gap(48),
               'Statystyki'.styledText(context.textTheme.headlineMedium),
@@ -62,5 +74,35 @@ class UserPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void showUserProfilePictureSheet(BuildContext context, WidgetRef ref, User user) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return FutureBuilder(
+          future: getDownloadableUrl(ref, user),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return LoadingAnimationWidget.fourRotatingDots(
+                color: context.colorScheme.primary,
+                size: 48,
+              );
+            }
+
+            final url = snapshot.data;
+            return CachedNetworkImage(imageUrl: url!);
+          },
+        );
+      },
+    );
+  }
+
+  Future<String?> getDownloadableUrl(WidgetRef ref, User user) async {
+    if (user.image == null) {
+      return null;
+    }
+
+    return await ref.read(imageRepositoryProvider).getDownloadUrl(user.image!);
   }
 }
