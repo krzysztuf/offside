@@ -59,8 +59,16 @@ class UserScoresTable extends ConsumerWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 18,
-            child: Center(child: '$standing'.styledText(context.textTheme.bodyMedium!)),
+            width: 24,
+            child: Center(
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: context.colorScheme.secondaryContainer,
+                child: '$standing'.styledText(
+                  context.textTheme.bodyMedium!.copyWith(color: context.colorScheme.secondary),
+                ),
+              ),
+            ),
           ),
           const Gap(12),
           user.avatar(context, ref, radius: 20, fontSize: 14),
