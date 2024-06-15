@@ -31,9 +31,6 @@ enum HomePageTab {
 
 class _HomePageState extends ConsumerState<HomePage> {
   var currentTab = HomePageTab.home;
-  final mainPageKey = GlobalKey<MainSubPageState>();
-  final tablesPageKey = GlobalKey<TablesSubPageState>();
-  final matchesPageKey = GlobalKey<MatchesSubPageState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +39,11 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: SafeArea(
         child: IndexedStack(
           index: currentTab.index,
-          children: [
-            MainSubPage(key: mainPageKey),
-            TablesSubPage(key: tablesPageKey),
-            MatchesSubPage(key: matchesPageKey),
-            const ProfileSubPage(),
+          children: const [
+            MainSubPage(),
+            TablesSubPage(),
+            MatchesSubPage(),
+            ProfileSubPage(),
           ],
         ),
       ),
@@ -88,18 +85,6 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
         ],
         onDestinationSelected: (index) {
-          if (index == currentTab.index) {
-            if (currentTab == HomePageTab.home) {
-              mainPageKey.currentState?.scrollToTop();
-            } else if (currentTab == HomePageTab.tables) {
-              tablesPageKey.currentState?.scrollToTop();
-            } else if (currentTab == HomePageTab.matches) {
-              matchesPageKey.currentState?.scrollToTop();
-            }
-
-            return;
-          }
-
           setState(() => currentTab = HomePageTab.values[index]);
         },
       ),
