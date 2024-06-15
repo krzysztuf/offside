@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,7 +52,6 @@ class UserPage extends ConsumerWidget {
                   child: state.user.avatar(context, ref, elevation: 6, radius: 80, fontSize: 48),
                 ),
                 onTap: () {
-                  log('tapped ${state.user.image}');
                   if (state.user.image != null) {
                     showUserProfilePictureSheet(context, ref, state.user);
                   }

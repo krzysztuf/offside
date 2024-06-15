@@ -34,3 +34,8 @@ RemoveMatchUseCase removeMatchUseCase(RemoveMatchUseCaseRef ref) {
 GetRecentMatchesUseCase getRecentMatchesUseCase(GetRecentMatchesUseCaseRef ref) {
   return GetRecentMatchesUseCase(ref.watch(offsideRepositoryProvider));
 }
+
+@riverpod
+GetUpcomingMatchesUseCase getUpcomingMatchesUseCase(GetUpcomingMatchesUseCaseRef ref) {
+  return GetUpcomingMatchesUseCase(ref.watch(offsideRepositoryProvider));
+}

@@ -4,7 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
+import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/entities/user_prediction.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/loading_table_skeleton.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_state.dart';
@@ -22,7 +24,7 @@ class MatchBets extends ConsumerWidget {
       child: Column(
         children: [
           Text(
-            'Przewidywania użytkowników',
+            'Typy użytkowników',
             style: context.textTheme.headlineSmall,
           ),
           const Gap(48),
@@ -49,16 +51,17 @@ class MatchBets extends ConsumerWidget {
       children: [
         for (final bet in state.bets)
           ListTile(
-            contentPadding: const EdgeInsets.only(bottom: 16),
+            contentPadding: const EdgeInsets.only(bottom: 8),
             leading: Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: bet.user.avatar(context, ref),
+              child: bet.user.avatar(context, ref, radius: 16),
             ),
             title: '${bet.user.name} ${bet.user.surname}'.text,
             trailing: SizedBox(
               width: 80,
               child: Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -68,9 +71,7 @@ class MatchBets extends ConsumerWidget {
                         buildGoalsText(bet.prediction?.goals.away, context),
                       ],
                     ),
-                    if (state.match.knockoutStage && (bet.prediction?.goals.draw ?? false)) ...[
-                      const Text('ENG'),
-                    ],
+                    buildPenaltiesWinnerText(bet, state.match, context),
                   ],
                 ),
               ),
@@ -88,5 +89,15 @@ class MatchBets extends ConsumerWidget {
         color: context.colorScheme.primary,
       ),
     );
+  }
+
+  Widget buildPenaltiesWinnerText(UserPrediction bet, Match match, BuildContext context) {
+    if (match.knockoutStage && (bet.prediction?.goals.draw ?? false)) {
+      return Text(
+        match.teamFor(id: bet.prediction!.penaltiesWinnerId!)?.abbreviation ?? '-',
+      );
+    }
+
+    return const SizedBox.shrink();
   }
 }

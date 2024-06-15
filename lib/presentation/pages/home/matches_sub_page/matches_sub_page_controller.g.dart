@@ -7,7 +7,7 @@ part of 'matches_sub_page_controller.dart';
 // **************************************************************************
 
 String _$matchesSubPageControllerHash() =>
-    r'0d5b58a74ac8211c98299f321609dbd087f3e794';
+    r'39579694f134bbda5fb8af5d8e942d1151aea8aa';
 
 /// See also [MatchesSubPageController].
 @ProviderFor(MatchesSubPageController)

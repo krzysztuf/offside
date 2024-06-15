@@ -87,3 +87,23 @@ class GetRecentMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool
     return matches;
   }
 }
+
+class GetUpcomingMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool> {
+  final OffsideRepository offsideRepository;
+
+  GetUpcomingMatchesUseCase(this.offsideRepository);
+
+  @override
+  Future<List<Match>> run(bool fetchData) async {
+    return await offsideRepository.upcomingMatches();
+    // if (fetchData) {
+    //   await Future.wait([
+    //     ...matches.map((m) => m.bets.fetch()),
+    //     ...matches.map((m) => m.homeTeam.fetch()),
+    //     ...matches.map((m) => m.awayTeam.fetch()),
+    //   ]);
+    // }
+    //
+    // return matches;
+  }
+}

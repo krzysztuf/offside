@@ -59,7 +59,7 @@ class PrivateTables extends ConsumerWidget {
           UserScoresTable(
             userScores: thisTableUserScores.toList(),
             header: ListTile(
-              contentPadding: const EdgeInsets.only(left: 16, right: 8),
+              contentPadding: const EdgeInsets.only(left: 16, right: 0),
               title: table.name.text,
               leading: const Icon(Icons.leaderboard_outlined),
               trailing: buildTableActions(context, ref, table, users),
@@ -135,7 +135,7 @@ class PrivateTables extends ConsumerWidget {
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(Icons.group_add_rounded),
+            icon: const Icon(Icons.group_add_rounded, size: 20),
             onPressed: () {
               TableMembersPicker.bottomSheet(
                 context,
@@ -151,7 +151,7 @@ class PrivateTables extends ConsumerWidget {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.delete),
+            icon: const Icon(Icons.delete, size: 20),
             onPressed: () => promptDeleteTable(context, ref, table),
           ),
         ],
@@ -163,7 +163,7 @@ class PrivateTables extends ConsumerWidget {
     return SizedBox(
       width: 40,
       child: IconButton(
-        icon: const Icon(Icons.person_remove_rounded),
+        icon: const Icon(Icons.person_remove_rounded, size: 20),
         onPressed: () {
           showDialog(
             context: context,

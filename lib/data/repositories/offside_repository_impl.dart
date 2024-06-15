@@ -40,7 +40,7 @@ class OffsideRepositoryImpl implements OffsideRepository {
     return FirestoreSource.matches
         .where(
           'kickOffDate',
-          isGreaterThan: Timestamp.fromDate(now),
+          isGreaterThan: Timestamp.fromDate(now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0)),
         )
         .get()
         .then((matches) => matches.docs.map((match) => AutoMapper<MatchModel, Match>().map(match.data())).toList());

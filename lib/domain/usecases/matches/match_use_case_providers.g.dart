@@ -240,5 +240,23 @@ final getRecentMatchesUseCaseProvider =
 
 typedef GetRecentMatchesUseCaseRef
     = AutoDisposeProviderRef<GetRecentMatchesUseCase>;
+String _$getUpcomingMatchesUseCaseHash() =>
+    r'0e5c63466b5ab15c783a7965891e2d67e847e9fc';
+
+/// See also [getUpcomingMatchesUseCase].
+@ProviderFor(getUpcomingMatchesUseCase)
+final getUpcomingMatchesUseCaseProvider =
+    AutoDisposeProvider<GetUpcomingMatchesUseCase>.internal(
+  getUpcomingMatchesUseCase,
+  name: r'getUpcomingMatchesUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getUpcomingMatchesUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetUpcomingMatchesUseCaseRef
+    = AutoDisposeProviderRef<GetUpcomingMatchesUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

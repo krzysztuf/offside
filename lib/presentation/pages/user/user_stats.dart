@@ -130,6 +130,7 @@ class UserStats extends ConsumerWidget {
           TeamBadge(
             team: winnerTeam,
             badgeRadius: 12,
+            useAbbreviation: true,
             textStyle: context.textTheme.bodySmall,
           ),
         ],
