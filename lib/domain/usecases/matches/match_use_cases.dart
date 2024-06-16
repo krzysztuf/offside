@@ -1,8 +1,10 @@
+import 'package:offside/core/utils/timed_cache.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
+import 'package:supercharged/supercharged.dart';
 
 class AddMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
   final Repository<Match> matchesRepository;
@@ -16,13 +18,14 @@ class AddMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
 }
 
 class GetAllMatchesUseCase implements AsyncUseCase<List<Match>> {
+  static final cache = TimedCache<List<Match>>(10.minutes);
   final Repository<Match> matchesRepository;
 
   GetAllMatchesUseCase(this.matchesRepository);
 
   @override
-  Future<List<Match>> run() {
-    return matchesRepository.all();
+  Future<List<Match>> run() async {
+    return await cache.valueOr(updateWith: () => matchesRepository.all());
   }
 }
 
@@ -69,41 +72,37 @@ class RemoveMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
 }
 
 class GetRecentMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool> {
+  static final cache = TimedCache<List<Match>>(10.minutes);
   final OffsideRepository offsideRepository;
 
   GetRecentMatchesUseCase(this.offsideRepository);
 
   @override
   Future<List<Match>> run(bool fetchData) async {
-    final matches = await offsideRepository.lastTenMatches();
-    if (fetchData) {
-      await Future.wait([
-        ...matches.map((m) => m.bets.fetch()),
-        ...matches.map((m) => m.homeTeam.fetch()),
-        ...matches.map((m) => m.awayTeam.fetch()),
-      ]);
-    }
+    return await cache.valueOr(updateWith: () async {
+      final matches = await offsideRepository.lastSixMatches();
 
-    return matches;
+      if (fetchData) {
+        await Future.wait([
+          ...matches.map((m) => m.bets.fetch()),
+          ...matches.map((m) => m.homeTeam.fetch()),
+          ...matches.map((m) => m.awayTeam.fetch()),
+        ]);
+      }
+
+      return matches;
+    });
   }
 }
 
 class GetUpcomingMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool> {
+  static final cache = TimedCache<List<Match>>(10.minutes);
   final OffsideRepository offsideRepository;
 
   GetUpcomingMatchesUseCase(this.offsideRepository);
 
   @override
   Future<List<Match>> run(bool fetchData) async {
-    return await offsideRepository.upcomingMatches();
-    // if (fetchData) {
-    //   await Future.wait([
-    //     ...matches.map((m) => m.bets.fetch()),
-    //     ...matches.map((m) => m.homeTeam.fetch()),
-    //     ...matches.map((m) => m.awayTeam.fetch()),
-    //   ]);
-    // }
-    //
-    // return matches;
+    return cache.valueOr(updateWith: () => offsideRepository.upcomingMatches());
   }
 }

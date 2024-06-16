@@ -21,14 +21,14 @@ class OffsideRepositoryImpl implements OffsideRepository {
   }
 
   @override
-  Future<List<Match>> lastTenMatches() async {
+  Future<List<Match>> lastSixMatches() async {
     final matches = await FirestoreSource.matches
         .where(
           'kickOffDate',
           isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()),
         )
         .orderBy('kickOffDate', descending: true)
-        .limit(10)
+        .limit(6)
         .get();
 
     return matches.docs.map((match) => AutoMapper<MatchModel, Match>().map(match.data())).toList();

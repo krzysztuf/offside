@@ -1,9 +1,12 @@
+import 'package:offside/core/utils/timed_cache.dart';
 import 'package:offside/data/sources/remote/firestore_source.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
+import 'package:supercharged/supercharged.dart';
 
 class GetAllTeamsUseCase implements AsyncUseCase<List<Team>> {
+  static final cache = TimedCache<List<Team>>(300.days);
   final Repository<Team> teams;
 
   GetAllTeamsUseCase(this.teams);
