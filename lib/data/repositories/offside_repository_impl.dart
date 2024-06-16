@@ -25,10 +25,9 @@ class OffsideRepositoryImpl implements OffsideRepository {
     final matches = await FirestoreSource.matches
         .where(
           'kickOffDate',
-          // isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()),
-          isLessThanOrEqualTo: Timestamp.fromDate(DateTime(2024, 6, 17, 18)),
+          isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()),
         )
-        .orderBy('kickOffDate', descending: false)
+        .orderBy('kickOffDate', descending: true)
         .limit(10)
         .get();
 

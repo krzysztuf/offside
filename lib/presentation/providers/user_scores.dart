@@ -37,8 +37,11 @@ class UserScores extends _$UserScores {
       final matches = values[0] as List<Match>;
       final users = values[1] as List<User>;
 
+      final sortedMatches = matches.sortedBy((m) => m.kickOffDate).toList();
       final userBets = await _fetchBetsAndGroupByUser(users);
-      final userPoints = _calculateUserPoints(matches, userBets, winnerId);
+
+      final sortedUserBets = sortBets(sortedMatches, userBets);
+      final userPoints = _calculateUserPoints(sortedMatches, sortedUserBets, winnerId);
 
       state = AsyncData(_sortByPoints(userPoints));
     });
@@ -87,5 +90,22 @@ class UserScores extends _$UserScores {
 
   List<UserScoreSummary> _sortByPoints(List<UserScoreSummary> userScore) {
     return [...userScore]..sort((a, b) => b.totalScore.compareTo(a.totalScore));
+  }
+
+  Map<User, List<Bet>> sortBets(List<Match> sortedMatches, Map<User, List<Bet>> userBets) {
+    final sortedUserBets = <User, List<Bet>>{};
+    for (var userAndBets in userBets.entries) {
+      final user = userAndBets.key;
+      final bets = userAndBets.value;
+
+      final sortedBets = bets.sortedBy((bet) {
+        final match = sortedMatches.firstWhere((m) => m.id == bet.matchId);
+        return match.kickOffDate;
+      }).toList();
+
+      sortedUserBets[user] = sortedBets;
+    }
+
+    return sortedUserBets;
   }
 }

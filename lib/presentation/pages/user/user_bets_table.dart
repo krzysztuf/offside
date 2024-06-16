@@ -57,7 +57,7 @@ class UserBetsTable extends ConsumerWidget {
             ),
             ...(matchesByDate(ref.read(dateTimeProvider)).entries.sorted((a, b) => b.key.compareTo(a.key)).map((m) {
               final date = m.key;
-              final thisDayMatches = m.value;
+              final thisDayMatches = m.value.sortedBy((m) => m.kickOffDate).reversed;
 
               final dateRow = buildMatchDateRow(date, context);
 
