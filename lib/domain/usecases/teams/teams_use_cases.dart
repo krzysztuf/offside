@@ -13,11 +13,13 @@ class GetAllTeamsUseCase implements AsyncUseCase<List<Team>> {
 
   @override
   Future<List<Team>> run() {
-    return teams.all();
+    return cache.valueOr(updateWith: () => teams.all());
   }
 }
 
 class GetWinnerTeamIdUseCase implements AsyncUseCase<String> {
+  static final cache = TimedCache<String>(300.days);
+
   GetWinnerTeamIdUseCase();
 
   @override
