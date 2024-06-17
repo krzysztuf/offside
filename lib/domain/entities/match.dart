@@ -63,8 +63,8 @@ extension ConvenienceMethods on Match {
     }
 
     final predictedGoals = prediction.goals;
-    if (result.homeTeamWon && predictedGoals.homeTeamWon ||
-        result.awayTeamWon && predictedGoals.awayTeamWon ||
+    if (result.homeTeamWins && predictedGoals.homeTeamWins ||
+        result.awayTeamWins && predictedGoals.awayTeamWins ||
         result.draw && predictedGoals.draw) {
       if (result.goalDifference == predictedGoals.goalDifference) {
         return 2;

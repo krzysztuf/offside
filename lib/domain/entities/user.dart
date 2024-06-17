@@ -41,11 +41,11 @@ extension UserAvatar on User {
     double elevation = 1.5,
   }) {
     final initialsText = buildInitialsText(context, fontSize);
+    final initialsAvatar = Avatar(elevation: elevation, radius: radius, child: initialsText);
+
     return FutureBuilder(
       future: getDownloadableUrl(ref),
       builder: (context, snapshot) {
-        final initialsAvatar = Avatar(elevation: elevation, radius: radius, child: initialsText);
-
         if (snapshot.connectionState == ConnectionState.waiting) {
           return initialsAvatar;
         }

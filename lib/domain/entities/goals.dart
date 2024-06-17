@@ -28,9 +28,9 @@ class Goals with _$Goals {
 extension GoalsConvenienceMethods on Goals {
   String get asString => '$home:$away';
 
-  bool get homeTeamWon => home > away;
+  bool get homeTeamWins => home > away;
 
-  bool get awayTeamWon => away > home;
+  bool get awayTeamWins => away > home;
 
   bool get draw => home == away;
 

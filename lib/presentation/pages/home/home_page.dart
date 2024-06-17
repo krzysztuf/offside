@@ -30,7 +30,7 @@ enum HomePageTab {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  var currentTab = HomePageTab.home;
+  var currentTab = HomePageTab.matches;
 
   @override
   Widget build(BuildContext context) {

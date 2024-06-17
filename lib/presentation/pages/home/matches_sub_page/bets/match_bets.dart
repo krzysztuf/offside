@@ -7,27 +7,35 @@ import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/entities/user_prediction.dart';
-import 'package:offside/presentation/pages/home/matches_sub_page/bets/loading_table_skeleton.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_state.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
-import 'package:supercharged/supercharged.dart';
 
-class MatchBets extends ConsumerWidget {
+enum BetsFilter {
+  all,
+  home,
+  away,
+  draw,
+}
+
+class MatchBets extends ConsumerStatefulWidget {
   const MatchBets({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(matchBetsControllerProvider);
+  ConsumerState<MatchBets> createState() => _MatchBetsState();
+}
+
+class _MatchBetsState extends ConsumerState<MatchBets> with SingleTickerProviderStateMixin {
+  var _betFilter = BetsFilter.all;
+
+  @override
+  Widget build(BuildContext context) {
+    late final state = ref.watch(matchBetsControllerProvider);
+
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: Column(
         children: [
-          Text(
-            'Typy użytkowników',
-            style: context.textTheme.headlineSmall,
-          ),
-          const Gap(48),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -36,47 +44,68 @@ class MatchBets extends ConsumerWidget {
               TeamBadge(team: state.match.awayTeam.value),
             ],
           ),
-          const Gap(48),
-          AnimatedSwitcher(
-            duration: 400.milliseconds,
-            child: state.loading ? const LoadingBetsSkeleton() : buildUserPredictionsList(state, ref, context),
-          ),
+          const Gap(32),
+          // buildPredictionTabs(state, ref, context),
+          buildUserPredictionsList(state, ref, context),
         ],
       ),
     );
   }
 
   Widget buildUserPredictionsList(MatchBetsState state, WidgetRef ref, BuildContext context) {
+    final filteredBets = filterByType(state.bets);
     return Column(
       children: [
-        for (final bet in state.bets)
-          ListTile(
-            contentPadding: const EdgeInsets.only(bottom: 8),
-            leading: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: bet.user.avatar(context, ref, radius: 16),
-            ),
-            title: '${bet.user.name} ${bet.user.surname}'.text,
-            trailing: SizedBox(
-              width: 80,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildGoalsText(bet.prediction?.goals.home, context),
-                        buildGoalsText(' : ', context),
-                        buildGoalsText(bet.prediction?.goals.away, context),
-                      ],
-                    ),
-                    buildPenaltiesWinnerText(bet, state.match, context),
-                  ],
+        DefaultTabController(
+          length: 4,
+          child: TabBar(
+            onTap: (index) {
+              setState(() => _betFilter = BetsFilter.values[index]);
+            },
+            tabs: [
+              const Tab(text: 'TYPY'),
+              Tab(text: state.match.homeTeam.value.abbreviation),
+              Tab(text: state.match.awayTeam.value.abbreviation),
+              const Tab(text: 'REMIS'),
+            ],
+          ),
+        ),
+        const Gap(16),
+        if (filteredBets.isEmpty) ...[
+          SizedBox(
+            height: 200,
+            child: Center(child: 'Pusto 🫠'.text),
+          ),
+        ] else ...[
+          for (final bet in filteredBets)
+            ListTile(
+              contentPadding: const EdgeInsets.only(bottom: 8),
+              leading: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: bet.user.avatar(context, ref, radius: 16),
+              ),
+              title: '${bet.user.name} ${bet.user.surname}'.text,
+              trailing: SizedBox(
+                width: 80,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          buildGoalsText(bet.prediction?.goals.home, context),
+                          buildGoalsText(' : ', context),
+                          buildGoalsText(bet.prediction?.goals.away, context),
+                        ],
+                      ),
+                      buildPenaltiesWinnerText(bet, state.match, context),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
+        ],
       ],
     );
   }
@@ -99,5 +128,14 @@ class MatchBets extends ConsumerWidget {
     }
 
     return const SizedBox.shrink();
+  }
+
+  List<UserPrediction> filterByType(List<UserPrediction> bets) {
+    return switch (_betFilter) {
+      BetsFilter.all => bets,
+      BetsFilter.home => bets.where((bet) => bet.prediction?.goals.homeTeamWins ?? false).toList(),
+      BetsFilter.away => bets.where((bet) => bet.prediction?.goals.awayTeamWins ?? false).toList(),
+      BetsFilter.draw => bets.where((bet) => bet.prediction?.goals.draw ?? false).toList(),
+    };
   }
 }
