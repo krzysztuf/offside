@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:offside/core/extensions/list_with_gaps.dart';
+import 'package:offside/core/extensions/list_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
+import 'package:offside/core/extensions/widget_iterable_extensions.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
 
 class RecentFormDots extends StatelessWidget {
@@ -16,7 +17,7 @@ class RecentFormDots extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
-          ...userScore.recentPredictionsScores.map((score) => switch (score) {
+          ...userScore.recentPredictionsScores.takeLast(9).map((score) => switch (score) {
                 >= 3 => Container(
                     width: 8,
                     height: 8,

@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 class TimedCache<T> {
   T? _value;
@@ -23,11 +23,9 @@ class TimedCache<T> {
 
   Future<T> valueOr({required Future<T> Function() updateWith}) async {
     if (isValid) {
-      log('cached');
       return _value!;
     }
 
-    log('fetching');
     return value = await updateWith();
   }
 
