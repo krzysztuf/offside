@@ -12,7 +12,7 @@ class FirebaseImageRepository implements ImageRepository {
 
   @override
   Future<String?> getDownloadUrl(String path) async {
-    final cache = caches.putIfAbsent(path, () => TimedCache(2.hours));
+    final cache = caches.putIfAbsent(path, () => TimedCache(6.hours));
     return await cache.valueOr(updateWith: () async {
       final ref = FirebaseStorage.instance.ref(path);
       try {

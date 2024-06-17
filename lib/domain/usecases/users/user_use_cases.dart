@@ -27,7 +27,7 @@ class GetUserBetsUseCase implements AsyncUseCase<List<Bet>> {
 
   GetUserBetsUseCase(this.repository, this.user) {
     if (!userBetsCaches.containsKey(user.id)) {
-      userBetsCaches[user.id] = TimedCache<List<Bet>>(2.hours);
+      userBetsCaches[user.id] = TimedCache<List<Bet>>(1.hours);
     }
   }
 
@@ -39,7 +39,7 @@ class GetUserBetsUseCase implements AsyncUseCase<List<Bet>> {
 }
 
 class GetCurrentUserUseCase implements AsyncUseCase<User?> {
-  static final cache = TimedCache<User>(2.hours);
+  static final cache = TimedCache<User>(24.hours);
 
   final Repository<User> users;
   final String currentUserId;

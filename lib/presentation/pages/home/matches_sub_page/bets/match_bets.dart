@@ -9,6 +9,7 @@ import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/entities/user_prediction.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/bets/match_bets_state.dart';
+import 'package:offside/presentation/pages/home/matches_sub_page/bets/predictions_chart.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
 enum BetsFilter {
@@ -44,8 +45,9 @@ class _MatchBetsState extends ConsumerState<MatchBets> with SingleTickerProvider
               TeamBadge(team: state.match.awayTeam.value),
             ],
           ),
-          const Gap(32),
-          // buildPredictionTabs(state, ref, context),
+          const Gap(16),
+          PredictionsChart(bets: state.bets, match: state.match),
+          const Gap(16),
           buildUserPredictionsList(state, ref, context),
         ],
       ),
