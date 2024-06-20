@@ -106,3 +106,15 @@ class GetUpcomingMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bo
     return cache.valueOr(updateWith: () => offsideRepository.upcomingMatches());
   }
 }
+
+class GetMatchHistoryUseCase implements AsyncUseCase<List<Match>> {
+  static final cache = TimedCache<List<Match>>(2.hours);
+  final OffsideRepository offsideRepository;
+
+  GetMatchHistoryUseCase(this.offsideRepository);
+
+  @override
+  Future<List<Match>> run() {
+    return cache.valueOr(updateWith: () => offsideRepository.matchesHistory());
+  }
+}

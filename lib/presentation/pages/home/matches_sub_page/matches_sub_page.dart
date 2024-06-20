@@ -2,7 +2,9 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/core/mixin/scroll_to_top_mixin.dart';
 import 'package:offside/domain/entities/match.dart';
@@ -48,15 +50,29 @@ class MatchesSubPageState extends ConsumerState<MatchesSubPage> with ScrollToTop
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Gap(16),
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Text('Nadchodzące mecze', style: context.textTheme.headlineSmall),
-              ),
+              buildHeader(context),
               unfoldMatches(state.matches),
               const AdminVisible(child: SizedBox(height: 46)),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Padding buildHeader(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('Nadchodzące mecze', style: context.textTheme.headlineSmall),
+          FilledButton.tonalIcon(
+            label: 'Historia'.text,
+            icon: const Icon(Icons.history),
+            onPressed: () => context.goNamed('history'),
+          ),
+        ],
       ),
     );
   }

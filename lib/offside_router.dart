@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:offside/presentation/pages/delete_user/delete_user_page.dart';
+import 'package:offside/presentation/pages/matches_history/matches_history_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'domain/entities/user.dart';
@@ -66,6 +67,13 @@ GoRouter offsideRouter(OffsideRouterRef ref) {
                 ],
                 child: const UserPage(),
               );
+            },
+          ),
+          GoRoute(
+            path: 'history',
+            name: 'history',
+            builder: (context, state) {
+              return const MatchesHistoryPage();
             },
           ),
         ],

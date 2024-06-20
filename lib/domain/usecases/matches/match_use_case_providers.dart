@@ -39,3 +39,8 @@ GetRecentMatchesUseCase getRecentMatchesUseCase(GetRecentMatchesUseCaseRef ref) 
 GetUpcomingMatchesUseCase getUpcomingMatchesUseCase(GetUpcomingMatchesUseCaseRef ref) {
   return GetUpcomingMatchesUseCase(ref.watch(offsideRepositoryProvider));
 }
+
+@riverpod
+GetMatchHistoryUseCase getMatchHistoryUseCase(GetMatchHistoryUseCaseRef ref) {
+  return GetMatchHistoryUseCase(ref.watch(offsideRepositoryProvider));
+}
