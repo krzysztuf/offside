@@ -36,47 +36,50 @@ class MatchesHistoryPage extends ConsumerWidget {
 
   Widget _unfoldMatches(Map<DateTime, List<Match>> matches, BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        key: UniqueKey(),
-        children: matches.entries.map((entry) {
-          final kickOffDay = entry.key;
-          final matchesThisDay = entry.value.sorted((a, b) => a.kickOffDate.compareTo(b.kickOffDate));
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          key: UniqueKey(),
+          children: matches.entries.map((entry) {
+            final kickOffDay = entry.key;
+            final matchesThisDay = entry.value.sorted((a, b) => a.kickOffDate.compareTo(b.kickOffDate));
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Gap(16),
-              Padding(
-                padding: const EdgeInsets.only(left: 4.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.calendar_month,
-                    color: context.colorScheme.primary,
-                  ),
-                  title: Text(DateFormat('d MMMM', 'pl').format(kickOffDay)),
-                  subtitle: Text(
-                    '${matchesThisDay.length} ${matchesThisDay.length == 1 ? 'MECZ' : 'MECZE'}',
-                    style: context.textTheme.bodySmall,
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Gap(16),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.calendar_month,
+                      color: context.colorScheme.primary,
+                    ),
+                    title: Text(DateFormat('d MMMM', 'pl').format(kickOffDay)),
+                    subtitle: Text(
+                      '${matchesThisDay.length} ${matchesThisDay.length == 1 ? 'MECZ' : 'MECZE'}',
+                      style: context.textTheme.bodySmall,
+                    ),
                   ),
                 ),
-              ),
-              const Gap(8),
-              for (final match in matchesThisDay)
-                ProviderScope(
-                  overrides: [
-                    matchCardControllerProvider.overrideWith(() => MatchCardController()),
-                    currentCardMatchProvider.overrideWith((_) => match),
-                  ],
-                  child: const Column(
-                    children: [
-                      MatchCard(),
-                      Gap(32),
+                const Gap(8),
+                for (final match in matchesThisDay)
+                  ProviderScope(
+                    overrides: [
+                      matchCardControllerProvider.overrideWith(() => MatchCardController()),
+                      currentCardMatchProvider.overrideWith((_) => match),
                     ],
+                    child: const Column(
+                      children: [
+                        MatchCard(),
+                        Gap(32),
+                      ],
+                    ),
                   ),
-                ),
-            ],
-          );
-        }).toList(),
+              ],
+            );
+          }).toList(),
+        ),
       ),
     );
   }
