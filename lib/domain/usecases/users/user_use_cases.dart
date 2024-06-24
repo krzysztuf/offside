@@ -27,7 +27,7 @@ class GetUserBetsUseCase implements AsyncUseCase<List<Bet>> {
 
   GetUserBetsUseCase(this.repository, this.user) {
     if (!userBetsCaches.containsKey(user.id)) {
-      userBetsCaches[user.id] = TimedCache<List<Bet>>(1.hours);
+      userBetsCaches[user.id] = TimedCache<List<Bet>>(15.minutes);
     }
   }
 
@@ -76,6 +76,9 @@ class GetAllUsersUseCase implements AsyncUseCase<List<User>> {
   Future<List<User>> run() async {
     return cache.valueOr(updateWith: () async {
       final users = await usersRepository.all();
+      // for (var user in users) {
+      //   log("User: ${user.id} ${user.name}");
+      // }
       return users.where((user) => user.firebaseId != "vxLxo3VBnHSJYMUi0Xy1sOYodpd2").toList();
     });
   }

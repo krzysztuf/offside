@@ -18,8 +18,6 @@ class GetAllTeamsUseCase implements AsyncUseCase<List<Team>> {
 }
 
 class GetWinnerTeamIdUseCase implements AsyncUseCase<String> {
-  static final cache = TimedCache<String>(300.days);
-
   GetWinnerTeamIdUseCase();
 
   @override

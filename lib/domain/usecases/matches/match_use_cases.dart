@@ -72,7 +72,7 @@ class RemoveMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
 }
 
 class GetRecentMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool> {
-  static final cache = TimedCache<List<Match>>(1.hours);
+  static final cache = TimedCache<List<Match>>(15.minutes);
   final OffsideRepository offsideRepository;
 
   GetRecentMatchesUseCase(this.offsideRepository);
@@ -95,20 +95,19 @@ class GetRecentMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool
   }
 }
 
-class GetUpcomingMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool> {
-  static final cache = TimedCache<List<Match>>(1.hours);
+class GetUpcomingMatchesUseCase implements AsyncUseCase<List<Match>> {
   final OffsideRepository offsideRepository;
 
   GetUpcomingMatchesUseCase(this.offsideRepository);
 
   @override
-  Future<List<Match>> run(bool fetchData) async {
-    return cache.valueOr(updateWith: () => offsideRepository.upcomingMatches());
+  Future<List<Match>> run() async {
+    return offsideRepository.upcomingMatches();
   }
 }
 
 class GetMatchHistoryUseCase implements AsyncUseCase<List<Match>> {
-  static final cache = TimedCache<List<Match>>(2.hours);
+  static final cache = TimedCache<List<Match>>(24.hours);
   final OffsideRepository offsideRepository;
 
   GetMatchHistoryUseCase(this.offsideRepository);

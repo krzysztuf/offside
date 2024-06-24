@@ -40,7 +40,7 @@ class MatchesHistoryPage extends ConsumerWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           key: UniqueKey(),
-          children: matches.entries.map((entry) {
+          children: matches.entries.toList().reversed.map((entry) {
             final kickOffDay = entry.key;
             final matchesThisDay = entry.value.sorted((a, b) => a.kickOffDate.compareTo(b.kickOffDate));
 

@@ -78,7 +78,7 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
             Enabled(
               enabled: widget.match.knockoutStage && outcome.goals.draw,
               child: ListTile(
-                title: const Text('Zwycięzca w karnych'),
+                title: const Text('Zwycięzca dogrywki'),
                 contentPadding: EdgeInsets.zero,
                 trailing: BorderedDropdownButton<Team>(
                   value: penaltiesWinnerTeam,

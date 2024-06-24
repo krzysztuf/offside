@@ -32,7 +32,7 @@ class MatchesSubPageController extends _$MatchesSubPageController {
       await Future.delayed(delay);
     }
 
-    ref.read(getUpcomingMatchesUseCaseProvider).run(false).then((matches) {
+    ref.read(getUpcomingMatchesUseCaseProvider).run().then((matches) {
       state = MatchesSubPageState(_groupMatchesByDay(matches));
     });
   }

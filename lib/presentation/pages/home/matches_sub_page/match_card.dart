@@ -351,7 +351,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
           children: [
             const Gap(8),
             ListTile(
-              title: const Text('W karnych wygra'),
+              title: const Text('W dogrywce wygra'),
               contentPadding: const EdgeInsets.only(left: 48, right: 16),
               trailing: SizedBox(
                 width: 120,

@@ -7,7 +7,6 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/offside_repository.dart';
-import 'package:supercharged/supercharged.dart';
 
 class OffsideRepositoryImpl implements OffsideRepository {
   final DateTime now;
@@ -23,10 +22,7 @@ class OffsideRepositoryImpl implements OffsideRepository {
   @override
   Future<List<Match>> lastSixMatches() async {
     final matches = await FirestoreSource.matches
-        .where(
-          'kickOffDate',
-          isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()),
-        )
+        .where('kickOffDate', isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
         .orderBy('kickOffDate', descending: true)
         .limit(6)
         .get();
@@ -37,24 +33,21 @@ class OffsideRepositoryImpl implements OffsideRepository {
   @override
   Future<List<Match>> upcomingMatches() {
     return FirestoreSource.matches
-        .where(
-          'kickOffDate',
-          isGreaterThan: Timestamp.fromDate(now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0)),
-        )
+        .where('kickOffDate', isGreaterThan: Timestamp.fromDate(now.midnight))
         .get()
         .then((matches) => matches.docs.map((match) => AutoMapper<MatchModel, Match>().map(match.data())).toList());
   }
 
   @override
   Future<List<Match>> matchesHistory() async {
-    final dayBefore = now.subtract(1.days);
     final matches = await FirestoreSource.collectionGroup<MatchModel>('matches')
-        .where(
-          'kickOffDate',
-          isLessThanOrEqualTo: Timestamp.fromDate(dayBefore),
-        )
+        .where('kickOffDate', isLessThanOrEqualTo: Timestamp.fromDate(now.midnight))
         .get();
 
     return matches.docs.map((match) => AutoMapper<MatchModel, Match>().map(match.data())).toList();
   }
+}
+
+extension on DateTime {
+  DateTime get midnight => copyWith(hour: 0, minute: 0, second: 0, millisecond: 0);
 }
