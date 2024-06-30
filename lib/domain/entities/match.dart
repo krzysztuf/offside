@@ -50,15 +50,16 @@ extension ConvenienceMethods on Match {
       return 0;
     }
 
+    final matchEndedInOvertime = outcome!.penaltiesWinnerId != null;
     if (result == prediction.goals) {
-      if (knockoutStage && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
+      if (knockoutStage && matchEndedInOvertime && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
         return 4;
       }
 
       return 3;
     }
 
-    if (knockoutStage && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
+    if (matchEndedInOvertime && knockoutStage && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
       return 2;
     }
 
