@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/fetchable.dart';
 import 'package:offside/domain/entities/goals.dart';
@@ -82,7 +83,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
               buildHeader(state),
               const Gap(8),
               buildTeamGoalsPredictionRow(state),
-              const Gap(16),
+              const Gap(8),
               if (state.match.knockoutStage) ...[
                 buildPenaltyWinnerRow(state),
               ],
@@ -350,30 +351,26 @@ class _MatchCardState extends ConsumerState<MatchCard> {
         child: Column(
           children: [
             const Gap(8),
-            ListTile(
-              title: const Text('W dogrywce wygra'),
-              contentPadding: const EdgeInsets.only(left: 48, right: 16),
-              trailing: SizedBox(
-                width: 120,
-                height: 80,
-                child: AlternativeInflater(
-                  useAlternative: editingPrediction || state.betState == BetState.notPlaced,
-                  builder: () => Padding(
-                    padding: const EdgeInsets.only(left: 14),
-                    child: TeamBadge.dense(context, penaltiesWinner!),
-                  ),
-                  alternativeBuilder: () => Enabled(
-                    enabled: editedPredictionIsDraw,
-                    child: BorderedDropdownButton<Team>(
-                      value: editedPenaltiesWinner ?? penaltiesWinner,
+            Enabled(
+              enabled: editedPredictionIsDraw,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  'W dogrywce wygra:'.styledText(context.textTheme.bodyMedium),
+                  AlternativeInflater(
+                    useAlternative: editingPrediction || state.betState == BetState.notPlaced,
+                    builder: () => TeamBadge.dense(context, penaltiesWinner!),
+                    alternativeBuilder: () => BorderedDropdownButton<Team>(
+                      value: editedPenaltiesWinner,
                       height: 40,
+                      hint: 'Wybierz drużynę',
                       items: [match.homeTeam.value, match.awayTeam.value].map((team) {
                         return DropdownMenuItem(value: team, child: TeamBadge.dense(context, team));
                       }).toList(),
                       onChanged: (team) => setState(() => editedPenaltiesWinner = team),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
             const Gap(24),

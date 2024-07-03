@@ -5,12 +5,14 @@ class BorderedDropdownButton<T> extends StatefulWidget {
   final T? value;
   final List<DropdownMenuItem<T>> items;
   final double height;
+  final String? hint;
 
   const BorderedDropdownButton({
     super.key,
     required this.items,
     this.value,
     this.height = 48.0,
+    this.hint,
     required this.onChanged,
   });
 
@@ -28,12 +30,13 @@ class _BorderedDropdownButtonState<T> extends State<BorderedDropdownButton<T>> {
         borderRadius: const BorderRadius.all(Radius.circular(4.0)),
         border: Border.all(
           color: theme.dividerColor,
-          width: 1.0,
+          width: .5,
         ),
       ),
       child: DropdownButton<T>(
         value: widget.value,
         items: widget.items,
+        hint: widget.hint != null ? Text(widget.hint!) : null,
         style: theme.textTheme.labelMedium,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         underline: Container(),
