@@ -60,7 +60,7 @@ extension ConvenienceMethods on Match {
     }
 
     if (matchEndedInOvertime && knockoutStage && prediction.penaltiesWinnerId == outcome!.penaltiesWinnerId) {
-      return 2;
+      return 3;
     }
 
     final predictedGoals = prediction.goals;
@@ -90,6 +90,8 @@ extension ConvenienceMethods on Match {
   }
 
   List<Bet> get superBets {
-    return bets.value.where((bet) => pointsFor(prediction: bet.prediction) >= 3).toList();
+    return bets.value.where((bet) {
+      return bet.prediction.goals == outcome!.goals;
+    }).toList();
   }
 }

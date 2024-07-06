@@ -30,7 +30,7 @@ class SuperBetsList extends ConsumerWidget {
         final users = matchBets.value;
         return users.map((user) {
           return Padding(
-            padding: const EdgeInsets.only(right: 8),
+            padding: const EdgeInsets.only(right: 12),
             child: SuperBetCard(
               match: match,
               user: user,
