@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:uuid/uuid.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
@@ -43,12 +43,9 @@ class LoginPageController extends _$LoginPageController {
       throw Exception('Użytownik z tym adresem email nie ma dostępu do aplikacji');
     }
 
-    final credentials = await auth.FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-
-    final newUser = User(firebaseId: credentials.user!.uid, name: name, surname: surname);
+    // Stub implementation - Firebase removed
+    final uid = const Uuid().v4();
+    final newUser = User(firebaseId: uid, name: name, surname: surname);
     await _addUser(newUser);
   }
 
@@ -58,7 +55,7 @@ class LoginPageController extends _$LoginPageController {
   }
 
   Future<void> logout() async {
-    await auth.FirebaseAuth.instance.signOut();
+    await ref.read(logOutUseCaseProvider).run();
   }
 
   void _updateUserIdSetting(String id) {

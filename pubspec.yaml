@@ -27,17 +27,13 @@ dependencies:
   gap: ^3.0.1
   intl: ^0.19.0
   supercharged: ^2.1.1
-  skeletonizer: ^1.1.1
+  skeletonizer: ^2.1.1
   simple_animations: ^5.0.2
   animations: ^2.0.10
   bottom_sheet: ^4.0.0
-  firebase_core: ^2.24.2
-  cloud_firestore: ^4.13.6
   loading_animations: ^2.2.0
   loading_animation_widget: ^1.2.0+4
   collection: ^1.18.0
-  firebase_auth: ^4.18.0
-  firebase_storage: ^11.7.2
   hl_image_picker: ^1.2.13
   cached_network_image: ^3.3.1
   uuid: ^4.4.0

@@ -22,6 +22,8 @@ final getCurrentUserUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetCurrentUserUseCaseRef
     = AutoDisposeProviderRef<GetCurrentUserUseCase>;
 String _$getAllUsersUseCaseHash() =>
@@ -40,6 +42,8 @@ final getAllUsersUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetAllUsersUseCaseRef = AutoDisposeProviderRef<GetAllUsersUseCase>;
 String _$getUserBetsUseCaseHash() =>
     r'c147e0b4b804f40c2295e44df37bacb94244d066';
@@ -179,6 +183,8 @@ class GetUserBetsUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetUserBetsUseCaseRef on AutoDisposeProviderRef<GetUserBetsUseCase> {
   /// The parameter `user` of this provider.
   User get user;
@@ -209,6 +215,8 @@ final getLoggedInUserUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetLoggedInUserUseCaseRef
     = AutoDisposeProviderRef<GetLoggedInUserUseCase>;
 String _$addUserUseCaseHash() => r'a2de6fac0065d8e2bf781b4e5e8121c41cd441bf';
@@ -225,6 +233,8 @@ final addUserUseCaseProvider = AutoDisposeProvider<AddUserUseCase>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AddUserUseCaseRef = AutoDisposeProviderRef<AddUserUseCase>;
 String _$removeUserUseCaseHash() => r'9097c84cc19c7f68ac62851f117a2f30d5d874f0';
 
@@ -241,6 +251,8 @@ final removeUserUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef RemoveUserUseCaseRef = AutoDisposeProviderRef<RemoveUserUseCase>;
 String _$updateUserUseCaseHash() => r'd86ae5d7bf7aafb37a0d6ef80feec12a43a3eb13';
 
@@ -257,6 +269,8 @@ final updateUserUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UpdateUserUseCaseRef = AutoDisposeProviderRef<UpdateUserUseCase>;
 String _$uploadUserAvatarUseCaseHash() =>
     r'984b49a1577405e578a3156d0bb07eb1bd23bc20';
@@ -274,6 +288,8 @@ final uploadUserAvatarUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UploadUserAvatarUseCaseRef
     = AutoDisposeProviderRef<UploadUserAvatarUseCase>;
 String _$emailIsWhiteListedUseCaseHash() =>
@@ -292,7 +308,9 @@ final emailIsWhiteListedUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef EmailIsWhiteListedUseCaseRef
     = AutoDisposeProviderRef<EmailIsWhiteListedUseCase>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

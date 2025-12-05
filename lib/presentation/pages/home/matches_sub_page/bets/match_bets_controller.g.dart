@@ -20,6 +20,8 @@ final matchOfBetsToShowProvider = AutoDisposeProvider<Match>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef MatchOfBetsToShowRef = AutoDisposeProviderRef<Match>;
 String _$matchBetsControllerHash() =>
     r'2f5967ad4486faf7f0e7bd5d8aa4932751bf6243';
@@ -39,4 +41,4 @@ final matchBetsControllerProvider =
 
 typedef _$MatchBetsController = AutoDisposeNotifier<MatchBetsState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

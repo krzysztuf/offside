@@ -11,13 +11,13 @@ extension ThemeContextExtension on BuildContext {
 
   IconThemeData get iconTheme => theme.iconTheme;
 
-  AppBarTheme get appBarTheme => theme.appBarTheme;
+  AppBarThemeData get appBarTheme => theme.appBarTheme;
 
   FloatingActionButtonThemeData get floatingActionButtonTheme => theme.floatingActionButtonTheme;
 
   BottomNavigationBarThemeData get bottomNavigationBarTheme => theme.bottomNavigationBarTheme;
 
-  TabBarTheme get tabBarTheme => theme.tabBarTheme;
+  TabBarThemeData get tabBarTheme => theme.tabBarTheme;
 
   ButtonThemeData get buttonTheme => theme.buttonTheme;
 

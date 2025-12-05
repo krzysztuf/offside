@@ -19,7 +19,9 @@ mixin _$NewMatchDialogState {
   List<Team> get teams => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NewMatchDialogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NewMatchDialogStateCopyWith<NewMatchDialogState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$NewMatchDialogStateCopyWithImpl<$Res, $Val extends NewMatchDialogState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NewMatchDialogState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$NewMatchDialogStateImplCopyWithImpl<$Res>
       $Res Function(_$NewMatchDialogStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NewMatchDialogState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,7 +143,9 @@ class _$NewMatchDialogStateImpl extends _NewMatchDialogState {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_teams), loading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NewMatchDialogState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NewMatchDialogStateImplCopyWith<_$NewMatchDialogStateImpl> get copyWith =>
@@ -155,8 +163,11 @@ abstract class _NewMatchDialogState extends NewMatchDialogState {
   List<Team> get teams;
   @override
   bool get loading;
+
+  /// Create a copy of NewMatchDialogState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewMatchDialogStateImplCopyWith<_$NewMatchDialogStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

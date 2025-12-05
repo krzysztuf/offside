@@ -20,7 +20,9 @@ mixin _$MatchBetsState {
   Match get match => throw _privateConstructorUsedError;
   List<UserPrediction> get bets => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchBetsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchBetsStateCopyWith<MatchBetsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$MatchBetsStateCopyWithImpl<$Res, $Val extends MatchBetsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchBetsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -69,6 +73,8 @@ class _$MatchBetsStateCopyWithImpl<$Res, $Val extends MatchBetsState>
     ) as $Val);
   }
 
+  /// Create a copy of MatchBetsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MatchCopyWith<$Res> get match {
@@ -100,6 +106,8 @@ class __$$MatchBetsStateImplCopyWithImpl<$Res>
       _$MatchBetsStateImpl _value, $Res Function(_$MatchBetsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchBetsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,7 +174,9 @@ class _$MatchBetsStateImpl extends _MatchBetsState {
   int get hashCode => Object.hash(
       runtimeType, loading, match, const DeepCollectionEquality().hash(_bets));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchBetsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchBetsStateImplCopyWith<_$MatchBetsStateImpl> get copyWith =>
@@ -187,8 +197,11 @@ abstract class _MatchBetsState extends MatchBetsState {
   Match get match;
   @override
   List<UserPrediction> get bets;
+
+  /// Create a copy of MatchBetsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchBetsStateImplCopyWith<_$MatchBetsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

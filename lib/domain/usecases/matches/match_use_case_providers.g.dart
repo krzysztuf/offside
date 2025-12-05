@@ -22,6 +22,8 @@ final getAllMatchesUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetAllMatchesUseCaseRef = AutoDisposeProviderRef<GetAllMatchesUseCase>;
 String _$placeBetUseCaseHash() => r'7c3e8dfd015d0163d3fb635cd9fbceab6a2e7f1c';
 
@@ -159,6 +161,8 @@ class PlaceBetUseCaseProvider extends AutoDisposeProvider<PlaceBetUseCase> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin PlaceBetUseCaseRef on AutoDisposeProviderRef<PlaceBetUseCase> {
   /// The parameter `match` of this provider.
   Match get match;
@@ -189,6 +193,8 @@ final updateMatchUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UpdateMatchUseCaseRef = AutoDisposeProviderRef<UpdateMatchUseCase>;
 String _$addMatchUseCaseHash() => r'e15c7cdc7d620def4510817ea689107e528622af';
 
@@ -204,6 +210,8 @@ final addMatchUseCaseProvider = AutoDisposeProvider<AddMatchUseCase>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AddMatchUseCaseRef = AutoDisposeProviderRef<AddMatchUseCase>;
 String _$removeMatchUseCaseHash() =>
     r'7fcbfe501ececb390b8cd43438529c5fa39722bf';
@@ -221,6 +229,8 @@ final removeMatchUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef RemoveMatchUseCaseRef = AutoDisposeProviderRef<RemoveMatchUseCase>;
 String _$getRecentMatchesUseCaseHash() =>
     r'20a43d09a593f6be88bb18178cc428e0974ef925';
@@ -238,6 +248,8 @@ final getRecentMatchesUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetRecentMatchesUseCaseRef
     = AutoDisposeProviderRef<GetRecentMatchesUseCase>;
 String _$getUpcomingMatchesUseCaseHash() =>
@@ -256,6 +268,8 @@ final getUpcomingMatchesUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetUpcomingMatchesUseCaseRef
     = AutoDisposeProviderRef<GetUpcomingMatchesUseCase>;
 String _$getMatchHistoryUseCaseHash() =>
@@ -274,7 +288,9 @@ final getMatchHistoryUseCaseProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GetMatchHistoryUseCaseRef
     = AutoDisposeProviderRef<GetMatchHistoryUseCase>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

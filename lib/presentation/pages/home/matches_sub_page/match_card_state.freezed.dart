@@ -21,7 +21,9 @@ mixin _$MatchCardState {
   BetState get betState => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchCardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchCardStateCopyWith<MatchCardState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$MatchCardStateCopyWithImpl<$Res, $Val extends MatchCardState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchCardState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +80,8 @@ class _$MatchCardStateCopyWithImpl<$Res, $Val extends MatchCardState>
     ) as $Val);
   }
 
+  /// Create a copy of MatchCardState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MatchCopyWith<$Res> get match {
@@ -84,6 +90,8 @@ class _$MatchCardStateCopyWithImpl<$Res, $Val extends MatchCardState>
     });
   }
 
+  /// Create a copy of MatchCardState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BetCopyWith<$Res>? get bet {
@@ -121,6 +129,8 @@ class __$$MatchCardStateImplCopyWithImpl<$Res>
       _$MatchCardStateImpl _value, $Res Function(_$MatchCardStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchCardState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -191,7 +201,9 @@ class _$MatchCardStateImpl extends _MatchCardState {
   @override
   int get hashCode => Object.hash(runtimeType, match, bet, betState, loading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchCardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchCardStateImplCopyWith<_$MatchCardStateImpl> get copyWith =>
@@ -215,8 +227,11 @@ abstract class _MatchCardState extends MatchCardState {
   BetState get betState;
   @override
   bool get loading;
+
+  /// Create a copy of MatchCardState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchCardStateImplCopyWith<_$MatchCardStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -21,7 +21,9 @@ mixin _$CompetitionWinnerPickerState {
   bool get loading => throw _privateConstructorUsedError;
   bool get saving => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompetitionWinnerPickerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CompetitionWinnerPickerStateCopyWith<CompetitionWinnerPickerState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$CompetitionWinnerPickerStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CompetitionWinnerPickerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -79,6 +83,8 @@ class _$CompetitionWinnerPickerStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of CompetitionWinnerPickerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TeamCopyWith<$Res>? get winnerPrediction {
@@ -118,6 +124,8 @@ class __$$CompetitionWinnerPickerStateImplCopyWithImpl<$Res>
       $Res Function(_$CompetitionWinnerPickerStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CompetitionWinnerPickerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,7 +205,9 @@ class _$CompetitionWinnerPickerStateImpl extends _CompetitionWinnerPickerState {
   int get hashCode => Object.hash(runtimeType, winnerPrediction,
       const DeepCollectionEquality().hash(_teams), loading, saving);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompetitionWinnerPickerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CompetitionWinnerPickerStateImplCopyWith<
@@ -223,8 +233,11 @@ abstract class _CompetitionWinnerPickerState
   bool get loading;
   @override
   bool get saving;
+
+  /// Create a copy of CompetitionWinnerPickerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompetitionWinnerPickerStateImplCopyWith<
           _$CompetitionWinnerPickerStateImpl>
       get copyWith => throw _privateConstructorUsedError;

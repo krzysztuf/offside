@@ -7,7 +7,7 @@ part of 'login_page_controller.dart';
 // **************************************************************************
 
 String _$loginPageControllerHash() =>
-    r'd906c98992ea422998e130bd238b331b617b4a94';
+    r'6586e67a2c748422b02630bed7937f98cc8a3655';
 
 /// See also [LoginPageController].
 @ProviderFor(LoginPageController)
@@ -24,4 +24,4 @@ final loginPageControllerProvider =
 
 typedef _$LoginPageController = AutoDisposeNotifier<LoginPageState>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

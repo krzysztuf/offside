@@ -1,10 +1,9 @@
-import 'package:offside/data/models/firestore/bet_model.dart';
-import 'package:offside/data/repositories/firebase_image_repository.dart';
-import 'package:offside/data/repositories/firestore_repository.dart';
-import 'package:offside/data/repositories/offside_repository_impl.dart';
+import 'package:offside/data/repositories/json_offside_repository.dart';
+import 'package:offside/data/repositories/json_repository.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
+import 'package:offside/data/repositories/stub_auth_repository.dart';
+import 'package:offside/data/repositories/stub_image_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
-import 'package:offside/data/sources/remote/firestore_source.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/private_table.dart';
@@ -18,49 +17,46 @@ import 'package:offside/domain/repositories/settings_repository.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'firebase_auth_repository.dart';
-
 part 'providers.g.dart';
 
 @riverpod
 Repository<Match> matchesRepository(MatchesRepositoryRef ref) {
-  return FirestoreRepository(collection: FirestoreSource.matches);
+  return JsonRepository<Match>();
 }
 
 @riverpod
 Repository<Bet> matchBetsRepository(MatchBetsRepositoryRef ref, Match match) {
-  var path = 'matches/${match.id}/bets';
-  return FirestoreRepository(collection: FirestoreSource.typedCollectionRef<BetModel>(path));
+  return JsonRepository<Bet>();
 }
 
 @riverpod
 Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
-  return FirestoreRepository(collection: FirestoreSource.teams);
+  return JsonRepository<Team>();
 }
 
 @riverpod
 Repository<User> usersRepository(UsersRepositoryRef ref) {
-  return FirestoreRepository(collection: FirestoreSource.users);
+  return JsonRepository<User>();
 }
 
 @riverpod
 Repository<PrivateTable> privateTablesRepository(PrivateTablesRepositoryRef ref) {
-  return FirestoreRepository(collection: FirestoreSource.tables);
+  return JsonRepository<PrivateTable>();
 }
 
 @riverpod
 OffsideRepository offsideRepository(OffsideRepositoryRef ref) {
-  return OffsideRepositoryImpl(ref.read(dateTimeProvider));
+  return JsonOffsideRepository(ref.read(dateTimeProvider));
 }
 
 @riverpod
 AuthRepository authRepository(AuthRepositoryRef ref) {
-  return FirebaseAuthRepository(ref.watch(usersRepositoryProvider));
+  return StubAuthRepository();
 }
 
 @riverpod
 ImageRepository imageRepository(ImageRepositoryRef ref) {
-  return FirebaseImageRepository();
+  return StubImageRepository();
 }
 
 @Riverpod(keepAlive: true)

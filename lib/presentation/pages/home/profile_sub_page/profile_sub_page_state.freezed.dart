@@ -20,7 +20,9 @@ mixin _$ProfileSubPageState {
   bool get loading => throw _privateConstructorUsedError;
   bool get uploading => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileSubPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfileSubPageStateCopyWith<ProfileSubPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$ProfileSubPageStateCopyWithImpl<$Res, $Val extends ProfileSubPageState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfileSubPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -69,6 +73,8 @@ class _$ProfileSubPageStateCopyWithImpl<$Res, $Val extends ProfileSubPageState>
     ) as $Val);
   }
 
+  /// Create a copy of ProfileSubPageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
@@ -104,6 +110,8 @@ class __$$ProfileSubPageStateImplCopyWithImpl<$Res>
       $Res Function(_$ProfileSubPageStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileSubPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,7 +170,9 @@ class _$ProfileSubPageStateImpl extends _ProfileSubPageState {
   @override
   int get hashCode => Object.hash(runtimeType, user, loading, uploading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileSubPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfileSubPageStateImplCopyWith<_$ProfileSubPageStateImpl> get copyWith =>
@@ -183,8 +193,11 @@ abstract class _ProfileSubPageState extends ProfileSubPageState {
   bool get loading;
   @override
   bool get uploading;
+
+  /// Create a copy of ProfileSubPageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfileSubPageStateImplCopyWith<_$ProfileSubPageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -24,8 +24,12 @@ mixin _$Competition {
   String get name => throw _privateConstructorUsedError;
   List<Match>? get matches => throw _privateConstructorUsedError;
 
+  /// Serializes this Competition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Competition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CompetitionCopyWith<Competition> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$CompetitionCopyWithImpl<$Res, $Val extends Competition>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Competition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$CompetitionImplCopyWithImpl<$Res>
       _$CompetitionImpl _value, $Res Function(_$CompetitionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Competition
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -155,12 +163,14 @@ class _$CompetitionImpl implements _Competition {
             const DeepCollectionEquality().equals(other._matches, _matches));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, name, const DeepCollectionEquality().hash(_matches));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Competition
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CompetitionImplCopyWith<_$CompetitionImpl> get copyWith =>
@@ -189,8 +199,11 @@ abstract class _Competition implements Competition {
   String get name;
   @override
   List<Match>? get matches;
+
+  /// Create a copy of Competition
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompetitionImplCopyWith<_$CompetitionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

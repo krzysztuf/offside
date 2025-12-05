@@ -23,8 +23,12 @@ mixin _$MatchOutcome {
   Goals get goals => throw _privateConstructorUsedError;
   String? get penaltiesWinnerId => throw _privateConstructorUsedError;
 
+  /// Serializes this MatchOutcome to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchOutcomeCopyWith<MatchOutcome> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$MatchOutcomeCopyWithImpl<$Res, $Val extends MatchOutcome>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -68,6 +74,8 @@ class _$MatchOutcomeCopyWithImpl<$Res, $Val extends MatchOutcome>
     ) as $Val);
   }
 
+  /// Create a copy of MatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GoalsCopyWith<$Res> get goals {
@@ -99,6 +107,8 @@ class __$$MatchOutcomeImplCopyWithImpl<$Res>
       _$MatchOutcomeImpl _value, $Res Function(_$MatchOutcomeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -150,11 +160,13 @@ class _$MatchOutcomeImpl extends _MatchOutcome {
                 other.penaltiesWinnerId == penaltiesWinnerId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, goals, penaltiesWinnerId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchOutcomeImplCopyWith<_$MatchOutcomeImpl> get copyWith =>
@@ -181,8 +193,11 @@ abstract class _MatchOutcome extends MatchOutcome {
   Goals get goals;
   @override
   String? get penaltiesWinnerId;
+
+  /// Create a copy of MatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchOutcomeImplCopyWith<_$MatchOutcomeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

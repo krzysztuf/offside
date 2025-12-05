@@ -32,8 +32,12 @@ mixin _$Match {
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets => throw _privateConstructorUsedError;
 
+  /// Serializes this Match to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchCopyWith<Match> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -65,6 +69,8 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,6 +119,8 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
     ) as $Val);
   }
 
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MatchOutcomeCopyWith<$Res>? get outcome {
@@ -155,6 +163,8 @@ class __$$MatchImplCopyWithImpl<$Res>
       _$MatchImpl _value, $Res Function(_$MatchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -266,12 +276,14 @@ class _$MatchImpl extends _Match {
             (identical(other.bets, bets) || other.bets == bets));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, homeTeam, awayTeam,
       kickOffDate, stage, knockoutStage, outcome, bets);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
@@ -319,8 +331,11 @@ abstract class _Match extends Match {
   @override
   @JsonKey(includeFromJson: false)
   Fetchable<List<Bet>> get bets;
+
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

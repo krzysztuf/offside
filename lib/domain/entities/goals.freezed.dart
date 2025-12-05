@@ -23,8 +23,12 @@ mixin _$Goals {
   int get home => throw _privateConstructorUsedError;
   int get away => throw _privateConstructorUsedError;
 
+  /// Serializes this Goals to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Goals
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GoalsCopyWith<Goals> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -46,6 +50,8 @@ class _$GoalsCopyWithImpl<$Res, $Val extends Goals>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Goals
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,6 +89,8 @@ class __$$GoalsImplCopyWithImpl<$Res>
       _$GoalsImpl _value, $Res Function(_$GoalsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Goals
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,7 +130,9 @@ class _$GoalsImpl extends _Goals {
     return 'Goals(home: $home, away: $away)';
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Goals
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GoalsImplCopyWith<_$GoalsImpl> get copyWith =>
@@ -146,8 +156,11 @@ abstract class _Goals extends Goals {
   int get home;
   @override
   int get away;
+
+  /// Create a copy of Goals
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GoalsImplCopyWith<_$GoalsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

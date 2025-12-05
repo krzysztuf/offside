@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MainSubPageState {
   List<UserScoreSummary> get userScores => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MainSubPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MainSubPageStateCopyWith<MainSubPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$MainSubPageStateCopyWithImpl<$Res, $Val extends MainSubPageState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MainSubPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$MainSubPageStateImplCopyWithImpl<$Res>
       $Res Function(_$MainSubPageStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MainSubPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,7 +129,9 @@ class _$MainSubPageStateImpl extends _MainSubPageState {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_userScores));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MainSubPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MainSubPageStateImplCopyWith<_$MainSubPageStateImpl> get copyWith =>
@@ -139,8 +147,11 @@ abstract class _MainSubPageState extends MainSubPageState {
 
   @override
   List<UserScoreSummary> get userScores;
+
+  /// Create a copy of MainSubPageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MainSubPageStateImplCopyWith<_$MainSubPageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

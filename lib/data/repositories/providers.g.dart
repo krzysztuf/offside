@@ -6,7 +6,7 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$matchesRepositoryHash() => r'55ccb4d3a9d0db566d06d54bbbf084ec9527c4c3';
+String _$matchesRepositoryHash() => r'15e0c9ff4cad9d132ae797a288ee937eb02a0a6e';
 
 /// See also [matchesRepository].
 @ProviderFor(matchesRepository)
@@ -21,9 +21,11 @@ final matchesRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef MatchesRepositoryRef = AutoDisposeProviderRef<Repository<Match>>;
 String _$matchBetsRepositoryHash() =>
-    r'0114cb4ec591343bd3b97239eb95c0daf391ae0a';
+    r'59293ba51320ac6939649dd507ec96bd656642af';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -159,6 +161,8 @@ class MatchBetsRepositoryProvider extends AutoDisposeProvider<Repository<Bet>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MatchBetsRepositoryRef on AutoDisposeProviderRef<Repository<Bet>> {
   /// The parameter `match` of this provider.
   Match get match;
@@ -173,7 +177,7 @@ class _MatchBetsRepositoryProviderElement
   Match get match => (origin as MatchBetsRepositoryProvider).match;
 }
 
-String _$teamsRepositoryHash() => r'8c3693568464f66ef219de90666f497c6c7bc2e4';
+String _$teamsRepositoryHash() => r'96af4294259917c9cbd41d496b25c0bbc298d034';
 
 /// See also [teamsRepository].
 @ProviderFor(teamsRepository)
@@ -187,8 +191,10 @@ final teamsRepositoryProvider = AutoDisposeProvider<Repository<Team>>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef TeamsRepositoryRef = AutoDisposeProviderRef<Repository<Team>>;
-String _$usersRepositoryHash() => r'21a1e247297c639de66190c317b00b445710f73f';
+String _$usersRepositoryHash() => r'42fb034a8606b85cb192ccb609ef5b15c809f3aa';
 
 /// See also [usersRepository].
 @ProviderFor(usersRepository)
@@ -202,9 +208,11 @@ final usersRepositoryProvider = AutoDisposeProvider<Repository<User>>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UsersRepositoryRef = AutoDisposeProviderRef<Repository<User>>;
 String _$privateTablesRepositoryHash() =>
-    r'4ef3bcb50024047d6cacf21e4037ac27a5c9397b';
+    r'acaf3069198cc9e7345f335e7948ebab5b6e0773';
 
 /// See also [privateTablesRepository].
 @ProviderFor(privateTablesRepository)
@@ -219,9 +227,11 @@ final privateTablesRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef PrivateTablesRepositoryRef
     = AutoDisposeProviderRef<Repository<PrivateTable>>;
-String _$offsideRepositoryHash() => r'9f9a6edbfe40839bcb9a711c12e4f64e2304cd90';
+String _$offsideRepositoryHash() => r'125e8a4082df4393454fc5018c6883b4d4845b1e';
 
 /// See also [offsideRepository].
 @ProviderFor(offsideRepository)
@@ -236,8 +246,10 @@ final offsideRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef OffsideRepositoryRef = AutoDisposeProviderRef<OffsideRepository>;
-String _$authRepositoryHash() => r'9cda1c0d5e304f18a13bd17db63762a0808e15c0';
+String _$authRepositoryHash() => r'b348177470348bd524de184b608287e143d990a1';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)
@@ -251,8 +263,10 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
-String _$imageRepositoryHash() => r'797eb267f0cc11dde88e04570d3a9d71b645f08a';
+String _$imageRepositoryHash() => r'25d9a12c473b21a009811d92fa19f0de81680688';
 
 /// See also [imageRepository].
 @ProviderFor(imageRepository)
@@ -266,6 +280,8 @@ final imageRepositoryProvider = AutoDisposeProvider<ImageRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ImageRepositoryRef = AutoDisposeProviderRef<ImageRepository>;
 String _$settingsRepositoryHash() =>
     r'ca060010406df15617fdd8ad7f619fbce1d41685';
@@ -282,6 +298,8 @@ final settingsRepositoryProvider = Provider<SettingsRepository>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SettingsRepositoryRef = ProviderRef<SettingsRepository>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

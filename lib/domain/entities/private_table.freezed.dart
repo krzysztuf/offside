@@ -25,8 +25,12 @@ mixin _$PrivateTable {
   String get ownerId => throw _privateConstructorUsedError;
   List<String> get memberIds => throw _privateConstructorUsedError;
 
+  /// Serializes this PrivateTable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PrivateTable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PrivateTableCopyWith<PrivateTable> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$PrivateTableCopyWithImpl<$Res, $Val extends PrivateTable>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PrivateTable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$PrivateTableImplCopyWithImpl<$Res>
       _$PrivateTableImpl _value, $Res Function(_$PrivateTableImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PrivateTable
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -173,12 +181,14 @@ class _$PrivateTableImpl extends _PrivateTable {
                 .equals(other._memberIds, _memberIds));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, ownerId,
       const DeepCollectionEquality().hash(_memberIds));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PrivateTable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PrivateTableImplCopyWith<_$PrivateTableImpl> get copyWith =>
@@ -211,8 +221,11 @@ abstract class _PrivateTable extends PrivateTable {
   String get ownerId;
   @override
   List<String> get memberIds;
+
+  /// Create a copy of PrivateTable
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PrivateTableImplCopyWith<_$PrivateTableImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

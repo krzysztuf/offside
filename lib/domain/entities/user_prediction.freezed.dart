@@ -19,7 +19,9 @@ mixin _$UserPrediction {
   User get user => throw _privateConstructorUsedError;
   MatchOutcome? get prediction => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserPrediction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserPredictionCopyWith<UserPrediction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$UserPredictionCopyWithImpl<$Res, $Val extends UserPrediction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserPrediction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -64,6 +68,8 @@ class _$UserPredictionCopyWithImpl<$Res, $Val extends UserPrediction>
     ) as $Val);
   }
 
+  /// Create a copy of UserPrediction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
@@ -72,6 +78,8 @@ class _$UserPredictionCopyWithImpl<$Res, $Val extends UserPrediction>
     });
   }
 
+  /// Create a copy of UserPrediction
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MatchOutcomeCopyWith<$Res>? get prediction {
@@ -109,6 +117,8 @@ class __$$UserPredictionImplCopyWithImpl<$Res>
       _$UserPredictionImpl _value, $Res Function(_$UserPredictionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserPrediction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,7 +167,9 @@ class _$UserPredictionImpl extends _UserPrediction {
   @override
   int get hashCode => Object.hash(runtimeType, user, prediction);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserPrediction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserPredictionImplCopyWith<_$UserPredictionImpl> get copyWith =>
@@ -175,8 +187,11 @@ abstract class _UserPrediction extends UserPrediction {
   User get user;
   @override
   MatchOutcome? get prediction;
+
+  /// Create a copy of UserPrediction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserPredictionImplCopyWith<_$UserPredictionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

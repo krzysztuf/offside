@@ -27,8 +27,12 @@ mixin _$Bet {
   String get userId => throw _privateConstructorUsedError;
   MatchOutcome get prediction => throw _privateConstructorUsedError;
 
+  /// Serializes this Bet to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Bet
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BetCopyWith<Bet> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -55,6 +59,8 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Bet
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,6 +89,8 @@ class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
     ) as $Val);
   }
 
+  /// Create a copy of Bet
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MatchOutcomeCopyWith<$Res> get prediction {
@@ -114,6 +122,8 @@ class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
   __$$BetImplCopyWithImpl(_$BetImpl _value, $Res Function(_$BetImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Bet
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -183,11 +193,13 @@ class _$BetImpl implements _Bet {
                 other.prediction == prediction));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, matchId, userId, prediction);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Bet
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BetImplCopyWith<_$BetImpl> get copyWith =>
@@ -210,7 +222,8 @@ abstract class _Bet implements Bet {
 
   factory _Bet.fromJson(Map<String, dynamic> json) = _$BetImpl.fromJson;
 
-  @override // ignore: invalid_annotation_target
+// ignore: invalid_annotation_target
+  @override
   @JsonKey(includeToJson: false)
   String get id;
   @override
@@ -219,8 +232,11 @@ abstract class _Bet implements Bet {
   String get userId;
   @override
   MatchOutcome get prediction;
+
+  /// Create a copy of Bet
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BetImplCopyWith<_$BetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

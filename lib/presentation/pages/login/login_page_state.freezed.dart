@@ -21,7 +21,9 @@ mixin _$LoginPageState {
   bool get gettingUserInfo => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginPageStateCopyWith<LoginPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$LoginPageStateCopyWithImpl<$Res, $Val extends LoginPageState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class _$LoginPageStateCopyWithImpl<$Res, $Val extends LoginPageState>
     ) as $Val);
   }
 
+  /// Create a copy of LoginPageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
@@ -110,6 +116,8 @@ class __$$LoginPageStateImplCopyWithImpl<$Res>
       _$LoginPageStateImpl _value, $Res Function(_$LoginPageStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -184,7 +192,9 @@ class _$LoginPageStateImpl extends _LoginPageState {
   int get hashCode =>
       Object.hash(runtimeType, loggedIn, loggingIn, gettingUserInfo, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginPageStateImplCopyWith<_$LoginPageStateImpl> get copyWith =>
@@ -208,8 +218,11 @@ abstract class _LoginPageState extends LoginPageState {
   bool get gettingUserInfo;
   @override
   User? get user;
+
+  /// Create a copy of LoginPageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginPageStateImplCopyWith<_$LoginPageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

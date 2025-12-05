@@ -144,6 +144,8 @@ class GetBoolSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetBoolSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsGetUseCase<bool>> {
   /// The parameter `setting` of this provider.
@@ -288,6 +290,8 @@ class SetBoolSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SetBoolSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsSetUseCase<bool>> {
   /// The parameter `setting` of this provider.
@@ -425,6 +429,8 @@ class GetIntSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetIntSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsGetUseCase<int>> {
   /// The parameter `setting` of this provider.
@@ -569,6 +575,8 @@ class SetIntSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SetIntSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsSetUseCase<int>> {
   /// The parameter `setting` of this provider.
@@ -707,6 +715,8 @@ class GetDoubleSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetDoubleSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsGetUseCase<double>> {
   /// The parameter `setting` of this provider.
@@ -852,6 +862,8 @@ class SetDoubleSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SetDoubleSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsSetUseCase<double>> {
   /// The parameter `setting` of this provider.
@@ -990,6 +1002,8 @@ class GetStringSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetStringSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsGetUseCase<String>> {
   /// The parameter `setting` of this provider.
@@ -1135,6 +1149,8 @@ class SetStringSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SetStringSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsSetUseCase<String>> {
   /// The parameter `setting` of this provider.
@@ -1276,6 +1292,8 @@ class GetStringListSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetStringListSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsGetUseCase<List<String>>> {
   /// The parameter `setting` of this provider.
@@ -1424,6 +1442,8 @@ class SetStringListSettingUseCaseProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SetStringListSettingUseCaseRef
     on AutoDisposeProviderRef<SettingsSetUseCase<List<String>>> {
   /// The parameter `setting` of this provider.
@@ -1446,4 +1466,4 @@ class _SetStringListSettingUseCaseProviderElement
       (origin as SetStringListSettingUseCaseProvider).value;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

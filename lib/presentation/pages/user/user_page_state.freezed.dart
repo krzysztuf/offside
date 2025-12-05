@@ -21,7 +21,9 @@ mixin _$UserPageState {
   List<Match> get matches => throw _privateConstructorUsedError;
   String get winnerId => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserPageStateCopyWith<UserPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$UserPageStateCopyWithImpl<$Res, $Val extends UserPageState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class _$UserPageStateCopyWithImpl<$Res, $Val extends UserPageState>
     ) as $Val);
   }
 
+  /// Create a copy of UserPageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
@@ -106,6 +112,8 @@ class __$$UserPageStateImplCopyWithImpl<$Res>
       _$UserPageStateImpl _value, $Res Function(_$UserPageStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserPageState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -193,7 +201,9 @@ class _$UserPageStateImpl extends _UserPageState {
       const DeepCollectionEquality().hash(_matches),
       winnerId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserPageStateImplCopyWith<_$UserPageStateImpl> get copyWith =>
@@ -216,8 +226,11 @@ abstract class _UserPageState extends UserPageState {
   List<Match> get matches;
   @override
   String get winnerId;
+
+  /// Create a copy of UserPageState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserPageStateImplCopyWith<_$UserPageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
