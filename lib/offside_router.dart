@@ -15,7 +15,7 @@ import 'presentation/pages/user/user_page_controller.dart';
 part 'offside_router.g.dart';
 
 @riverpod
-GoRouter offsideRouter(OffsideRouterRef ref) {
+GoRouter offsideRouter(Ref ref) {
   return GoRouter(
     debugLogDiagnostics: true,
     initialLocation: '/',

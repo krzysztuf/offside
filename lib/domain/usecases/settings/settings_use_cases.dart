@@ -16,56 +16,56 @@ part 'string_setting_use_cases.dart';
 
 // bool
 @riverpod
-SettingsGetUseCase<bool> getBoolSettingUseCase(GetBoolSettingUseCaseRef ref, AppSetting setting) {
+SettingsGetUseCase<bool> getBoolSettingUseCase(Ref ref, AppSetting setting) {
   return GetBoolSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting);
 }
 
 @riverpod
-SettingsSetUseCase<bool> setBoolSettingUseCase(SetBoolSettingUseCaseRef ref, AppSetting setting, bool value) {
+SettingsSetUseCase<bool> setBoolSettingUseCase(Ref ref, AppSetting setting, bool value) {
   return SetBoolSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting, value);
 }
 
 // int
 @riverpod
-SettingsGetUseCase<int> getIntSettingUseCase(GetIntSettingUseCaseRef ref, AppSetting setting) {
+SettingsGetUseCase<int> getIntSettingUseCase(Ref ref, AppSetting setting) {
   return GetIntSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting);
 }
 
 @riverpod
-SettingsSetUseCase<int> setIntSettingUseCase(SetIntSettingUseCaseRef ref, AppSetting setting, int value) {
+SettingsSetUseCase<int> setIntSettingUseCase(Ref ref, AppSetting setting, int value) {
   return SetIntSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting, value);
 }
 
 // double
 @riverpod
-SettingsGetUseCase<double> getDoubleSettingUseCase(GetDoubleSettingUseCaseRef ref, AppSetting setting) {
+SettingsGetUseCase<double> getDoubleSettingUseCase(Ref ref, AppSetting setting) {
   return GetDoubleSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting);
 }
 
 @riverpod
-SettingsSetUseCase<double> setDoubleSettingUseCase(SetDoubleSettingUseCaseRef ref, AppSetting setting, double value) {
+SettingsSetUseCase<double> setDoubleSettingUseCase(Ref ref, AppSetting setting, double value) {
   return SetDoubleSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting, value);
 }
 
 // String
 @riverpod
-SettingsGetUseCase<String> getStringSettingUseCase(GetStringSettingUseCaseRef ref, AppSetting setting) {
+SettingsGetUseCase<String> getStringSettingUseCase(Ref ref, AppSetting setting) {
   return GetStringSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting);
 }
 
 @riverpod
-SettingsSetUseCase<String> setStringSettingUseCase(SetStringSettingUseCaseRef ref, AppSetting setting, String value) {
+SettingsSetUseCase<String> setStringSettingUseCase(Ref ref, AppSetting setting, String value) {
   return SetStringSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting, value);
 }
 
 // List<String>
 @riverpod
-SettingsGetUseCase<List<String>> getStringListSettingUseCase(GetStringListSettingUseCaseRef ref, AppSetting setting) {
+SettingsGetUseCase<List<String>> getStringListSettingUseCase(Ref ref, AppSetting setting) {
   return GetStringListSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting);
 }
 
 @riverpod
 SettingsSetUseCase<List<String>> setStringListSettingUseCase(
-    SetStringListSettingUseCaseRef ref, AppSetting setting, List<String> value) {
+    Ref ref, AppSetting setting, List<String> value) {
   return SetStringListSettingUseCaseImpl(ref.read(settingsRepositoryProvider), setting, value);
 }

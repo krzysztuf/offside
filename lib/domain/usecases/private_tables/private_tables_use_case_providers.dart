@@ -6,21 +6,21 @@ import 'private_tables_use_cases.dart';
 part 'private_tables_use_case_providers.g.dart';
 
 @riverpod
-GetAllPrivateTablesUseCase getAllPrivateTablesUseCase(GetAllPrivateTablesUseCaseRef ref) {
+GetAllPrivateTablesUseCase getAllPrivateTablesUseCase(Ref ref) {
   return GetAllPrivateTablesUseCase(ref.read(privateTablesRepositoryProvider));
 }
 
 @riverpod
-UpdatePrivateTableUseCase updatePrivateTableUseCase(UpdatePrivateTableUseCaseRef ref) {
+UpdatePrivateTableUseCase updatePrivateTableUseCase(Ref ref) {
   return UpdatePrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
 }
 
 @riverpod
-AddPrivateTableUseCase addPrivateTableUseCase(AddPrivateTableUseCaseRef ref) {
+AddPrivateTableUseCase addPrivateTableUseCase(Ref ref) {
   return AddPrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
 }
 
 @riverpod
-RemovePrivateTableUseCase removePrivateTableUseCase(RemovePrivateTableUseCaseRef ref) {
+RemovePrivateTableUseCase removePrivateTableUseCase(Ref ref) {
   return RemovePrivateTableUseCase(ref.read(privateTablesRepositoryProvider));
 }

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,195 +9,287 @@ part of 'profile_sub_page_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$ProfileSubPageState {
-  User? get user => throw _privateConstructorUsedError;
-  bool get loading => throw _privateConstructorUsedError;
-  bool get uploading => throw _privateConstructorUsedError;
 
-  /// Create a copy of ProfileSubPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProfileSubPageStateCopyWith<ProfileSubPageState> get copyWith =>
-      throw _privateConstructorUsedError;
+ User? get user; bool get loading; bool get uploading;
+/// Create a copy of ProfileSubPageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ProfileSubPageStateCopyWith<ProfileSubPageState> get copyWith => _$ProfileSubPageStateCopyWithImpl<ProfileSubPageState>(this as ProfileSubPageState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileSubPageState&&(identical(other.user, user) || other.user == user)&&(identical(other.loading, loading) || other.loading == loading)&&(identical(other.uploading, uploading) || other.uploading == uploading));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,user,loading,uploading);
+
+@override
+String toString() {
+  return 'ProfileSubPageState(user: $user, loading: $loading, uploading: $uploading)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ProfileSubPageStateCopyWith<$Res> {
-  factory $ProfileSubPageStateCopyWith(
-          ProfileSubPageState value, $Res Function(ProfileSubPageState) then) =
-      _$ProfileSubPageStateCopyWithImpl<$Res, ProfileSubPageState>;
-  @useResult
-  $Res call({User? user, bool loading, bool uploading});
+abstract mixin class $ProfileSubPageStateCopyWith<$Res>  {
+  factory $ProfileSubPageStateCopyWith(ProfileSubPageState value, $Res Function(ProfileSubPageState) _then) = _$ProfileSubPageStateCopyWithImpl;
+@useResult
+$Res call({
+ User? user, bool loading, bool uploading
+});
 
-  $UserCopyWith<$Res>? get user;
+
+$UserCopyWith<$Res>? get user;
+
 }
-
 /// @nodoc
-class _$ProfileSubPageStateCopyWithImpl<$Res, $Val extends ProfileSubPageState>
+class _$ProfileSubPageStateCopyWithImpl<$Res>
     implements $ProfileSubPageStateCopyWith<$Res> {
-  _$ProfileSubPageStateCopyWithImpl(this._value, this._then);
+  _$ProfileSubPageStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ProfileSubPageState _self;
+  final $Res Function(ProfileSubPageState) _then;
 
-  /// Create a copy of ProfileSubPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = freezed,
-    Object? loading = null,
-    Object? uploading = null,
-  }) {
-    return _then(_value.copyWith(
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      uploading: null == uploading
-          ? _value.uploading
-          : uploading // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+/// Create a copy of ProfileSubPageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? user = freezed,Object? loading = null,Object? uploading = null,}) {
+  return _then(_self.copyWith(
+user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
+as bool,uploading: null == uploading ? _self.uploading : uploading // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+/// Create a copy of ProfileSubPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
   }
 
-  /// Create a copy of ProfileSubPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
+  return $UserCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
+}
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
+
+/// Adds pattern-matching-related methods to [ProfileSubPageState].
+extension ProfileSubPageStatePatterns on ProfileSubPageState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ProfileSubPageState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ProfileSubPageState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ProfileSubPageState value)  $default,){
+final _that = this;
+switch (_that) {
+case _ProfileSubPageState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ProfileSubPageState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ProfileSubPageState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( User? user,  bool loading,  bool uploading)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ProfileSubPageState() when $default != null:
+return $default(_that.user,_that.loading,_that.uploading);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( User? user,  bool loading,  bool uploading)  $default,) {final _that = this;
+switch (_that) {
+case _ProfileSubPageState():
+return $default(_that.user,_that.loading,_that.uploading);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( User? user,  bool loading,  bool uploading)?  $default,) {final _that = this;
+switch (_that) {
+case _ProfileSubPageState() when $default != null:
+return $default(_that.user,_that.loading,_that.uploading);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$ProfileSubPageStateImplCopyWith<$Res>
-    implements $ProfileSubPageStateCopyWith<$Res> {
-  factory _$$ProfileSubPageStateImplCopyWith(_$ProfileSubPageStateImpl value,
-          $Res Function(_$ProfileSubPageStateImpl) then) =
-      __$$ProfileSubPageStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({User? user, bool loading, bool uploading});
 
-  @override
-  $UserCopyWith<$Res>? get user;
+
+class _ProfileSubPageState extends ProfileSubPageState {
+  const _ProfileSubPageState({this.user, required this.loading, this.uploading = false}): super._();
+  
+
+@override final  User? user;
+@override final  bool loading;
+@override@JsonKey() final  bool uploading;
+
+/// Create a copy of ProfileSubPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ProfileSubPageStateCopyWith<_ProfileSubPageState> get copyWith => __$ProfileSubPageStateCopyWithImpl<_ProfileSubPageState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileSubPageState&&(identical(other.user, user) || other.user == user)&&(identical(other.loading, loading) || other.loading == loading)&&(identical(other.uploading, uploading) || other.uploading == uploading));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,user,loading,uploading);
+
+@override
+String toString() {
+  return 'ProfileSubPageState(user: $user, loading: $loading, uploading: $uploading)';
+}
+
+
 }
 
 /// @nodoc
-class __$$ProfileSubPageStateImplCopyWithImpl<$Res>
-    extends _$ProfileSubPageStateCopyWithImpl<$Res, _$ProfileSubPageStateImpl>
-    implements _$$ProfileSubPageStateImplCopyWith<$Res> {
-  __$$ProfileSubPageStateImplCopyWithImpl(_$ProfileSubPageStateImpl _value,
-      $Res Function(_$ProfileSubPageStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$ProfileSubPageStateCopyWith<$Res> implements $ProfileSubPageStateCopyWith<$Res> {
+  factory _$ProfileSubPageStateCopyWith(_ProfileSubPageState value, $Res Function(_ProfileSubPageState) _then) = __$ProfileSubPageStateCopyWithImpl;
+@override @useResult
+$Res call({
+ User? user, bool loading, bool uploading
+});
 
-  /// Create a copy of ProfileSubPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = freezed,
-    Object? loading = null,
-    Object? uploading = null,
-  }) {
-    return _then(_$ProfileSubPageStateImpl(
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      uploading: null == uploading
-          ? _value.uploading
-          : uploading // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+
+@override $UserCopyWith<$Res>? get user;
+
 }
-
 /// @nodoc
+class __$ProfileSubPageStateCopyWithImpl<$Res>
+    implements _$ProfileSubPageStateCopyWith<$Res> {
+  __$ProfileSubPageStateCopyWithImpl(this._self, this._then);
 
-class _$ProfileSubPageStateImpl extends _ProfileSubPageState {
-  const _$ProfileSubPageStateImpl(
-      {this.user, required this.loading, this.uploading = false})
-      : super._();
+  final _ProfileSubPageState _self;
+  final $Res Function(_ProfileSubPageState) _then;
 
-  @override
-  final User? user;
-  @override
-  final bool loading;
-  @override
-  @JsonKey()
-  final bool uploading;
-
-  @override
-  String toString() {
-    return 'ProfileSubPageState(user: $user, loading: $loading, uploading: $uploading)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProfileSubPageStateImpl &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.uploading, uploading) ||
-                other.uploading == uploading));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, loading, uploading);
-
-  /// Create a copy of ProfileSubPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProfileSubPageStateImplCopyWith<_$ProfileSubPageStateImpl> get copyWith =>
-      __$$ProfileSubPageStateImplCopyWithImpl<_$ProfileSubPageStateImpl>(
-          this, _$identity);
+/// Create a copy of ProfileSubPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? user = freezed,Object? loading = null,Object? uploading = null,}) {
+  return _then(_ProfileSubPageState(
+user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
+as bool,uploading: null == uploading ? _self.uploading : uploading // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-abstract class _ProfileSubPageState extends ProfileSubPageState {
-  const factory _ProfileSubPageState(
-      {final User? user,
-      required final bool loading,
-      final bool uploading}) = _$ProfileSubPageStateImpl;
-  const _ProfileSubPageState._() : super._();
+/// Create a copy of ProfileSubPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
+  }
 
-  @override
-  User? get user;
-  @override
-  bool get loading;
-  @override
-  bool get uploading;
-
-  /// Create a copy of ProfileSubPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProfileSubPageStateImplCopyWith<_$ProfileSubPageStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  return $UserCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
+  });
 }
+}
+
+// dart format on

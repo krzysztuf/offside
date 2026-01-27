@@ -20,46 +20,46 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'providers.g.dart';
 
 @riverpod
-Repository<Match> matchesRepository(MatchesRepositoryRef ref) {
+Repository<Match> matchesRepository(Ref ref) {
   return JsonRepository<Match>();
 }
 
 @riverpod
-Repository<Bet> matchBetsRepository(MatchBetsRepositoryRef ref, Match match) {
+Repository<Bet> matchBetsRepository(Ref ref, Match match) {
   return JsonRepository<Bet>();
 }
 
 @riverpod
-Repository<Team> teamsRepository(TeamsRepositoryRef ref) {
+Repository<Team> teamsRepository(Ref ref) {
   return JsonRepository<Team>();
 }
 
 @riverpod
-Repository<User> usersRepository(UsersRepositoryRef ref) {
+Repository<User> usersRepository(Ref ref) {
   return JsonRepository<User>();
 }
 
 @riverpod
-Repository<PrivateTable> privateTablesRepository(PrivateTablesRepositoryRef ref) {
+Repository<PrivateTable> privateTablesRepository(Ref ref) {
   return JsonRepository<PrivateTable>();
 }
 
 @riverpod
-OffsideRepository offsideRepository(OffsideRepositoryRef ref) {
+OffsideRepository offsideRepository(Ref ref) {
   return JsonOffsideRepository(ref.read(dateTimeProvider));
 }
 
 @riverpod
-AuthRepository authRepository(AuthRepositoryRef ref) {
+AuthRepository authRepository(Ref ref) {
   return StubAuthRepository();
 }
 
 @riverpod
-ImageRepository imageRepository(ImageRepositoryRef ref) {
+ImageRepository imageRepository(Ref ref) {
   return StubImageRepository();
 }
 
 @Riverpod(keepAlive: true)
-SettingsRepository settingsRepository(SettingsRepositoryRef ref) {
+SettingsRepository settingsRepository(Ref ref) {
   return SharedPreferencesRepository(SharedPreferencesHolder.preferences);
 }

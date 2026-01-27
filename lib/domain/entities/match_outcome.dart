@@ -6,7 +6,7 @@ part 'match_outcome.freezed.dart';
 part 'match_outcome.g.dart';
 
 @freezed
-class MatchOutcome with _$MatchOutcome {
+sealed class MatchOutcome with _$MatchOutcome {
   const factory MatchOutcome({
     @Default(Goals()) Goals goals,
     @Default(null) String? penaltiesWinnerId,

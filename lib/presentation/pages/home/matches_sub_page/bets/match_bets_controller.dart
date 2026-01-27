@@ -34,6 +34,6 @@ class MatchBetsController extends _$MatchBetsController {
 }
 
 @riverpod
-Match matchOfBetsToShow(MatchOfBetsToShowRef ref) {
+Match matchOfBetsToShow(Ref ref) {
   throw UnimplementedError('matchOfBetsToShow');
 }

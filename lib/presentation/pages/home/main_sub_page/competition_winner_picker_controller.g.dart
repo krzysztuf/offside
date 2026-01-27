@@ -6,23 +6,71 @@ part of 'competition_winner_picker_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(CompetitionWinnerPickerController)
+final competitionWinnerPickerControllerProvider =
+    CompetitionWinnerPickerControllerProvider._();
+
+final class CompetitionWinnerPickerControllerProvider
+    extends
+        $NotifierProvider<
+          CompetitionWinnerPickerController,
+          CompetitionWinnerPickerState
+        > {
+  CompetitionWinnerPickerControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'competitionWinnerPickerControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$competitionWinnerPickerControllerHash();
+
+  @$internal
+  @override
+  CompetitionWinnerPickerController create() =>
+      CompetitionWinnerPickerController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CompetitionWinnerPickerState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CompetitionWinnerPickerState>(value),
+    );
+  }
+}
+
 String _$competitionWinnerPickerControllerHash() =>
     r'e4e8e19baa893f721fd1cabfc8dcc683cda60fa6';
 
-/// See also [CompetitionWinnerPickerController].
-@ProviderFor(CompetitionWinnerPickerController)
-final competitionWinnerPickerControllerProvider = AutoDisposeNotifierProvider<
-    CompetitionWinnerPickerController, CompetitionWinnerPickerState>.internal(
-  CompetitionWinnerPickerController.new,
-  name: r'competitionWinnerPickerControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$competitionWinnerPickerControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$CompetitionWinnerPickerController
-    = AutoDisposeNotifier<CompetitionWinnerPickerState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$CompetitionWinnerPickerController
+    extends $Notifier<CompetitionWinnerPickerState> {
+  CompetitionWinnerPickerState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref =
+        this.ref
+            as $Ref<CompetitionWinnerPickerState, CompetitionWinnerPickerState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                CompetitionWinnerPickerState,
+                CompetitionWinnerPickerState
+              >,
+              CompetitionWinnerPickerState,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

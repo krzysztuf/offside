@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,228 +9,296 @@ part of 'user_page_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$UserPageState {
-  User get user => throw _privateConstructorUsedError;
-  List<Bet> get bets => throw _privateConstructorUsedError;
-  List<Match> get matches => throw _privateConstructorUsedError;
-  String get winnerId => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserPageStateCopyWith<UserPageState> get copyWith =>
-      throw _privateConstructorUsedError;
+ User get user; List<Bet> get bets; List<Match> get matches; String get winnerId;
+/// Create a copy of UserPageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UserPageStateCopyWith<UserPageState> get copyWith => _$UserPageStateCopyWithImpl<UserPageState>(this as UserPageState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserPageState&&(identical(other.user, user) || other.user == user)&&const DeepCollectionEquality().equals(other.bets, bets)&&const DeepCollectionEquality().equals(other.matches, matches)&&(identical(other.winnerId, winnerId) || other.winnerId == winnerId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,user,const DeepCollectionEquality().hash(bets),const DeepCollectionEquality().hash(matches),winnerId);
+
+@override
+String toString() {
+  return 'UserPageState(user: $user, bets: $bets, matches: $matches, winnerId: $winnerId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UserPageStateCopyWith<$Res> {
-  factory $UserPageStateCopyWith(
-          UserPageState value, $Res Function(UserPageState) then) =
-      _$UserPageStateCopyWithImpl<$Res, UserPageState>;
-  @useResult
-  $Res call({User user, List<Bet> bets, List<Match> matches, String winnerId});
+abstract mixin class $UserPageStateCopyWith<$Res>  {
+  factory $UserPageStateCopyWith(UserPageState value, $Res Function(UserPageState) _then) = _$UserPageStateCopyWithImpl;
+@useResult
+$Res call({
+ User user, List<Bet> bets, List<Match> matches, String winnerId
+});
 
-  $UserCopyWith<$Res> get user;
+
+$UserCopyWith<$Res> get user;
+
 }
-
 /// @nodoc
-class _$UserPageStateCopyWithImpl<$Res, $Val extends UserPageState>
+class _$UserPageStateCopyWithImpl<$Res>
     implements $UserPageStateCopyWith<$Res> {
-  _$UserPageStateCopyWithImpl(this._value, this._then);
+  _$UserPageStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UserPageState _self;
+  final $Res Function(UserPageState) _then;
 
-  /// Create a copy of UserPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? bets = null,
-    Object? matches = null,
-    Object? winnerId = null,
-  }) {
-    return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      bets: null == bets
-          ? _value.bets
-          : bets // ignore: cast_nullable_to_non_nullable
-              as List<Bet>,
-      matches: null == matches
-          ? _value.matches
-          : matches // ignore: cast_nullable_to_non_nullable
-              as List<Match>,
-      winnerId: null == winnerId
-          ? _value.winnerId
-          : winnerId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of UserPageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? user = null,Object? bets = null,Object? matches = null,Object? winnerId = null,}) {
+  return _then(_self.copyWith(
+user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User,bets: null == bets ? _self.bets : bets // ignore: cast_nullable_to_non_nullable
+as List<Bet>,matches: null == matches ? _self.matches : matches // ignore: cast_nullable_to_non_nullable
+as List<Match>,winnerId: null == winnerId ? _self.winnerId : winnerId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+/// Create a copy of UserPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res> get user {
+  
+  return $UserCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
+}
 
-  /// Create a copy of UserPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
+
+/// Adds pattern-matching-related methods to [UserPageState].
+extension UserPageStatePatterns on UserPageState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserPageState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UserPageState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserPageState value)  $default,){
+final _that = this;
+switch (_that) {
+case _UserPageState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserPageState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UserPageState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( User user,  List<Bet> bets,  List<Match> matches,  String winnerId)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UserPageState() when $default != null:
+return $default(_that.user,_that.bets,_that.matches,_that.winnerId);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( User user,  List<Bet> bets,  List<Match> matches,  String winnerId)  $default,) {final _that = this;
+switch (_that) {
+case _UserPageState():
+return $default(_that.user,_that.bets,_that.matches,_that.winnerId);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( User user,  List<Bet> bets,  List<Match> matches,  String winnerId)?  $default,) {final _that = this;
+switch (_that) {
+case _UserPageState() when $default != null:
+return $default(_that.user,_that.bets,_that.matches,_that.winnerId);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$UserPageStateImplCopyWith<$Res>
-    implements $UserPageStateCopyWith<$Res> {
-  factory _$$UserPageStateImplCopyWith(
-          _$UserPageStateImpl value, $Res Function(_$UserPageStateImpl) then) =
-      __$$UserPageStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({User user, List<Bet> bets, List<Match> matches, String winnerId});
 
-  @override
-  $UserCopyWith<$Res> get user;
+
+class _UserPageState extends UserPageState {
+  const _UserPageState({required this.user, required final  List<Bet> bets, required final  List<Match> matches, required this.winnerId}): _bets = bets,_matches = matches,super._();
+  
+
+@override final  User user;
+ final  List<Bet> _bets;
+@override List<Bet> get bets {
+  if (_bets is EqualUnmodifiableListView) return _bets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_bets);
+}
+
+ final  List<Match> _matches;
+@override List<Match> get matches {
+  if (_matches is EqualUnmodifiableListView) return _matches;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_matches);
+}
+
+@override final  String winnerId;
+
+/// Create a copy of UserPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserPageStateCopyWith<_UserPageState> get copyWith => __$UserPageStateCopyWithImpl<_UserPageState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserPageState&&(identical(other.user, user) || other.user == user)&&const DeepCollectionEquality().equals(other._bets, _bets)&&const DeepCollectionEquality().equals(other._matches, _matches)&&(identical(other.winnerId, winnerId) || other.winnerId == winnerId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,user,const DeepCollectionEquality().hash(_bets),const DeepCollectionEquality().hash(_matches),winnerId);
+
+@override
+String toString() {
+  return 'UserPageState(user: $user, bets: $bets, matches: $matches, winnerId: $winnerId)';
+}
+
+
 }
 
 /// @nodoc
-class __$$UserPageStateImplCopyWithImpl<$Res>
-    extends _$UserPageStateCopyWithImpl<$Res, _$UserPageStateImpl>
-    implements _$$UserPageStateImplCopyWith<$Res> {
-  __$$UserPageStateImplCopyWithImpl(
-      _$UserPageStateImpl _value, $Res Function(_$UserPageStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$UserPageStateCopyWith<$Res> implements $UserPageStateCopyWith<$Res> {
+  factory _$UserPageStateCopyWith(_UserPageState value, $Res Function(_UserPageState) _then) = __$UserPageStateCopyWithImpl;
+@override @useResult
+$Res call({
+ User user, List<Bet> bets, List<Match> matches, String winnerId
+});
 
-  /// Create a copy of UserPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? bets = null,
-    Object? matches = null,
-    Object? winnerId = null,
-  }) {
-    return _then(_$UserPageStateImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      bets: null == bets
-          ? _value._bets
-          : bets // ignore: cast_nullable_to_non_nullable
-              as List<Bet>,
-      matches: null == matches
-          ? _value._matches
-          : matches // ignore: cast_nullable_to_non_nullable
-              as List<Match>,
-      winnerId: null == winnerId
-          ? _value.winnerId
-          : winnerId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+@override $UserCopyWith<$Res> get user;
+
 }
-
 /// @nodoc
+class __$UserPageStateCopyWithImpl<$Res>
+    implements _$UserPageStateCopyWith<$Res> {
+  __$UserPageStateCopyWithImpl(this._self, this._then);
 
-class _$UserPageStateImpl extends _UserPageState {
-  const _$UserPageStateImpl(
-      {required this.user,
-      required final List<Bet> bets,
-      required final List<Match> matches,
-      required this.winnerId})
-      : _bets = bets,
-        _matches = matches,
-        super._();
+  final _UserPageState _self;
+  final $Res Function(_UserPageState) _then;
 
-  @override
-  final User user;
-  final List<Bet> _bets;
-  @override
-  List<Bet> get bets {
-    if (_bets is EqualUnmodifiableListView) return _bets;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_bets);
-  }
-
-  final List<Match> _matches;
-  @override
-  List<Match> get matches {
-    if (_matches is EqualUnmodifiableListView) return _matches;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_matches);
-  }
-
-  @override
-  final String winnerId;
-
-  @override
-  String toString() {
-    return 'UserPageState(user: $user, bets: $bets, matches: $matches, winnerId: $winnerId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserPageStateImpl &&
-            (identical(other.user, user) || other.user == user) &&
-            const DeepCollectionEquality().equals(other._bets, _bets) &&
-            const DeepCollectionEquality().equals(other._matches, _matches) &&
-            (identical(other.winnerId, winnerId) ||
-                other.winnerId == winnerId));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      user,
-      const DeepCollectionEquality().hash(_bets),
-      const DeepCollectionEquality().hash(_matches),
-      winnerId);
-
-  /// Create a copy of UserPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserPageStateImplCopyWith<_$UserPageStateImpl> get copyWith =>
-      __$$UserPageStateImplCopyWithImpl<_$UserPageStateImpl>(this, _$identity);
+/// Create a copy of UserPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? user = null,Object? bets = null,Object? matches = null,Object? winnerId = null,}) {
+  return _then(_UserPageState(
+user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User,bets: null == bets ? _self._bets : bets // ignore: cast_nullable_to_non_nullable
+as List<Bet>,matches: null == matches ? _self._matches : matches // ignore: cast_nullable_to_non_nullable
+as List<Match>,winnerId: null == winnerId ? _self.winnerId : winnerId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class _UserPageState extends UserPageState {
-  const factory _UserPageState(
-      {required final User user,
-      required final List<Bet> bets,
-      required final List<Match> matches,
-      required final String winnerId}) = _$UserPageStateImpl;
-  const _UserPageState._() : super._();
-
-  @override
-  User get user;
-  @override
-  List<Bet> get bets;
-  @override
-  List<Match> get matches;
-  @override
-  String get winnerId;
-
-  /// Create a copy of UserPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserPageStateImplCopyWith<_$UserPageStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of UserPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res> get user {
+  
+  return $UserCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
 }
+}
+
+// dart format on

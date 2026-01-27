@@ -38,7 +38,7 @@ class OffsideApp extends ConsumerWidget {
       theme: OffsideThemes.light(context),
       darkTheme: OffsideThemes.dark(context),
       locale: const Locale('pl', 'PL'),
-      themeMode: ThemeMode.system,
+      themeMode: .system,
       // themeMode: ThemeMode.light,
       routerDelegate: router.routerDelegate,
       routeInformationProvider: router.routeInformationProvider,

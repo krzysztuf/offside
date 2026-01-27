@@ -6,38 +6,87 @@ part of 'auth_use_case_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$logInUseCaseHash() => r'4f48dc39858fc39f07b17f3dd3663ef840c66d61';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [logInUseCase].
 @ProviderFor(logInUseCase)
-final logInUseCaseProvider = AutoDisposeProvider<LogInUseCase>.internal(
-  logInUseCase,
-  name: r'logInUseCaseProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$logInUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final logInUseCaseProvider = LogInUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LogInUseCaseRef = AutoDisposeProviderRef<LogInUseCase>;
-String _$logOutUseCaseHash() => r'f3e2cbc20ea049c2155df55b86ca883c72484edf';
+final class LogInUseCaseProvider
+    extends $FunctionalProvider<LogInUseCase, LogInUseCase, LogInUseCase>
+    with $Provider<LogInUseCase> {
+  LogInUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logInUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [logOutUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$logInUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LogInUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  LogInUseCase create(Ref ref) {
+    return logInUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LogInUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LogInUseCase>(value),
+    );
+  }
+}
+
+String _$logInUseCaseHash() => r'0358414dc464b464e99f7300ff289ee82a1f3527';
+
 @ProviderFor(logOutUseCase)
-final logOutUseCaseProvider = AutoDisposeProvider<LogOutUseCase>.internal(
-  logOutUseCase,
-  name: r'logOutUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$logOutUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final logOutUseCaseProvider = LogOutUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LogOutUseCaseRef = AutoDisposeProviderRef<LogOutUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class LogOutUseCaseProvider
+    extends $FunctionalProvider<LogOutUseCase, LogOutUseCase, LogOutUseCase>
+    with $Provider<LogOutUseCase> {
+  LogOutUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logOutUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$logOutUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LogOutUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  LogOutUseCase create(Ref ref) {
+    return logOutUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LogOutUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LogOutUseCase>(value),
+    );
+  }
+}
+
+String _$logOutUseCaseHash() => r'bd04edfcb369499c9b94a926753ece09cab77231';

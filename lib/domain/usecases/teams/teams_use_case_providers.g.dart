@@ -6,44 +6,101 @@ part of 'teams_use_case_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getAllTeamsUseCaseHash() =>
-    r'494148fac7cd37aef1b12b32eaf00f966b69a2cd';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [getAllTeamsUseCase].
 @ProviderFor(getAllTeamsUseCase)
-final getAllTeamsUseCaseProvider =
-    AutoDisposeProvider<GetAllTeamsUseCase>.internal(
-  getAllTeamsUseCase,
-  name: r'getAllTeamsUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getAllTeamsUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getAllTeamsUseCaseProvider = GetAllTeamsUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetAllTeamsUseCaseRef = AutoDisposeProviderRef<GetAllTeamsUseCase>;
-String _$getWinnerTeamIdUseCaseHash() =>
-    r'3b6efac2abb6d639569495b10e23c44cab4e1139';
+final class GetAllTeamsUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetAllTeamsUseCase,
+          GetAllTeamsUseCase,
+          GetAllTeamsUseCase
+        >
+    with $Provider<GetAllTeamsUseCase> {
+  GetAllTeamsUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getAllTeamsUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [getWinnerTeamIdUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$getAllTeamsUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetAllTeamsUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetAllTeamsUseCase create(Ref ref) {
+    return getAllTeamsUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetAllTeamsUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetAllTeamsUseCase>(value),
+    );
+  }
+}
+
+String _$getAllTeamsUseCaseHash() =>
+    r'932cea161996cdaeb77e5a36f6ad27389817ebfb';
+
 @ProviderFor(getWinnerTeamIdUseCase)
-final getWinnerTeamIdUseCaseProvider =
-    AutoDisposeProvider<GetWinnerTeamIdUseCase>.internal(
-  getWinnerTeamIdUseCase,
-  name: r'getWinnerTeamIdUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getWinnerTeamIdUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getWinnerTeamIdUseCaseProvider = GetWinnerTeamIdUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetWinnerTeamIdUseCaseRef
-    = AutoDisposeProviderRef<GetWinnerTeamIdUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class GetWinnerTeamIdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetWinnerTeamIdUseCase,
+          GetWinnerTeamIdUseCase,
+          GetWinnerTeamIdUseCase
+        >
+    with $Provider<GetWinnerTeamIdUseCase> {
+  GetWinnerTeamIdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getWinnerTeamIdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getWinnerTeamIdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetWinnerTeamIdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetWinnerTeamIdUseCase create(Ref ref) {
+    return getWinnerTeamIdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetWinnerTeamIdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetWinnerTeamIdUseCase>(value),
+    );
+  }
+}
+
+String _$getWinnerTeamIdUseCaseHash() =>
+    r'feb8cb063711898ed8e8b294248698945147c37d';

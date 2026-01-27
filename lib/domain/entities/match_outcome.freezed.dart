@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,195 +9,284 @@ part of 'match_outcome.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-MatchOutcome _$MatchOutcomeFromJson(Map<String, dynamic> json) {
-  return _MatchOutcome.fromJson(json);
-}
 
 /// @nodoc
 mixin _$MatchOutcome {
-  Goals get goals => throw _privateConstructorUsedError;
-  String? get penaltiesWinnerId => throw _privateConstructorUsedError;
+
+ Goals get goals; String? get penaltiesWinnerId;
+/// Create a copy of MatchOutcome
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MatchOutcomeCopyWith<MatchOutcome> get copyWith => _$MatchOutcomeCopyWithImpl<MatchOutcome>(this as MatchOutcome, _$identity);
 
   /// Serializes this MatchOutcome to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of MatchOutcome
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $MatchOutcomeCopyWith<MatchOutcome> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MatchOutcome&&(identical(other.goals, goals) || other.goals == goals)&&(identical(other.penaltiesWinnerId, penaltiesWinnerId) || other.penaltiesWinnerId == penaltiesWinnerId));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,goals,penaltiesWinnerId);
+
+@override
+String toString() {
+  return 'MatchOutcome(goals: $goals, penaltiesWinnerId: $penaltiesWinnerId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MatchOutcomeCopyWith<$Res> {
-  factory $MatchOutcomeCopyWith(
-          MatchOutcome value, $Res Function(MatchOutcome) then) =
-      _$MatchOutcomeCopyWithImpl<$Res, MatchOutcome>;
-  @useResult
-  $Res call({Goals goals, String? penaltiesWinnerId});
+abstract mixin class $MatchOutcomeCopyWith<$Res>  {
+  factory $MatchOutcomeCopyWith(MatchOutcome value, $Res Function(MatchOutcome) _then) = _$MatchOutcomeCopyWithImpl;
+@useResult
+$Res call({
+ Goals goals, String? penaltiesWinnerId
+});
 
-  $GoalsCopyWith<$Res> get goals;
+
+$GoalsCopyWith<$Res> get goals;
+
 }
-
 /// @nodoc
-class _$MatchOutcomeCopyWithImpl<$Res, $Val extends MatchOutcome>
+class _$MatchOutcomeCopyWithImpl<$Res>
     implements $MatchOutcomeCopyWith<$Res> {
-  _$MatchOutcomeCopyWithImpl(this._value, this._then);
+  _$MatchOutcomeCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MatchOutcome _self;
+  final $Res Function(MatchOutcome) _then;
 
-  /// Create a copy of MatchOutcome
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? goals = null,
-    Object? penaltiesWinnerId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      goals: null == goals
-          ? _value.goals
-          : goals // ignore: cast_nullable_to_non_nullable
-              as Goals,
-      penaltiesWinnerId: freezed == penaltiesWinnerId
-          ? _value.penaltiesWinnerId
-          : penaltiesWinnerId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-
-  /// Create a copy of MatchOutcome
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $GoalsCopyWith<$Res> get goals {
-    return $GoalsCopyWith<$Res>(_value.goals, (value) {
-      return _then(_value.copyWith(goals: value) as $Val);
-    });
-  }
+/// Create a copy of MatchOutcome
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? goals = null,Object? penaltiesWinnerId = freezed,}) {
+  return _then(_self.copyWith(
+goals: null == goals ? _self.goals : goals // ignore: cast_nullable_to_non_nullable
+as Goals,penaltiesWinnerId: freezed == penaltiesWinnerId ? _self.penaltiesWinnerId : penaltiesWinnerId // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of MatchOutcome
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GoalsCopyWith<$Res> get goals {
+  
+  return $GoalsCopyWith<$Res>(_self.goals, (value) {
+    return _then(_self.copyWith(goals: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$MatchOutcomeImplCopyWith<$Res>
-    implements $MatchOutcomeCopyWith<$Res> {
-  factory _$$MatchOutcomeImplCopyWith(
-          _$MatchOutcomeImpl value, $Res Function(_$MatchOutcomeImpl) then) =
-      __$$MatchOutcomeImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Goals goals, String? penaltiesWinnerId});
 
-  @override
-  $GoalsCopyWith<$Res> get goals;
+/// Adds pattern-matching-related methods to [MatchOutcome].
+extension MatchOutcomePatterns on MatchOutcome {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MatchOutcome value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MatchOutcome() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MatchOutcome value)  $default,){
+final _that = this;
+switch (_that) {
+case _MatchOutcome():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MatchOutcome value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MatchOutcome() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Goals goals,  String? penaltiesWinnerId)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MatchOutcome() when $default != null:
+return $default(_that.goals,_that.penaltiesWinnerId);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Goals goals,  String? penaltiesWinnerId)  $default,) {final _that = this;
+switch (_that) {
+case _MatchOutcome():
+return $default(_that.goals,_that.penaltiesWinnerId);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Goals goals,  String? penaltiesWinnerId)?  $default,) {final _that = this;
+switch (_that) {
+case _MatchOutcome() when $default != null:
+return $default(_that.goals,_that.penaltiesWinnerId);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$MatchOutcomeImplCopyWithImpl<$Res>
-    extends _$MatchOutcomeCopyWithImpl<$Res, _$MatchOutcomeImpl>
-    implements _$$MatchOutcomeImplCopyWith<$Res> {
-  __$$MatchOutcomeImplCopyWithImpl(
-      _$MatchOutcomeImpl _value, $Res Function(_$MatchOutcomeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of MatchOutcome
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? goals = null,
-    Object? penaltiesWinnerId = freezed,
-  }) {
-    return _then(_$MatchOutcomeImpl(
-      goals: null == goals
-          ? _value.goals
-          : goals // ignore: cast_nullable_to_non_nullable
-              as Goals,
-      penaltiesWinnerId: freezed == penaltiesWinnerId
-          ? _value.penaltiesWinnerId
-          : penaltiesWinnerId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$MatchOutcomeImpl extends _MatchOutcome {
-  const _$MatchOutcomeImpl(
-      {this.goals = const Goals(), this.penaltiesWinnerId = null})
-      : super._();
 
-  factory _$MatchOutcomeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MatchOutcomeImplFromJson(json);
+class _MatchOutcome extends MatchOutcome {
+  const _MatchOutcome({this.goals = const Goals(), this.penaltiesWinnerId = null}): super._();
+  factory _MatchOutcome.fromJson(Map<String, dynamic> json) => _$MatchOutcomeFromJson(json);
 
-  @override
-  @JsonKey()
-  final Goals goals;
-  @override
-  @JsonKey()
-  final String? penaltiesWinnerId;
+@override@JsonKey() final  Goals goals;
+@override@JsonKey() final  String? penaltiesWinnerId;
 
-  @override
-  String toString() {
-    return 'MatchOutcome(goals: $goals, penaltiesWinnerId: $penaltiesWinnerId)';
-  }
+/// Create a copy of MatchOutcome
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MatchOutcomeCopyWith<_MatchOutcome> get copyWith => __$MatchOutcomeCopyWithImpl<_MatchOutcome>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MatchOutcomeImpl &&
-            (identical(other.goals, goals) || other.goals == goals) &&
-            (identical(other.penaltiesWinnerId, penaltiesWinnerId) ||
-                other.penaltiesWinnerId == penaltiesWinnerId));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, goals, penaltiesWinnerId);
-
-  /// Create a copy of MatchOutcome
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MatchOutcomeImplCopyWith<_$MatchOutcomeImpl> get copyWith =>
-      __$$MatchOutcomeImplCopyWithImpl<_$MatchOutcomeImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MatchOutcomeImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$MatchOutcomeToJson(this, );
 }
 
-abstract class _MatchOutcome extends MatchOutcome {
-  const factory _MatchOutcome(
-      {final Goals goals,
-      final String? penaltiesWinnerId}) = _$MatchOutcomeImpl;
-  const _MatchOutcome._() : super._();
-
-  factory _MatchOutcome.fromJson(Map<String, dynamic> json) =
-      _$MatchOutcomeImpl.fromJson;
-
-  @override
-  Goals get goals;
-  @override
-  String? get penaltiesWinnerId;
-
-  /// Create a copy of MatchOutcome
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MatchOutcomeImplCopyWith<_$MatchOutcomeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MatchOutcome&&(identical(other.goals, goals) || other.goals == goals)&&(identical(other.penaltiesWinnerId, penaltiesWinnerId) || other.penaltiesWinnerId == penaltiesWinnerId));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,goals,penaltiesWinnerId);
+
+@override
+String toString() {
+  return 'MatchOutcome(goals: $goals, penaltiesWinnerId: $penaltiesWinnerId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MatchOutcomeCopyWith<$Res> implements $MatchOutcomeCopyWith<$Res> {
+  factory _$MatchOutcomeCopyWith(_MatchOutcome value, $Res Function(_MatchOutcome) _then) = __$MatchOutcomeCopyWithImpl;
+@override @useResult
+$Res call({
+ Goals goals, String? penaltiesWinnerId
+});
+
+
+@override $GoalsCopyWith<$Res> get goals;
+
+}
+/// @nodoc
+class __$MatchOutcomeCopyWithImpl<$Res>
+    implements _$MatchOutcomeCopyWith<$Res> {
+  __$MatchOutcomeCopyWithImpl(this._self, this._then);
+
+  final _MatchOutcome _self;
+  final $Res Function(_MatchOutcome) _then;
+
+/// Create a copy of MatchOutcome
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? goals = null,Object? penaltiesWinnerId = freezed,}) {
+  return _then(_MatchOutcome(
+goals: null == goals ? _self.goals : goals // ignore: cast_nullable_to_non_nullable
+as Goals,penaltiesWinnerId: freezed == penaltiesWinnerId ? _self.penaltiesWinnerId : penaltiesWinnerId // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of MatchOutcome
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GoalsCopyWith<$Res> get goals {
+  
+  return $GoalsCopyWith<$Res>(_self.goals, (value) {
+    return _then(_self.copyWith(goals: value));
+  });
+}
+}
+
+// dart format on

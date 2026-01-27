@@ -6,7 +6,7 @@ part 'competition.freezed.dart';
 part 'competition.g.dart';
 
 @freezed
-class Competition with _$Competition {
+sealed class Competition with _$Competition {
   const factory Competition({
     required String id,
     required String name,

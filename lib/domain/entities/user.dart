@@ -12,7 +12,7 @@ part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
-class User with _$User implements Identifiable {
+sealed class User with _$User implements Identifiable {
   const factory User({
     // ignore: invalid_annotation_target
     @Default('') @JsonKey(includeToJson: false) String id,

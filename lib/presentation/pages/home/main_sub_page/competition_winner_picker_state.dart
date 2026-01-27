@@ -4,7 +4,7 @@ import 'package:offside/domain/entities/team.dart';
 part 'competition_winner_picker_state.freezed.dart';
 
 @freezed
-class CompetitionWinnerPickerState with _$CompetitionWinnerPickerState {
+sealed class CompetitionWinnerPickerState with _$CompetitionWinnerPickerState {
   const factory CompetitionWinnerPickerState({
     Team? winnerPrediction,
     @Default([]) List<Team> teams,

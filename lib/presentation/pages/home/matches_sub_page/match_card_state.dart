@@ -5,7 +5,7 @@ import 'package:offside/domain/entities/match.dart';
 part 'match_card_state.freezed.dart';
 
 @freezed
-class MatchCardState with _$MatchCardState {
+sealed class MatchCardState with _$MatchCardState {
   const factory MatchCardState({
     required Match match,
     Bet? bet,

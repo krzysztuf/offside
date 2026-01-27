@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,220 +9,290 @@ part of 'login_page_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$LoginPageState {
-  bool get loggedIn => throw _privateConstructorUsedError;
-  bool get loggingIn => throw _privateConstructorUsedError;
-  bool get gettingUserInfo => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LoginPageStateCopyWith<LoginPageState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get loggedIn; bool get loggingIn; bool get gettingUserInfo; User? get user;
+/// Create a copy of LoginPageState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginPageStateCopyWith<LoginPageState> get copyWith => _$LoginPageStateCopyWithImpl<LoginPageState>(this as LoginPageState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginPageState&&(identical(other.loggedIn, loggedIn) || other.loggedIn == loggedIn)&&(identical(other.loggingIn, loggingIn) || other.loggingIn == loggingIn)&&(identical(other.gettingUserInfo, gettingUserInfo) || other.gettingUserInfo == gettingUserInfo)&&(identical(other.user, user) || other.user == user));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,loggedIn,loggingIn,gettingUserInfo,user);
+
+@override
+String toString() {
+  return 'LoginPageState(loggedIn: $loggedIn, loggingIn: $loggingIn, gettingUserInfo: $gettingUserInfo, user: $user)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LoginPageStateCopyWith<$Res> {
-  factory $LoginPageStateCopyWith(
-          LoginPageState value, $Res Function(LoginPageState) then) =
-      _$LoginPageStateCopyWithImpl<$Res, LoginPageState>;
-  @useResult
-  $Res call({bool loggedIn, bool loggingIn, bool gettingUserInfo, User? user});
+abstract mixin class $LoginPageStateCopyWith<$Res>  {
+  factory $LoginPageStateCopyWith(LoginPageState value, $Res Function(LoginPageState) _then) = _$LoginPageStateCopyWithImpl;
+@useResult
+$Res call({
+ bool loggedIn, bool loggingIn, bool gettingUserInfo, User? user
+});
 
-  $UserCopyWith<$Res>? get user;
+
+$UserCopyWith<$Res>? get user;
+
 }
-
 /// @nodoc
-class _$LoginPageStateCopyWithImpl<$Res, $Val extends LoginPageState>
+class _$LoginPageStateCopyWithImpl<$Res>
     implements $LoginPageStateCopyWith<$Res> {
-  _$LoginPageStateCopyWithImpl(this._value, this._then);
+  _$LoginPageStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LoginPageState _self;
+  final $Res Function(LoginPageState) _then;
 
-  /// Create a copy of LoginPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? loggedIn = null,
-    Object? loggingIn = null,
-    Object? gettingUserInfo = null,
-    Object? user = freezed,
-  }) {
-    return _then(_value.copyWith(
-      loggedIn: null == loggedIn
-          ? _value.loggedIn
-          : loggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      loggingIn: null == loggingIn
-          ? _value.loggingIn
-          : loggingIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      gettingUserInfo: null == gettingUserInfo
-          ? _value.gettingUserInfo
-          : gettingUserInfo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-    ) as $Val);
+/// Create a copy of LoginPageState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? loggedIn = null,Object? loggingIn = null,Object? gettingUserInfo = null,Object? user = freezed,}) {
+  return _then(_self.copyWith(
+loggedIn: null == loggedIn ? _self.loggedIn : loggedIn // ignore: cast_nullable_to_non_nullable
+as bool,loggingIn: null == loggingIn ? _self.loggingIn : loggingIn // ignore: cast_nullable_to_non_nullable
+as bool,gettingUserInfo: null == gettingUserInfo ? _self.gettingUserInfo : gettingUserInfo // ignore: cast_nullable_to_non_nullable
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,
+  ));
+}
+/// Create a copy of LoginPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
   }
 
-  /// Create a copy of LoginPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
+  return $UserCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
+}
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
+
+/// Adds pattern-matching-related methods to [LoginPageState].
+extension LoginPageStatePatterns on LoginPageState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LoginPageState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LoginPageState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LoginPageState value)  $default,){
+final _that = this;
+switch (_that) {
+case _LoginPageState():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LoginPageState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LoginPageState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool loggedIn,  bool loggingIn,  bool gettingUserInfo,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LoginPageState() when $default != null:
+return $default(_that.loggedIn,_that.loggingIn,_that.gettingUserInfo,_that.user);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool loggedIn,  bool loggingIn,  bool gettingUserInfo,  User? user)  $default,) {final _that = this;
+switch (_that) {
+case _LoginPageState():
+return $default(_that.loggedIn,_that.loggingIn,_that.gettingUserInfo,_that.user);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool loggedIn,  bool loggingIn,  bool gettingUserInfo,  User? user)?  $default,) {final _that = this;
+switch (_that) {
+case _LoginPageState() when $default != null:
+return $default(_that.loggedIn,_that.loggingIn,_that.gettingUserInfo,_that.user);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$LoginPageStateImplCopyWith<$Res>
-    implements $LoginPageStateCopyWith<$Res> {
-  factory _$$LoginPageStateImplCopyWith(_$LoginPageStateImpl value,
-          $Res Function(_$LoginPageStateImpl) then) =
-      __$$LoginPageStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool loggedIn, bool loggingIn, bool gettingUserInfo, User? user});
 
-  @override
-  $UserCopyWith<$Res>? get user;
+
+class _LoginPageState extends LoginPageState {
+  const _LoginPageState({this.loggedIn = false, this.loggingIn = false, this.gettingUserInfo = true, this.user}): super._();
+  
+
+@override@JsonKey() final  bool loggedIn;
+@override@JsonKey() final  bool loggingIn;
+@override@JsonKey() final  bool gettingUserInfo;
+@override final  User? user;
+
+/// Create a copy of LoginPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoginPageStateCopyWith<_LoginPageState> get copyWith => __$LoginPageStateCopyWithImpl<_LoginPageState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginPageState&&(identical(other.loggedIn, loggedIn) || other.loggedIn == loggedIn)&&(identical(other.loggingIn, loggingIn) || other.loggingIn == loggingIn)&&(identical(other.gettingUserInfo, gettingUserInfo) || other.gettingUserInfo == gettingUserInfo)&&(identical(other.user, user) || other.user == user));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,loggedIn,loggingIn,gettingUserInfo,user);
+
+@override
+String toString() {
+  return 'LoginPageState(loggedIn: $loggedIn, loggingIn: $loggingIn, gettingUserInfo: $gettingUserInfo, user: $user)';
+}
+
+
 }
 
 /// @nodoc
-class __$$LoginPageStateImplCopyWithImpl<$Res>
-    extends _$LoginPageStateCopyWithImpl<$Res, _$LoginPageStateImpl>
-    implements _$$LoginPageStateImplCopyWith<$Res> {
-  __$$LoginPageStateImplCopyWithImpl(
-      _$LoginPageStateImpl _value, $Res Function(_$LoginPageStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$LoginPageStateCopyWith<$Res> implements $LoginPageStateCopyWith<$Res> {
+  factory _$LoginPageStateCopyWith(_LoginPageState value, $Res Function(_LoginPageState) _then) = __$LoginPageStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool loggedIn, bool loggingIn, bool gettingUserInfo, User? user
+});
 
-  /// Create a copy of LoginPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? loggedIn = null,
-    Object? loggingIn = null,
-    Object? gettingUserInfo = null,
-    Object? user = freezed,
-  }) {
-    return _then(_$LoginPageStateImpl(
-      loggedIn: null == loggedIn
-          ? _value.loggedIn
-          : loggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      loggingIn: null == loggingIn
-          ? _value.loggingIn
-          : loggingIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      gettingUserInfo: null == gettingUserInfo
-          ? _value.gettingUserInfo
-          : gettingUserInfo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
-    ));
-  }
+
+@override $UserCopyWith<$Res>? get user;
+
 }
-
 /// @nodoc
+class __$LoginPageStateCopyWithImpl<$Res>
+    implements _$LoginPageStateCopyWith<$Res> {
+  __$LoginPageStateCopyWithImpl(this._self, this._then);
 
-class _$LoginPageStateImpl extends _LoginPageState {
-  const _$LoginPageStateImpl(
-      {this.loggedIn = false,
-      this.loggingIn = false,
-      this.gettingUserInfo = true,
-      this.user})
-      : super._();
+  final _LoginPageState _self;
+  final $Res Function(_LoginPageState) _then;
 
-  @override
-  @JsonKey()
-  final bool loggedIn;
-  @override
-  @JsonKey()
-  final bool loggingIn;
-  @override
-  @JsonKey()
-  final bool gettingUserInfo;
-  @override
-  final User? user;
-
-  @override
-  String toString() {
-    return 'LoginPageState(loggedIn: $loggedIn, loggingIn: $loggingIn, gettingUserInfo: $gettingUserInfo, user: $user)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoginPageStateImpl &&
-            (identical(other.loggedIn, loggedIn) ||
-                other.loggedIn == loggedIn) &&
-            (identical(other.loggingIn, loggingIn) ||
-                other.loggingIn == loggingIn) &&
-            (identical(other.gettingUserInfo, gettingUserInfo) ||
-                other.gettingUserInfo == gettingUserInfo) &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, loggedIn, loggingIn, gettingUserInfo, user);
-
-  /// Create a copy of LoginPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoginPageStateImplCopyWith<_$LoginPageStateImpl> get copyWith =>
-      __$$LoginPageStateImplCopyWithImpl<_$LoginPageStateImpl>(
-          this, _$identity);
+/// Create a copy of LoginPageState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? loggedIn = null,Object? loggingIn = null,Object? gettingUserInfo = null,Object? user = freezed,}) {
+  return _then(_LoginPageState(
+loggedIn: null == loggedIn ? _self.loggedIn : loggedIn // ignore: cast_nullable_to_non_nullable
+as bool,loggingIn: null == loggingIn ? _self.loggingIn : loggingIn // ignore: cast_nullable_to_non_nullable
+as bool,gettingUserInfo: null == gettingUserInfo ? _self.gettingUserInfo : gettingUserInfo // ignore: cast_nullable_to_non_nullable
+as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User?,
+  ));
 }
 
-abstract class _LoginPageState extends LoginPageState {
-  const factory _LoginPageState(
-      {final bool loggedIn,
-      final bool loggingIn,
-      final bool gettingUserInfo,
-      final User? user}) = _$LoginPageStateImpl;
-  const _LoginPageState._() : super._();
+/// Create a copy of LoginPageState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
+  }
 
-  @override
-  bool get loggedIn;
-  @override
-  bool get loggingIn;
-  @override
-  bool get gettingUserInfo;
-  @override
-  User? get user;
-
-  /// Create a copy of LoginPageState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoginPageStateImplCopyWith<_$LoginPageStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  return $UserCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
+  });
 }
+}
+
+// dart format on

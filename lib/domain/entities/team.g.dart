@@ -6,14 +6,13 @@ part of 'team.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
-      id: json['id'] as String? ?? '',
-      name: json['name'] as String,
-      abbreviation: json['abbreviation'] as String,
-    );
+_Team _$TeamFromJson(Map<String, dynamic> json) => _Team(
+  id: json['id'] as String? ?? '',
+  name: json['name'] as String,
+  abbreviation: json['abbreviation'] as String,
+);
 
-Map<String, dynamic> _$$TeamImplToJson(_$TeamImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'abbreviation': instance.abbreviation,
-    };
+Map<String, dynamic> _$TeamToJson(_Team instance) => <String, dynamic>{
+  'name': instance.name,
+  'abbreviation': instance.abbreviation,
+};

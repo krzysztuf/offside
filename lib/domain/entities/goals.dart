@@ -4,7 +4,7 @@ part 'goals.freezed.dart';
 part 'goals.g.dart';
 
 @freezed
-class Goals with _$Goals {
+sealed class Goals with _$Goals {
   const factory Goals({
     @Default(0) int home,
     @Default(0) int away,

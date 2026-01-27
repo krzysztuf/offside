@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,189 +9,302 @@ part of 'user_prediction.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$UserPrediction {
-  User get user => throw _privateConstructorUsedError;
-  MatchOutcome? get prediction => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserPredictionCopyWith<UserPrediction> get copyWith =>
-      throw _privateConstructorUsedError;
+ User get user; MatchOutcome? get prediction;
+/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UserPredictionCopyWith<UserPrediction> get copyWith => _$UserPredictionCopyWithImpl<UserPrediction>(this as UserPrediction, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserPrediction&&(identical(other.user, user) || other.user == user)&&(identical(other.prediction, prediction) || other.prediction == prediction));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,user,prediction);
+
+@override
+String toString() {
+  return 'UserPrediction(user: $user, prediction: $prediction)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UserPredictionCopyWith<$Res> {
-  factory $UserPredictionCopyWith(
-          UserPrediction value, $Res Function(UserPrediction) then) =
-      _$UserPredictionCopyWithImpl<$Res, UserPrediction>;
-  @useResult
-  $Res call({User user, MatchOutcome? prediction});
+abstract mixin class $UserPredictionCopyWith<$Res>  {
+  factory $UserPredictionCopyWith(UserPrediction value, $Res Function(UserPrediction) _then) = _$UserPredictionCopyWithImpl;
+@useResult
+$Res call({
+ User user, MatchOutcome? prediction
+});
 
-  $UserCopyWith<$Res> get user;
-  $MatchOutcomeCopyWith<$Res>? get prediction;
+
+$UserCopyWith<$Res> get user;$MatchOutcomeCopyWith<$Res>? get prediction;
+
 }
-
 /// @nodoc
-class _$UserPredictionCopyWithImpl<$Res, $Val extends UserPrediction>
+class _$UserPredictionCopyWithImpl<$Res>
     implements $UserPredictionCopyWith<$Res> {
-  _$UserPredictionCopyWithImpl(this._value, this._then);
+  _$UserPredictionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UserPrediction _self;
+  final $Res Function(UserPrediction) _then;
 
-  /// Create a copy of UserPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? prediction = freezed,
-  }) {
-    return _then(_value.copyWith(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      prediction: freezed == prediction
-          ? _value.prediction
-          : prediction // ignore: cast_nullable_to_non_nullable
-              as MatchOutcome?,
-    ) as $Val);
+/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? user = null,Object? prediction = freezed,}) {
+  return _then(_self.copyWith(
+user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User,prediction: freezed == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
+as MatchOutcome?,
+  ));
+}
+/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res> get user {
+  
+  return $UserCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MatchOutcomeCopyWith<$Res>? get prediction {
+    if (_self.prediction == null) {
+    return null;
   }
 
-  /// Create a copy of UserPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
+  return $MatchOutcomeCopyWith<$Res>(_self.prediction!, (value) {
+    return _then(_self.copyWith(prediction: value));
+  });
+}
+}
 
-  /// Create a copy of UserPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $MatchOutcomeCopyWith<$Res>? get prediction {
-    if (_value.prediction == null) {
-      return null;
-    }
 
-    return $MatchOutcomeCopyWith<$Res>(_value.prediction!, (value) {
-      return _then(_value.copyWith(prediction: value) as $Val);
-    });
-  }
+/// Adds pattern-matching-related methods to [UserPrediction].
+extension UserPredictionPatterns on UserPrediction {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserPrediction value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UserPrediction() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserPrediction value)  $default,){
+final _that = this;
+switch (_that) {
+case _UserPrediction():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserPrediction value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UserPrediction() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( User user,  MatchOutcome? prediction)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UserPrediction() when $default != null:
+return $default(_that.user,_that.prediction);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( User user,  MatchOutcome? prediction)  $default,) {final _that = this;
+switch (_that) {
+case _UserPrediction():
+return $default(_that.user,_that.prediction);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( User user,  MatchOutcome? prediction)?  $default,) {final _that = this;
+switch (_that) {
+case _UserPrediction() when $default != null:
+return $default(_that.user,_that.prediction);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$UserPredictionImplCopyWith<$Res>
-    implements $UserPredictionCopyWith<$Res> {
-  factory _$$UserPredictionImplCopyWith(_$UserPredictionImpl value,
-          $Res Function(_$UserPredictionImpl) then) =
-      __$$UserPredictionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({User user, MatchOutcome? prediction});
 
-  @override
-  $UserCopyWith<$Res> get user;
-  @override
-  $MatchOutcomeCopyWith<$Res>? get prediction;
+
+class _UserPrediction extends UserPrediction {
+  const _UserPrediction({required this.user, required this.prediction}): super._();
+  
+
+@override final  User user;
+@override final  MatchOutcome? prediction;
+
+/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserPredictionCopyWith<_UserPrediction> get copyWith => __$UserPredictionCopyWithImpl<_UserPrediction>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserPrediction&&(identical(other.user, user) || other.user == user)&&(identical(other.prediction, prediction) || other.prediction == prediction));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,user,prediction);
+
+@override
+String toString() {
+  return 'UserPrediction(user: $user, prediction: $prediction)';
+}
+
+
 }
 
 /// @nodoc
-class __$$UserPredictionImplCopyWithImpl<$Res>
-    extends _$UserPredictionCopyWithImpl<$Res, _$UserPredictionImpl>
-    implements _$$UserPredictionImplCopyWith<$Res> {
-  __$$UserPredictionImplCopyWithImpl(
-      _$UserPredictionImpl _value, $Res Function(_$UserPredictionImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$UserPredictionCopyWith<$Res> implements $UserPredictionCopyWith<$Res> {
+  factory _$UserPredictionCopyWith(_UserPrediction value, $Res Function(_UserPrediction) _then) = __$UserPredictionCopyWithImpl;
+@override @useResult
+$Res call({
+ User user, MatchOutcome? prediction
+});
 
-  /// Create a copy of UserPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? prediction = freezed,
-  }) {
-    return _then(_$UserPredictionImpl(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-      prediction: freezed == prediction
-          ? _value.prediction
-          : prediction // ignore: cast_nullable_to_non_nullable
-              as MatchOutcome?,
-    ));
-  }
+
+@override $UserCopyWith<$Res> get user;@override $MatchOutcomeCopyWith<$Res>? get prediction;
+
 }
-
 /// @nodoc
+class __$UserPredictionCopyWithImpl<$Res>
+    implements _$UserPredictionCopyWith<$Res> {
+  __$UserPredictionCopyWithImpl(this._self, this._then);
 
-class _$UserPredictionImpl extends _UserPrediction {
-  const _$UserPredictionImpl({required this.user, required this.prediction})
-      : super._();
+  final _UserPrediction _self;
+  final $Res Function(_UserPrediction) _then;
 
-  @override
-  final User user;
-  @override
-  final MatchOutcome? prediction;
-
-  @override
-  String toString() {
-    return 'UserPrediction(user: $user, prediction: $prediction)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserPredictionImpl &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.prediction, prediction) ||
-                other.prediction == prediction));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, prediction);
-
-  /// Create a copy of UserPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserPredictionImplCopyWith<_$UserPredictionImpl> get copyWith =>
-      __$$UserPredictionImplCopyWithImpl<_$UserPredictionImpl>(
-          this, _$identity);
+/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? user = null,Object? prediction = freezed,}) {
+  return _then(_UserPrediction(
+user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as User,prediction: freezed == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
+as MatchOutcome?,
+  ));
 }
 
-abstract class _UserPrediction extends UserPrediction {
-  const factory _UserPrediction(
-      {required final User user,
-      required final MatchOutcome? prediction}) = _$UserPredictionImpl;
-  const _UserPrediction._() : super._();
+/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserCopyWith<$Res> get user {
+  
+  return $UserCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}/// Create a copy of UserPrediction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MatchOutcomeCopyWith<$Res>? get prediction {
+    if (_self.prediction == null) {
+    return null;
+  }
 
-  @override
-  User get user;
-  @override
-  MatchOutcome? get prediction;
-
-  /// Create a copy of UserPrediction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserPredictionImplCopyWith<_$UserPredictionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  return $MatchOutcomeCopyWith<$Res>(_self.prediction!, (value) {
+    return _then(_self.copyWith(prediction: value));
+  });
 }
+}
+
+// dart format on

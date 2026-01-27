@@ -6,39 +6,90 @@ part of 'user_page_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userOfUserPageHash() => r'fa4fc3cefcc3232105eb882fb3c2480aefea13e6';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [userOfUserPage].
-@ProviderFor(userOfUserPage)
-final userOfUserPageProvider = AutoDisposeProvider<User>.internal(
-  userOfUserPage,
-  name: r'userOfUserPageProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userOfUserPageHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+@ProviderFor(UserPageController)
+final userPageControllerProvider = UserPageControllerProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef UserOfUserPageRef = AutoDisposeProviderRef<User>;
+final class UserPageControllerProvider
+    extends $AsyncNotifierProvider<UserPageController, UserPageState> {
+  UserPageControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userPageControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userPageControllerHash();
+
+  @$internal
+  @override
+  UserPageController create() => UserPageController();
+}
+
 String _$userPageControllerHash() =>
     r'4ff39127fc0731ecb77b4c030977c6a2ae0957ab';
 
-/// See also [UserPageController].
-@ProviderFor(UserPageController)
-final userPageControllerProvider = AutoDisposeAsyncNotifierProvider<
-    UserPageController, UserPageState>.internal(
-  UserPageController.new,
-  name: r'userPageControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userPageControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$UserPageController extends $AsyncNotifier<UserPageState> {
+  FutureOr<UserPageState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<UserPageState>, UserPageState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<UserPageState>, UserPageState>,
+              AsyncValue<UserPageState>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
 
-typedef _$UserPageController = AutoDisposeAsyncNotifier<UserPageState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+@ProviderFor(userOfUserPage)
+final userOfUserPageProvider = UserOfUserPageProvider._();
+
+final class UserOfUserPageProvider extends $FunctionalProvider<User, User, User>
+    with $Provider<User> {
+  UserOfUserPageProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userOfUserPageProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userOfUserPageHash();
+
+  @$internal
+  @override
+  $ProviderElement<User> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  User create(Ref ref) {
+    return userOfUserPage(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(User value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<User>(value),
+    );
+  }
+}
+
+String _$userOfUserPageHash() => r'a5ad420a209cb23759222396b40b6ebbabf744c1';

@@ -6,23 +6,60 @@ part of 'super_bets_list_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(SuperBetsListController)
+final superBetsListControllerProvider = SuperBetsListControllerProvider._();
+
+final class SuperBetsListControllerProvider
+    extends
+        $AsyncNotifierProvider<
+          SuperBetsListController,
+          Map<Match, List<User>>
+        > {
+  SuperBetsListControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'superBetsListControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$superBetsListControllerHash();
+
+  @$internal
+  @override
+  SuperBetsListController create() => SuperBetsListController();
+}
+
 String _$superBetsListControllerHash() =>
     r'f389331210b69dd0bca50cd45152cf2a4da0a615';
 
-/// See also [SuperBetsListController].
-@ProviderFor(SuperBetsListController)
-final superBetsListControllerProvider = AutoDisposeAsyncNotifierProvider<
-    SuperBetsListController, Map<Match, List<User>>>.internal(
-  SuperBetsListController.new,
-  name: r'superBetsListControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$superBetsListControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SuperBetsListController
-    = AutoDisposeAsyncNotifier<Map<Match, List<User>>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$SuperBetsListController
+    extends $AsyncNotifier<Map<Match, List<User>>> {
+  FutureOr<Map<Match, List<User>>> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref =
+        this.ref
+            as $Ref<AsyncValue<Map<Match, List<User>>>, Map<Match, List<User>>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                AsyncValue<Map<Match, List<User>>>,
+                Map<Match, List<User>>
+              >,
+              AsyncValue<Map<Match, List<User>>>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

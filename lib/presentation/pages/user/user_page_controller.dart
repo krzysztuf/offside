@@ -32,6 +32,6 @@ class UserPageController extends _$UserPageController {
 }
 
 @riverpod
-User userOfUserPage(UserOfUserPageRef ref) {
+User userOfUserPage(Ref ref) {
   throw UnimplementedError('userOfUserPage');
 }

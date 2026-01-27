@@ -4,6 +4,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'user_is_admin.g.dart';
 
 @riverpod
-bool userIsAdmin(UserIsAdminRef ref) {
+bool userIsAdmin(Ref ref) {
   return ref.watch(currentUserIdSettingProvider) == 'h7yVtQFIwgfdvF66afLo';
 }

@@ -4,7 +4,7 @@ import 'package:offside/domain/entities/private_table.dart';
 part 'private_tables_state.freezed.dart';
 
 @freezed
-class PrivateTablesState with _$PrivateTablesState {
+sealed class PrivateTablesState with _$PrivateTablesState {
   const factory PrivateTablesState({
     required List<PrivateTable> tables,
   }) = _PrivateTablesState;

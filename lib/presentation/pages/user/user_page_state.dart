@@ -6,7 +6,7 @@ import 'package:offside/domain/entities/user.dart';
 part 'user_page_state.freezed.dart';
 
 @freezed
-class UserPageState with _$UserPageState {
+sealed class UserPageState with _$UserPageState {
   const factory UserPageState({
     required User user,
     required List<Bet> bets,

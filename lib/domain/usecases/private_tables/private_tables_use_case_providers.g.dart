@@ -6,85 +6,198 @@ part of 'private_tables_use_case_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getAllPrivateTablesUseCaseHash() =>
-    r'a12afe3ab770c145cb4e380603f5a39b578d0802';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [getAllPrivateTablesUseCase].
 @ProviderFor(getAllPrivateTablesUseCase)
 final getAllPrivateTablesUseCaseProvider =
-    AutoDisposeProvider<GetAllPrivateTablesUseCase>.internal(
-  getAllPrivateTablesUseCase,
-  name: r'getAllPrivateTablesUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getAllPrivateTablesUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+    GetAllPrivateTablesUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetAllPrivateTablesUseCaseRef
-    = AutoDisposeProviderRef<GetAllPrivateTablesUseCase>;
-String _$updatePrivateTableUseCaseHash() =>
-    r'0e7ef30d5bb627e532342323cd70a7dc08197f0a';
+final class GetAllPrivateTablesUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetAllPrivateTablesUseCase,
+          GetAllPrivateTablesUseCase,
+          GetAllPrivateTablesUseCase
+        >
+    with $Provider<GetAllPrivateTablesUseCase> {
+  GetAllPrivateTablesUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getAllPrivateTablesUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [updatePrivateTableUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$getAllPrivateTablesUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetAllPrivateTablesUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetAllPrivateTablesUseCase create(Ref ref) {
+    return getAllPrivateTablesUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetAllPrivateTablesUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetAllPrivateTablesUseCase>(value),
+    );
+  }
+}
+
+String _$getAllPrivateTablesUseCaseHash() =>
+    r'9365d3d6ec531c0de5736393b762210f25dfb2bf';
+
 @ProviderFor(updatePrivateTableUseCase)
-final updatePrivateTableUseCaseProvider =
-    AutoDisposeProvider<UpdatePrivateTableUseCase>.internal(
-  updatePrivateTableUseCase,
-  name: r'updatePrivateTableUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$updatePrivateTableUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final updatePrivateTableUseCaseProvider = UpdatePrivateTableUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef UpdatePrivateTableUseCaseRef
-    = AutoDisposeProviderRef<UpdatePrivateTableUseCase>;
-String _$addPrivateTableUseCaseHash() =>
-    r'f68833e75ab952016a2f2179500e6b85d1d6742c';
+final class UpdatePrivateTableUseCaseProvider
+    extends
+        $FunctionalProvider<
+          UpdatePrivateTableUseCase,
+          UpdatePrivateTableUseCase,
+          UpdatePrivateTableUseCase
+        >
+    with $Provider<UpdatePrivateTableUseCase> {
+  UpdatePrivateTableUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'updatePrivateTableUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [addPrivateTableUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$updatePrivateTableUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<UpdatePrivateTableUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UpdatePrivateTableUseCase create(Ref ref) {
+    return updatePrivateTableUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UpdatePrivateTableUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UpdatePrivateTableUseCase>(value),
+    );
+  }
+}
+
+String _$updatePrivateTableUseCaseHash() =>
+    r'88264218fd824a12439ef20851f0245a4cbdc652';
+
 @ProviderFor(addPrivateTableUseCase)
-final addPrivateTableUseCaseProvider =
-    AutoDisposeProvider<AddPrivateTableUseCase>.internal(
-  addPrivateTableUseCase,
-  name: r'addPrivateTableUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$addPrivateTableUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final addPrivateTableUseCaseProvider = AddPrivateTableUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AddPrivateTableUseCaseRef
-    = AutoDisposeProviderRef<AddPrivateTableUseCase>;
-String _$removePrivateTableUseCaseHash() =>
-    r'487543f6b5fe7ec914648e809ea2be52ce483115';
+final class AddPrivateTableUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AddPrivateTableUseCase,
+          AddPrivateTableUseCase,
+          AddPrivateTableUseCase
+        >
+    with $Provider<AddPrivateTableUseCase> {
+  AddPrivateTableUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'addPrivateTableUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [removePrivateTableUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$addPrivateTableUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<AddPrivateTableUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  AddPrivateTableUseCase create(Ref ref) {
+    return addPrivateTableUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AddPrivateTableUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AddPrivateTableUseCase>(value),
+    );
+  }
+}
+
+String _$addPrivateTableUseCaseHash() =>
+    r'52e36d5dc5f2c22f22ba81a1a205812b307ca6e1';
+
 @ProviderFor(removePrivateTableUseCase)
-final removePrivateTableUseCaseProvider =
-    AutoDisposeProvider<RemovePrivateTableUseCase>.internal(
-  removePrivateTableUseCase,
-  name: r'removePrivateTableUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$removePrivateTableUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final removePrivateTableUseCaseProvider = RemovePrivateTableUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef RemovePrivateTableUseCaseRef
-    = AutoDisposeProviderRef<RemovePrivateTableUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class RemovePrivateTableUseCaseProvider
+    extends
+        $FunctionalProvider<
+          RemovePrivateTableUseCase,
+          RemovePrivateTableUseCase,
+          RemovePrivateTableUseCase
+        >
+    with $Provider<RemovePrivateTableUseCase> {
+  RemovePrivateTableUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'removePrivateTableUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$removePrivateTableUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<RemovePrivateTableUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  RemovePrivateTableUseCase create(Ref ref) {
+    return removePrivateTableUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(RemovePrivateTableUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<RemovePrivateTableUseCase>(value),
+    );
+  }
+}
+
+String _$removePrivateTableUseCaseHash() =>
+    r'08033971a213df36c87b37c90aff0d07ed1f25c4';

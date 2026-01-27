@@ -1,9 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:offside/domain/entities/app_setting.dart';
 
 import 'settings_use_cases.dart';
 
-mixin ReactiveSetting<T> on AutoDisposeNotifier<T> {
+mixin ReactiveSetting<T> on $Notifier<T> {
   AppSetting get setting;
 
   T get value {

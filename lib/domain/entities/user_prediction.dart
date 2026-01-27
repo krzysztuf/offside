@@ -6,7 +6,7 @@ import 'match_outcome.dart';
 part 'user_prediction.freezed.dart';
 
 @freezed
-class UserPrediction with _$UserPrediction {
+sealed class UserPrediction with _$UserPrediction {
   const factory UserPrediction({
     required User user,
     required MatchOutcome? prediction,

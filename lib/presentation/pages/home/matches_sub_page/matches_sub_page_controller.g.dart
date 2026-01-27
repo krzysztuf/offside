@@ -6,22 +6,59 @@ part of 'matches_sub_page_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(MatchesSubPageController)
+final matchesSubPageControllerProvider = MatchesSubPageControllerProvider._();
+
+final class MatchesSubPageControllerProvider
+    extends $NotifierProvider<MatchesSubPageController, MatchesSubPageState> {
+  MatchesSubPageControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'matchesSubPageControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$matchesSubPageControllerHash();
+
+  @$internal
+  @override
+  MatchesSubPageController create() => MatchesSubPageController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MatchesSubPageState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MatchesSubPageState>(value),
+    );
+  }
+}
+
 String _$matchesSubPageControllerHash() =>
     r'100bd01ee6781f0cf8fe92233ffb655305c5c906';
 
-/// See also [MatchesSubPageController].
-@ProviderFor(MatchesSubPageController)
-final matchesSubPageControllerProvider = AutoDisposeNotifierProvider<
-    MatchesSubPageController, MatchesSubPageState>.internal(
-  MatchesSubPageController.new,
-  name: r'matchesSubPageControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$matchesSubPageControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$MatchesSubPageController = AutoDisposeNotifier<MatchesSubPageState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$MatchesSubPageController
+    extends $Notifier<MatchesSubPageState> {
+  MatchesSubPageState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<MatchesSubPageState, MatchesSubPageState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<MatchesSubPageState, MatchesSubPageState>,
+              MatchesSubPageState,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

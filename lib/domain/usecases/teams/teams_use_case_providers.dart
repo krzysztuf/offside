@@ -5,11 +5,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'teams_use_case_providers.g.dart';
 
 @riverpod
-GetAllTeamsUseCase getAllTeamsUseCase(GetAllTeamsUseCaseRef ref) {
+GetAllTeamsUseCase getAllTeamsUseCase(Ref ref) {
   return GetAllTeamsUseCase(ref.watch(teamsRepositoryProvider));
 }
 
 @riverpod
-GetWinnerTeamIdUseCase getWinnerTeamIdUseCase(GetWinnerTeamIdUseCaseRef ref) {
+GetWinnerTeamIdUseCase getWinnerTeamIdUseCase(Ref ref) {
   return GetWinnerTeamIdUseCase();
 }

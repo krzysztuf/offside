@@ -6,7 +6,7 @@ part 'private_table.freezed.dart';
 part 'private_table.g.dart';
 
 @freezed
-class PrivateTable with _$PrivateTable {
+sealed class PrivateTable with _$PrivateTable {
   const factory PrivateTable({
     @Default('') String id,
     required String name,

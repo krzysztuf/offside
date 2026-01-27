@@ -108,6 +108,6 @@ class MatchCardController extends _$MatchCardController {
 }
 
 @riverpod
-Match currentCardMatch(CurrentCardMatchRef ref) {
+Match currentCardMatch(Ref ref) {
   return throw UnimplementedError('currentCardMatch unimplemented');
 }

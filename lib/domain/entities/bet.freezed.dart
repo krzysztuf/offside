@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,234 +9,292 @@ part of 'bet.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Bet _$BetFromJson(Map<String, dynamic> json) {
-  return _Bet.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Bet {
+
 // ignore: invalid_annotation_target
-  @JsonKey(includeToJson: false)
-  String get id => throw _privateConstructorUsedError;
-  String get matchId => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  MatchOutcome get prediction => throw _privateConstructorUsedError;
+@JsonKey(includeToJson: false) String get id; String get matchId; String get userId; MatchOutcome get prediction;
+/// Create a copy of Bet
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$BetCopyWith<Bet> get copyWith => _$BetCopyWithImpl<Bet>(this as Bet, _$identity);
 
   /// Serializes this Bet to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of Bet
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BetCopyWith<Bet> get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Bet&&(identical(other.id, id) || other.id == id)&&(identical(other.matchId, matchId) || other.matchId == matchId)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.prediction, prediction) || other.prediction == prediction));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,matchId,userId,prediction);
+
+@override
+String toString() {
+  return 'Bet(id: $id, matchId: $matchId, userId: $userId, prediction: $prediction)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $BetCopyWith<$Res> {
-  factory $BetCopyWith(Bet value, $Res Function(Bet) then) =
-      _$BetCopyWithImpl<$Res, Bet>;
-  @useResult
-  $Res call(
-      {@JsonKey(includeToJson: false) String id,
-      String matchId,
-      String userId,
-      MatchOutcome prediction});
+abstract mixin class $BetCopyWith<$Res>  {
+  factory $BetCopyWith(Bet value, $Res Function(Bet) _then) = _$BetCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(includeToJson: false) String id, String matchId, String userId, MatchOutcome prediction
+});
 
-  $MatchOutcomeCopyWith<$Res> get prediction;
+
+$MatchOutcomeCopyWith<$Res> get prediction;
+
+}
+/// @nodoc
+class _$BetCopyWithImpl<$Res>
+    implements $BetCopyWith<$Res> {
+  _$BetCopyWithImpl(this._self, this._then);
+
+  final Bet _self;
+  final $Res Function(Bet) _then;
+
+/// Create a copy of Bet
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? matchId = null,Object? userId = null,Object? prediction = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,matchId: null == matchId ? _self.matchId : matchId // ignore: cast_nullable_to_non_nullable
+as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as String,prediction: null == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
+as MatchOutcome,
+  ));
+}
+/// Create a copy of Bet
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MatchOutcomeCopyWith<$Res> get prediction {
+  
+  return $MatchOutcomeCopyWith<$Res>(_self.prediction, (value) {
+    return _then(_self.copyWith(prediction: value));
+  });
+}
 }
 
-/// @nodoc
-class _$BetCopyWithImpl<$Res, $Val extends Bet> implements $BetCopyWith<$Res> {
-  _$BetCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [Bet].
+extension BetPatterns on Bet {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of Bet
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? matchId = null,
-    Object? userId = null,
-    Object? prediction = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      matchId: null == matchId
-          ? _value.matchId
-          : matchId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      prediction: null == prediction
-          ? _value.prediction
-          : prediction // ignore: cast_nullable_to_non_nullable
-              as MatchOutcome,
-    ) as $Val);
-  }
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Bet value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Bet() when $default != null:
+return $default(_that);case _:
+  return orElse();
 
-  /// Create a copy of Bet
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $MatchOutcomeCopyWith<$Res> get prediction {
-    return $MatchOutcomeCopyWith<$Res>(_value.prediction, (value) {
-      return _then(_value.copyWith(prediction: value) as $Val);
-    });
-  }
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Bet value)  $default,){
+final _that = this;
+switch (_that) {
+case _Bet():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Bet value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Bet() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  String id,  String matchId,  String userId,  MatchOutcome prediction)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Bet() when $default != null:
+return $default(_that.id,_that.matchId,_that.userId,_that.prediction);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  String id,  String matchId,  String userId,  MatchOutcome prediction)  $default,) {final _that = this;
+switch (_that) {
+case _Bet():
+return $default(_that.id,_that.matchId,_that.userId,_that.prediction);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(includeToJson: false)  String id,  String matchId,  String userId,  MatchOutcome prediction)?  $default,) {final _that = this;
+switch (_that) {
+case _Bet() when $default != null:
+return $default(_that.id,_that.matchId,_that.userId,_that.prediction);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$BetImplCopyWith<$Res> implements $BetCopyWith<$Res> {
-  factory _$$BetImplCopyWith(_$BetImpl value, $Res Function(_$BetImpl) then) =
-      __$$BetImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(includeToJson: false) String id,
-      String matchId,
-      String userId,
-      MatchOutcome prediction});
-
-  @override
-  $MatchOutcomeCopyWith<$Res> get prediction;
-}
-
-/// @nodoc
-class __$$BetImplCopyWithImpl<$Res> extends _$BetCopyWithImpl<$Res, _$BetImpl>
-    implements _$$BetImplCopyWith<$Res> {
-  __$$BetImplCopyWithImpl(_$BetImpl _value, $Res Function(_$BetImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Bet
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? matchId = null,
-    Object? userId = null,
-    Object? prediction = null,
-  }) {
-    return _then(_$BetImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      matchId: null == matchId
-          ? _value.matchId
-          : matchId // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      prediction: null == prediction
-          ? _value.prediction
-          : prediction // ignore: cast_nullable_to_non_nullable
-              as MatchOutcome,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BetImpl implements _Bet {
-  const _$BetImpl(
-      {@JsonKey(includeToJson: false) this.id = '',
-      required this.matchId,
-      required this.userId,
-      required this.prediction});
 
-  factory _$BetImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BetImplFromJson(json);
+class _Bet implements Bet {
+  const _Bet({@JsonKey(includeToJson: false) this.id = '', required this.matchId, required this.userId, required this.prediction});
+  factory _Bet.fromJson(Map<String, dynamic> json) => _$BetFromJson(json);
 
 // ignore: invalid_annotation_target
-  @override
-  @JsonKey(includeToJson: false)
-  final String id;
-  @override
-  final String matchId;
-  @override
-  final String userId;
-  @override
-  final MatchOutcome prediction;
+@override@JsonKey(includeToJson: false) final  String id;
+@override final  String matchId;
+@override final  String userId;
+@override final  MatchOutcome prediction;
 
-  @override
-  String toString() {
-    return 'Bet(id: $id, matchId: $matchId, userId: $userId, prediction: $prediction)';
-  }
+/// Create a copy of Bet
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BetCopyWith<_Bet> get copyWith => __$BetCopyWithImpl<_Bet>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BetImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.matchId, matchId) || other.matchId == matchId) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.prediction, prediction) ||
-                other.prediction == prediction));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, matchId, userId, prediction);
-
-  /// Create a copy of Bet
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BetImplCopyWith<_$BetImpl> get copyWith =>
-      __$$BetImplCopyWithImpl<_$BetImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BetImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$BetToJson(this, );
 }
 
-abstract class _Bet implements Bet {
-  const factory _Bet(
-      {@JsonKey(includeToJson: false) final String id,
-      required final String matchId,
-      required final String userId,
-      required final MatchOutcome prediction}) = _$BetImpl;
-
-  factory _Bet.fromJson(Map<String, dynamic> json) = _$BetImpl.fromJson;
-
-// ignore: invalid_annotation_target
-  @override
-  @JsonKey(includeToJson: false)
-  String get id;
-  @override
-  String get matchId;
-  @override
-  String get userId;
-  @override
-  MatchOutcome get prediction;
-
-  /// Create a copy of Bet
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BetImplCopyWith<_$BetImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Bet&&(identical(other.id, id) || other.id == id)&&(identical(other.matchId, matchId) || other.matchId == matchId)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.prediction, prediction) || other.prediction == prediction));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,matchId,userId,prediction);
+
+@override
+String toString() {
+  return 'Bet(id: $id, matchId: $matchId, userId: $userId, prediction: $prediction)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BetCopyWith<$Res> implements $BetCopyWith<$Res> {
+  factory _$BetCopyWith(_Bet value, $Res Function(_Bet) _then) = __$BetCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(includeToJson: false) String id, String matchId, String userId, MatchOutcome prediction
+});
+
+
+@override $MatchOutcomeCopyWith<$Res> get prediction;
+
+}
+/// @nodoc
+class __$BetCopyWithImpl<$Res>
+    implements _$BetCopyWith<$Res> {
+  __$BetCopyWithImpl(this._self, this._then);
+
+  final _Bet _self;
+  final $Res Function(_Bet) _then;
+
+/// Create a copy of Bet
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? matchId = null,Object? userId = null,Object? prediction = null,}) {
+  return _then(_Bet(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,matchId: null == matchId ? _self.matchId : matchId // ignore: cast_nullable_to_non_nullable
+as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as String,prediction: null == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
+as MatchOutcome,
+  ));
+}
+
+/// Create a copy of Bet
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MatchOutcomeCopyWith<$Res> get prediction {
+  
+  return $MatchOutcomeCopyWith<$Res>(_self.prediction, (value) {
+    return _then(_self.copyWith(prediction: value));
+  });
+}
+}
+
+// dart format on

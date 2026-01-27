@@ -6,23 +6,47 @@ part of 'competition_started_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$competitionStartedHash() =>
-    r'857ccc1da7460cd65ea757fc3a6aba91c9f6374e';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [competitionStarted].
 @ProviderFor(competitionStarted)
-final competitionStartedProvider = AutoDisposeProvider<bool>.internal(
-  competitionStarted,
-  name: r'competitionStartedProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$competitionStartedHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final competitionStartedProvider = CompetitionStartedProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CompetitionStartedRef = AutoDisposeProviderRef<bool>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class CompetitionStartedProvider
+    extends $FunctionalProvider<bool, bool, bool>
+    with $Provider<bool> {
+  CompetitionStartedProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'competitionStartedProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$competitionStartedHash();
+
+  @$internal
+  @override
+  $ProviderElement<bool> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  bool create(Ref ref) {
+    return competitionStarted(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(bool value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<bool>(value),
+    );
+  }
+}
+
+String _$competitionStartedHash() =>
+    r'c4f107d20ea89e3bc168a7e6d9fc292a5ce3a939';

@@ -5,7 +5,7 @@ import 'package:offside/domain/entities/user_prediction.dart';
 part 'match_bets_state.freezed.dart';
 
 @freezed
-class MatchBetsState with _$MatchBetsState {
+sealed class MatchBetsState with _$MatchBetsState {
   const factory MatchBetsState({
     required bool loading,
     required Match match,

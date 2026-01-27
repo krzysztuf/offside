@@ -6,291 +6,413 @@ part of 'match_use_case_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getAllMatchesUseCaseHash() =>
-    r'7a8e3e89953a697073b2f52227900135355117cf';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [getAllMatchesUseCase].
 @ProviderFor(getAllMatchesUseCase)
-final getAllMatchesUseCaseProvider =
-    AutoDisposeProvider<GetAllMatchesUseCase>.internal(
-  getAllMatchesUseCase,
-  name: r'getAllMatchesUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getAllMatchesUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getAllMatchesUseCaseProvider = GetAllMatchesUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetAllMatchesUseCaseRef = AutoDisposeProviderRef<GetAllMatchesUseCase>;
-String _$placeBetUseCaseHash() => r'7c3e8dfd015d0163d3fb635cd9fbceab6a2e7f1c';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [placeBetUseCase].
-@ProviderFor(placeBetUseCase)
-const placeBetUseCaseProvider = PlaceBetUseCaseFamily();
-
-/// See also [placeBetUseCase].
-class PlaceBetUseCaseFamily extends Family<PlaceBetUseCase> {
-  /// See also [placeBetUseCase].
-  const PlaceBetUseCaseFamily();
-
-  /// See also [placeBetUseCase].
-  PlaceBetUseCaseProvider call(
-    Match match,
-  ) {
-    return PlaceBetUseCaseProvider(
-      match,
-    );
-  }
-
-  @override
-  PlaceBetUseCaseProvider getProviderOverride(
-    covariant PlaceBetUseCaseProvider provider,
-  ) {
-    return call(
-      provider.match,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'placeBetUseCaseProvider';
-}
-
-/// See also [placeBetUseCase].
-class PlaceBetUseCaseProvider extends AutoDisposeProvider<PlaceBetUseCase> {
-  /// See also [placeBetUseCase].
-  PlaceBetUseCaseProvider(
-    Match match,
-  ) : this._internal(
-          (ref) => placeBetUseCase(
-            ref as PlaceBetUseCaseRef,
-            match,
-          ),
-          from: placeBetUseCaseProvider,
-          name: r'placeBetUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$placeBetUseCaseHash,
-          dependencies: PlaceBetUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              PlaceBetUseCaseFamily._allTransitiveDependencies,
-          match: match,
-        );
-
-  PlaceBetUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.match,
-  }) : super.internal();
-
-  final Match match;
-
-  @override
-  Override overrideWith(
-    PlaceBetUseCase Function(PlaceBetUseCaseRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: PlaceBetUseCaseProvider._internal(
-        (ref) => create(ref as PlaceBetUseCaseRef),
-        from: from,
-        name: null,
+final class GetAllMatchesUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetAllMatchesUseCase,
+          GetAllMatchesUseCase,
+          GetAllMatchesUseCase
+        >
+    with $Provider<GetAllMatchesUseCase> {
+  GetAllMatchesUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getAllMatchesUseCaseProvider',
+        isAutoDispose: true,
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        match: match,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+      );
 
   @override
-  AutoDisposeProviderElement<PlaceBetUseCase> createElement() {
-    return _PlaceBetUseCaseProviderElement(this);
+  String debugGetCreateSourceHash() => _$getAllMatchesUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetAllMatchesUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetAllMatchesUseCase create(Ref ref) {
+    return getAllMatchesUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetAllMatchesUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetAllMatchesUseCase>(value),
+    );
+  }
+}
+
+String _$getAllMatchesUseCaseHash() =>
+    r'02a15fb163df047af25b1e7b7b585ca57da11e39';
+
+@ProviderFor(placeBetUseCase)
+final placeBetUseCaseProvider = PlaceBetUseCaseFamily._();
+
+final class PlaceBetUseCaseProvider
+    extends
+        $FunctionalProvider<PlaceBetUseCase, PlaceBetUseCase, PlaceBetUseCase>
+    with $Provider<PlaceBetUseCase> {
+  PlaceBetUseCaseProvider._({
+    required PlaceBetUseCaseFamily super.from,
+    required Match super.argument,
+  }) : super(
+         retry: null,
+         name: r'placeBetUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$placeBetUseCaseHash();
+
+  @override
+  String toString() {
+    return r'placeBetUseCaseProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<PlaceBetUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  PlaceBetUseCase create(Ref ref) {
+    final argument = this.argument as Match;
+    return placeBetUseCase(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PlaceBetUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PlaceBetUseCase>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is PlaceBetUseCaseProvider && other.match == match;
+    return other is PlaceBetUseCaseProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, match.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin PlaceBetUseCaseRef on AutoDisposeProviderRef<PlaceBetUseCase> {
-  /// The parameter `match` of this provider.
-  Match get match;
-}
+String _$placeBetUseCaseHash() => r'd1d02e74eac4299278e2739d0cfd4f16c6cef2ad';
 
-class _PlaceBetUseCaseProviderElement
-    extends AutoDisposeProviderElement<PlaceBetUseCase>
-    with PlaceBetUseCaseRef {
-  _PlaceBetUseCaseProviderElement(super.provider);
+final class PlaceBetUseCaseFamily extends $Family
+    with $FunctionalFamilyOverride<PlaceBetUseCase, Match> {
+  PlaceBetUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'placeBetUseCaseProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  PlaceBetUseCaseProvider call(Match match) =>
+      PlaceBetUseCaseProvider._(argument: match, from: this);
 
   @override
-  Match get match => (origin as PlaceBetUseCaseProvider).match;
+  String toString() => r'placeBetUseCaseProvider';
+}
+
+@ProviderFor(updateMatchUseCase)
+final updateMatchUseCaseProvider = UpdateMatchUseCaseProvider._();
+
+final class UpdateMatchUseCaseProvider
+    extends
+        $FunctionalProvider<
+          UpdateMatchUseCase,
+          UpdateMatchUseCase,
+          UpdateMatchUseCase
+        >
+    with $Provider<UpdateMatchUseCase> {
+  UpdateMatchUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'updateMatchUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$updateMatchUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<UpdateMatchUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UpdateMatchUseCase create(Ref ref) {
+    return updateMatchUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UpdateMatchUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UpdateMatchUseCase>(value),
+    );
+  }
 }
 
 String _$updateMatchUseCaseHash() =>
-    r'062d26a6799fe7f49f456a6699ae3b69da6477e4';
+    r'c61291df774d51ab5ac20ed3a6fda8f69765f97f';
 
-/// See also [updateMatchUseCase].
-@ProviderFor(updateMatchUseCase)
-final updateMatchUseCaseProvider =
-    AutoDisposeProvider<UpdateMatchUseCase>.internal(
-  updateMatchUseCase,
-  name: r'updateMatchUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$updateMatchUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef UpdateMatchUseCaseRef = AutoDisposeProviderRef<UpdateMatchUseCase>;
-String _$addMatchUseCaseHash() => r'e15c7cdc7d620def4510817ea689107e528622af';
-
-/// See also [addMatchUseCase].
 @ProviderFor(addMatchUseCase)
-final addMatchUseCaseProvider = AutoDisposeProvider<AddMatchUseCase>.internal(
-  addMatchUseCase,
-  name: r'addMatchUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$addMatchUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final addMatchUseCaseProvider = AddMatchUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AddMatchUseCaseRef = AutoDisposeProviderRef<AddMatchUseCase>;
-String _$removeMatchUseCaseHash() =>
-    r'7fcbfe501ececb390b8cd43438529c5fa39722bf';
+final class AddMatchUseCaseProvider
+    extends
+        $FunctionalProvider<AddMatchUseCase, AddMatchUseCase, AddMatchUseCase>
+    with $Provider<AddMatchUseCase> {
+  AddMatchUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'addMatchUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [removeMatchUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$addMatchUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<AddMatchUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AddMatchUseCase create(Ref ref) {
+    return addMatchUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AddMatchUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AddMatchUseCase>(value),
+    );
+  }
+}
+
+String _$addMatchUseCaseHash() => r'f412e70afa2ef137e7d36fa01e762ecf959dd72d';
+
 @ProviderFor(removeMatchUseCase)
-final removeMatchUseCaseProvider =
-    AutoDisposeProvider<RemoveMatchUseCase>.internal(
-  removeMatchUseCase,
-  name: r'removeMatchUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$removeMatchUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final removeMatchUseCaseProvider = RemoveMatchUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef RemoveMatchUseCaseRef = AutoDisposeProviderRef<RemoveMatchUseCase>;
-String _$getRecentMatchesUseCaseHash() =>
-    r'20a43d09a593f6be88bb18178cc428e0974ef925';
+final class RemoveMatchUseCaseProvider
+    extends
+        $FunctionalProvider<
+          RemoveMatchUseCase,
+          RemoveMatchUseCase,
+          RemoveMatchUseCase
+        >
+    with $Provider<RemoveMatchUseCase> {
+  RemoveMatchUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'removeMatchUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [getRecentMatchesUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$removeMatchUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<RemoveMatchUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  RemoveMatchUseCase create(Ref ref) {
+    return removeMatchUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(RemoveMatchUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<RemoveMatchUseCase>(value),
+    );
+  }
+}
+
+String _$removeMatchUseCaseHash() =>
+    r'a8bc87ed61971f40040b584afc0532ca36f71e7a';
+
 @ProviderFor(getRecentMatchesUseCase)
-final getRecentMatchesUseCaseProvider =
-    AutoDisposeProvider<GetRecentMatchesUseCase>.internal(
-  getRecentMatchesUseCase,
-  name: r'getRecentMatchesUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getRecentMatchesUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getRecentMatchesUseCaseProvider = GetRecentMatchesUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetRecentMatchesUseCaseRef
-    = AutoDisposeProviderRef<GetRecentMatchesUseCase>;
-String _$getUpcomingMatchesUseCaseHash() =>
-    r'0e5c63466b5ab15c783a7965891e2d67e847e9fc';
+final class GetRecentMatchesUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetRecentMatchesUseCase,
+          GetRecentMatchesUseCase,
+          GetRecentMatchesUseCase
+        >
+    with $Provider<GetRecentMatchesUseCase> {
+  GetRecentMatchesUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getRecentMatchesUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [getUpcomingMatchesUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$getRecentMatchesUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetRecentMatchesUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetRecentMatchesUseCase create(Ref ref) {
+    return getRecentMatchesUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetRecentMatchesUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetRecentMatchesUseCase>(value),
+    );
+  }
+}
+
+String _$getRecentMatchesUseCaseHash() =>
+    r'702b55841b1f78aba9be3bee753f5f499130cc38';
+
 @ProviderFor(getUpcomingMatchesUseCase)
-final getUpcomingMatchesUseCaseProvider =
-    AutoDisposeProvider<GetUpcomingMatchesUseCase>.internal(
-  getUpcomingMatchesUseCase,
-  name: r'getUpcomingMatchesUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getUpcomingMatchesUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getUpcomingMatchesUseCaseProvider = GetUpcomingMatchesUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetUpcomingMatchesUseCaseRef
-    = AutoDisposeProviderRef<GetUpcomingMatchesUseCase>;
-String _$getMatchHistoryUseCaseHash() =>
-    r'8eef45e48f52eb14f78611909a40567e72268270';
+final class GetUpcomingMatchesUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetUpcomingMatchesUseCase,
+          GetUpcomingMatchesUseCase,
+          GetUpcomingMatchesUseCase
+        >
+    with $Provider<GetUpcomingMatchesUseCase> {
+  GetUpcomingMatchesUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getUpcomingMatchesUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [getMatchHistoryUseCase].
+  @override
+  String debugGetCreateSourceHash() => _$getUpcomingMatchesUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetUpcomingMatchesUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetUpcomingMatchesUseCase create(Ref ref) {
+    return getUpcomingMatchesUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetUpcomingMatchesUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetUpcomingMatchesUseCase>(value),
+    );
+  }
+}
+
+String _$getUpcomingMatchesUseCaseHash() =>
+    r'5e3f28e250015aa5f77ac1cbcd9d2893879c2dd6';
+
 @ProviderFor(getMatchHistoryUseCase)
-final getMatchHistoryUseCaseProvider =
-    AutoDisposeProvider<GetMatchHistoryUseCase>.internal(
-  getMatchHistoryUseCase,
-  name: r'getMatchHistoryUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getMatchHistoryUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getMatchHistoryUseCaseProvider = GetMatchHistoryUseCaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetMatchHistoryUseCaseRef
-    = AutoDisposeProviderRef<GetMatchHistoryUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class GetMatchHistoryUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetMatchHistoryUseCase,
+          GetMatchHistoryUseCase,
+          GetMatchHistoryUseCase
+        >
+    with $Provider<GetMatchHistoryUseCase> {
+  GetMatchHistoryUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getMatchHistoryUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getMatchHistoryUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetMatchHistoryUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetMatchHistoryUseCase create(Ref ref) {
+    return getMatchHistoryUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetMatchHistoryUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetMatchHistoryUseCase>(value),
+    );
+  }
+}
+
+String _$getMatchHistoryUseCaseHash() =>
+    r'06862d6a52d374d4a8915eeb3916227a2fcd3d05';

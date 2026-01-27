@@ -5,7 +5,7 @@ part 'bet.freezed.dart';
 part 'bet.g.dart';
 
 @freezed
-class Bet with _$Bet {
+sealed class Bet with _$Bet {
   const factory Bet({
     // ignore: invalid_annotation_target
     @Default('') @JsonKey(includeToJson: false) String id,

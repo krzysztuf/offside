@@ -24,6 +24,7 @@ class PredictionsChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
+    final colors = [colorScheme.primary, colorScheme.secondary, colorScheme.tertiary];
     return SizedBox(
       width: 240,
       child: AspectRatio(
@@ -33,21 +34,20 @@ class PredictionsChart extends StatelessWidget {
             OrdinalData(
               domain: match.homeTeam.value.abbreviation,
               measure: homeWins.length,
-              color: colorScheme.primary,
             ),
             OrdinalData(
               domain: match.awayTeam.value.abbreviation,
               measure: awayWins.length,
-              color: colorScheme.secondary,
             ),
             OrdinalData(
               domain: 'REMIS',
               measure: draws.length,
-              color: colorScheme.tertiary,
             ),
           ],
-          configRenderPie: ConfigRenderPie(
-            arcLabelDecorator: ArcLabelDecorator(
+          configSeriesPie: ConfigSeriesPieO(
+            customColor: (group, data, index) => colors[index ?? 0],
+            showLabel: true,
+            arcLabelDecorator: ArcLabelDecoratorO(
               leaderLineStyle: ArcLabelLeaderLineStyle(
                 color: context.textTheme.bodySmall!.color!,
                 length: 20,
@@ -60,8 +60,6 @@ class PredictionsChart extends StatelessWidget {
               showLeaderLines: true,
             ),
           ),
-          // configRenderPie: ConfigRenderPie(
-          // ),
         ),
       ),
     );

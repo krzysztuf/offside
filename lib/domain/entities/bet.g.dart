@@ -6,16 +6,15 @@ part of 'bet.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BetImpl _$$BetImplFromJson(Map<String, dynamic> json) => _$BetImpl(
-      id: json['id'] as String? ?? '',
-      matchId: json['matchId'] as String,
-      userId: json['userId'] as String,
-      prediction:
-          MatchOutcome.fromJson(json['prediction'] as Map<String, dynamic>),
-    );
+_Bet _$BetFromJson(Map<String, dynamic> json) => _Bet(
+  id: json['id'] as String? ?? '',
+  matchId: json['matchId'] as String,
+  userId: json['userId'] as String,
+  prediction: MatchOutcome.fromJson(json['prediction'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$BetImplToJson(_$BetImpl instance) => <String, dynamic>{
-      'matchId': instance.matchId,
-      'userId': instance.userId,
-      'prediction': instance.prediction,
-    };
+Map<String, dynamic> _$BetToJson(_Bet instance) => <String, dynamic>{
+  'matchId': instance.matchId,
+  'userId': instance.userId,
+  'prediction': instance.prediction,
+};

@@ -6,21 +6,46 @@ part of 'date_time_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dateTimeHash() => r'2785dad60ee2d1b899147fd918d5b4fd528b379b';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [dateTime].
 @ProviderFor(dateTime)
-final dateTimeProvider = AutoDisposeProvider<DateTime>.internal(
-  dateTime,
-  name: r'dateTimeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$dateTimeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final dateTimeProvider = DateTimeProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef DateTimeRef = AutoDisposeProviderRef<DateTime>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class DateTimeProvider
+    extends $FunctionalProvider<DateTime, DateTime, DateTime>
+    with $Provider<DateTime> {
+  DateTimeProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'dateTimeProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$dateTimeHash();
+
+  @$internal
+  @override
+  $ProviderElement<DateTime> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  DateTime create(Ref ref) {
+    return dateTime(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(DateTime value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<DateTime>(value),
+    );
+  }
+}
+
+String _$dateTimeHash() => r'e3f23ca4dcc4ef8d2c5a25efb6568f9244df3720';

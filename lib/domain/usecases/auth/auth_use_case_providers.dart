@@ -5,11 +5,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'auth_use_case_providers.g.dart';
 
 @riverpod
-LogInUseCase logInUseCase(LogInUseCaseRef ref) {
+LogInUseCase logInUseCase(Ref ref) {
   return LogInUseCase(ref.read(authRepositoryProvider));
 }
 
 @riverpod
-LogOutUseCase logOutUseCase(LogOutUseCaseRef ref) {
+LogOutUseCase logOutUseCase(Ref ref) {
   return LogOutUseCase(ref.read(authRepositoryProvider));
 }

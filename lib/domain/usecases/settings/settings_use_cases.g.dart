@@ -6,1464 +6,882 @@ part of 'settings_use_cases.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getBoolSettingUseCaseHash() =>
-    r'4837d2bef9daedfa0968249e3e489670cd63d75a';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [getBoolSettingUseCase].
 @ProviderFor(getBoolSettingUseCase)
-const getBoolSettingUseCaseProvider = GetBoolSettingUseCaseFamily();
+final getBoolSettingUseCaseProvider = GetBoolSettingUseCaseFamily._();
 
-/// See also [getBoolSettingUseCase].
-class GetBoolSettingUseCaseFamily extends Family<SettingsGetUseCase<bool>> {
-  /// See also [getBoolSettingUseCase].
-  const GetBoolSettingUseCaseFamily();
+final class GetBoolSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsGetUseCase<bool>,
+          SettingsGetUseCase<bool>,
+          SettingsGetUseCase<bool>
+        >
+    with $Provider<SettingsGetUseCase<bool>> {
+  GetBoolSettingUseCaseProvider._({
+    required GetBoolSettingUseCaseFamily super.from,
+    required AppSetting super.argument,
+  }) : super(
+         retry: null,
+         name: r'getBoolSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [getBoolSettingUseCase].
-  GetBoolSettingUseCaseProvider call(
-    AppSetting setting,
-  ) {
-    return GetBoolSettingUseCaseProvider(
-      setting,
-    );
+  @override
+  String debugGetCreateSourceHash() => _$getBoolSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'getBoolSettingUseCaseProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  GetBoolSettingUseCaseProvider getProviderOverride(
-    covariant GetBoolSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-    );
+  $ProviderElement<SettingsGetUseCase<bool>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsGetUseCase<bool> create(Ref ref) {
+    final argument = this.argument as AppSetting;
+    return getBoolSettingUseCase(ref, argument);
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getBoolSettingUseCaseProvider';
-}
-
-/// See also [getBoolSettingUseCase].
-class GetBoolSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsGetUseCase<bool>> {
-  /// See also [getBoolSettingUseCase].
-  GetBoolSettingUseCaseProvider(
-    AppSetting setting,
-  ) : this._internal(
-          (ref) => getBoolSettingUseCase(
-            ref as GetBoolSettingUseCaseRef,
-            setting,
-          ),
-          from: getBoolSettingUseCaseProvider,
-          name: r'getBoolSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getBoolSettingUseCaseHash,
-          dependencies: GetBoolSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              GetBoolSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-        );
-
-  GetBoolSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-  }) : super.internal();
-
-  final AppSetting setting;
-
-  @override
-  Override overrideWith(
-    SettingsGetUseCase<bool> Function(GetBoolSettingUseCaseRef provider) create,
-  ) {
-    return ProviderOverride(
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsGetUseCase<bool> value) {
+    return $ProviderOverride(
       origin: this,
-      override: GetBoolSettingUseCaseProvider._internal(
-        (ref) => create(ref as GetBoolSettingUseCaseRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-      ),
+      providerOverride: $SyncValueProvider<SettingsGetUseCase<bool>>(value),
     );
-  }
-
-  @override
-  AutoDisposeProviderElement<SettingsGetUseCase<bool>> createElement() {
-    return _GetBoolSettingUseCaseProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetBoolSettingUseCaseProvider && other.setting == setting;
+    return other is GetBoolSettingUseCaseProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin GetBoolSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsGetUseCase<bool>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
-}
+String _$getBoolSettingUseCaseHash() =>
+    r'8633a59846c68c8b8dfe93421a6a158a546ec699';
 
-class _GetBoolSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsGetUseCase<bool>>
-    with GetBoolSettingUseCaseRef {
-  _GetBoolSettingUseCaseProviderElement(super.provider);
+final class GetBoolSettingUseCaseFamily extends $Family
+    with $FunctionalFamilyOverride<SettingsGetUseCase<bool>, AppSetting> {
+  GetBoolSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'getBoolSettingUseCaseProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  GetBoolSettingUseCaseProvider call(AppSetting setting) =>
+      GetBoolSettingUseCaseProvider._(argument: setting, from: this);
 
   @override
-  AppSetting get setting => (origin as GetBoolSettingUseCaseProvider).setting;
+  String toString() => r'getBoolSettingUseCaseProvider';
+}
+
+@ProviderFor(setBoolSettingUseCase)
+final setBoolSettingUseCaseProvider = SetBoolSettingUseCaseFamily._();
+
+final class SetBoolSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsSetUseCase<bool>,
+          SettingsSetUseCase<bool>,
+          SettingsSetUseCase<bool>
+        >
+    with $Provider<SettingsSetUseCase<bool>> {
+  SetBoolSettingUseCaseProvider._({
+    required SetBoolSettingUseCaseFamily super.from,
+    required (AppSetting, bool) super.argument,
+  }) : super(
+         retry: null,
+         name: r'setBoolSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$setBoolSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'setBoolSettingUseCaseProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<SettingsSetUseCase<bool>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsSetUseCase<bool> create(Ref ref) {
+    final argument = this.argument as (AppSetting, bool);
+    return setBoolSettingUseCase(ref, argument.$1, argument.$2);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsSetUseCase<bool> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsSetUseCase<bool>>(value),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is SetBoolSettingUseCaseProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$setBoolSettingUseCaseHash() =>
-    r'b31fe7b0ae847f5b157bfa4cac5d70b5be3daae8';
+    r'a11b40d673e2b0381b904de845076c3c9fd1b4d9';
 
-/// See also [setBoolSettingUseCase].
-@ProviderFor(setBoolSettingUseCase)
-const setBoolSettingUseCaseProvider = SetBoolSettingUseCaseFamily();
+final class SetBoolSettingUseCaseFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          SettingsSetUseCase<bool>,
+          (AppSetting, bool)
+        > {
+  SetBoolSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'setBoolSettingUseCaseProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-/// See also [setBoolSettingUseCase].
-class SetBoolSettingUseCaseFamily extends Family<SettingsSetUseCase<bool>> {
-  /// See also [setBoolSettingUseCase].
-  const SetBoolSettingUseCaseFamily();
-
-  /// See also [setBoolSettingUseCase].
-  SetBoolSettingUseCaseProvider call(
-    AppSetting setting,
-    bool value,
-  ) {
-    return SetBoolSettingUseCaseProvider(
-      setting,
-      value,
-    );
-  }
+  SetBoolSettingUseCaseProvider call(AppSetting setting, bool value) =>
+      SetBoolSettingUseCaseProvider._(argument: (setting, value), from: this);
 
   @override
-  SetBoolSettingUseCaseProvider getProviderOverride(
-    covariant SetBoolSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-      provider.value,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'setBoolSettingUseCaseProvider';
+  String toString() => r'setBoolSettingUseCaseProvider';
 }
 
-/// See also [setBoolSettingUseCase].
-class SetBoolSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsSetUseCase<bool>> {
-  /// See also [setBoolSettingUseCase].
-  SetBoolSettingUseCaseProvider(
-    AppSetting setting,
-    bool value,
-  ) : this._internal(
-          (ref) => setBoolSettingUseCase(
-            ref as SetBoolSettingUseCaseRef,
-            setting,
-            value,
-          ),
-          from: setBoolSettingUseCaseProvider,
-          name: r'setBoolSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$setBoolSettingUseCaseHash,
-          dependencies: SetBoolSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              SetBoolSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-          value: value,
-        );
+@ProviderFor(getIntSettingUseCase)
+final getIntSettingUseCaseProvider = GetIntSettingUseCaseFamily._();
 
-  SetBoolSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-    required this.value,
-  }) : super.internal();
-
-  final AppSetting setting;
-  final bool value;
+final class GetIntSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsGetUseCase<int>,
+          SettingsGetUseCase<int>,
+          SettingsGetUseCase<int>
+        >
+    with $Provider<SettingsGetUseCase<int>> {
+  GetIntSettingUseCaseProvider._({
+    required GetIntSettingUseCaseFamily super.from,
+    required AppSetting super.argument,
+  }) : super(
+         retry: null,
+         name: r'getIntSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
-  Override overrideWith(
-    SettingsSetUseCase<bool> Function(SetBoolSettingUseCaseRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SetBoolSettingUseCaseProvider._internal(
-        (ref) => create(ref as SetBoolSettingUseCaseRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-        value: value,
-      ),
-    );
+  String debugGetCreateSourceHash() => _$getIntSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'getIntSettingUseCaseProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  AutoDisposeProviderElement<SettingsSetUseCase<bool>> createElement() {
-    return _SetBoolSettingUseCaseProviderElement(this);
+  $ProviderElement<SettingsGetUseCase<int>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsGetUseCase<int> create(Ref ref) {
+    final argument = this.argument as AppSetting;
+    return getIntSettingUseCase(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsGetUseCase<int> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsGetUseCase<int>>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SetBoolSettingUseCaseProvider &&
-        other.setting == setting &&
-        other.value == value;
+    return other is GetIntSettingUseCaseProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-    hash = _SystemHash.combine(hash, value.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SetBoolSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsSetUseCase<bool>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
-
-  /// The parameter `value` of this provider.
-  bool get value;
-}
-
-class _SetBoolSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsSetUseCase<bool>>
-    with SetBoolSettingUseCaseRef {
-  _SetBoolSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting => (origin as SetBoolSettingUseCaseProvider).setting;
-  @override
-  bool get value => (origin as SetBoolSettingUseCaseProvider).value;
 }
 
 String _$getIntSettingUseCaseHash() =>
-    r'4ce13a6f8cdee03e87adf9b03fedac6ca5a7e0c2';
+    r'a9ee27bef638038debda46db8d7267e188a07263';
 
-/// See also [getIntSettingUseCase].
-@ProviderFor(getIntSettingUseCase)
-const getIntSettingUseCaseProvider = GetIntSettingUseCaseFamily();
+final class GetIntSettingUseCaseFamily extends $Family
+    with $FunctionalFamilyOverride<SettingsGetUseCase<int>, AppSetting> {
+  GetIntSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'getIntSettingUseCaseProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-/// See also [getIntSettingUseCase].
-class GetIntSettingUseCaseFamily extends Family<SettingsGetUseCase<int>> {
-  /// See also [getIntSettingUseCase].
-  const GetIntSettingUseCaseFamily();
-
-  /// See also [getIntSettingUseCase].
-  GetIntSettingUseCaseProvider call(
-    AppSetting setting,
-  ) {
-    return GetIntSettingUseCaseProvider(
-      setting,
-    );
-  }
+  GetIntSettingUseCaseProvider call(AppSetting setting) =>
+      GetIntSettingUseCaseProvider._(argument: setting, from: this);
 
   @override
-  GetIntSettingUseCaseProvider getProviderOverride(
-    covariant GetIntSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getIntSettingUseCaseProvider';
+  String toString() => r'getIntSettingUseCaseProvider';
 }
 
-/// See also [getIntSettingUseCase].
-class GetIntSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsGetUseCase<int>> {
-  /// See also [getIntSettingUseCase].
-  GetIntSettingUseCaseProvider(
-    AppSetting setting,
-  ) : this._internal(
-          (ref) => getIntSettingUseCase(
-            ref as GetIntSettingUseCaseRef,
-            setting,
-          ),
-          from: getIntSettingUseCaseProvider,
-          name: r'getIntSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getIntSettingUseCaseHash,
-          dependencies: GetIntSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              GetIntSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-        );
+@ProviderFor(setIntSettingUseCase)
+final setIntSettingUseCaseProvider = SetIntSettingUseCaseFamily._();
 
-  GetIntSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-  }) : super.internal();
-
-  final AppSetting setting;
+final class SetIntSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsSetUseCase<int>,
+          SettingsSetUseCase<int>,
+          SettingsSetUseCase<int>
+        >
+    with $Provider<SettingsSetUseCase<int>> {
+  SetIntSettingUseCaseProvider._({
+    required SetIntSettingUseCaseFamily super.from,
+    required (AppSetting, int) super.argument,
+  }) : super(
+         retry: null,
+         name: r'setIntSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
-  Override overrideWith(
-    SettingsGetUseCase<int> Function(GetIntSettingUseCaseRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetIntSettingUseCaseProvider._internal(
-        (ref) => create(ref as GetIntSettingUseCaseRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-      ),
-    );
+  String debugGetCreateSourceHash() => _$setIntSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'setIntSettingUseCaseProvider'
+        ''
+        '$argument';
   }
 
+  @$internal
   @override
-  AutoDisposeProviderElement<SettingsGetUseCase<int>> createElement() {
-    return _GetIntSettingUseCaseProviderElement(this);
+  $ProviderElement<SettingsSetUseCase<int>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsSetUseCase<int> create(Ref ref) {
+    final argument = this.argument as (AppSetting, int);
+    return setIntSettingUseCase(ref, argument.$1, argument.$2);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsSetUseCase<int> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsSetUseCase<int>>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetIntSettingUseCaseProvider && other.setting == setting;
+    return other is SetIntSettingUseCaseProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin GetIntSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsGetUseCase<int>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
-}
-
-class _GetIntSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsGetUseCase<int>>
-    with GetIntSettingUseCaseRef {
-  _GetIntSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting => (origin as GetIntSettingUseCaseProvider).setting;
 }
 
 String _$setIntSettingUseCaseHash() =>
-    r'2692682e655c55da9a1d54051aca6c539cef56bc';
+    r'00d57345fee69a621165ab5bdcc8f265eeeec145';
 
-/// See also [setIntSettingUseCase].
-@ProviderFor(setIntSettingUseCase)
-const setIntSettingUseCaseProvider = SetIntSettingUseCaseFamily();
+final class SetIntSettingUseCaseFamily extends $Family
+    with $FunctionalFamilyOverride<SettingsSetUseCase<int>, (AppSetting, int)> {
+  SetIntSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'setIntSettingUseCaseProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-/// See also [setIntSettingUseCase].
-class SetIntSettingUseCaseFamily extends Family<SettingsSetUseCase<int>> {
-  /// See also [setIntSettingUseCase].
-  const SetIntSettingUseCaseFamily();
-
-  /// See also [setIntSettingUseCase].
-  SetIntSettingUseCaseProvider call(
-    AppSetting setting,
-    int value,
-  ) {
-    return SetIntSettingUseCaseProvider(
-      setting,
-      value,
-    );
-  }
+  SetIntSettingUseCaseProvider call(AppSetting setting, int value) =>
+      SetIntSettingUseCaseProvider._(argument: (setting, value), from: this);
 
   @override
-  SetIntSettingUseCaseProvider getProviderOverride(
-    covariant SetIntSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-      provider.value,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'setIntSettingUseCaseProvider';
+  String toString() => r'setIntSettingUseCaseProvider';
 }
 
-/// See also [setIntSettingUseCase].
-class SetIntSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsSetUseCase<int>> {
-  /// See also [setIntSettingUseCase].
-  SetIntSettingUseCaseProvider(
-    AppSetting setting,
-    int value,
-  ) : this._internal(
-          (ref) => setIntSettingUseCase(
-            ref as SetIntSettingUseCaseRef,
-            setting,
-            value,
-          ),
-          from: setIntSettingUseCaseProvider,
-          name: r'setIntSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$setIntSettingUseCaseHash,
-          dependencies: SetIntSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              SetIntSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-          value: value,
-        );
+@ProviderFor(getDoubleSettingUseCase)
+final getDoubleSettingUseCaseProvider = GetDoubleSettingUseCaseFamily._();
 
-  SetIntSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-    required this.value,
-  }) : super.internal();
-
-  final AppSetting setting;
-  final int value;
+final class GetDoubleSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsGetUseCase<double>,
+          SettingsGetUseCase<double>,
+          SettingsGetUseCase<double>
+        >
+    with $Provider<SettingsGetUseCase<double>> {
+  GetDoubleSettingUseCaseProvider._({
+    required GetDoubleSettingUseCaseFamily super.from,
+    required AppSetting super.argument,
+  }) : super(
+         retry: null,
+         name: r'getDoubleSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
-  Override overrideWith(
-    SettingsSetUseCase<int> Function(SetIntSettingUseCaseRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SetIntSettingUseCaseProvider._internal(
-        (ref) => create(ref as SetIntSettingUseCaseRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-        value: value,
-      ),
-    );
+  String debugGetCreateSourceHash() => _$getDoubleSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'getDoubleSettingUseCaseProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  AutoDisposeProviderElement<SettingsSetUseCase<int>> createElement() {
-    return _SetIntSettingUseCaseProviderElement(this);
+  $ProviderElement<SettingsGetUseCase<double>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsGetUseCase<double> create(Ref ref) {
+    final argument = this.argument as AppSetting;
+    return getDoubleSettingUseCase(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsGetUseCase<double> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsGetUseCase<double>>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SetIntSettingUseCaseProvider &&
-        other.setting == setting &&
-        other.value == value;
+    return other is GetDoubleSettingUseCaseProvider &&
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-    hash = _SystemHash.combine(hash, value.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SetIntSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsSetUseCase<int>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
-
-  /// The parameter `value` of this provider.
-  int get value;
-}
-
-class _SetIntSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsSetUseCase<int>>
-    with SetIntSettingUseCaseRef {
-  _SetIntSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting => (origin as SetIntSettingUseCaseProvider).setting;
-  @override
-  int get value => (origin as SetIntSettingUseCaseProvider).value;
 }
 
 String _$getDoubleSettingUseCaseHash() =>
-    r'f4c4412472b83f8b419f951488ae2d99fcea9ef4';
+    r'55d4e8237d86e27fc04ed6c76154d648d0c38b3b';
 
-/// See also [getDoubleSettingUseCase].
-@ProviderFor(getDoubleSettingUseCase)
-const getDoubleSettingUseCaseProvider = GetDoubleSettingUseCaseFamily();
-
-/// See also [getDoubleSettingUseCase].
-class GetDoubleSettingUseCaseFamily extends Family<SettingsGetUseCase<double>> {
-  /// See also [getDoubleSettingUseCase].
-  const GetDoubleSettingUseCaseFamily();
-
-  /// See also [getDoubleSettingUseCase].
-  GetDoubleSettingUseCaseProvider call(
-    AppSetting setting,
-  ) {
-    return GetDoubleSettingUseCaseProvider(
-      setting,
-    );
-  }
-
-  @override
-  GetDoubleSettingUseCaseProvider getProviderOverride(
-    covariant GetDoubleSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getDoubleSettingUseCaseProvider';
-}
-
-/// See also [getDoubleSettingUseCase].
-class GetDoubleSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsGetUseCase<double>> {
-  /// See also [getDoubleSettingUseCase].
-  GetDoubleSettingUseCaseProvider(
-    AppSetting setting,
-  ) : this._internal(
-          (ref) => getDoubleSettingUseCase(
-            ref as GetDoubleSettingUseCaseRef,
-            setting,
-          ),
-          from: getDoubleSettingUseCaseProvider,
-          name: r'getDoubleSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getDoubleSettingUseCaseHash,
-          dependencies: GetDoubleSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              GetDoubleSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-        );
-
-  GetDoubleSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-  }) : super.internal();
-
-  final AppSetting setting;
-
-  @override
-  Override overrideWith(
-    SettingsGetUseCase<double> Function(GetDoubleSettingUseCaseRef provider)
-        create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetDoubleSettingUseCaseProvider._internal(
-        (ref) => create(ref as GetDoubleSettingUseCaseRef),
-        from: from,
-        name: null,
+final class GetDoubleSettingUseCaseFamily extends $Family
+    with $FunctionalFamilyOverride<SettingsGetUseCase<double>, AppSetting> {
+  GetDoubleSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'getDoubleSettingUseCaseProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  GetDoubleSettingUseCaseProvider call(AppSetting setting) =>
+      GetDoubleSettingUseCaseProvider._(argument: setting, from: this);
 
   @override
-  AutoDisposeProviderElement<SettingsGetUseCase<double>> createElement() {
-    return _GetDoubleSettingUseCaseProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetDoubleSettingUseCaseProvider && other.setting == setting;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
+  String toString() => r'getDoubleSettingUseCaseProvider';
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin GetDoubleSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsGetUseCase<double>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
-}
-
-class _GetDoubleSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsGetUseCase<double>>
-    with GetDoubleSettingUseCaseRef {
-  _GetDoubleSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting => (origin as GetDoubleSettingUseCaseProvider).setting;
-}
-
-String _$setDoubleSettingUseCaseHash() =>
-    r'68d5d82c9cb5fdc0b6677d3f7d3047c9b6dc6015';
-
-/// See also [setDoubleSettingUseCase].
 @ProviderFor(setDoubleSettingUseCase)
-const setDoubleSettingUseCaseProvider = SetDoubleSettingUseCaseFamily();
+final setDoubleSettingUseCaseProvider = SetDoubleSettingUseCaseFamily._();
 
-/// See also [setDoubleSettingUseCase].
-class SetDoubleSettingUseCaseFamily extends Family<SettingsSetUseCase<double>> {
-  /// See also [setDoubleSettingUseCase].
-  const SetDoubleSettingUseCaseFamily();
+final class SetDoubleSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsSetUseCase<double>,
+          SettingsSetUseCase<double>,
+          SettingsSetUseCase<double>
+        >
+    with $Provider<SettingsSetUseCase<double>> {
+  SetDoubleSettingUseCaseProvider._({
+    required SetDoubleSettingUseCaseFamily super.from,
+    required (AppSetting, double) super.argument,
+  }) : super(
+         retry: null,
+         name: r'setDoubleSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [setDoubleSettingUseCase].
-  SetDoubleSettingUseCaseProvider call(
-    AppSetting setting,
-    double value,
-  ) {
-    return SetDoubleSettingUseCaseProvider(
-      setting,
-      value,
-    );
+  @override
+  String debugGetCreateSourceHash() => _$setDoubleSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'setDoubleSettingUseCaseProvider'
+        ''
+        '$argument';
   }
 
+  @$internal
   @override
-  SetDoubleSettingUseCaseProvider getProviderOverride(
-    covariant SetDoubleSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-      provider.value,
-    );
+  $ProviderElement<SettingsSetUseCase<double>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsSetUseCase<double> create(Ref ref) {
+    final argument = this.argument as (AppSetting, double);
+    return setDoubleSettingUseCase(ref, argument.$1, argument.$2);
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'setDoubleSettingUseCaseProvider';
-}
-
-/// See also [setDoubleSettingUseCase].
-class SetDoubleSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsSetUseCase<double>> {
-  /// See also [setDoubleSettingUseCase].
-  SetDoubleSettingUseCaseProvider(
-    AppSetting setting,
-    double value,
-  ) : this._internal(
-          (ref) => setDoubleSettingUseCase(
-            ref as SetDoubleSettingUseCaseRef,
-            setting,
-            value,
-          ),
-          from: setDoubleSettingUseCaseProvider,
-          name: r'setDoubleSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$setDoubleSettingUseCaseHash,
-          dependencies: SetDoubleSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              SetDoubleSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-          value: value,
-        );
-
-  SetDoubleSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-    required this.value,
-  }) : super.internal();
-
-  final AppSetting setting;
-  final double value;
-
-  @override
-  Override overrideWith(
-    SettingsSetUseCase<double> Function(SetDoubleSettingUseCaseRef provider)
-        create,
-  ) {
-    return ProviderOverride(
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsSetUseCase<double> value) {
+    return $ProviderOverride(
       origin: this,
-      override: SetDoubleSettingUseCaseProvider._internal(
-        (ref) => create(ref as SetDoubleSettingUseCaseRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-        value: value,
-      ),
+      providerOverride: $SyncValueProvider<SettingsSetUseCase<double>>(value),
     );
-  }
-
-  @override
-  AutoDisposeProviderElement<SettingsSetUseCase<double>> createElement() {
-    return _SetDoubleSettingUseCaseProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
     return other is SetDoubleSettingUseCaseProvider &&
-        other.setting == setting &&
-        other.value == value;
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-    hash = _SystemHash.combine(hash, value.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SetDoubleSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsSetUseCase<double>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
+String _$setDoubleSettingUseCaseHash() =>
+    r'6bc0585f9cdab4dbebcdc9bd8a4b32229b5b6192';
 
-  /// The parameter `value` of this provider.
-  double get value;
-}
-
-class _SetDoubleSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsSetUseCase<double>>
-    with SetDoubleSettingUseCaseRef {
-  _SetDoubleSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting => (origin as SetDoubleSettingUseCaseProvider).setting;
-  @override
-  double get value => (origin as SetDoubleSettingUseCaseProvider).value;
-}
-
-String _$getStringSettingUseCaseHash() =>
-    r'd817812833a5ee59ac8cfe7f32f36dc7e043abec';
-
-/// See also [getStringSettingUseCase].
-@ProviderFor(getStringSettingUseCase)
-const getStringSettingUseCaseProvider = GetStringSettingUseCaseFamily();
-
-/// See also [getStringSettingUseCase].
-class GetStringSettingUseCaseFamily extends Family<SettingsGetUseCase<String>> {
-  /// See also [getStringSettingUseCase].
-  const GetStringSettingUseCaseFamily();
-
-  /// See also [getStringSettingUseCase].
-  GetStringSettingUseCaseProvider call(
-    AppSetting setting,
-  ) {
-    return GetStringSettingUseCaseProvider(
-      setting,
-    );
-  }
-
-  @override
-  GetStringSettingUseCaseProvider getProviderOverride(
-    covariant GetStringSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getStringSettingUseCaseProvider';
-}
-
-/// See also [getStringSettingUseCase].
-class GetStringSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsGetUseCase<String>> {
-  /// See also [getStringSettingUseCase].
-  GetStringSettingUseCaseProvider(
-    AppSetting setting,
-  ) : this._internal(
-          (ref) => getStringSettingUseCase(
-            ref as GetStringSettingUseCaseRef,
-            setting,
-          ),
-          from: getStringSettingUseCaseProvider,
-          name: r'getStringSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getStringSettingUseCaseHash,
-          dependencies: GetStringSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              GetStringSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-        );
-
-  GetStringSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-  }) : super.internal();
-
-  final AppSetting setting;
-
-  @override
-  Override overrideWith(
-    SettingsGetUseCase<String> Function(GetStringSettingUseCaseRef provider)
-        create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetStringSettingUseCaseProvider._internal(
-        (ref) => create(ref as GetStringSettingUseCaseRef),
-        from: from,
-        name: null,
+final class SetDoubleSettingUseCaseFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          SettingsSetUseCase<double>,
+          (AppSetting, double)
+        > {
+  SetDoubleSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'setDoubleSettingUseCaseProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  SetDoubleSettingUseCaseProvider call(AppSetting setting, double value) =>
+      SetDoubleSettingUseCaseProvider._(argument: (setting, value), from: this);
 
   @override
-  AutoDisposeProviderElement<SettingsGetUseCase<String>> createElement() {
-    return _GetStringSettingUseCaseProviderElement(this);
+  String toString() => r'setDoubleSettingUseCaseProvider';
+}
+
+@ProviderFor(getStringSettingUseCase)
+final getStringSettingUseCaseProvider = GetStringSettingUseCaseFamily._();
+
+final class GetStringSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsGetUseCase<String>,
+          SettingsGetUseCase<String>,
+          SettingsGetUseCase<String>
+        >
+    with $Provider<SettingsGetUseCase<String>> {
+  GetStringSettingUseCaseProvider._({
+    required GetStringSettingUseCaseFamily super.from,
+    required AppSetting super.argument,
+  }) : super(
+         retry: null,
+         name: r'getStringSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$getStringSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'getStringSettingUseCaseProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<SettingsGetUseCase<String>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsGetUseCase<String> create(Ref ref) {
+    final argument = this.argument as AppSetting;
+    return getStringSettingUseCase(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsGetUseCase<String> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsGetUseCase<String>>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetStringSettingUseCaseProvider && other.setting == setting;
+    return other is GetStringSettingUseCaseProvider &&
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin GetStringSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsGetUseCase<String>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
-}
+String _$getStringSettingUseCaseHash() =>
+    r'3a1d7da5c97560a4f8d7ca7f9384ca37ed9f2331';
 
-class _GetStringSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsGetUseCase<String>>
-    with GetStringSettingUseCaseRef {
-  _GetStringSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting => (origin as GetStringSettingUseCaseProvider).setting;
-}
-
-String _$setStringSettingUseCaseHash() =>
-    r'dca274eb747302090d71e7931a4318e2632b31be';
-
-/// See also [setStringSettingUseCase].
-@ProviderFor(setStringSettingUseCase)
-const setStringSettingUseCaseProvider = SetStringSettingUseCaseFamily();
-
-/// See also [setStringSettingUseCase].
-class SetStringSettingUseCaseFamily extends Family<SettingsSetUseCase<String>> {
-  /// See also [setStringSettingUseCase].
-  const SetStringSettingUseCaseFamily();
-
-  /// See also [setStringSettingUseCase].
-  SetStringSettingUseCaseProvider call(
-    AppSetting setting,
-    String value,
-  ) {
-    return SetStringSettingUseCaseProvider(
-      setting,
-      value,
-    );
-  }
-
-  @override
-  SetStringSettingUseCaseProvider getProviderOverride(
-    covariant SetStringSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-      provider.value,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'setStringSettingUseCaseProvider';
-}
-
-/// See also [setStringSettingUseCase].
-class SetStringSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsSetUseCase<String>> {
-  /// See also [setStringSettingUseCase].
-  SetStringSettingUseCaseProvider(
-    AppSetting setting,
-    String value,
-  ) : this._internal(
-          (ref) => setStringSettingUseCase(
-            ref as SetStringSettingUseCaseRef,
-            setting,
-            value,
-          ),
-          from: setStringSettingUseCaseProvider,
-          name: r'setStringSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$setStringSettingUseCaseHash,
-          dependencies: SetStringSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              SetStringSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-          value: value,
-        );
-
-  SetStringSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-    required this.value,
-  }) : super.internal();
-
-  final AppSetting setting;
-  final String value;
-
-  @override
-  Override overrideWith(
-    SettingsSetUseCase<String> Function(SetStringSettingUseCaseRef provider)
-        create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SetStringSettingUseCaseProvider._internal(
-        (ref) => create(ref as SetStringSettingUseCaseRef),
-        from: from,
-        name: null,
+final class GetStringSettingUseCaseFamily extends $Family
+    with $FunctionalFamilyOverride<SettingsGetUseCase<String>, AppSetting> {
+  GetStringSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'getStringSettingUseCaseProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-        value: value,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  GetStringSettingUseCaseProvider call(AppSetting setting) =>
+      GetStringSettingUseCaseProvider._(argument: setting, from: this);
 
   @override
-  AutoDisposeProviderElement<SettingsSetUseCase<String>> createElement() {
-    return _SetStringSettingUseCaseProviderElement(this);
+  String toString() => r'getStringSettingUseCaseProvider';
+}
+
+@ProviderFor(setStringSettingUseCase)
+final setStringSettingUseCaseProvider = SetStringSettingUseCaseFamily._();
+
+final class SetStringSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsSetUseCase<String>,
+          SettingsSetUseCase<String>,
+          SettingsSetUseCase<String>
+        >
+    with $Provider<SettingsSetUseCase<String>> {
+  SetStringSettingUseCaseProvider._({
+    required SetStringSettingUseCaseFamily super.from,
+    required (AppSetting, String) super.argument,
+  }) : super(
+         retry: null,
+         name: r'setStringSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$setStringSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'setStringSettingUseCaseProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<SettingsSetUseCase<String>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsSetUseCase<String> create(Ref ref) {
+    final argument = this.argument as (AppSetting, String);
+    return setStringSettingUseCase(ref, argument.$1, argument.$2);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsSetUseCase<String> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsSetUseCase<String>>(value),
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return other is SetStringSettingUseCaseProvider &&
-        other.setting == setting &&
-        other.value == value;
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-    hash = _SystemHash.combine(hash, value.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SetStringSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsSetUseCase<String>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
+String _$setStringSettingUseCaseHash() =>
+    r'7548fa9f78deb7273a58fa95de3c5acd3f90e543';
 
-  /// The parameter `value` of this provider.
-  String get value;
-}
-
-class _SetStringSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsSetUseCase<String>>
-    with SetStringSettingUseCaseRef {
-  _SetStringSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting => (origin as SetStringSettingUseCaseProvider).setting;
-  @override
-  String get value => (origin as SetStringSettingUseCaseProvider).value;
-}
-
-String _$getStringListSettingUseCaseHash() =>
-    r'ddb3ea2c41287ae132ef69784eff39169a0d0a3a';
-
-/// See also [getStringListSettingUseCase].
-@ProviderFor(getStringListSettingUseCase)
-const getStringListSettingUseCaseProvider = GetStringListSettingUseCaseFamily();
-
-/// See also [getStringListSettingUseCase].
-class GetStringListSettingUseCaseFamily
-    extends Family<SettingsGetUseCase<List<String>>> {
-  /// See also [getStringListSettingUseCase].
-  const GetStringListSettingUseCaseFamily();
-
-  /// See also [getStringListSettingUseCase].
-  GetStringListSettingUseCaseProvider call(
-    AppSetting setting,
-  ) {
-    return GetStringListSettingUseCaseProvider(
-      setting,
-    );
-  }
-
-  @override
-  GetStringListSettingUseCaseProvider getProviderOverride(
-    covariant GetStringListSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getStringListSettingUseCaseProvider';
-}
-
-/// See also [getStringListSettingUseCase].
-class GetStringListSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsGetUseCase<List<String>>> {
-  /// See also [getStringListSettingUseCase].
-  GetStringListSettingUseCaseProvider(
-    AppSetting setting,
-  ) : this._internal(
-          (ref) => getStringListSettingUseCase(
-            ref as GetStringListSettingUseCaseRef,
-            setting,
-          ),
-          from: getStringListSettingUseCaseProvider,
-          name: r'getStringListSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getStringListSettingUseCaseHash,
-          dependencies: GetStringListSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              GetStringListSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-        );
-
-  GetStringListSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-  }) : super.internal();
-
-  final AppSetting setting;
-
-  @override
-  Override overrideWith(
-    SettingsGetUseCase<List<String>> Function(
-            GetStringListSettingUseCaseRef provider)
-        create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetStringListSettingUseCaseProvider._internal(
-        (ref) => create(ref as GetStringListSettingUseCaseRef),
-        from: from,
-        name: null,
+final class SetStringSettingUseCaseFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          SettingsSetUseCase<String>,
+          (AppSetting, String)
+        > {
+  SetStringSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'setStringSettingUseCaseProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  SetStringSettingUseCaseProvider call(AppSetting setting, String value) =>
+      SetStringSettingUseCaseProvider._(argument: (setting, value), from: this);
+
+  @override
+  String toString() => r'setStringSettingUseCaseProvider';
+}
+
+@ProviderFor(getStringListSettingUseCase)
+final getStringListSettingUseCaseProvider =
+    GetStringListSettingUseCaseFamily._();
+
+final class GetStringListSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsGetUseCase<List<String>>,
+          SettingsGetUseCase<List<String>>,
+          SettingsGetUseCase<List<String>>
+        >
+    with $Provider<SettingsGetUseCase<List<String>>> {
+  GetStringListSettingUseCaseProvider._({
+    required GetStringListSettingUseCaseFamily super.from,
+    required AppSetting super.argument,
+  }) : super(
+         retry: null,
+         name: r'getStringListSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$getStringListSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'getStringListSettingUseCaseProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<SettingsGetUseCase<List<String>>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsGetUseCase<List<String>> create(Ref ref) {
+    final argument = this.argument as AppSetting;
+    return getStringListSettingUseCase(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsGetUseCase<List<String>> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsGetUseCase<List<String>>>(
+        value,
       ),
     );
-  }
-
-  @override
-  AutoDisposeProviderElement<SettingsGetUseCase<List<String>>> createElement() {
-    return _GetStringListSettingUseCaseProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
     return other is GetStringListSettingUseCaseProvider &&
-        other.setting == setting;
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin GetStringListSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsGetUseCase<List<String>>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
-}
+String _$getStringListSettingUseCaseHash() =>
+    r'75970cc11411022bbdf1c39cf1f7c76b7a1f514f';
 
-class _GetStringListSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsGetUseCase<List<String>>>
-    with GetStringListSettingUseCaseRef {
-  _GetStringListSettingUseCaseProviderElement(super.provider);
-
-  @override
-  AppSetting get setting =>
-      (origin as GetStringListSettingUseCaseProvider).setting;
-}
-
-String _$setStringListSettingUseCaseHash() =>
-    r'2828180877a23feecf8fc3c10b5078bb18fe4847';
-
-/// See also [setStringListSettingUseCase].
-@ProviderFor(setStringListSettingUseCase)
-const setStringListSettingUseCaseProvider = SetStringListSettingUseCaseFamily();
-
-/// See also [setStringListSettingUseCase].
-class SetStringListSettingUseCaseFamily
-    extends Family<SettingsSetUseCase<List<String>>> {
-  /// See also [setStringListSettingUseCase].
-  const SetStringListSettingUseCaseFamily();
-
-  /// See also [setStringListSettingUseCase].
-  SetStringListSettingUseCaseProvider call(
-    AppSetting setting,
-    List<String> value,
-  ) {
-    return SetStringListSettingUseCaseProvider(
-      setting,
-      value,
-    );
-  }
-
-  @override
-  SetStringListSettingUseCaseProvider getProviderOverride(
-    covariant SetStringListSettingUseCaseProvider provider,
-  ) {
-    return call(
-      provider.setting,
-      provider.value,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'setStringListSettingUseCaseProvider';
-}
-
-/// See also [setStringListSettingUseCase].
-class SetStringListSettingUseCaseProvider
-    extends AutoDisposeProvider<SettingsSetUseCase<List<String>>> {
-  /// See also [setStringListSettingUseCase].
-  SetStringListSettingUseCaseProvider(
-    AppSetting setting,
-    List<String> value,
-  ) : this._internal(
-          (ref) => setStringListSettingUseCase(
-            ref as SetStringListSettingUseCaseRef,
-            setting,
-            value,
-          ),
-          from: setStringListSettingUseCaseProvider,
-          name: r'setStringListSettingUseCaseProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$setStringListSettingUseCaseHash,
-          dependencies: SetStringListSettingUseCaseFamily._dependencies,
-          allTransitiveDependencies:
-              SetStringListSettingUseCaseFamily._allTransitiveDependencies,
-          setting: setting,
-          value: value,
-        );
-
-  SetStringListSettingUseCaseProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.setting,
-    required this.value,
-  }) : super.internal();
-
-  final AppSetting setting;
-  final List<String> value;
-
-  @override
-  Override overrideWith(
-    SettingsSetUseCase<List<String>> Function(
-            SetStringListSettingUseCaseRef provider)
-        create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SetStringListSettingUseCaseProvider._internal(
-        (ref) => create(ref as SetStringListSettingUseCaseRef),
-        from: from,
-        name: null,
+final class GetStringListSettingUseCaseFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          SettingsGetUseCase<List<String>>,
+          AppSetting
+        > {
+  GetStringListSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'getStringListSettingUseCaseProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        setting: setting,
-        value: value,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  GetStringListSettingUseCaseProvider call(AppSetting setting) =>
+      GetStringListSettingUseCaseProvider._(argument: setting, from: this);
+
+  @override
+  String toString() => r'getStringListSettingUseCaseProvider';
+}
+
+@ProviderFor(setStringListSettingUseCase)
+final setStringListSettingUseCaseProvider =
+    SetStringListSettingUseCaseFamily._();
+
+final class SetStringListSettingUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SettingsSetUseCase<List<String>>,
+          SettingsSetUseCase<List<String>>,
+          SettingsSetUseCase<List<String>>
+        >
+    with $Provider<SettingsSetUseCase<List<String>>> {
+  SetStringListSettingUseCaseProvider._({
+    required SetStringListSettingUseCaseFamily super.from,
+    required (AppSetting, List<String>) super.argument,
+  }) : super(
+         retry: null,
+         name: r'setStringListSettingUseCaseProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$setStringListSettingUseCaseHash();
+
+  @override
+  String toString() {
+    return r'setStringListSettingUseCaseProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<SettingsSetUseCase<List<String>>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SettingsSetUseCase<List<String>> create(Ref ref) {
+    final argument = this.argument as (AppSetting, List<String>);
+    return setStringListSettingUseCase(ref, argument.$1, argument.$2);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SettingsSetUseCase<List<String>> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SettingsSetUseCase<List<String>>>(
+        value,
       ),
     );
   }
 
   @override
-  AutoDisposeProviderElement<SettingsSetUseCase<List<String>>> createElement() {
-    return _SetStringListSettingUseCaseProviderElement(this);
-  }
-
-  @override
   bool operator ==(Object other) {
     return other is SetStringListSettingUseCaseProvider &&
-        other.setting == setting &&
-        other.value == value;
+        other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, setting.hashCode);
-    hash = _SystemHash.combine(hash, value.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SetStringListSettingUseCaseRef
-    on AutoDisposeProviderRef<SettingsSetUseCase<List<String>>> {
-  /// The parameter `setting` of this provider.
-  AppSetting get setting;
+String _$setStringListSettingUseCaseHash() =>
+    r'bf210483c224d2e90c93bf7bdae6ecf0d9d3dab2';
 
-  /// The parameter `value` of this provider.
-  List<String> get value;
-}
+final class SetStringListSettingUseCaseFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          SettingsSetUseCase<List<String>>,
+          (AppSetting, List<String>)
+        > {
+  SetStringListSettingUseCaseFamily._()
+    : super(
+        retry: null,
+        name: r'setStringListSettingUseCaseProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
 
-class _SetStringListSettingUseCaseProviderElement
-    extends AutoDisposeProviderElement<SettingsSetUseCase<List<String>>>
-    with SetStringListSettingUseCaseRef {
-  _SetStringListSettingUseCaseProviderElement(super.provider);
+  SetStringListSettingUseCaseProvider call(
+    AppSetting setting,
+    List<String> value,
+  ) => SetStringListSettingUseCaseProvider._(
+    argument: (setting, value),
+    from: this,
+  );
 
   @override
-  AppSetting get setting =>
-      (origin as SetStringListSettingUseCaseProvider).setting;
-  @override
-  List<String> get value =>
-      (origin as SetStringListSettingUseCaseProvider).value;
+  String toString() => r'setStringListSettingUseCaseProvider';
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

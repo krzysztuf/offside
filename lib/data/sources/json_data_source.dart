@@ -58,14 +58,14 @@ class JsonDataSource {
     await _loadData();
     final betsMap = _matchBetsData as Map<String, dynamic>;
     final allBets = <Bet>[];
-    
+
     for (final matchId in betsMap.keys) {
       final matchBets = betsMap[matchId] as List<dynamic>;
       for (final betJson in matchBets) {
         allBets.add(Bet.fromJson(betJson));
       }
     }
-    
+
     return allBets;
   }
 
@@ -91,11 +91,11 @@ class JsonDataSource {
   Future<List<Bet>> getBetsForMatch(String matchId) async {
     await _loadData();
     final betsMap = _matchBetsData as Map<String, dynamic>;
-    
+
     if (!betsMap.containsKey(matchId)) {
       return [];
     }
-    
+
     final matchBets = betsMap[matchId] as List<dynamic>;
     return matchBets.map((json) => Bet.fromJson(json)).toList();
   }

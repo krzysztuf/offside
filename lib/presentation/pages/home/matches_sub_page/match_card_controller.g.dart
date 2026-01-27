@@ -6,39 +6,99 @@ part of 'match_card_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentCardMatchHash() => r'ea4fd3eee9392502edf145780eecd94b277d9eda';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [currentCardMatch].
-@ProviderFor(currentCardMatch)
-final currentCardMatchProvider = AutoDisposeProvider<Match>.internal(
-  currentCardMatch,
-  name: r'currentCardMatchProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$currentCardMatchHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+@ProviderFor(MatchCardController)
+final matchCardControllerProvider = MatchCardControllerProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CurrentCardMatchRef = AutoDisposeProviderRef<Match>;
+final class MatchCardControllerProvider
+    extends $NotifierProvider<MatchCardController, MatchCardState> {
+  MatchCardControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'matchCardControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$matchCardControllerHash();
+
+  @$internal
+  @override
+  MatchCardController create() => MatchCardController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MatchCardState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MatchCardState>(value),
+    );
+  }
+}
+
 String _$matchCardControllerHash() =>
     r'e8c0dd97c29198db5b56d40bb7674064f0c3c370';
 
-/// See also [MatchCardController].
-@ProviderFor(MatchCardController)
-final matchCardControllerProvider =
-    AutoDisposeNotifierProvider<MatchCardController, MatchCardState>.internal(
-  MatchCardController.new,
-  name: r'matchCardControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$matchCardControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$MatchCardController extends $Notifier<MatchCardState> {
+  MatchCardState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<MatchCardState, MatchCardState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<MatchCardState, MatchCardState>,
+              MatchCardState,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
 
-typedef _$MatchCardController = AutoDisposeNotifier<MatchCardState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+@ProviderFor(currentCardMatch)
+final currentCardMatchProvider = CurrentCardMatchProvider._();
+
+final class CurrentCardMatchProvider
+    extends $FunctionalProvider<Match, Match, Match>
+    with $Provider<Match> {
+  CurrentCardMatchProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'currentCardMatchProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$currentCardMatchHash();
+
+  @$internal
+  @override
+  $ProviderElement<Match> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Match create(Ref ref) {
+    return currentCardMatch(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Match value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Match>(value),
+    );
+  }
+}
+
+String _$currentCardMatchHash() => r'2be412cc7dacc65e02517fb87d225d6fe1fe4ed2';
