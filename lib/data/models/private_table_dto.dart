@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:offside/domain/entities/private_table.dart';
 
 part 'private_table_dto.freezed.dart';
 part 'private_table_dto.g.dart';
@@ -14,5 +15,14 @@ sealed class PrivateTableDto with _$PrivateTableDto {
     @JsonKey(name: 'member_ids') required List<int> memberIds,
   }) = _PrivateTableDto;
 
+  const PrivateTableDto._();
+
   factory PrivateTableDto.fromJson(Map<String, dynamic> json) => _$PrivateTableDtoFromJson(json);
+
+  PrivateTable toEntity() => PrivateTable(
+    id: id.toString(),
+    name: name,
+    ownerId: ownerId.toString(),
+    memberIds: memberIds.map((id) => id.toString()).toList(),
+  );
 }

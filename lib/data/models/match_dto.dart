@@ -1,6 +1,12 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:offside/data/models/team_dto.dart';
+import 'package:offside/domain/entities/fetchable.dart';
+import 'package:offside/domain/entities/goals.dart';
+import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/entities/match_outcome.dart';
+import 'package:offside/domain/entities/team.dart';
 
 part 'match_dto.freezed.dart';
 part 'match_dto.g.dart';
@@ -19,5 +25,39 @@ sealed class MatchDto with _$MatchDto {
     @JsonKey(name: 'penalties_winner_id') int? penaltiesWinnerId,
   }) = _MatchDto;
 
+  const MatchDto._();
+
   factory MatchDto.fromJson(Map<String, dynamic> json) => _$MatchDtoFromJson(json);
+
+  Match toEntity(Map<int, TeamDto> teamsCache) {
+    final homeTeamDto = teamsCache[homeTeamId];
+    final awayTeamDto = teamsCache[awayTeamId];
+
+    final homeTeam = homeTeamDto != null
+        ? LocalFetchable(homeTeamDto.toEntity())
+        : const NoOpFetchable<Team>();
+    final awayTeam = awayTeamDto != null
+        ? LocalFetchable(awayTeamDto.toEntity())
+        : const NoOpFetchable<Team>();
+
+    MatchOutcome? outcome;
+    if (homeResult != null && awayResult != null) {
+      outcome = MatchOutcome(
+        goals: Goals(home: homeResult!, away: awayResult!),
+        penaltiesWinnerId: penaltiesWinnerId != null
+            ? teamsCache[penaltiesWinnerId]?.abbreviation.toLowerCase()
+            : null,
+      );
+    }
+
+    return Match(
+      id: id.toString(),
+      homeTeam: homeTeam,
+      awayTeam: awayTeam,
+      kickOffDate: DateTime.fromMillisecondsSinceEpoch(kickOffDate),
+      stage: stage,
+      knockoutStage: knockoutStage != 0,
+      outcome: outcome,
+    );
+  }
 }

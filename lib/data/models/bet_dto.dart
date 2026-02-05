@@ -1,6 +1,10 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:offside/data/models/team_dto.dart';
+import 'package:offside/domain/entities/bet.dart';
+import 'package:offside/domain/entities/goals.dart';
+import 'package:offside/domain/entities/match_outcome.dart';
 
 part 'bet_dto.freezed.dart';
 part 'bet_dto.g.dart';
@@ -16,5 +20,19 @@ sealed class BetDto with _$BetDto {
     @JsonKey(name: 'penalties_winner_id') int? penaltiesWinnerId,
   }) = _BetDto;
 
+  const BetDto._();
+
   factory BetDto.fromJson(Map<String, dynamic> json) => _$BetDtoFromJson(json);
+
+  Bet toEntity(Map<int, TeamDto> teamsCache) => Bet(
+    id: id.toString(),
+    matchId: matchId.toString(),
+    userId: userId.toString(),
+    prediction: MatchOutcome(
+      goals: Goals(home: homeGoalsPrediction, away: awayGoalsPrediction),
+      penaltiesWinnerId: penaltiesWinnerId != null
+          ? teamsCache[penaltiesWinnerId]?.abbreviation.toLowerCase()
+          : null,
+    ),
+  );
 }

@@ -207,8 +207,8 @@ return $default(_that.id,_that.matchId,_that.userId,_that.homeGoalsPrediction,_t
 /// @nodoc
 @JsonSerializable()
 
-class _BetDto implements BetDto {
-  const _BetDto({required this.id, @JsonKey(name: 'match_id') required this.matchId, @JsonKey(name: 'user_id') required this.userId, @JsonKey(name: 'home_goals_prediction') required this.homeGoalsPrediction, @JsonKey(name: 'away_goals_prediction') required this.awayGoalsPrediction, @JsonKey(name: 'penalties_winner_id') this.penaltiesWinnerId});
+class _BetDto extends BetDto {
+  const _BetDto({required this.id, @JsonKey(name: 'match_id') required this.matchId, @JsonKey(name: 'user_id') required this.userId, @JsonKey(name: 'home_goals_prediction') required this.homeGoalsPrediction, @JsonKey(name: 'away_goals_prediction') required this.awayGoalsPrediction, @JsonKey(name: 'penalties_winner_id') this.penaltiesWinnerId}): super._();
   factory _BetDto.fromJson(Map<String, dynamic> json) => _$BetDtoFromJson(json);
 
 @override final  int id;

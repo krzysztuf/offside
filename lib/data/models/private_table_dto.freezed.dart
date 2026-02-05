@@ -205,8 +205,8 @@ return $default(_that.id,_that.name,_that.ownerId,_that.memberIds);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _PrivateTableDto implements PrivateTableDto {
-  const _PrivateTableDto({required this.id, required this.name, @JsonKey(name: 'owner_id') required this.ownerId, @JsonKey(name: 'member_ids') required final  List<int> memberIds}): _memberIds = memberIds;
+class _PrivateTableDto extends PrivateTableDto {
+  const _PrivateTableDto({required this.id, required this.name, @JsonKey(name: 'owner_id') required this.ownerId, @JsonKey(name: 'member_ids') required final  List<int> memberIds}): _memberIds = memberIds,super._();
   factory _PrivateTableDto.fromJson(Map<String, dynamic> json) => _$PrivateTableDtoFromJson(json);
 
 @override final  int id;

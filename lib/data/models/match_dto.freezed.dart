@@ -210,8 +210,8 @@ return $default(_that.id,_that.homeTeamId,_that.awayTeamId,_that.kickOffDate,_th
 /// @nodoc
 @JsonSerializable()
 
-class _MatchDto implements MatchDto {
-  const _MatchDto({required this.id, @JsonKey(name: 'home_team_id') required this.homeTeamId, @JsonKey(name: 'away_team_id') required this.awayTeamId, @JsonKey(name: 'kick_off_date') required this.kickOffDate, required this.stage, @JsonKey(name: 'knockout_stage') required this.knockoutStage, @JsonKey(name: 'home_result') this.homeResult, @JsonKey(name: 'away_result') this.awayResult, @JsonKey(name: 'penalties_winner_id') this.penaltiesWinnerId});
+class _MatchDto extends MatchDto {
+  const _MatchDto({required this.id, @JsonKey(name: 'home_team_id') required this.homeTeamId, @JsonKey(name: 'away_team_id') required this.awayTeamId, @JsonKey(name: 'kick_off_date') required this.kickOffDate, required this.stage, @JsonKey(name: 'knockout_stage') required this.knockoutStage, @JsonKey(name: 'home_result') this.homeResult, @JsonKey(name: 'away_result') this.awayResult, @JsonKey(name: 'penalties_winner_id') this.penaltiesWinnerId}): super._();
   factory _MatchDto.fromJson(Map<String, dynamic> json) => _$MatchDtoFromJson(json);
 
 @override final  int id;

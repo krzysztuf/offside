@@ -6,11 +6,11 @@ import 'package:offside/data/models/match_dto.dart';
 import 'package:offside/data/models/bet_dto.dart';
 import 'package:offside/data/models/private_table_dto.dart';
 
-part 'offside_api_service.g.dart';
+part 'offside_api.g.dart';
 
 @RestApi(baseUrl: "http://localhost:8080")
-abstract class OffsideApiService {
-  factory OffsideApiService(Dio dio, {String baseUrl}) = _OffsideApiService;
+abstract class OffsideApi {
+  factory OffsideApi(Dio dio, {String baseUrl}) = _OffsideApi;
 
   @GET("/users")
   Future<List<UserDto>> getUsers();

@@ -204,8 +204,8 @@ return $default(_that.id,_that.name,_that.abbreviation);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _TeamDto implements TeamDto {
-  const _TeamDto({required this.id, required this.name, required this.abbreviation});
+class _TeamDto extends TeamDto {
+  const _TeamDto({required this.id, required this.name, required this.abbreviation}): super._();
   factory _TeamDto.fromJson(Map<String, dynamic> json) => _$TeamDtoFromJson(json);
 
 @override final  int id;

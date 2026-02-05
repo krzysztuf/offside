@@ -208,8 +208,8 @@ return $default(_that.id,_that.firebaseId,_that.name,_that.surname,_that.nicknam
 /// @nodoc
 @JsonSerializable()
 
-class _UserDto implements UserDto {
-  const _UserDto({required this.id, @JsonKey(name: 'firebase_id') required this.firebaseId, required this.name, required this.surname, this.nickname, this.image, @JsonKey(name: 'winner_prediction_id') this.winnerPredictionId});
+class _UserDto extends UserDto {
+  const _UserDto({required this.id, @JsonKey(name: 'firebase_id') required this.firebaseId, required this.name, required this.surname, this.nickname, this.image, @JsonKey(name: 'winner_prediction_id') this.winnerPredictionId}): super._();
   factory _UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
 @override final  int id;

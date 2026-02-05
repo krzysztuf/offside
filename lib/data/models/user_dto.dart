@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:offside/domain/entities/user.dart';
 
 part 'user_dto.freezed.dart';
 part 'user_dto.g.dart';
@@ -17,5 +18,17 @@ sealed class UserDto with _$UserDto {
     @JsonKey(name: 'winner_prediction_id') int? winnerPredictionId,
   }) = _UserDto;
 
+  const UserDto._();
+
   factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
+
+  User toEntity() => User(
+    id: id.toString(),
+    firebaseId: firebaseId,
+    name: name,
+    surname: surname,
+    nickname: nickname,
+    image: image,
+    winnerPredictionId: winnerPredictionId?.toString(),
+  );
 }

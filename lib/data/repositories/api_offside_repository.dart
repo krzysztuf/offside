@@ -1,4 +1,5 @@
-import 'package:offside/data/sources/offside_api_data_source.dart';
+import 'package:offside/data/models/team_dto.dart';
+import 'package:offside/data/sources/offside_api.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
@@ -6,18 +7,34 @@ import 'package:offside/domain/repositories/offside_repository.dart';
 
 class ApiOffsideRepository implements OffsideRepository {
   final DateTime now;
-  final OffsideApiDataSource _dataSource;
+  final OffsideApi _api;
+  Map<int, TeamDto>? _teamsCache;
 
-  ApiOffsideRepository(this.now, this._dataSource);
+  ApiOffsideRepository(this.now, this._api);
+
+  Future<Map<int, TeamDto>> _getTeamsCache() async {
+    if (_teamsCache != null) return _teamsCache!;
+    final teams = await _api.getTeams();
+    _teamsCache = {for (final team in teams) team.id: team};
+    return _teamsCache!;
+  }
 
   @override
   Future<List<Bet>> userBets(User user) async {
-    return await _dataSource.getBetsForUserFirebaseId(user.firebaseId);
+    final users = await _api.getUsers();
+    final userDto = users.where((u) => u.firebaseId == user.firebaseId).firstOrNull;
+    if (userDto == null) return [];
+
+    final teamsCache = await _getTeamsCache();
+    final dtos = await _api.getBetsByUserId(userDto.id);
+    return dtos.map((dto) => dto.toEntity(teamsCache)).toList();
   }
 
   @override
   Future<List<Match>> lastSixMatches() async {
-    final allMatches = await _dataSource.getMatches();
+    final teamsCache = await _getTeamsCache();
+    final dtos = await _api.getMatches();
+    final allMatches = dtos.map((dto) => dto.toEntity(teamsCache)).toList();
 
     final pastMatches = allMatches
         .where((match) => match.kickOffDate.isBefore(now))
@@ -30,7 +47,9 @@ class ApiOffsideRepository implements OffsideRepository {
 
   @override
   Future<List<Match>> upcomingMatches() async {
-    final allMatches = await _dataSource.getMatches();
+    final teamsCache = await _getTeamsCache();
+    final dtos = await _api.getMatches();
+    final allMatches = dtos.map((dto) => dto.toEntity(teamsCache)).toList();
     final midnight = now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0);
 
     return allMatches
@@ -40,7 +59,9 @@ class ApiOffsideRepository implements OffsideRepository {
 
   @override
   Future<List<Match>> matchesHistory() async {
-    final allMatches = await _dataSource.getMatches();
+    final teamsCache = await _getTeamsCache();
+    final dtos = await _api.getMatches();
+    final allMatches = dtos.map((dto) => dto.toEntity(teamsCache)).toList();
     final midnight = now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0);
 
     return allMatches

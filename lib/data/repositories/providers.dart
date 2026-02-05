@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:offside/data/repositories/api_offside_repository.dart';
-import 'package:offside/data/repositories/api_repository.dart';
+import 'package:offside/data/repositories/bet_repository.dart';
+import 'package:offside/data/repositories/match_repository.dart';
+import 'package:offside/data/repositories/private_table_repository.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/repositories/stub_auth_repository.dart';
 import 'package:offside/data/repositories/stub_image_repository.dart';
+import 'package:offside/data/repositories/team_repository.dart';
+import 'package:offside/data/repositories/user_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
-import 'package:offside/data/sources/offside_api_data_source.dart';
-import 'package:offside/data/sources/offside_api_service.dart';
+import 'package:offside/data/sources/offside_api.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/private_table.dart';
@@ -28,51 +31,46 @@ Dio dio(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-OffsideApiService offsideApiService(Ref ref) {
-  return OffsideApiService(ref.read(dioProvider));
-}
-
-@Riverpod(keepAlive: true)
-OffsideApiDataSource offsideApiDataSource(Ref ref) {
-  return OffsideApiDataSource(ref.read(offsideApiServiceProvider));
+OffsideApi offsideApi(Ref ref) {
+  return OffsideApi(ref.read(dioProvider));
 }
 
 @riverpod
 Repository<Match> matchesRepository(Ref ref) {
-  return ApiRepository<Match>(ref.read(offsideApiDataSourceProvider));
+  return MatchRepository(ref.read(offsideApiProvider));
 }
 
 @riverpod
 Repository<Bet> matchBetsRepository(Ref ref, Match match) {
-  return ApiRepository<Bet>(ref.read(offsideApiDataSourceProvider));
+  return BetRepository(ref.read(offsideApiProvider));
 }
 
 @riverpod
 Repository<Team> teamsRepository(Ref ref) {
-  return ApiRepository<Team>(ref.read(offsideApiDataSourceProvider));
+  return TeamRepository(ref.read(offsideApiProvider));
 }
 
 @riverpod
 Repository<User> usersRepository(Ref ref) {
-  return ApiRepository<User>(ref.read(offsideApiDataSourceProvider));
+  return UserRepository(ref.read(offsideApiProvider));
 }
 
 @riverpod
 Repository<PrivateTable> privateTablesRepository(Ref ref) {
-  return ApiRepository<PrivateTable>(ref.read(offsideApiDataSourceProvider));
+  return PrivateTableRepository(ref.read(offsideApiProvider));
 }
 
 @riverpod
 OffsideRepository offsideRepository(Ref ref) {
   return ApiOffsideRepository(
     ref.read(dateTimeProvider),
-    ref.read(offsideApiDataSourceProvider),
+    ref.read(offsideApiProvider),
   );
 }
 
 @riverpod
 AuthRepository authRepository(Ref ref) {
-  return StubAuthRepository(ref.read(offsideApiDataSourceProvider));
+  return StubAuthRepository(ref.read(offsideApiProvider));
 }
 
 @riverpod
