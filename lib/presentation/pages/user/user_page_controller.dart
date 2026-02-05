@@ -13,12 +13,6 @@ class UserPageController extends _$UserPageController {
     final bets = await ref.read(offsideRepositoryProvider).userBets(user);
     final matches = await ref.read(matchesRepositoryProvider).all();
 
-    final teamFetchers = matches
-        .map((m) => [m.homeTeam.fetch(), m.awayTeam.fetch()])
-        .fold(<Future<void>>[], (all, future) => all..addAll(future));
-
-    await Future.wait(teamFetchers);
-
     return UserPageState(
       user: user,
       bets: bets,

@@ -8,9 +8,9 @@ part 'bet.g.dart';
 sealed class Bet with _$Bet {
   const factory Bet({
     // ignore: invalid_annotation_target
-    @Default('') @JsonKey(includeToJson: false) String id,
-    required String matchId,
-    required String userId,
+    @Default(0) @JsonKey(includeToJson: false) int id,
+    required int matchId,
+    required int userId,
     required MatchOutcome prediction,
   }) = _Bet;
 

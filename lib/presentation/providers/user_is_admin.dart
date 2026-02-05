@@ -5,5 +5,7 @@ part 'user_is_admin.g.dart';
 
 @riverpod
 bool userIsAdmin(Ref ref) {
-  return ref.watch(currentUserIdSettingProvider) == 'h7yVtQFIwgfdvF66afLo';
+  // Admin user ID (replace with actual admin user ID from API)
+  const adminUserId = 1;
+  return ref.watch(currentUserIdSettingProvider) == adminUserId;
 }

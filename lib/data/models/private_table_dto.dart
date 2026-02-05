@@ -20,9 +20,9 @@ sealed class PrivateTableDto with _$PrivateTableDto {
   factory PrivateTableDto.fromJson(Map<String, dynamic> json) => _$PrivateTableDtoFromJson(json);
 
   PrivateTable toEntity() => PrivateTable(
-    id: id.toString(),
+    id: id,
     name: name,
-    ownerId: ownerId.toString(),
-    memberIds: memberIds.map((id) => id.toString()).toList(),
+    ownerId: ownerId,
+    memberIds: memberIds,
   );
 }

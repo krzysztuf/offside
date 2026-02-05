@@ -13,7 +13,7 @@ part of 'reactive_settings_providers.dart';
 final currentUserIdSettingProvider = CurrentUserIdSettingProvider._();
 
 final class CurrentUserIdSettingProvider
-    extends $NotifierProvider<CurrentUserIdSetting, String> {
+    extends $NotifierProvider<CurrentUserIdSetting, int> {
   CurrentUserIdSettingProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class CurrentUserIdSettingProvider
   CurrentUserIdSetting create() => CurrentUserIdSetting();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(String value) {
+  Override overrideWithValue(int value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<String>(value),
+      providerOverride: $SyncValueProvider<int>(value),
     );
   }
 }
 
 String _$currentUserIdSettingHash() =>
-    r'ace6d8415437121cb5e4eb8256ba428da4b075b5';
+    r'618e9cea8bb8b7035bb69fb2729da9947492c832';
 
-abstract class _$CurrentUserIdSetting extends $Notifier<String> {
-  String build();
+abstract class _$CurrentUserIdSetting extends $Notifier<int> {
+  int build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<String, String>;
+    final ref = this.ref as $Ref<int, int>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<String, String>,
-              String,
+              AnyNotifier<int, int>,
+              int,
               Object?,
               Object?
             >;

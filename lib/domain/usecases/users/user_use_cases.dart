@@ -5,13 +5,13 @@ import 'package:offside/domain/usecases/async_use_case.dart';
 
 class GetCurrentUserUseCase implements AsyncUseCase<User?> {
   final Repository<User> users;
-  final String currentUserId;
+  final int currentUserId;
 
   GetCurrentUserUseCase(this.users, this.currentUserId);
 
   @override
   Future<User?> run() async {
-    if (currentUserId.isEmpty) {
+    if (currentUserId == 0) {
       return null;
     }
 
@@ -27,14 +27,11 @@ class GetAllUsersUseCase implements AsyncUseCase<List<User>> {
   @override
   Future<List<User>> run() async {
     final users = await usersRepository.all();
-    return users
-        .where((user) => user.firebaseId != "vxLxo3VBnHSJYMUi0Xy1sOYodpd2")
-        .toList();
+    return users.toList();
   }
 }
 
-class UploadUserAvatarUseCase
-    implements AsyncUseCaseWithParams<User, User, String> {
+class UploadUserAvatarUseCase implements AsyncUseCaseWithParams<User, User, String> {
   final Repository<User> users;
   final ImageRepository imageRepository;
 

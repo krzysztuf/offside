@@ -30,12 +30,13 @@ class BetRepository implements Repository<Bet> {
   }
 
   @override
-  Future<String> add(Bet item) async {
-    return 'stub-id';
+  Future<int> add(Bet item) async {
+    return 0;
   }
 
   @override
-  Future<Bet?> byId(String id) async {
+  Future<Bet?> byId(int id) async {
+    if (id == 0) return null;
     final bets = await all();
     try {
       return bets.firstWhere((bet) => bet.id == id);
@@ -53,7 +54,7 @@ class BetRepository implements Repository<Bet> {
     final teamsCache = await _getTeamsCache();
 
     if (field == 'userId' && isEqualTo != null) {
-      final userId = int.tryParse(isEqualTo.toString());
+      final userId = isEqualTo is int ? isEqualTo : int.tryParse(isEqualTo.toString());
       if (userId != null) {
         final dtos = await _api.getBetsByUserId(userId);
         return dtos.map((dto) => dto.toEntity(teamsCache)).toList();
@@ -61,7 +62,7 @@ class BetRepository implements Repository<Bet> {
     }
 
     if (field == 'matchId' && isEqualTo != null) {
-      final matchId = int.tryParse(isEqualTo.toString());
+      final matchId = isEqualTo is int ? isEqualTo : int.tryParse(isEqualTo.toString());
       if (matchId != null) {
         final dtos = await _api.getBetsByMatchId(matchId);
         return dtos.map((dto) => dto.toEntity(teamsCache)).toList();

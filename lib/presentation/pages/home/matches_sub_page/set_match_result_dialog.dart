@@ -41,10 +41,10 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
     final winnerId = outcome.penaltiesWinnerId;
     final match = widget.match;
 
-    if (winnerId == match.homeTeam.value.id) {
-      return match.homeTeam.value;
-    } else if (winnerId == match.awayTeam.value.id) {
-      return match.awayTeam.value;
+    if (winnerId == match.homeTeam?.id) {
+      return match.homeTeam;
+    } else if (winnerId == match.awayTeam?.id) {
+      return match.awayTeam;
     }
 
     return null;
@@ -59,6 +59,9 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final homeTeam = widget.match.homeTeam;
+    final awayTeam = widget.match.awayTeam;
+
     return AlertDialog(
       title: const Text('Wynik meczu'),
       content: SizedBox(
@@ -75,22 +78,23 @@ class _SetMatchResultDialogState extends ConsumerState<SetMatchResultDialog> {
               ),
             ),
             const Gap(16),
-            Enabled(
-              enabled: widget.match.knockoutStage && outcome.goals.draw,
-              child: ListTile(
-                title: const Text('Zwycięzca dogrywki'),
-                contentPadding: EdgeInsets.zero,
-                trailing: BorderedDropdownButton<Team>(
-                  value: penaltiesWinnerTeam,
-                  items: [widget.match.homeTeam.value, widget.match.awayTeam.value].map((team) {
-                    return DropdownMenuItem(value: team, child: TeamBadge.dense(context, team));
-                  }).toList(),
-                  onChanged: (team) => setState(() {
-                    outcome = outcome.copyWith(penaltiesWinnerId: team!.id);
-                  }),
+            if (homeTeam != null && awayTeam != null)
+              Enabled(
+                enabled: widget.match.knockoutStage && outcome.goals.draw,
+                child: ListTile(
+                  title: const Text('Zwycięzca dogrywki'),
+                  contentPadding: EdgeInsets.zero,
+                  trailing: BorderedDropdownButton<Team>(
+                    value: penaltiesWinnerTeam,
+                    items: [homeTeam, awayTeam].map((team) {
+                      return DropdownMenuItem(value: team, child: TeamBadge.dense(context, team));
+                    }).toList(),
+                    onChanged: (team) => setState(() {
+                      outcome = outcome.copyWith(penaltiesWinnerId: team!.id);
+                    }),
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserDto {
 
- int get id;@JsonKey(name: 'firebase_id') String get firebaseId; String get name; String get surname; String? get nickname; String? get image;@JsonKey(name: 'winner_prediction_id') int? get winnerPredictionId;
+ int get id; String get name; String get surname; String? get nickname; String? get image;@JsonKey(name: 'winner_prediction_id') int? get winnerPredictionId;
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserDtoCopyWith<UserDto> get copyWith => _$UserDtoCopyWithImpl<UserDto>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDto&&(identical(other.id, id) || other.id == id)&&(identical(other.firebaseId, firebaseId) || other.firebaseId == firebaseId)&&(identical(other.name, name) || other.name == name)&&(identical(other.surname, surname) || other.surname == surname)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.image, image) || other.image == image)&&(identical(other.winnerPredictionId, winnerPredictionId) || other.winnerPredictionId == winnerPredictionId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDto&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.surname, surname) || other.surname == surname)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.image, image) || other.image == image)&&(identical(other.winnerPredictionId, winnerPredictionId) || other.winnerPredictionId == winnerPredictionId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firebaseId,name,surname,nickname,image,winnerPredictionId);
+int get hashCode => Object.hash(runtimeType,id,name,surname,nickname,image,winnerPredictionId);
 
 @override
 String toString() {
-  return 'UserDto(id: $id, firebaseId: $firebaseId, name: $name, surname: $surname, nickname: $nickname, image: $image, winnerPredictionId: $winnerPredictionId)';
+  return 'UserDto(id: $id, name: $name, surname: $surname, nickname: $nickname, image: $image, winnerPredictionId: $winnerPredictionId)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserDtoCopyWith<$Res>  {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) _then) = _$UserDtoCopyWithImpl;
 @useResult
 $Res call({
- int id,@JsonKey(name: 'firebase_id') String firebaseId, String name, String surname, String? nickname, String? image,@JsonKey(name: 'winner_prediction_id') int? winnerPredictionId
+ int id, String name, String surname, String? nickname, String? image,@JsonKey(name: 'winner_prediction_id') int? winnerPredictionId
 });
 
 
@@ -65,11 +65,10 @@ class _$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firebaseId = null,Object? name = null,Object? surname = null,Object? nickname = freezed,Object? image = freezed,Object? winnerPredictionId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? surname = null,Object? nickname = freezed,Object? image = freezed,Object? winnerPredictionId = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,firebaseId: null == firebaseId ? _self.firebaseId : firebaseId // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,surname: null == surname ? _self.surname : surname // ignore: cast_nullable_to_non_nullable
 as String,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
@@ -156,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'firebase_id')  String firebaseId,  String name,  String surname,  String? nickname,  String? image, @JsonKey(name: 'winner_prediction_id')  int? winnerPredictionId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String surname,  String? nickname,  String? image, @JsonKey(name: 'winner_prediction_id')  int? winnerPredictionId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
-return $default(_that.id,_that.firebaseId,_that.name,_that.surname,_that.nickname,_that.image,_that.winnerPredictionId);case _:
+return $default(_that.id,_that.name,_that.surname,_that.nickname,_that.image,_that.winnerPredictionId);case _:
   return orElse();
 
 }
@@ -177,10 +176,10 @@ return $default(_that.id,_that.firebaseId,_that.name,_that.surname,_that.nicknam
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'firebase_id')  String firebaseId,  String name,  String surname,  String? nickname,  String? image, @JsonKey(name: 'winner_prediction_id')  int? winnerPredictionId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String surname,  String? nickname,  String? image, @JsonKey(name: 'winner_prediction_id')  int? winnerPredictionId)  $default,) {final _that = this;
 switch (_that) {
 case _UserDto():
-return $default(_that.id,_that.firebaseId,_that.name,_that.surname,_that.nickname,_that.image,_that.winnerPredictionId);}
+return $default(_that.id,_that.name,_that.surname,_that.nickname,_that.image,_that.winnerPredictionId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -194,10 +193,10 @@ return $default(_that.id,_that.firebaseId,_that.name,_that.surname,_that.nicknam
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'firebase_id')  String firebaseId,  String name,  String surname,  String? nickname,  String? image, @JsonKey(name: 'winner_prediction_id')  int? winnerPredictionId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String surname,  String? nickname,  String? image, @JsonKey(name: 'winner_prediction_id')  int? winnerPredictionId)?  $default,) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
-return $default(_that.id,_that.firebaseId,_that.name,_that.surname,_that.nickname,_that.image,_that.winnerPredictionId);case _:
+return $default(_that.id,_that.name,_that.surname,_that.nickname,_that.image,_that.winnerPredictionId);case _:
   return null;
 
 }
@@ -209,11 +208,10 @@ return $default(_that.id,_that.firebaseId,_that.name,_that.surname,_that.nicknam
 @JsonSerializable()
 
 class _UserDto extends UserDto {
-  const _UserDto({required this.id, @JsonKey(name: 'firebase_id') required this.firebaseId, required this.name, required this.surname, this.nickname, this.image, @JsonKey(name: 'winner_prediction_id') this.winnerPredictionId}): super._();
+  const _UserDto({required this.id, required this.name, required this.surname, this.nickname, this.image, @JsonKey(name: 'winner_prediction_id') this.winnerPredictionId}): super._();
   factory _UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
 @override final  int id;
-@override@JsonKey(name: 'firebase_id') final  String firebaseId;
 @override final  String name;
 @override final  String surname;
 @override final  String? nickname;
@@ -233,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDto&&(identical(other.id, id) || other.id == id)&&(identical(other.firebaseId, firebaseId) || other.firebaseId == firebaseId)&&(identical(other.name, name) || other.name == name)&&(identical(other.surname, surname) || other.surname == surname)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.image, image) || other.image == image)&&(identical(other.winnerPredictionId, winnerPredictionId) || other.winnerPredictionId == winnerPredictionId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDto&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.surname, surname) || other.surname == surname)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.image, image) || other.image == image)&&(identical(other.winnerPredictionId, winnerPredictionId) || other.winnerPredictionId == winnerPredictionId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,firebaseId,name,surname,nickname,image,winnerPredictionId);
+int get hashCode => Object.hash(runtimeType,id,name,surname,nickname,image,winnerPredictionId);
 
 @override
 String toString() {
-  return 'UserDto(id: $id, firebaseId: $firebaseId, name: $name, surname: $surname, nickname: $nickname, image: $image, winnerPredictionId: $winnerPredictionId)';
+  return 'UserDto(id: $id, name: $name, surname: $surname, nickname: $nickname, image: $image, winnerPredictionId: $winnerPredictionId)';
 }
 
 
@@ -253,7 +251,7 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   factory _$UserDtoCopyWith(_UserDto value, $Res Function(_UserDto) _then) = __$UserDtoCopyWithImpl;
 @override @useResult
 $Res call({
- int id,@JsonKey(name: 'firebase_id') String firebaseId, String name, String surname, String? nickname, String? image,@JsonKey(name: 'winner_prediction_id') int? winnerPredictionId
+ int id, String name, String surname, String? nickname, String? image,@JsonKey(name: 'winner_prediction_id') int? winnerPredictionId
 });
 
 
@@ -270,11 +268,10 @@ class __$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firebaseId = null,Object? name = null,Object? surname = null,Object? nickname = freezed,Object? image = freezed,Object? winnerPredictionId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? surname = null,Object? nickname = freezed,Object? image = freezed,Object? winnerPredictionId = freezed,}) {
   return _then(_UserDto(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,firebaseId: null == firebaseId ? _self.firebaseId : firebaseId // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,surname: null == surname ? _self.surname : surname // ignore: cast_nullable_to_non_nullable
 as String,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable

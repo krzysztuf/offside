@@ -47,4 +47,4 @@ final class UserIsAdminProvider extends $FunctionalProvider<bool, bool, bool>
   }
 }
 
-String _$userIsAdminHash() => r'cda602231f0f801f28a9b642f674e4100c948deb';
+String _$userIsAdminHash() => r'aa2d26ad5083863980721b4eaea670c1d1c2d5b0';

@@ -32,11 +32,11 @@ class PredictionsChart extends StatelessWidget {
         child: DChartPieO(
           data: [
             OrdinalData(
-              domain: match.homeTeam.value.abbreviation,
+              domain: match.homeTeam?.abbreviation ?? '-',
               measure: homeWins.length,
             ),
             OrdinalData(
-              domain: match.awayTeam.value.abbreviation,
+              domain: match.awayTeam?.abbreviation ?? '-',
               measure: awayWins.length,
             ),
             OrdinalData(

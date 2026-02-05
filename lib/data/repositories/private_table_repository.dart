@@ -20,16 +20,15 @@ class PrivateTableRepository implements Repository<PrivateTable> {
   }
 
   @override
-  Future<String> add(PrivateTable item) async {
-    return 'stub-id';
+  Future<int> add(PrivateTable item) async {
+    return 0;
   }
 
   @override
-  Future<PrivateTable?> byId(String id) async {
-    final intId = int.tryParse(id);
-    if (intId == null) return null;
+  Future<PrivateTable?> byId(int id) async {
+    if (id == 0) return null;
     try {
-      final dto = await _api.getPrivateTableById(intId);
+      final dto = await _api.getPrivateTableById(id);
       return dto.toEntity();
     } catch (e) {
       return null;

@@ -34,23 +34,23 @@ class MatchCardController extends _$MatchCardController {
     state = state.copyWith(match: updatedMatch, loading: false);
   }
 
-  void _fetchBets(Match match, String userId) {
+  Future<void> _fetchBets(Match match, int userId) async {
     final currentTime = ref.read(dateTimeProvider);
-    match.bets.fetch().then((_) {
-      final bet = match.bets.value.find((bet) => bet.userId == userId);
+    final bets = await ref.read(matchBetsRepositoryProvider(match)).where('matchId', isEqualTo: match.id);
+    final bet = bets.find((bet) => bet.userId == userId);
 
-      var updatedState = state.copyWith(
-        bet: bet,
-        betState: bet != null ? BetState.placed : BetState.notPlaced,
-        loading: false,
-      );
+    var updatedState = state.copyWith(
+      match: match.copyWith(bets: bets),
+      bet: bet,
+      betState: bet != null ? BetState.placed : BetState.notPlaced,
+      loading: false,
+    );
 
-      if (match.afterKickOff(currentTime) && bet == null) {
-        updatedState = updatedState.copyWith(betState: BetState.expired);
-      }
+    if (match.afterKickOff(currentTime) && bet == null) {
+      updatedState = updatedState.copyWith(betState: BetState.expired);
+    }
 
-      state = updatedState;
-    });
+    state = updatedState;
   }
 
   Future<void> updatePrediction(MatchOutcome prediction) async {

@@ -1,26 +1,17 @@
-import 'package:offside/data/models/team_dto.dart';
 import 'package:offside/data/sources/offside_api.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/repositories/repository.dart';
 
 class MatchRepository implements Repository<Match> {
   final OffsideApi _api;
-  Map<int, TeamDto>? _teamsCache;
 
   MatchRepository(this._api);
 
-  Future<Map<int, TeamDto>> _getTeamsCache() async {
-    if (_teamsCache != null) return _teamsCache!;
-    final teams = await _api.getTeams();
-    _teamsCache = {for (final team in teams) team.id: team};
-    return _teamsCache!;
-  }
-
   @override
   Future<List<Match>> all() async {
-    final teamsCache = await _getTeamsCache();
+    final teams = await _api.getTeams();
     final dtos = await _api.getMatches();
-    return dtos.map((dto) => dto.toEntity(teamsCache)).toList();
+    return dtos.map((dto) => dto.toEntity(teams)).toList();
   }
 
   @override
@@ -30,18 +21,17 @@ class MatchRepository implements Repository<Match> {
   }
 
   @override
-  Future<String> add(Match item) async {
-    return 'stub-id';
+  Future<int> add(Match item) async {
+    return 0;
   }
 
   @override
-  Future<Match?> byId(String id) async {
-    final intId = int.tryParse(id);
-    if (intId == null) return null;
+  Future<Match?> byId(int id) async {
+    if (id == 0) return null;
     try {
-      final teamsCache = await _getTeamsCache();
-      final dto = await _api.getMatchById(intId);
-      return dto.toEntity(teamsCache);
+      final teams = await _api.getTeams();
+      final dto = await _api.getMatchById(id);
+      return dto.toEntity(teams);
     } catch (e) {
       return null;
     }

@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/entities/fetchable.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
@@ -23,7 +22,6 @@ import 'package:offside/presentation/widgets/admin_visible.dart';
 import 'package:offside/presentation/widgets/alternative_inflater.dart';
 import 'package:offside/presentation/widgets/bordered_dropdown_button.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
-import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/icon_with_text.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 import 'package:offside/presentation/widgets/muted_information_label.dart';
@@ -59,16 +57,16 @@ class _MatchCardState extends ConsumerState<MatchCard> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(matchCardControllerProvider);
-    final teamsLoaded = state.match.homeTeam.hasValue && state.match.awayTeam.hasValue;
+    final teamsLoaded = state.match.homeTeam != null && state.match.awayTeam != null;
     if (penaltiesWinner == null && teamsLoaded) {
       if (state.bet != null) {
-        penaltiesWinner = state.bet!.prediction.penaltiesWinnerId == state.match.homeTeam.value.id
-            ? state.match.homeTeam.value
-            : state.match.awayTeam.value;
+        penaltiesWinner = state.bet!.prediction.penaltiesWinnerId == state.match.homeTeam!.id
+            ? state.match.homeTeam
+            : state.match.awayTeam;
 
-        penaltiesWinner ??= state.match.homeTeam.value;
+        penaltiesWinner ??= state.match.homeTeam;
       } else {
-        penaltiesWinner = state.match.homeTeam.value;
+        penaltiesWinner = state.match.homeTeam;
       }
     }
 
@@ -136,11 +134,11 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        fetchAndBuildTeamBadge(state.match.homeTeam, context),
+        buildTeamBadge(state.match.homeTeam, context),
         const Gap(4),
         buildScorePrediction(state),
         const Gap(4),
-        fetchAndBuildTeamBadge(state.match.awayTeam, context),
+        buildTeamBadge(state.match.awayTeam, context),
       ],
     );
   }
@@ -163,20 +161,17 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     );
   }
 
-  Widget fetchAndBuildTeamBadge(Fetchable<Team> teamFetchable, BuildContext context) {
+  Widget buildTeamBadge(Team? team, BuildContext context) {
     final textStyle = context.textTheme.bodyLarge;
     return SizedBox(
       width: 88,
-      child: FetchableBuilder(
-        fetchable: teamFetchable,
-        waiting: () => TeamBadge.skeleton(),
-        child: (homeTeam) => TeamBadge(
-          team: homeTeam,
-          badgeRadius: 22,
-          textStyle: textStyle,
-        ),
-        error: teamMissingBadge,
-      ),
+      child: team != null
+          ? TeamBadge(
+              team: team,
+              badgeRadius: 22,
+              textStyle: textStyle,
+            )
+          : TeamBadge.skeleton(),
     );
   }
 
@@ -327,15 +322,9 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     });
   }
 
-  Widget teamMissingBadge() {
-    return TeamBadge(
-      team: Team(name: 'Błąd', abbreviation: 'ERR'),
-    );
-  }
-
   Widget buildPenaltyWinnerRow(MatchCardState state) {
     final match = state.match;
-    if (!match.homeTeam.hasValue || !match.awayTeam.hasValue) {
+    if (match.homeTeam == null || match.awayTeam == null) {
       return const SizedBox.shrink();
     }
 
@@ -364,7 +353,7 @@ class _MatchCardState extends ConsumerState<MatchCard> {
                       value: editedPenaltiesWinner,
                       height: 40,
                       hint: 'Wybierz drużynę',
-                      items: [match.homeTeam.value, match.awayTeam.value].map((team) {
+                      items: [match.homeTeam!, match.awayTeam!].map((team) {
                         return DropdownMenuItem(value: team, child: TeamBadge.dense(context, team));
                       }).toList(),
                       onChanged: (team) => setState(() => editedPenaltiesWinner = team),

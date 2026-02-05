@@ -4,14 +4,14 @@ import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
 
-class PlaceBetUseCase implements AsyncUseCaseWithParam<String, Bet> {
+class PlaceBetUseCase implements AsyncUseCaseWithParam<int, Bet> {
   final Repository<Bet> repository;
 
   PlaceBetUseCase(this.repository);
 
   @override
-  Future<String> run(Bet bet) async {
-    if (bet.id.isNotEmpty) {
+  Future<int> run(Bet bet) async {
+    if (bet.id != 0) {
       await repository.update(bet);
       return bet.id;
     }
@@ -27,7 +27,7 @@ class UpdateMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
 
   @override
   Future<void> run(Match match) {
-    if (match.id.isEmpty) {
+    if (match.id == 0) {
       throw Exception('UpdateMatchUseCase: match id is required');
     }
 
@@ -42,16 +42,6 @@ class GetRecentMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool
 
   @override
   Future<List<Match>> run(bool fetchData) async {
-    final matches = await offsideRepository.lastSixMatches();
-
-    if (fetchData) {
-      await Future.wait([
-        ...matches.map((m) => m.bets.fetch()),
-        ...matches.map((m) => m.homeTeam.fetch()),
-        ...matches.map((m) => m.awayTeam.fetch()),
-      ]);
-    }
-
-    return matches;
+    return await offsideRepository.lastSixMatches();
   }
 }

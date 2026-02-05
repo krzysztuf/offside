@@ -23,7 +23,8 @@ class MainSubPage extends ConsumerStatefulWidget {
   ConsumerState<MainSubPage> createState() => MainSubPageState();
 }
 
-class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<MainSubPage> {
+class MainSubPageState extends ConsumerState<MainSubPage>
+    with ScrollToTopMixin<MainSubPage> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -35,7 +36,7 @@ class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<
     return userScoresAsync.when(
       data: (userScores) => _buildMainSubPage(context, ref, userScores),
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (_, __) => const Center(child: Text('Error')),
+      error: (_, _) => const Center(child: Text('Error')),
     );
   }
 
@@ -56,7 +57,9 @@ class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<
   }
 
   Widget buildUserGreeting(WidgetRef ref, BuildContext context) {
-    return ref.watch(currentUserProvider).when(
+    return ref
+        .watch(currentUserProvider)
+        .when(
           data: (user) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
@@ -75,10 +78,16 @@ class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<
         );
   }
 
-  Widget _buildMainSubPage(BuildContext context, WidgetRef ref, List<UserScoreSummary> userScores) {
+  Widget _buildMainSubPage(
+    BuildContext context,
+    WidgetRef ref,
+    List<UserScoreSummary> userScores,
+  ) {
     return RefreshIndicator(
       onRefresh: () async {
-        await ref.read(userScoresProvider.notifier).refresh(delay: 500.milliseconds);
+        await ref
+            .read(userScoresProvider.notifier)
+            .refresh(delay: 500.milliseconds);
         await ref.read(privateTablesControllerProvider.notifier).refresh();
       },
       child: Padding(
@@ -104,10 +113,7 @@ class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<
                     subtitle: 'Zdobywcy max punktów w ostatnich 6 meczach',
                   ),
                   const Gap(16),
-                  const SizedBox(
-                    height: 88,
-                    child: SuperBetsList(),
-                  ),
+                  const SizedBox(height: 88, child: SuperBetsList()),
                 ],
                 const Gap(32),
                 const SubtitledHeadline(

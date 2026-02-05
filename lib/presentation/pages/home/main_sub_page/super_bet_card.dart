@@ -30,20 +30,22 @@ class SuperBetCard extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  TeamBadge.dense(
-                    context,
-                    match.homeTeam.value,
-                    useAbbreviation: true,
-                    spacing: 6,
-                  ),
+                  if (match.homeTeam != null)
+                    TeamBadge.dense(
+                      context,
+                      match.homeTeam!,
+                      useAbbreviation: true,
+                      spacing: 6,
+                    ),
                   match.outcome!.goals.asString.styledText(context.textTheme.titleLarge),
-                  TeamBadge.dense(
-                    context,
-                    match.awayTeam.value,
-                    useAbbreviation: true,
-                    spacing: 6,
-                    mirrored: true,
-                  ),
+                  if (match.awayTeam != null)
+                    TeamBadge.dense(
+                      context,
+                      match.awayTeam!,
+                      useAbbreviation: true,
+                      spacing: 6,
+                      mirrored: true,
+                    ),
                 ],
               ),
             ],

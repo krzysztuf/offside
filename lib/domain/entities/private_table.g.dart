@@ -8,11 +8,11 @@ part of 'private_table.dart';
 
 _PrivateTable _$PrivateTableFromJson(Map<String, dynamic> json) =>
     _PrivateTable(
-      id: json['id'] as String? ?? '',
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] as String,
-      ownerId: json['ownerId'] as String,
+      ownerId: (json['ownerId'] as num).toInt(),
       memberIds: (json['memberIds'] as List<dynamic>)
-          .map((e) => e as String)
+          .map((e) => (e as num).toInt())
           .toList(),
     );
 

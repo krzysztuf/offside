@@ -7,7 +7,7 @@ part of 'match.dart';
 // **************************************************************************
 
 _Match _$MatchFromJson(Map<String, dynamic> json) => _Match(
-  id: json['id'] as String? ?? '',
+  id: (json['id'] as num?)?.toInt() ?? 0,
   kickOffDate: DateTime.parse(json['kickOffDate'] as String),
   stage: json['stage'] as String,
   knockoutStage: json['knockoutStage'] as bool,

@@ -2,11 +2,9 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/data/models/team_dto.dart';
-import 'package:offside/domain/entities/fetchable.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
-import 'package:offside/domain/entities/team.dart';
 
 part 'match_dto.freezed.dart';
 part 'match_dto.g.dart';
@@ -29,31 +27,25 @@ sealed class MatchDto with _$MatchDto {
 
   factory MatchDto.fromJson(Map<String, dynamic> json) => _$MatchDtoFromJson(json);
 
-  Match toEntity(Map<int, TeamDto> teamsCache) {
-    final homeTeamDto = teamsCache[homeTeamId];
-    final awayTeamDto = teamsCache[awayTeamId];
-
-    final homeTeam = homeTeamDto != null
-        ? LocalFetchable(homeTeamDto.toEntity())
-        : const NoOpFetchable<Team>();
-    final awayTeam = awayTeamDto != null
-        ? LocalFetchable(awayTeamDto.toEntity())
-        : const NoOpFetchable<Team>();
+  Match toEntity(List<TeamDto> teams) {
+    final homeTeamDto = teams.where((t) => t.id == homeTeamId).firstOrNull;
+    final awayTeamDto = teams.where((t) => t.id == awayTeamId).firstOrNull;
 
     MatchOutcome? outcome;
     if (homeResult != null && awayResult != null) {
+      final penaltiesWinnerDto = penaltiesWinnerId != null
+          ? teams.where((t) => t.id == penaltiesWinnerId).firstOrNull
+          : null;
       outcome = MatchOutcome(
         goals: Goals(home: homeResult!, away: awayResult!),
-        penaltiesWinnerId: penaltiesWinnerId != null
-            ? teamsCache[penaltiesWinnerId]?.abbreviation.toLowerCase()
-            : null,
+        penaltiesWinnerId: penaltiesWinnerDto?.abbreviation.toLowerCase(),
       );
     }
 
     return Match(
-      id: id.toString(),
-      homeTeam: homeTeam,
-      awayTeam: awayTeam,
+      id: id,
+      homeTeam: homeTeamDto?.toEntity(),
+      awayTeam: awayTeamDto?.toEntity(),
       kickOffDate: DateTime.fromMillisecondsSinceEpoch(kickOffDate),
       stage: stage,
       knockoutStage: knockoutStage != 0,

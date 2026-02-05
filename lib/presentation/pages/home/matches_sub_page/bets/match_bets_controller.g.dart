@@ -42,7 +42,7 @@ final class MatchBetsControllerProvider
 }
 
 String _$matchBetsControllerHash() =>
-    r'2f5967ad4486faf7f0e7bd5d8aa4932751bf6243';
+    r'8d44e587e295589b6ee6e498499b0ec22230115c';
 
 abstract class _$MatchBetsController extends $Notifier<MatchBetsState> {
   MatchBetsState build();

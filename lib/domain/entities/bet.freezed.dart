@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$Bet {
 
 // ignore: invalid_annotation_target
-@JsonKey(includeToJson: false) String get id; String get matchId; String get userId; MatchOutcome get prediction;
+@JsonKey(includeToJson: false) int get id; int get matchId; int get userId; MatchOutcome get prediction;
 /// Create a copy of Bet
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $BetCopyWith<$Res>  {
   factory $BetCopyWith(Bet value, $Res Function(Bet) _then) = _$BetCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(includeToJson: false) String id, String matchId, String userId, MatchOutcome prediction
+@JsonKey(includeToJson: false) int id, int matchId, int userId, MatchOutcome prediction
 });
 
 
@@ -69,9 +69,9 @@ class _$BetCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? matchId = null,Object? userId = null,Object? prediction = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,matchId: null == matchId ? _self.matchId : matchId // ignore: cast_nullable_to_non_nullable
-as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,prediction: null == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
+as int,matchId: null == matchId ? _self.matchId : matchId // ignore: cast_nullable_to_non_nullable
+as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,prediction: null == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
 as MatchOutcome,
   ));
 }
@@ -163,7 +163,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  String id,  String matchId,  String userId,  MatchOutcome prediction)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  int id,  int matchId,  int userId,  MatchOutcome prediction)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Bet() when $default != null:
 return $default(_that.id,_that.matchId,_that.userId,_that.prediction);case _:
@@ -184,7 +184,7 @@ return $default(_that.id,_that.matchId,_that.userId,_that.prediction);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  String id,  String matchId,  String userId,  MatchOutcome prediction)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(includeToJson: false)  int id,  int matchId,  int userId,  MatchOutcome prediction)  $default,) {final _that = this;
 switch (_that) {
 case _Bet():
 return $default(_that.id,_that.matchId,_that.userId,_that.prediction);}
@@ -201,7 +201,7 @@ return $default(_that.id,_that.matchId,_that.userId,_that.prediction);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(includeToJson: false)  String id,  String matchId,  String userId,  MatchOutcome prediction)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(includeToJson: false)  int id,  int matchId,  int userId,  MatchOutcome prediction)?  $default,) {final _that = this;
 switch (_that) {
 case _Bet() when $default != null:
 return $default(_that.id,_that.matchId,_that.userId,_that.prediction);case _:
@@ -216,13 +216,13 @@ return $default(_that.id,_that.matchId,_that.userId,_that.prediction);case _:
 @JsonSerializable()
 
 class _Bet implements Bet {
-  const _Bet({@JsonKey(includeToJson: false) this.id = '', required this.matchId, required this.userId, required this.prediction});
+  const _Bet({@JsonKey(includeToJson: false) this.id = 0, required this.matchId, required this.userId, required this.prediction});
   factory _Bet.fromJson(Map<String, dynamic> json) => _$BetFromJson(json);
 
 // ignore: invalid_annotation_target
-@override@JsonKey(includeToJson: false) final  String id;
-@override final  String matchId;
-@override final  String userId;
+@override@JsonKey(includeToJson: false) final  int id;
+@override final  int matchId;
+@override final  int userId;
 @override final  MatchOutcome prediction;
 
 /// Create a copy of Bet
@@ -258,7 +258,7 @@ abstract mixin class _$BetCopyWith<$Res> implements $BetCopyWith<$Res> {
   factory _$BetCopyWith(_Bet value, $Res Function(_Bet) _then) = __$BetCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(includeToJson: false) String id, String matchId, String userId, MatchOutcome prediction
+@JsonKey(includeToJson: false) int id, int matchId, int userId, MatchOutcome prediction
 });
 
 
@@ -278,9 +278,9 @@ class __$BetCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? matchId = null,Object? userId = null,Object? prediction = null,}) {
   return _then(_Bet(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,matchId: null == matchId ? _self.matchId : matchId // ignore: cast_nullable_to_non_nullable
-as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,prediction: null == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
+as int,matchId: null == matchId ? _self.matchId : matchId // ignore: cast_nullable_to_non_nullable
+as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,prediction: null == prediction ? _self.prediction : prediction // ignore: cast_nullable_to_non_nullable
 as MatchOutcome,
   ));
 }

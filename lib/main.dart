@@ -4,6 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
 import 'package:offside/offside_router.dart';
 import 'package:offside/offside_themes.dart';
+import 'package:offside/presentation/providers/date_time_provider.dart';
 
 import 'presentation/pages/home/matches_sub_page/match_card_controller.dart';
 
@@ -16,10 +17,8 @@ Future<void> main() async {
   runApp(
     ProviderScope(
       overrides: [
-        // dateTimeProvider.overrideWithValue(DateTime(2024, 6, 15, 18, 45)),
-        matchCardControllerProvider.overrideWith(
-          () => throw UnimplementedError('MatchCardController unavailable'),
-        ),
+        dateTimeProvider.overrideWithValue(DateTime(2024, 6, 15, 18, 45)),
+        matchCardControllerProvider.overrideWith(() => throw UnimplementedError('MatchCardController unavailable')),
       ],
       child: const OffsideApp(),
     ),

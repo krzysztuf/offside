@@ -1,4 +1,3 @@
-import 'package:uuid/uuid.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
@@ -44,8 +43,7 @@ class LoginPageController extends _$LoginPageController {
     }
 
     // Stub implementation - Firebase removed
-    final uid = const Uuid().v4();
-    final newUser = User(firebaseId: uid, name: name, surname: surname);
+    final newUser = User(name: name, surname: surname);
     await _addUser(newUser);
   }
 
@@ -58,7 +56,7 @@ class LoginPageController extends _$LoginPageController {
     await ref.read(authRepositoryProvider).logOut();
   }
 
-  void _updateUserIdSetting(String id) {
+  void _updateUserIdSetting(int id) {
     ref.read(currentUserIdSettingProvider.notifier).value = id;
   }
 }

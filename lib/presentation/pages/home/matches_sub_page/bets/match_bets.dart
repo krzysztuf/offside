@@ -32,6 +32,8 @@ class _MatchBetsState extends ConsumerState<MatchBets> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     late final state = ref.watch(matchBetsControllerProvider);
+    final homeTeam = state.match.homeTeam;
+    final awayTeam = state.match.awayTeam;
 
     return Padding(
       padding: const EdgeInsets.all(32.0),
@@ -40,9 +42,9 @@ class _MatchBetsState extends ConsumerState<MatchBets> with SingleTickerProvider
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TeamBadge(team: state.match.homeTeam.value),
+              if (homeTeam != null) TeamBadge(team: homeTeam),
               const Text(':', style: TextStyle(fontSize: 22)),
-              TeamBadge(team: state.match.awayTeam.value),
+              if (awayTeam != null) TeamBadge(team: awayTeam),
             ],
           ),
           const Gap(16),
@@ -66,8 +68,8 @@ class _MatchBetsState extends ConsumerState<MatchBets> with SingleTickerProvider
             },
             tabs: [
               const Tab(text: 'TYPY'),
-              Tab(text: state.match.homeTeam.value.abbreviation),
-              Tab(text: state.match.awayTeam.value.abbreviation),
+              Tab(text: state.match.homeTeam?.abbreviation ?? '-'),
+              Tab(text: state.match.awayTeam?.abbreviation ?? '-'),
               const Tab(text: 'REMIS'),
             ],
           ),

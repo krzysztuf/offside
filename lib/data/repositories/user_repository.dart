@@ -7,10 +7,16 @@ class UserRepository implements Repository<User> {
 
   UserRepository(this._api);
 
+  Future<Map<int, String>> _getTeamIdToAbbreviation() async {
+    final teams = await _api.getTeams();
+    return {for (final team in teams) team.id: team.abbreviation};
+  }
+
   @override
   Future<List<User>> all() async {
+    final teamMap = await _getTeamIdToAbbreviation();
     final dtos = await _api.getUsers();
-    return dtos.map((dto) => dto.toEntity()).toList();
+    return dtos.map((dto) => dto.toEntity(teamMap)).toList();
   }
 
   @override
@@ -20,15 +26,17 @@ class UserRepository implements Repository<User> {
   }
 
   @override
-  Future<String> add(User item) async {
-    return 'stub-id';
+  Future<int> add(User item) async {
+    return 0;
   }
 
   @override
-  Future<User?> byId(String id) async {
-    final users = await all();
+  Future<User?> byId(int id) async {
+    if (id == 0) return null;
     try {
-      return users.firstWhere((user) => user.firebaseId == id);
+      final teamMap = await _getTeamIdToAbbreviation();
+      final dto = await _api.getUserById(id);
+      return dto.toEntity(teamMap);
     } catch (e) {
       return null;
     }

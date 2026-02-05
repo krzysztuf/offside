@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Match {
 
- String get id;@JsonKey(includeFromJson: false) Fetchable<Team> get homeTeam;@JsonKey(includeFromJson: false) Fetchable<Team> get awayTeam; DateTime get kickOffDate; String get stage; bool get knockoutStage; MatchOutcome? get outcome;@JsonKey(includeFromJson: false) Fetchable<List<Bet>> get bets;
+ int get id;@JsonKey(includeFromJson: false) Team? get homeTeam;@JsonKey(includeFromJson: false) Team? get awayTeam; DateTime get kickOffDate; String get stage; bool get knockoutStage; MatchOutcome? get outcome;@JsonKey(includeFromJson: false) List<Bet> get bets;
 /// Create a copy of Match
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,12 +28,12 @@ $MatchCopyWith<Match> get copyWith => _$MatchCopyWithImpl<Match>(this as Match, 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Match&&(identical(other.id, id) || other.id == id)&&(identical(other.homeTeam, homeTeam) || other.homeTeam == homeTeam)&&(identical(other.awayTeam, awayTeam) || other.awayTeam == awayTeam)&&(identical(other.kickOffDate, kickOffDate) || other.kickOffDate == kickOffDate)&&(identical(other.stage, stage) || other.stage == stage)&&(identical(other.knockoutStage, knockoutStage) || other.knockoutStage == knockoutStage)&&(identical(other.outcome, outcome) || other.outcome == outcome)&&(identical(other.bets, bets) || other.bets == bets));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Match&&(identical(other.id, id) || other.id == id)&&(identical(other.homeTeam, homeTeam) || other.homeTeam == homeTeam)&&(identical(other.awayTeam, awayTeam) || other.awayTeam == awayTeam)&&(identical(other.kickOffDate, kickOffDate) || other.kickOffDate == kickOffDate)&&(identical(other.stage, stage) || other.stage == stage)&&(identical(other.knockoutStage, knockoutStage) || other.knockoutStage == knockoutStage)&&(identical(other.outcome, outcome) || other.outcome == outcome)&&const DeepCollectionEquality().equals(other.bets, bets));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,homeTeam,awayTeam,kickOffDate,stage,knockoutStage,outcome,bets);
+int get hashCode => Object.hash(runtimeType,id,homeTeam,awayTeam,kickOffDate,stage,knockoutStage,outcome,const DeepCollectionEquality().hash(bets));
 
 @override
 String toString() {
@@ -48,11 +48,11 @@ abstract mixin class $MatchCopyWith<$Res>  {
   factory $MatchCopyWith(Match value, $Res Function(Match) _then) = _$MatchCopyWithImpl;
 @useResult
 $Res call({
- String id,@JsonKey(includeFromJson: false) Fetchable<Team> homeTeam,@JsonKey(includeFromJson: false) Fetchable<Team> awayTeam, DateTime kickOffDate, String stage, bool knockoutStage, MatchOutcome? outcome,@JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets
+ int id,@JsonKey(includeFromJson: false) Team? homeTeam,@JsonKey(includeFromJson: false) Team? awayTeam, DateTime kickOffDate, String stage, bool knockoutStage, MatchOutcome? outcome,@JsonKey(includeFromJson: false) List<Bet> bets
 });
 
 
-$MatchOutcomeCopyWith<$Res>? get outcome;
+$TeamCopyWith<$Res>? get homeTeam;$TeamCopyWith<$Res>? get awayTeam;$MatchOutcomeCopyWith<$Res>? get outcome;
 
 }
 /// @nodoc
@@ -65,20 +65,44 @@ class _$MatchCopyWithImpl<$Res>
 
 /// Create a copy of Match
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? homeTeam = null,Object? awayTeam = null,Object? kickOffDate = null,Object? stage = null,Object? knockoutStage = null,Object? outcome = freezed,Object? bets = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? homeTeam = freezed,Object? awayTeam = freezed,Object? kickOffDate = null,Object? stage = null,Object? knockoutStage = null,Object? outcome = freezed,Object? bets = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,homeTeam: null == homeTeam ? _self.homeTeam : homeTeam // ignore: cast_nullable_to_non_nullable
-as Fetchable<Team>,awayTeam: null == awayTeam ? _self.awayTeam : awayTeam // ignore: cast_nullable_to_non_nullable
-as Fetchable<Team>,kickOffDate: null == kickOffDate ? _self.kickOffDate : kickOffDate // ignore: cast_nullable_to_non_nullable
+as int,homeTeam: freezed == homeTeam ? _self.homeTeam : homeTeam // ignore: cast_nullable_to_non_nullable
+as Team?,awayTeam: freezed == awayTeam ? _self.awayTeam : awayTeam // ignore: cast_nullable_to_non_nullable
+as Team?,kickOffDate: null == kickOffDate ? _self.kickOffDate : kickOffDate // ignore: cast_nullable_to_non_nullable
 as DateTime,stage: null == stage ? _self.stage : stage // ignore: cast_nullable_to_non_nullable
 as String,knockoutStage: null == knockoutStage ? _self.knockoutStage : knockoutStage // ignore: cast_nullable_to_non_nullable
 as bool,outcome: freezed == outcome ? _self.outcome : outcome // ignore: cast_nullable_to_non_nullable
 as MatchOutcome?,bets: null == bets ? _self.bets : bets // ignore: cast_nullable_to_non_nullable
-as Fetchable<List<Bet>>,
+as List<Bet>,
   ));
 }
 /// Create a copy of Match
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TeamCopyWith<$Res>? get homeTeam {
+    if (_self.homeTeam == null) {
+    return null;
+  }
+
+  return $TeamCopyWith<$Res>(_self.homeTeam!, (value) {
+    return _then(_self.copyWith(homeTeam: value));
+  });
+}/// Create a copy of Match
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TeamCopyWith<$Res>? get awayTeam {
+    if (_self.awayTeam == null) {
+    return null;
+  }
+
+  return $TeamCopyWith<$Res>(_self.awayTeam!, (value) {
+    return _then(_self.copyWith(awayTeam: value));
+  });
+}/// Create a copy of Match
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -169,7 +193,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(includeFromJson: false)  Fetchable<Team> homeTeam, @JsonKey(includeFromJson: false)  Fetchable<Team> awayTeam,  DateTime kickOffDate,  String stage,  bool knockoutStage,  MatchOutcome? outcome, @JsonKey(includeFromJson: false)  Fetchable<List<Bet>> bets)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(includeFromJson: false)  Team? homeTeam, @JsonKey(includeFromJson: false)  Team? awayTeam,  DateTime kickOffDate,  String stage,  bool knockoutStage,  MatchOutcome? outcome, @JsonKey(includeFromJson: false)  List<Bet> bets)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Match() when $default != null:
 return $default(_that.id,_that.homeTeam,_that.awayTeam,_that.kickOffDate,_that.stage,_that.knockoutStage,_that.outcome,_that.bets);case _:
@@ -190,7 +214,7 @@ return $default(_that.id,_that.homeTeam,_that.awayTeam,_that.kickOffDate,_that.s
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(includeFromJson: false)  Fetchable<Team> homeTeam, @JsonKey(includeFromJson: false)  Fetchable<Team> awayTeam,  DateTime kickOffDate,  String stage,  bool knockoutStage,  MatchOutcome? outcome, @JsonKey(includeFromJson: false)  Fetchable<List<Bet>> bets)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(includeFromJson: false)  Team? homeTeam, @JsonKey(includeFromJson: false)  Team? awayTeam,  DateTime kickOffDate,  String stage,  bool knockoutStage,  MatchOutcome? outcome, @JsonKey(includeFromJson: false)  List<Bet> bets)  $default,) {final _that = this;
 switch (_that) {
 case _Match():
 return $default(_that.id,_that.homeTeam,_that.awayTeam,_that.kickOffDate,_that.stage,_that.knockoutStage,_that.outcome,_that.bets);}
@@ -207,7 +231,7 @@ return $default(_that.id,_that.homeTeam,_that.awayTeam,_that.kickOffDate,_that.s
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(includeFromJson: false)  Fetchable<Team> homeTeam, @JsonKey(includeFromJson: false)  Fetchable<Team> awayTeam,  DateTime kickOffDate,  String stage,  bool knockoutStage,  MatchOutcome? outcome, @JsonKey(includeFromJson: false)  Fetchable<List<Bet>> bets)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(includeFromJson: false)  Team? homeTeam, @JsonKey(includeFromJson: false)  Team? awayTeam,  DateTime kickOffDate,  String stage,  bool knockoutStage,  MatchOutcome? outcome, @JsonKey(includeFromJson: false)  List<Bet> bets)?  $default,) {final _that = this;
 switch (_that) {
 case _Match() when $default != null:
 return $default(_that.id,_that.homeTeam,_that.awayTeam,_that.kickOffDate,_that.stage,_that.knockoutStage,_that.outcome,_that.bets);case _:
@@ -222,17 +246,23 @@ return $default(_that.id,_that.homeTeam,_that.awayTeam,_that.kickOffDate,_that.s
 @JsonSerializable()
 
 class _Match extends Match {
-  const _Match({this.id = '', @JsonKey(includeFromJson: false) this.homeTeam = const NoOpFetchable(), @JsonKey(includeFromJson: false) this.awayTeam = const NoOpFetchable(), required this.kickOffDate, required this.stage, required this.knockoutStage, this.outcome, @JsonKey(includeFromJson: false) this.bets = const NoOpFetchable()}): super._();
+  const _Match({this.id = 0, @JsonKey(includeFromJson: false) this.homeTeam, @JsonKey(includeFromJson: false) this.awayTeam, required this.kickOffDate, required this.stage, required this.knockoutStage, this.outcome, @JsonKey(includeFromJson: false) final  List<Bet> bets = const []}): _bets = bets,super._();
   factory _Match.fromJson(Map<String, dynamic> json) => _$MatchFromJson(json);
 
-@override@JsonKey() final  String id;
-@override@JsonKey(includeFromJson: false) final  Fetchable<Team> homeTeam;
-@override@JsonKey(includeFromJson: false) final  Fetchable<Team> awayTeam;
+@override@JsonKey() final  int id;
+@override@JsonKey(includeFromJson: false) final  Team? homeTeam;
+@override@JsonKey(includeFromJson: false) final  Team? awayTeam;
 @override final  DateTime kickOffDate;
 @override final  String stage;
 @override final  bool knockoutStage;
 @override final  MatchOutcome? outcome;
-@override@JsonKey(includeFromJson: false) final  Fetchable<List<Bet>> bets;
+ final  List<Bet> _bets;
+@override@JsonKey(includeFromJson: false) List<Bet> get bets {
+  if (_bets is EqualUnmodifiableListView) return _bets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_bets);
+}
+
 
 /// Create a copy of Match
 /// with the given fields replaced by the non-null parameter values.
@@ -247,12 +277,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Match&&(identical(other.id, id) || other.id == id)&&(identical(other.homeTeam, homeTeam) || other.homeTeam == homeTeam)&&(identical(other.awayTeam, awayTeam) || other.awayTeam == awayTeam)&&(identical(other.kickOffDate, kickOffDate) || other.kickOffDate == kickOffDate)&&(identical(other.stage, stage) || other.stage == stage)&&(identical(other.knockoutStage, knockoutStage) || other.knockoutStage == knockoutStage)&&(identical(other.outcome, outcome) || other.outcome == outcome)&&(identical(other.bets, bets) || other.bets == bets));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Match&&(identical(other.id, id) || other.id == id)&&(identical(other.homeTeam, homeTeam) || other.homeTeam == homeTeam)&&(identical(other.awayTeam, awayTeam) || other.awayTeam == awayTeam)&&(identical(other.kickOffDate, kickOffDate) || other.kickOffDate == kickOffDate)&&(identical(other.stage, stage) || other.stage == stage)&&(identical(other.knockoutStage, knockoutStage) || other.knockoutStage == knockoutStage)&&(identical(other.outcome, outcome) || other.outcome == outcome)&&const DeepCollectionEquality().equals(other._bets, _bets));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,homeTeam,awayTeam,kickOffDate,stage,knockoutStage,outcome,bets);
+int get hashCode => Object.hash(runtimeType,id,homeTeam,awayTeam,kickOffDate,stage,knockoutStage,outcome,const DeepCollectionEquality().hash(_bets));
 
 @override
 String toString() {
@@ -267,11 +297,11 @@ abstract mixin class _$MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
   factory _$MatchCopyWith(_Match value, $Res Function(_Match) _then) = __$MatchCopyWithImpl;
 @override @useResult
 $Res call({
- String id,@JsonKey(includeFromJson: false) Fetchable<Team> homeTeam,@JsonKey(includeFromJson: false) Fetchable<Team> awayTeam, DateTime kickOffDate, String stage, bool knockoutStage, MatchOutcome? outcome,@JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets
+ int id,@JsonKey(includeFromJson: false) Team? homeTeam,@JsonKey(includeFromJson: false) Team? awayTeam, DateTime kickOffDate, String stage, bool knockoutStage, MatchOutcome? outcome,@JsonKey(includeFromJson: false) List<Bet> bets
 });
 
 
-@override $MatchOutcomeCopyWith<$Res>? get outcome;
+@override $TeamCopyWith<$Res>? get homeTeam;@override $TeamCopyWith<$Res>? get awayTeam;@override $MatchOutcomeCopyWith<$Res>? get outcome;
 
 }
 /// @nodoc
@@ -284,21 +314,45 @@ class __$MatchCopyWithImpl<$Res>
 
 /// Create a copy of Match
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? homeTeam = null,Object? awayTeam = null,Object? kickOffDate = null,Object? stage = null,Object? knockoutStage = null,Object? outcome = freezed,Object? bets = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? homeTeam = freezed,Object? awayTeam = freezed,Object? kickOffDate = null,Object? stage = null,Object? knockoutStage = null,Object? outcome = freezed,Object? bets = null,}) {
   return _then(_Match(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,homeTeam: null == homeTeam ? _self.homeTeam : homeTeam // ignore: cast_nullable_to_non_nullable
-as Fetchable<Team>,awayTeam: null == awayTeam ? _self.awayTeam : awayTeam // ignore: cast_nullable_to_non_nullable
-as Fetchable<Team>,kickOffDate: null == kickOffDate ? _self.kickOffDate : kickOffDate // ignore: cast_nullable_to_non_nullable
+as int,homeTeam: freezed == homeTeam ? _self.homeTeam : homeTeam // ignore: cast_nullable_to_non_nullable
+as Team?,awayTeam: freezed == awayTeam ? _self.awayTeam : awayTeam // ignore: cast_nullable_to_non_nullable
+as Team?,kickOffDate: null == kickOffDate ? _self.kickOffDate : kickOffDate // ignore: cast_nullable_to_non_nullable
 as DateTime,stage: null == stage ? _self.stage : stage // ignore: cast_nullable_to_non_nullable
 as String,knockoutStage: null == knockoutStage ? _self.knockoutStage : knockoutStage // ignore: cast_nullable_to_non_nullable
 as bool,outcome: freezed == outcome ? _self.outcome : outcome // ignore: cast_nullable_to_non_nullable
-as MatchOutcome?,bets: null == bets ? _self.bets : bets // ignore: cast_nullable_to_non_nullable
-as Fetchable<List<Bet>>,
+as MatchOutcome?,bets: null == bets ? _self._bets : bets // ignore: cast_nullable_to_non_nullable
+as List<Bet>,
   ));
 }
 
 /// Create a copy of Match
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TeamCopyWith<$Res>? get homeTeam {
+    if (_self.homeTeam == null) {
+    return null;
+  }
+
+  return $TeamCopyWith<$Res>(_self.homeTeam!, (value) {
+    return _then(_self.copyWith(homeTeam: value));
+  });
+}/// Create a copy of Match
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TeamCopyWith<$Res>? get awayTeam {
+    if (_self.awayTeam == null) {
+    return null;
+  }
+
+  return $TeamCopyWith<$Res>(_self.awayTeam!, (value) {
+    return _then(_self.copyWith(awayTeam: value));
+  });
+}/// Create a copy of Match
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

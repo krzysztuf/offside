@@ -13,7 +13,7 @@ class PrivateTablesController extends _$PrivateTablesController {
     return const PrivateTablesState(tables: []);
   }
 
-  Future<void> updateMembers(PrivateTable table, Set<String> selectedMembers) async {
+  Future<void> updateMembers(PrivateTable table, Set<int> selectedMembers) async {
     final updatedTable = table.copyWith(memberIds: selectedMembers.toList());
     await ref.read(privateTablesRepositoryProvider).update(updatedTable);
     state = state.copyWith(tables: state.tables.map((t) => t.id == table.id ? updatedTable : t).toList());
@@ -34,7 +34,7 @@ class PrivateTablesController extends _$PrivateTablesController {
     state = state.copyWith(tables: tables);
   }
 
-  Future<void> removeMember(String userId, PrivateTable table) async {
+  Future<void> removeMember(int userId, PrivateTable table) async {
     final updatedTable = table.copyWith(memberIds: table.memberIds.where((mid) => mid != userId).toList());
     await ref.read(privateTablesRepositoryProvider).update(updatedTable);
     state = state.copyWith(tables: state.tables.map((t) => t.id == table.id ? updatedTable : t).toList());

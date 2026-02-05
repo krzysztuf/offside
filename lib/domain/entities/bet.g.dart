@@ -7,9 +7,9 @@ part of 'bet.dart';
 // **************************************************************************
 
 _Bet _$BetFromJson(Map<String, dynamic> json) => _Bet(
-  id: json['id'] as String? ?? '',
-  matchId: json['matchId'] as String,
-  userId: json['userId'] as String,
+  id: (json['id'] as num?)?.toInt() ?? 0,
+  matchId: (json['matchId'] as num).toInt(),
+  userId: (json['userId'] as num).toInt(),
   prediction: MatchOutcome.fromJson(json['prediction'] as Map<String, dynamic>),
 );
 

@@ -220,13 +220,8 @@ final class MatchBetsRepositoryFamily extends $Family
 final teamsRepositoryProvider = TeamsRepositoryProvider._();
 
 final class TeamsRepositoryProvider
-    extends
-        $FunctionalProvider<
-          Repository<Team>,
-          Repository<Team>,
-          Repository<Team>
-        >
-    with $Provider<Repository<Team>> {
+    extends $FunctionalProvider<TeamRepository, TeamRepository, TeamRepository>
+    with $Provider<TeamRepository> {
   TeamsRepositoryProvider._()
     : super(
         from: null,
@@ -243,24 +238,24 @@ final class TeamsRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<Repository<Team>> $createElement($ProviderPointer pointer) =>
+  $ProviderElement<TeamRepository> $createElement($ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
-  Repository<Team> create(Ref ref) {
+  TeamRepository create(Ref ref) {
     return teamsRepository(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(Repository<Team> value) {
+  Override overrideWithValue(TeamRepository value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<Repository<Team>>(value),
+      providerOverride: $SyncValueProvider<TeamRepository>(value),
     );
   }
 }
 
-String _$teamsRepositoryHash() => r'50e3f0916b5b618735a249a8e3f72a377583f665';
+String _$teamsRepositoryHash() => r'b4158cad7c6c694903292d720703e65aaccc1b01';
 
 @ProviderFor(usersRepository)
 final usersRepositoryProvider = UsersRepositoryProvider._();

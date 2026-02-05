@@ -13,7 +13,6 @@ import 'package:offside/data/sources/offside_api.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/private_table.dart';
-import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
 import 'package:offside/domain/repositories/image_repository.dart';
@@ -46,7 +45,7 @@ Repository<Bet> matchBetsRepository(Ref ref, Match match) {
 }
 
 @riverpod
-Repository<Team> teamsRepository(Ref ref) {
+TeamRepository teamsRepository(Ref ref) {
   return TeamRepository(ref.read(offsideApiProvider));
 }
 

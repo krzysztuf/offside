@@ -10,7 +10,6 @@ part 'user_dto.g.dart';
 sealed class UserDto with _$UserDto {
   const factory UserDto({
     required int id,
-    @JsonKey(name: 'firebase_id') required String firebaseId,
     required String name,
     required String surname,
     String? nickname,
@@ -22,13 +21,18 @@ sealed class UserDto with _$UserDto {
 
   factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
-  User toEntity() => User(
-    id: id.toString(),
-    firebaseId: firebaseId,
-    name: name,
-    surname: surname,
-    nickname: nickname,
-    image: image,
-    winnerPredictionId: winnerPredictionId?.toString(),
-  );
+  User toEntity(Map<int, String>? teamIdToAbbreviation) {
+    String? winnerTeamAbbreviation;
+    if (winnerPredictionId != null && teamIdToAbbreviation != null) {
+      winnerTeamAbbreviation = teamIdToAbbreviation[winnerPredictionId]?.toLowerCase();
+    }
+    return User(
+      id: id,
+      name: name,
+      surname: surname,
+      nickname: nickname,
+      image: image,
+      winnerPredictionId: winnerTeamAbbreviation,
+    );
+  }
 }

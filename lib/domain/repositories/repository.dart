@@ -3,9 +3,9 @@ abstract interface class Repository<T> {
 
   Future<List<T>> first(int count);
 
-  Future<String> add(T item);
+  Future<int> add(T item);
 
-  Future<T?> byId(String id);
+  Future<T?> byId(int id);
 
   Future<List<T>> where(
     Object field, {

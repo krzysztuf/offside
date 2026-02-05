@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PrivateTable {
 
- String get id; String get name; String get ownerId; List<String> get memberIds;
+ int get id; String get name; int get ownerId; List<int> get memberIds;
 /// Create a copy of PrivateTable
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $PrivateTableCopyWith<$Res>  {
   factory $PrivateTableCopyWith(PrivateTable value, $Res Function(PrivateTable) _then) = _$PrivateTableCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String ownerId, List<String> memberIds
+ int id, String name, int ownerId, List<int> memberIds
 });
 
 
@@ -68,10 +68,10 @@ class _$PrivateTableCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? ownerId = null,Object? memberIds = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,ownerId: null == ownerId ? _self.ownerId : ownerId // ignore: cast_nullable_to_non_nullable
-as String,memberIds: null == memberIds ? _self.memberIds : memberIds // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as int,memberIds: null == memberIds ? _self.memberIds : memberIds // ignore: cast_nullable_to_non_nullable
+as List<int>,
   ));
 }
 
@@ -153,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String ownerId,  List<String> memberIds)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int ownerId,  List<int> memberIds)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PrivateTable() when $default != null:
 return $default(_that.id,_that.name,_that.ownerId,_that.memberIds);case _:
@@ -174,7 +174,7 @@ return $default(_that.id,_that.name,_that.ownerId,_that.memberIds);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String ownerId,  List<String> memberIds)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int ownerId,  List<int> memberIds)  $default,) {final _that = this;
 switch (_that) {
 case _PrivateTable():
 return $default(_that.id,_that.name,_that.ownerId,_that.memberIds);}
@@ -191,7 +191,7 @@ return $default(_that.id,_that.name,_that.ownerId,_that.memberIds);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String ownerId,  List<String> memberIds)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int ownerId,  List<int> memberIds)?  $default,) {final _that = this;
 switch (_that) {
 case _PrivateTable() when $default != null:
 return $default(_that.id,_that.name,_that.ownerId,_that.memberIds);case _:
@@ -206,14 +206,14 @@ return $default(_that.id,_that.name,_that.ownerId,_that.memberIds);case _:
 @JsonSerializable()
 
 class _PrivateTable extends PrivateTable {
-  const _PrivateTable({this.id = '', required this.name, required this.ownerId, required final  List<String> memberIds}): _memberIds = memberIds,super._();
+  const _PrivateTable({this.id = 0, required this.name, required this.ownerId, required final  List<int> memberIds}): _memberIds = memberIds,super._();
   factory _PrivateTable.fromJson(Map<String, dynamic> json) => _$PrivateTableFromJson(json);
 
-@override@JsonKey() final  String id;
+@override@JsonKey() final  int id;
 @override final  String name;
-@override final  String ownerId;
- final  List<String> _memberIds;
-@override List<String> get memberIds {
+@override final  int ownerId;
+ final  List<int> _memberIds;
+@override List<int> get memberIds {
   if (_memberIds is EqualUnmodifiableListView) return _memberIds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_memberIds);
@@ -253,7 +253,7 @@ abstract mixin class _$PrivateTableCopyWith<$Res> implements $PrivateTableCopyWi
   factory _$PrivateTableCopyWith(_PrivateTable value, $Res Function(_PrivateTable) _then) = __$PrivateTableCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String ownerId, List<String> memberIds
+ int id, String name, int ownerId, List<int> memberIds
 });
 
 
@@ -273,10 +273,10 @@ class __$PrivateTableCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? ownerId = null,Object? memberIds = null,}) {
   return _then(_PrivateTable(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,ownerId: null == ownerId ? _self.ownerId : ownerId // ignore: cast_nullable_to_non_nullable
-as String,memberIds: null == memberIds ? _self._memberIds : memberIds // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as int,memberIds: null == memberIds ? _self._memberIds : memberIds // ignore: cast_nullable_to_non_nullable
+as List<int>,
   ));
 }
 

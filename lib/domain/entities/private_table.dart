@@ -8,10 +8,10 @@ part 'private_table.g.dart';
 @freezed
 sealed class PrivateTable with _$PrivateTable {
   const factory PrivateTable({
-    @Default('') String id,
+    @Default(0) int id,
     required String name,
-    required String ownerId,
-    required List<String> memberIds,
+    required int ownerId,
+    required List<int> memberIds,
   }) = _PrivateTable;
 
   const PrivateTable._();

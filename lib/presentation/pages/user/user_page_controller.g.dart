@@ -34,7 +34,7 @@ final class UserPageControllerProvider
 }
 
 String _$userPageControllerHash() =>
-    r'fb1b0bdc4bdae18fb8615c7d807a2616b3be2e45';
+    r'f0614979da2bc28b8a79eb35b85fa10067eda819';
 
 abstract class _$UserPageController extends $AsyncNotifier<UserPageState> {
   FutureOr<UserPageState> build();

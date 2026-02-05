@@ -25,9 +25,9 @@ sealed class BetDto with _$BetDto {
   factory BetDto.fromJson(Map<String, dynamic> json) => _$BetDtoFromJson(json);
 
   Bet toEntity(Map<int, TeamDto> teamsCache) => Bet(
-    id: id.toString(),
-    matchId: matchId.toString(),
-    userId: userId.toString(),
+    id: id,
+    matchId: matchId,
+    userId: userId,
     prediction: MatchOutcome(
       goals: Goals(home: homeGoalsPrediction, away: awayGoalsPrediction),
       penaltiesWinnerId: penaltiesWinnerId != null

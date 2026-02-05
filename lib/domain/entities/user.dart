@@ -5,18 +5,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/data/repositories/providers.dart';
-import 'package:offside/domain/entities/identifiable.dart';
 import 'package:offside/presentation/widgets/avatar.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
-sealed class User with _$User implements Identifiable {
+sealed class User with _$User {
   const factory User({
     // ignore: invalid_annotation_target
-    @Default('') @JsonKey(includeToJson: false) String id,
-    required String firebaseId,
+    @Default(0) @JsonKey(includeToJson: false) int id,
     required String name,
     required String surname,
     String? nickname,
@@ -27,9 +25,6 @@ sealed class User with _$User implements Identifiable {
   const User._();
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
-  @override
-  String get identifier => id;
 }
 
 extension UserAvatar on User {
@@ -55,11 +50,7 @@ extension UserAvatar on User {
           return initialsAvatar;
         }
 
-        return Avatar(
-          elevation: elevation,
-          radius: radius,
-          image: CachedNetworkImageProvider(url),
-        );
+        return Avatar(elevation: elevation, radius: radius, image: CachedNetworkImageProvider(url));
       },
     );
   }

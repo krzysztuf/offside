@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/presentation/widgets/fetchable_builder.dart';
 import 'package:offside/presentation/widgets/offside/being_played_indicator.dart';
 import 'package:offside/presentation/widgets/offside/team_badge.dart';
 
@@ -23,15 +21,10 @@ class MatchRivalsAbbreviationsRow extends ConsumerWidget {
           child: Row(
             children: [
               Expanded(child: Container()),
-              FetchableBuilder(
-                fetchable: match.homeTeam,
-                waiting: () => LoadingAnimationWidget.waveDots(
-                  color: context.colorScheme.primary,
-                  size: 24,
-                ),
-                child: (homeTeam) => Center(
+              if (match.homeTeam != null)
+                Center(
                   child: TeamBadge(
-                    team: homeTeam,
+                    team: match.homeTeam!,
                     badgeRadius: 8,
                     direction: Axis.horizontal,
                     useAbbreviation: true,
@@ -39,7 +32,6 @@ class MatchRivalsAbbreviationsRow extends ConsumerWidget {
                     mirrored: true,
                   ),
                 ),
-              ),
             ],
           ),
         ),
@@ -48,21 +40,16 @@ class MatchRivalsAbbreviationsRow extends ConsumerWidget {
           child: Center(child: '-'.styledText(cellValue)),
         ),
         Expanded(
-          child: FetchableBuilder(
-            fetchable: match.awayTeam,
-            waiting: () => LoadingAnimationWidget.waveDots(
-              color: context.colorScheme.primary,
-              size: 24,
-            ),
-            child: (homeTeam) => TeamBadge(
-              team: homeTeam,
-              badgeRadius: 8,
-              direction: Axis.horizontal,
-              useAbbreviation: true,
-              textStyle: cellValue,
-              mirrored: false,
-            ),
-          ),
+          child: match.awayTeam != null
+              ? TeamBadge(
+                  team: match.awayTeam!,
+                  badgeRadius: 8,
+                  direction: Axis.horizontal,
+                  useAbbreviation: true,
+                  textStyle: cellValue,
+                  mirrored: false,
+                )
+              : const SizedBox.shrink(),
         ),
       ],
     );
@@ -74,6 +61,5 @@ class MatchRivalsAbbreviationsRow extends ConsumerWidget {
     }
 
     return Container();
-    // if (match.result == null) {}
   }
 }

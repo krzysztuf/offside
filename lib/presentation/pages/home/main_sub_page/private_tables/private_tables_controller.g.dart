@@ -42,7 +42,7 @@ final class PrivateTablesControllerProvider
 }
 
 String _$privateTablesControllerHash() =>
-    r'9768badb9482a3e3010565bc47bcd0451311744c';
+    r'05bcc22763696b40fa93dad930193b5a2e5dba4b';
 
 abstract class _$PrivateTablesController extends $Notifier<PrivateTablesState> {
   PrivateTablesState build();

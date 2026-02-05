@@ -8,7 +8,6 @@ part of 'user_dto.dart';
 
 _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
   id: (json['id'] as num).toInt(),
-  firebaseId: json['firebase_id'] as String,
   name: json['name'] as String,
   surname: json['surname'] as String,
   nickname: json['nickname'] as String?,
@@ -18,7 +17,6 @@ _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
 
 Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
   'id': instance.id,
-  'firebase_id': instance.firebaseId,
   'name': instance.name,
   'surname': instance.surname,
   'nickname': instance.nickname,

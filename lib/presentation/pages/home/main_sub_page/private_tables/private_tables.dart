@@ -19,10 +19,7 @@ class PrivateTables extends ConsumerWidget {
 
   List<User> get users => userScores.map((us) => us.user).toList();
 
-  const PrivateTables({
-    super.key,
-    required this.userScores,
-  });
+  const PrivateTables({super.key, required this.userScores});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -76,11 +73,7 @@ class PrivateTables extends ConsumerWidget {
       context,
       onAccepted: (name) async {
         final ownerId = ref.read(currentUserIdSettingProvider);
-        var table = PrivateTable(
-          name: name,
-          ownerId: ownerId,
-          memberIds: [ownerId],
-        );
+        var table = PrivateTable(name: name, ownerId: ownerId, memberIds: [ownerId]);
 
         await TableMembersPicker.bottomSheet(
           context,
@@ -104,10 +97,7 @@ class PrivateTables extends ConsumerWidget {
           title: const Text('Usuń tabelę'),
           content: const Text('Czy na pewno chcesz usunąć tę tabelę?'),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Anuluj'),
-            ),
+            TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Anuluj')),
             TextButton(
               onPressed: () {
                 ref.read(privateTablesControllerProvider.notifier).remove(table);
@@ -142,18 +132,12 @@ class PrivateTables extends ConsumerWidget {
                 members: table.memberIds.toSet(),
                 users: users,
                 onSaved: (selectedMembers) {
-                  ref.read(privateTablesControllerProvider.notifier).updateMembers(
-                        table,
-                        selectedMembers,
-                      );
+                  ref.read(privateTablesControllerProvider.notifier).updateMembers(table, selectedMembers);
                 },
               );
             },
           ),
-          IconButton(
-            icon: const Icon(Icons.delete, size: 20),
-            onPressed: () => promptDeleteTable(context, ref, table),
-          ),
+          IconButton(icon: const Icon(Icons.delete, size: 20), onPressed: () => promptDeleteTable(context, ref, table)),
         ],
       ),
     );
@@ -172,16 +156,12 @@ class PrivateTables extends ConsumerWidget {
                 title: const Text('Opuść tabelę'),
                 content: const Text('Czy na pewno chcesz opuścić tę tabelę?'),
                 actions: [
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Anuluj'),
-                  ),
+                  TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Anuluj')),
                   TextButton(
                     onPressed: () {
-                      ref.read(privateTablesControllerProvider.notifier).removeMember(
-                            ref.read(currentUserIdSettingProvider),
-                            table,
-                          );
+                      ref
+                          .read(privateTablesControllerProvider.notifier)
+                          .removeMember(ref.read(currentUserIdSettingProvider), table);
                       Navigator.of(context).pop();
                     },
                     child: const Text('Opuść'),

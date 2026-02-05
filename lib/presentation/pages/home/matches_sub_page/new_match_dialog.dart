@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/widget_iterable_extensions.dart';
-import 'package:offside/domain/entities/fetchable.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/new_match_dialog_controller.dart';
@@ -103,8 +102,8 @@ class _NewMatchDialogState extends ConsumerState<NewMatchDialog> {
           child: TextButton(
             onPressed: () {
               widget.onCreated(Match(
-                homeTeam: LocalFetchable(homeTeam!),
-                awayTeam: LocalFetchable(awayTeam!),
+                homeTeam: homeTeam,
+                awayTeam: awayTeam,
                 stage: stage,
                 knockoutStage: knockoutStage,
                 kickOffDate: kickOff!,

@@ -1,11 +1,9 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:offside/domain/entities/identifiable.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 
 import 'bet.dart';
-import 'fetchable.dart';
 import 'goals.dart';
 import 'team.dart';
 
@@ -13,24 +11,21 @@ part 'match.freezed.dart';
 part 'match.g.dart';
 
 @freezed
-sealed class Match with _$Match implements Identifiable {
+sealed class Match with _$Match {
   const factory Match({
-    @Default('') String id,
-    @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<Team> homeTeam,
-    @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<Team> awayTeam,
+    @Default(0) int id,
+    @JsonKey(includeFromJson: false) Team? homeTeam,
+    @JsonKey(includeFromJson: false) Team? awayTeam,
     required DateTime kickOffDate,
     required String stage,
     required bool knockoutStage,
     MatchOutcome? outcome,
-    @Default(NoOpFetchable()) @JsonKey(includeFromJson: false) Fetchable<List<Bet>> bets,
+    @Default([]) @JsonKey(includeFromJson: false) List<Bet> bets,
   }) = _Match;
 
   const Match._();
 
   factory Match.fromJson(Map<String, dynamic> json) => _$MatchFromJson(json);
-
-  @override
-  String get identifier => id;
 }
 
 extension ConvenienceMethods on Match {
@@ -78,19 +73,19 @@ extension ConvenienceMethods on Match {
   }
 
   Team? teamFor({required String id}) {
-    if (homeTeam.value.id == id) {
-      return homeTeam.value;
+    if (homeTeam?.id == id) {
+      return homeTeam;
     }
 
-    if (awayTeam.value.id == id) {
-      return awayTeam.value;
+    if (awayTeam?.id == id) {
+      return awayTeam;
     }
 
     return null;
   }
 
   List<Bet> get superBets {
-    return bets.value.where((bet) {
+    return bets.where((bet) {
       return bet.prediction.goals == outcome!.goals;
     }).toList();
   }

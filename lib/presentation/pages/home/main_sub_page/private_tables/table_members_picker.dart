@@ -8,9 +8,9 @@ import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:supercharged/supercharged.dart';
 
 class TableMembersPicker extends ConsumerStatefulWidget {
-  final Set<String> members;
+  final Set<int> members;
   final List<User> users;
-  final Function(Set<String> memberIds) onSaved;
+  final Function(Set<int> memberIds) onSaved;
   final ScrollController? scrollController;
 
   const TableMembersPicker({
@@ -23,9 +23,9 @@ class TableMembersPicker extends ConsumerStatefulWidget {
 
   static Future<void> bottomSheet(
     BuildContext context, {
-    required Set<String> members,
+    required Set<int> members,
     required List<User> users,
-    required Function(Set<String> memberIds) onSaved,
+    required Function(Set<int> memberIds) onSaved,
   }) async {
     return showFlexibleBottomSheet(
       context: context,
@@ -50,7 +50,7 @@ class TableMembersPicker extends ConsumerStatefulWidget {
 }
 
 class _TableMembersPickerState extends ConsumerState<TableMembersPicker> {
-  Set<String> selectedMembers = {};
+  Set<int> selectedMembers = {};
 
   @override
   void initState() {
