@@ -1,8 +1,7 @@
 import 'package:collection/collection.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
-import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -34,7 +33,7 @@ class CompetitionWinnerPickerController extends _$CompetitionWinnerPickerControl
 
   Future<void> buildFinalState(User? currentUser) async {
     user = currentUser!;
-    final teams = await ref.read(getAllTeamsUseCaseProvider).run();
+    final teams = await ref.read(teamsRepositoryProvider).all();
     final winnerPrediction = teams.firstWhereOrNull((team) => team.id == currentUser.winnerPredictionId);
     state = state.copyWith(teams: teams, loading: false, winnerPrediction: winnerPrediction);
   }
@@ -42,7 +41,7 @@ class CompetitionWinnerPickerController extends _$CompetitionWinnerPickerControl
   Future<void> selectWinner(Team team) async {
     state = state.copyWith(saving: true);
     await Future.delayed(const Duration(seconds: 1));
-    await ref.read(updateUserUseCaseProvider).run(user.copyWith(winnerPredictionId: team.id));
+    await ref.read(usersRepositoryProvider).update(user.copyWith(winnerPredictionId: team.id));
     state = state.copyWith(winnerPrediction: team, saving: false);
   }
 }

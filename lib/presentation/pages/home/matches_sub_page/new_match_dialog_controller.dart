@@ -1,4 +1,4 @@
-import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'new_match_dialog_state.dart';
@@ -9,7 +9,7 @@ part 'new_match_dialog_controller.g.dart';
 class NewMatchDialogController extends _$NewMatchDialogController {
   @override
   NewMatchDialogState build() {
-    ref.read(getAllTeamsUseCaseProvider).run().then((teams) {
+    ref.read(teamsRepositoryProvider).all().then((teams) {
       state = state.copyWith(teams: teams, loading: false);
     });
 

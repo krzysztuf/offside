@@ -9,6 +9,141 @@ part of 'providers.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
+@ProviderFor(dio)
+final dioProvider = DioProvider._();
+
+final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
+    with $Provider<Dio> {
+  DioProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'dioProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$dioHash();
+
+  @$internal
+  @override
+  $ProviderElement<Dio> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Dio create(Ref ref) {
+    return dio(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Dio value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Dio>(value),
+    );
+  }
+}
+
+String _$dioHash() => r'fe8960d513b40b38c3d2d1c5e5d493532cf85cfe';
+
+@ProviderFor(offsideApiService)
+final offsideApiServiceProvider = OffsideApiServiceProvider._();
+
+final class OffsideApiServiceProvider
+    extends
+        $FunctionalProvider<
+          OffsideApiService,
+          OffsideApiService,
+          OffsideApiService
+        >
+    with $Provider<OffsideApiService> {
+  OffsideApiServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'offsideApiServiceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$offsideApiServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<OffsideApiService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  OffsideApiService create(Ref ref) {
+    return offsideApiService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(OffsideApiService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<OffsideApiService>(value),
+    );
+  }
+}
+
+String _$offsideApiServiceHash() => r'f2b98c742c5f89fc89a2454b4c742516199243b5';
+
+@ProviderFor(offsideApiDataSource)
+final offsideApiDataSourceProvider = OffsideApiDataSourceProvider._();
+
+final class OffsideApiDataSourceProvider
+    extends
+        $FunctionalProvider<
+          OffsideApiDataSource,
+          OffsideApiDataSource,
+          OffsideApiDataSource
+        >
+    with $Provider<OffsideApiDataSource> {
+  OffsideApiDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'offsideApiDataSourceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$offsideApiDataSourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<OffsideApiDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  OffsideApiDataSource create(Ref ref) {
+    return offsideApiDataSource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(OffsideApiDataSource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<OffsideApiDataSource>(value),
+    );
+  }
+}
+
+String _$offsideApiDataSourceHash() =>
+    r'94f30ad977613c4968f2be21f9808a384152caa2';
+
 @ProviderFor(matchesRepository)
 final matchesRepositoryProvider = MatchesRepositoryProvider._();
 
@@ -54,7 +189,7 @@ final class MatchesRepositoryProvider
   }
 }
 
-String _$matchesRepositoryHash() => r'b45660079c9755aa802394a909ba2dcd29b23421';
+String _$matchesRepositoryHash() => r'8f5b86512671a777886edc8d387f479ba05169af';
 
 @ProviderFor(matchBetsRepository)
 final matchBetsRepositoryProvider = MatchBetsRepositoryFamily._();
@@ -115,7 +250,7 @@ final class MatchBetsRepositoryProvider
 }
 
 String _$matchBetsRepositoryHash() =>
-    r'd9256f26d9d74509c38319db7660bb36f37ee3f1';
+    r'7a347395d4e055198f12970dabffffd342f73e99';
 
 final class MatchBetsRepositoryFamily extends $Family
     with $FunctionalFamilyOverride<Repository<Bet>, Match> {
@@ -179,7 +314,7 @@ final class TeamsRepositoryProvider
   }
 }
 
-String _$teamsRepositoryHash() => r'a5796c7fc986dc2e7561310fa6f827cdd72bb5f6';
+String _$teamsRepositoryHash() => r'407d9a6864871345ac082592b540c178adad3748';
 
 @ProviderFor(usersRepository)
 final usersRepositoryProvider = UsersRepositoryProvider._();
@@ -225,7 +360,7 @@ final class UsersRepositoryProvider
   }
 }
 
-String _$usersRepositoryHash() => r'f5297e8424e118077f762f4af7cb0c5502eb4fde';
+String _$usersRepositoryHash() => r'd5a717439a6740ab349dee0f26c0dad0bb8e3ed8';
 
 @ProviderFor(privateTablesRepository)
 final privateTablesRepositoryProvider = PrivateTablesRepositoryProvider._();
@@ -273,7 +408,7 @@ final class PrivateTablesRepositoryProvider
 }
 
 String _$privateTablesRepositoryHash() =>
-    r'dfe0867cb6ba1a1eccfb8b0cde2fcddf004c2e0c';
+    r'370a2f75cba2e771c1c1480de68f1a9b7f737574';
 
 @ProviderFor(offsideRepository)
 final offsideRepositoryProvider = OffsideRepositoryProvider._();
@@ -320,7 +455,7 @@ final class OffsideRepositoryProvider
   }
 }
 
-String _$offsideRepositoryHash() => r'a98d5bdc6c509dc344b110b904505ca52a0151f8';
+String _$offsideRepositoryHash() => r'37d9c6b25b1005578ddd00904259460906a9fe6e';
 
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
@@ -361,7 +496,7 @@ final class AuthRepositoryProvider
   }
 }
 
-String _$authRepositoryHash() => r'1c4cc0cbdea7394c801de6cf51098bf5430f2da9';
+String _$authRepositoryHash() => r'667dc7977f7140195507aec21caa59b0a90298a6';
 
 @ProviderFor(imageRepository)
 final imageRepositoryProvider = ImageRepositoryProvider._();

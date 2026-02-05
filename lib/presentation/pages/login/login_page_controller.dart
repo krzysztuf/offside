@@ -1,8 +1,8 @@
 import 'package:uuid/uuid.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
-import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/pages/login/login_page_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,7 +12,7 @@ part 'login_page_controller.g.dart';
 class LoginPageController extends _$LoginPageController {
   @override
   LoginPageState build() {
-    ref.read(getLoggedInUserUseCaseProvider).run().then((user) {
+    ref.read(authRepositoryProvider).currentUser().then((user) {
       if (user == null) {
         state = const LoginPageState(loggedIn: false, gettingUserInfo: false);
         return;
@@ -38,7 +38,7 @@ class LoginPageController extends _$LoginPageController {
   }
 
   Future<void> register(String email, String password, String name, String surname) async {
-    final emailWhitelisted = await ref.read(emailIsWhiteListedUseCaseProvider).run(email);
+    final emailWhitelisted = await ref.read(authRepositoryProvider).isEmailWhitelisted(email);
     if (!emailWhitelisted) {
       throw Exception('Użytownik z tym adresem email nie ma dostępu do aplikacji');
     }
@@ -50,12 +50,12 @@ class LoginPageController extends _$LoginPageController {
   }
 
   Future<void> _addUser(User newUser) async {
-    final newUserId = await ref.read(addUserUseCaseProvider).run(newUser);
+    final newUserId = await ref.read(usersRepositoryProvider).add(newUser);
     _updateUserIdSetting(newUserId);
   }
 
   Future<void> logout() async {
-    await ref.read(logOutUseCaseProvider).run();
+    await ref.read(authRepositoryProvider).logOut();
   }
 
   void _updateUserIdSetting(String id) {

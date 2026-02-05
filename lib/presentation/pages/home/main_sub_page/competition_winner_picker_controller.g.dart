@@ -49,7 +49,7 @@ final class CompetitionWinnerPickerControllerProvider
 }
 
 String _$competitionWinnerPickerControllerHash() =>
-    r'e4e8e19baa893f721fd1cabfc8dcc683cda60fa6';
+    r'c9e826106c0fc3b47861bb49fc4965b50752d473';
 
 abstract class _$CompetitionWinnerPickerController
     extends $Notifier<CompetitionWinnerPickerState> {

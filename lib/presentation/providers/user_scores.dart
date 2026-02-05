@@ -1,10 +1,9 @@
 import 'package:collection/collection.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
-import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
-import 'package:offside/domain/usecases/teams/teams_use_case_providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -28,9 +27,9 @@ class UserScores extends _$UserScores {
 
   Future<void> _loadUserBetsAndCalculatePoints() async {
     state = const AsyncLoading();
-    final winnerId = await ref.read(getWinnerTeamIdUseCaseProvider).run();
+    final winnerId = '';
 
-    final matchesFuture = ref.read(getAllMatchesUseCaseProvider).run();
+    final matchesFuture = ref.read(matchesRepositoryProvider).all();
     final usersFuture = ref.read(getAllUsersUseCaseProvider).run();
 
     await Future.wait([matchesFuture, usersFuture]).then((values) async {
@@ -49,7 +48,7 @@ class UserScores extends _$UserScores {
 
   Future<Map<User, List<Bet>>> _fetchBetsAndGroupByUser(List<User> users) async {
     final userBetsFutures = users.map((user) {
-      return Future.wait([Future.value(user), ref.read(getUserBetsUseCaseProvider(user)).run()]);
+      return Future.wait([Future.value(user), ref.read(offsideRepositoryProvider).userBets(user)]);
     }).toList();
 
     final userBetsResults = await Future.wait(userBetsFutures);

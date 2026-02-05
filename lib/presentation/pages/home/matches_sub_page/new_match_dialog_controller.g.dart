@@ -42,7 +42,7 @@ final class NewMatchDialogControllerProvider
 }
 
 String _$newMatchDialogControllerHash() =>
-    r'c9ed3a2985887b082d8195decb3f85bba657e33e';
+    r'251a54cb37c2f0065c41dd85a0fb8435788a099c';
 
 abstract class _$NewMatchDialogController
     extends $Notifier<NewMatchDialogState> {

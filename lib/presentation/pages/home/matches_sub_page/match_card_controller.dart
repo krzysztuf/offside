@@ -2,6 +2,7 @@ import 'package:offside/core/extensions/iterable_extensions.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page_controller.dart';
@@ -74,7 +75,7 @@ class MatchCardController extends _$MatchCardController {
 
   Future<void> removeMatch() async {
     ref.invalidate(matchesSubPageControllerProvider);
-    return ref.read(removeMatchUseCaseProvider).run(state.match);
+    return ref.read(matchesRepositoryProvider).remove(state.match);
   }
 
   Future<Bet> _createOrUpdateBet(MatchOutcome prediction) async {

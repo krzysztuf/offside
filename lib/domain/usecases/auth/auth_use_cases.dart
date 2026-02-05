@@ -16,14 +16,3 @@ class LogInUseCase implements AsyncUseCaseWithParams<String, String, String> {
     }
   }
 }
-
-class LogOutUseCase implements AsyncUseCase<void> {
-  final AuthRepository authRepository;
-
-  LogOutUseCase(this.authRepository);
-
-  @override
-  Future<void> run() async {
-    await authRepository.logOut();
-  }
-}

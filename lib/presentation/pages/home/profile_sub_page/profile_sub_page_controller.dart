@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_state.dart';
 import 'package:offside/presentation/providers/current_user_provider.dart';
@@ -39,7 +39,7 @@ class ProfileSubPageController extends _$ProfileSubPageController {
 
   Future<void> removeUser() async {
     try {
-      await ref.read(removeUserUseCaseProvider).run(state.user!);
+      await ref.read(usersRepositoryProvider).remove(state.user!);
       await logOut();
     } catch (e) {
       log(e.toString());
@@ -47,6 +47,6 @@ class ProfileSubPageController extends _$ProfileSubPageController {
   }
 
   Future<void> logOut() async {
-    return ref.read(logOutUseCaseProvider).run();
+    return ref.read(authRepositoryProvider).logOut();
   }
 }

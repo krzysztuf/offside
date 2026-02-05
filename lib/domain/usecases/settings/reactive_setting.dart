@@ -1,39 +1,40 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:offside/domain/entities/app_setting.dart';
-
-import 'settings_use_cases.dart';
+import 'package:offside/data/repositories/providers.dart';
 
 mixin ReactiveSetting<T> on $Notifier<T> {
   AppSetting get setting;
 
   T get value {
+    final repo = ref.read(settingsRepositoryProvider);
     if (T == bool) {
-      return ref.read(getBoolSettingUseCaseProvider(setting)).run() as T? ?? setting.defaultValue<T>();
+      return repo.getBool(setting) as T? ?? setting.defaultValue<T>();
     } else if (T == int) {
-      return ref.read(getIntSettingUseCaseProvider(setting)).run() as T? ?? setting.defaultValue<T>();
+      return repo.getInt(setting) as T? ?? setting.defaultValue<T>();
     } else if (T == double) {
-      return ref.read(getDoubleSettingUseCaseProvider(setting)).run() as T? ?? setting.defaultValue<T>();
+      return repo.getDouble(setting) as T? ?? setting.defaultValue<T>();
     } else if (T == String) {
-      return ref.read(getStringSettingUseCaseProvider(setting)).run() as T? ?? setting.defaultValue<T>();
+      return repo.getString(setting) as T? ?? setting.defaultValue<T>();
     } else if (T == List<String>) {
-      return ref.read(getStringListSettingUseCaseProvider(setting)).run() as T? ?? setting.defaultValue<T>();
+      return repo.getStringList(setting) as T? ?? setting.defaultValue<T>();
     }
 
     throw Exception('getting an unsupported type ${T.toString()} for $setting ');
   }
 
   set value(T newValue) {
+    final repo = ref.read(settingsRepositoryProvider);
     switch (newValue) {
       case (bool boolValue):
-        ref.read(setBoolSettingUseCaseProvider(setting, boolValue)).run();
+        repo.setBool(setting, boolValue);
       case (int intValue):
-        ref.read(setIntSettingUseCaseProvider(setting, intValue)).run();
+        repo.setInt(setting, intValue);
       case (double doubleValue):
-        ref.read(setDoubleSettingUseCaseProvider(setting, doubleValue)).run();
+        repo.setDouble(setting, doubleValue);
       case (String stringValue):
-        ref.read(setStringSettingUseCaseProvider(setting, stringValue)).run();
+        repo.setString(setting, stringValue);
       case (List<String> stringListValue):
-        ref.read(setStringListSettingUseCaseProvider(setting, stringListValue)).run();
+        repo.setStringList(setting, stringListValue);
       default:
         throw Exception('setting an unsupported type ${T.toString()} for $this in AppSettings');
     }

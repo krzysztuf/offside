@@ -1,11 +1,13 @@
 import 'package:collection/collection.dart';
-import 'package:offside/data/sources/json_data_source.dart';
+import 'package:offside/data/sources/offside_api_data_source.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
 
 class StubAuthRepository implements AuthRepository {
-  final JsonDataSource _dataSource = JsonDataSource.instance;
+  final OffsideApiDataSource _dataSource;
   User? _currentUser;
+
+  StubAuthRepository(this._dataSource);
 
   @override
   Future<User> logIn(String email, String password) async {
@@ -42,4 +44,3 @@ class StubAuthRepository implements AuthRepository {
     return true;
   }
 }
-

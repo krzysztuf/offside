@@ -9,7 +9,3 @@ LogInUseCase logInUseCase(Ref ref) {
   return LogInUseCase(ref.read(authRepositoryProvider));
 }
 
-@riverpod
-LogOutUseCase logOutUseCase(Ref ref) {
-  return LogOutUseCase(ref.read(authRepositoryProvider));
-}

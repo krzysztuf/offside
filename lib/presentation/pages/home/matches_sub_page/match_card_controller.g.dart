@@ -42,7 +42,7 @@ final class MatchCardControllerProvider
 }
 
 String _$matchCardControllerHash() =>
-    r'e8c0dd97c29198db5b56d40bb7674064f0c3c370';
+    r'f172719b056360c5e56e69d3932d5165fc3f77c6';
 
 abstract class _$MatchCardController extends $Notifier<MatchCardState> {
   MatchCardState build();
