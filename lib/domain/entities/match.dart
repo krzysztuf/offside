@@ -1,4 +1,7 @@
+import 'dart:collection';
+
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:offside/core/extensions/date_time_extensions.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 
 import 'bet.dart';
@@ -90,5 +93,14 @@ extension ConvenienceMethods on Match {
     return bets.where((bet) {
       return bet.prediction.goals == outcome!.goals;
     }).toList();
+  }
+}
+
+extension MatchListExtensions on Iterable<Match> {
+  Map<DateTime, List<Match>> groupByDay() {
+    return fold(SplayTreeMap<DateTime, List<Match>>(), (map, match) {
+      map.putIfAbsent(match.kickOffDate.date, () => []).add(match);
+      return map;
+    });
   }
 }

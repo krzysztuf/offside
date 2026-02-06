@@ -17,3 +17,12 @@ class Bet with BetMappable {
     required this.prediction,
   });
 }
+
+extension BetListExtensions on Iterable<Bet> {
+  Map<int, List<Bet>> groupByMatchId() {
+    return fold(<int, List<Bet>>{}, (map, bet) {
+      map.putIfAbsent(bet.matchId, () => []).add(bet);
+      return map;
+    });
+  }
+}

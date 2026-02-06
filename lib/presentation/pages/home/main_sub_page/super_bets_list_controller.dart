@@ -24,7 +24,7 @@ class SuperBetsListController extends _$SuperBetsListController {
     final allBets = results[2] as List<Bet>;
 
     final users = usersList.associateBy((user) => user.id);
-    final betsByMatchId = _groupBetsByMatchId(allBets);
+    final betsByMatchId = allBets.groupByMatchId();
 
     final result = recentMatches.associate((match) {
       final matchWithBets = match.copyWith(bets: betsByMatchId[match.id] ?? []);
@@ -32,12 +32,5 @@ class SuperBetsListController extends _$SuperBetsListController {
     });
 
     return result;
-  }
-
-  Map<int, List<Bet>> _groupBetsByMatchId(List<Bet> bets) {
-    return bets.fold(<int, List<Bet>>{}, (map, bet) {
-      map.putIfAbsent(bet.matchId, () => []).add(bet);
-      return map;
-    });
   }
 }

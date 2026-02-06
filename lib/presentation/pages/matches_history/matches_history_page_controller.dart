@@ -1,6 +1,3 @@
-import 'dart:collection';
-
-import 'package:offside/core/extensions/date_time_extensions.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
@@ -28,22 +25,8 @@ class MatchesHistoryPageController extends _$MatchesHistoryPageController {
     final bets = results[1] as List<Bet>;
 
     return MatchesHistoryState(
-      _groupMatchesByDay(matches),
-      betsByMatchId: _groupBetsByMatchId(bets),
+      matches.groupByDay(),
+      betsByMatchId: bets.groupByMatchId(),
     );
-  }
-
-  Map<DateTime, List<Match>> _groupMatchesByDay(List<Match> matches) {
-    return matches.fold(SplayTreeMap<DateTime, List<Match>>(), (map, match) {
-      map.putIfAbsent(match.kickOffDate.date, () => []).add(match);
-      return map;
-    });
-  }
-
-  Map<int, List<Bet>> _groupBetsByMatchId(List<Bet> bets) {
-    return bets.fold(<int, List<Bet>>{}, (map, bet) {
-      map.putIfAbsent(bet.matchId, () => []).add(bet);
-      return map;
-    });
   }
 }
