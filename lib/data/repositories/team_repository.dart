@@ -7,11 +7,11 @@ class TeamRepository {
   TeamRepository(this._api);
 
   Future<List<Team>> all() async {
-    final dtos = await _api.getTeams();
+    final dtos = await _api.teams();
     return dtos.map((dto) => dto.toEntity()).toList();
   }
 
-  Future<Team?> byId(String id) async {
+  Future<Team?> byId(int id) async {
     final teams = await all();
     try {
       return teams.firstWhere((team) => team.id == id);

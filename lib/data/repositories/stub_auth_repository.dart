@@ -9,16 +9,10 @@ class StubAuthRepository implements AuthRepository {
 
   StubAuthRepository(this._api);
 
-  Future<Map<int, String>> _getTeamIdToAbbreviation() async {
-    final teams = await _api.getTeams();
-    return {for (final team in teams) team.id: team.abbreviation};
-  }
-
   @override
   Future<User> logIn(String email, String password) async {
-    final teamMap = await _getTeamIdToAbbreviation();
-    final dtos = await _api.getUsers();
-    final users = dtos.map((dto) => dto.toEntity(teamMap)).toList();
+    final dtos = await _api.users();
+    final users = dtos.map((dto) => dto.toEntity()).toList();
     if (users.isNotEmpty) {
       _currentUser = users.firstWhereOrNull((u) => u.isAdmin);
       return _currentUser!;
@@ -28,9 +22,8 @@ class StubAuthRepository implements AuthRepository {
 
   @override
   Future<User> register(String email, String password) async {
-    final teamMap = await _getTeamIdToAbbreviation();
-    final dtos = await _api.getUsers();
-    final users = dtos.map((dto) => dto.toEntity(teamMap)).toList();
+    final dtos = await _api.users();
+    final users = dtos.map((dto) => dto.toEntity()).toList();
     if (users.isNotEmpty) {
       _currentUser = users.first;
       return _currentUser!;

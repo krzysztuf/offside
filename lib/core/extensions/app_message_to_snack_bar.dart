@@ -11,8 +11,6 @@ extension AppMessageToSnackBar on AppMessage {
         return Icons.error;
       case MessageType.warning:
         return Icons.warning;
-      default:
-        return Icons.help;
     }
   }
 
@@ -20,11 +18,7 @@ extension AppMessageToSnackBar on AppMessage {
     return SnackBar(
       content: Row(
         children: [
-          Icon(
-            icon,
-            color: scheme.onInverseSurface,
-            size: 32,
-          ),
+          Icon(icon, color: scheme.onInverseSurface, size: 32),
           const Gap(24),
           Expanded(child: Text(message)),
         ],

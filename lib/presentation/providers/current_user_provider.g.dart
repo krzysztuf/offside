@@ -33,7 +33,7 @@ final class CurrentUserProvider
   CurrentUser create() => CurrentUser();
 }
 
-String _$currentUserHash() => r'47e4bc11bf4b06c15d58fa343913ed4e5b6cf12b';
+String _$currentUserHash() => r'281eb5d8b7c1bcbff1fe0542389287f2add0d96b';
 
 abstract class _$CurrentUser extends $AsyncNotifier<User?> {
   FutureOr<User?> build();

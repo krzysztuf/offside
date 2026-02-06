@@ -1,17 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
 import 'match.dart';
 
-part 'competition.freezed.dart';
-part 'competition.g.dart';
+part 'competition.mapper.dart';
 
-@freezed
-sealed class Competition with _$Competition {
-  const factory Competition({
-    required String id,
-    required String name,
-    List<Match>? matches,
-  }) = _Competition;
+@MappableClass()
+class Competition with CompetitionMappable {
+  final int id;
+  final String name;
+  final List<Match>? matches;
 
-  factory Competition.fromJson(Map<String, dynamic> json) => _$CompetitionFromJson(json);
+  const Competition({
+    required this.id,
+    required this.name,
+    this.matches,
+  });
 }

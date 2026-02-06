@@ -1,18 +1,16 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'goals.freezed.dart';
-part 'goals.g.dart';
+part 'goals.mapper.dart';
 
-@freezed
-sealed class Goals with _$Goals {
-  const factory Goals({
-    @Default(0) int home,
-    @Default(0) int away,
-  }) = _Goals;
+@MappableClass()
+class Goals with GoalsMappable {
+  final int home;
+  final int away;
 
-  const Goals._();
-
-  factory Goals.fromJson(Map<String, dynamic> json) => _$GoalsFromJson(json);
+  const Goals({
+    this.home = 0,
+    this.away = 0,
+  });
 
   @override
   bool operator ==(Object other) {

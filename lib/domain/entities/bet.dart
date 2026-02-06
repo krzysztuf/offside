@@ -1,18 +1,19 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 
-part 'bet.freezed.dart';
-part 'bet.g.dart';
+part 'bet.mapper.dart';
 
-@freezed
-sealed class Bet with _$Bet {
-  const factory Bet({
-    // ignore: invalid_annotation_target
-    @Default(0) @JsonKey(includeToJson: false) int id,
-    required int matchId,
-    required int userId,
-    required MatchOutcome prediction,
-  }) = _Bet;
+@MappableClass()
+class Bet with BetMappable {
+  final int id;
+  final int matchId;
+  final int userId;
+  final MatchOutcome prediction;
 
-  factory Bet.fromJson(Map<String, dynamic> json) => _$BetFromJson(json);
+  const Bet({
+    this.id = 0,
+    required this.matchId,
+    required this.userId,
+    required this.prediction,
+  });
 }

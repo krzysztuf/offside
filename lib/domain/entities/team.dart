@@ -1,26 +1,20 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/identifiable.dart';
 
-part 'team.freezed.dart';
-part 'team.g.dart';
+part 'team.mapper.dart';
 
-@freezed
-sealed class Team with _$Team implements Identifiable {
-  factory Team({
-    // ignore: invalid_annotation_target
-    @Default('') @JsonKey(includeToJson: false) String id,
-    required String name,
-    required String abbreviation,
-  }) = _Team;
+@MappableClass()
+class Team with TeamMappable implements Identifiable {
+  final int id;
+  final String name;
+  final String abbreviation;
 
-  Team._();
-
-  factory Team.fromJson(Map<String, dynamic> json) => _$TeamFromJson(json);
+  Team({this.id = 0, required this.name, required this.abbreviation});
 
   @override
-  String get identifier => id;
+  int get identifier => id;
 }
 
 extension TeamLogo on Team {
-  String? get logo => id.isNotEmpty ? 'assets/images/teams/$id.png' : null;
+  String? get logo => id != 0 ? 'assets/images/teams/${abbreviation.toLowerCase()}.png' : null;
 }

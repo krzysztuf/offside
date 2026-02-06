@@ -9,8 +9,8 @@ class MatchRepository implements Repository<Match> {
 
   @override
   Future<List<Match>> all() async {
-    final teams = await _api.getTeams();
-    final dtos = await _api.getMatches();
+    final teams = await _api.teams();
+    final dtos = await _api.matches();
     return dtos.map((dto) => dto.toEntity(teams)).toList();
   }
 
@@ -29,8 +29,8 @@ class MatchRepository implements Repository<Match> {
   Future<Match?> byId(int id) async {
     if (id == 0) return null;
     try {
-      final teams = await _api.getTeams();
-      final dto = await _api.getMatchById(id);
+      final teams = await _api.teams();
+      final dto = await _api.matchById(id);
       return dto.toEntity(teams);
     } catch (e) {
       return null;

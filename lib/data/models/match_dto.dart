@@ -1,31 +1,41 @@
-// ignore_for_file: invalid_annotation_target
-
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/data/models/team_dto.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 
-part 'match_dto.freezed.dart';
-part 'match_dto.g.dart';
+part 'match_dto.mapper.dart';
 
-@freezed
-sealed class MatchDto with _$MatchDto {
-  const factory MatchDto({
-    required int id,
-    @JsonKey(name: 'home_team_id') required int homeTeamId,
-    @JsonKey(name: 'away_team_id') required int awayTeamId,
-    @JsonKey(name: 'kick_off_date') required int kickOffDate,
-    required String stage,
-    @JsonKey(name: 'knockout_stage') required int knockoutStage,
-    @JsonKey(name: 'home_result') int? homeResult,
-    @JsonKey(name: 'away_result') int? awayResult,
-    @JsonKey(name: 'penalties_winner_id') int? penaltiesWinnerId,
-  }) = _MatchDto;
+@MappableClass()
+class MatchDto with MatchDtoMappable {
+  final int id;
+  @MappableField(key: 'home_team_id')
+  final int homeTeamId;
+  @MappableField(key: 'away_team_id')
+  final int awayTeamId;
+  @MappableField(key: 'kick_off_date')
+  final int kickOffDate;
+  final String stage;
+  @MappableField(key: 'knockout_stage')
+  final int knockoutStage;
+  @MappableField(key: 'home_result')
+  final int? homeResult;
+  @MappableField(key: 'away_result')
+  final int? awayResult;
+  @MappableField(key: 'penalties_winner_id')
+  final int? penaltiesWinnerId;
 
-  const MatchDto._();
-
-  factory MatchDto.fromJson(Map<String, dynamic> json) => _$MatchDtoFromJson(json);
+  const MatchDto({
+    required this.id,
+    required this.homeTeamId,
+    required this.awayTeamId,
+    required this.kickOffDate,
+    required this.stage,
+    required this.knockoutStage,
+    this.homeResult,
+    this.awayResult,
+    this.penaltiesWinnerId,
+  });
 
   Match toEntity(List<TeamDto> teams) {
     final homeTeamDto = teams.where((t) => t.id == homeTeamId).firstOrNull;
@@ -33,12 +43,9 @@ sealed class MatchDto with _$MatchDto {
 
     MatchOutcome? outcome;
     if (homeResult != null && awayResult != null) {
-      final penaltiesWinnerDto = penaltiesWinnerId != null
-          ? teams.where((t) => t.id == penaltiesWinnerId).firstOrNull
-          : null;
       outcome = MatchOutcome(
         goals: Goals(home: homeResult!, away: awayResult!),
-        penaltiesWinnerId: penaltiesWinnerDto?.abbreviation.toLowerCase(),
+        penaltiesWinnerId: penaltiesWinnerId,
       );
     }
 

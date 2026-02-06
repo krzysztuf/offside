@@ -1,31 +1,33 @@
-// ignore_for_file: invalid_annotation_target
-
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 
 import 'bet.dart';
 import 'goals.dart';
 import 'team.dart';
 
-part 'match.freezed.dart';
-part 'match.g.dart';
+part 'match.mapper.dart';
 
-@freezed
-sealed class Match with _$Match {
-  const factory Match({
-    @Default(0) int id,
-    @JsonKey(includeFromJson: false) Team? homeTeam,
-    @JsonKey(includeFromJson: false) Team? awayTeam,
-    required DateTime kickOffDate,
-    required String stage,
-    required bool knockoutStage,
-    MatchOutcome? outcome,
-    @Default([]) @JsonKey(includeFromJson: false) List<Bet> bets,
-  }) = _Match;
+@MappableClass()
+class Match with MatchMappable {
+  final int id;
+  final Team? homeTeam;
+  final Team? awayTeam;
+  final DateTime kickOffDate;
+  final String stage;
+  final bool knockoutStage;
+  final MatchOutcome? outcome;
+  final List<Bet> bets;
 
-  const Match._();
-
-  factory Match.fromJson(Map<String, dynamic> json) => _$MatchFromJson(json);
+  const Match({
+    this.id = 0,
+    this.homeTeam,
+    this.awayTeam,
+    required this.kickOffDate,
+    required this.stage,
+    required this.knockoutStage,
+    this.outcome,
+    this.bets = const [],
+  });
 }
 
 extension ConvenienceMethods on Match {
@@ -72,7 +74,7 @@ extension ConvenienceMethods on Match {
     return 0;
   }
 
-  Team? teamFor({required String id}) {
+  Team? teamFor({required int id}) {
     if (homeTeam?.id == id) {
       return homeTeam;
     }

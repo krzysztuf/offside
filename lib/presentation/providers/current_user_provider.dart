@@ -9,7 +9,8 @@ part 'current_user_provider.g.dart';
 class CurrentUser extends _$CurrentUser {
   @override
   FutureOr<User?> build() async {
-    ref.watch(currentUserIdSettingProvider);
-    return ref.read(getCurrentUserUseCaseProvider).run();
+    // ref.watch(currentUserIdSettingProvider);
+    // return ref.read(getCurrentUserUseCaseProvider).run();
+    return User(id: 10, name: 'Krzystof', surname: 'Potrząsaj');
   }
 }

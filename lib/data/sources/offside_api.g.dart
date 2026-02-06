@@ -22,7 +22,7 @@ class _OffsideApi implements OffsideApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<UserDto>> getUsers() async {
+  Future<List<UserDto>> users() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -41,7 +41,7 @@ class _OffsideApi implements OffsideApi {
     late List<UserDto> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => UserDto.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => UserDtoMapper.fromMap(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -51,7 +51,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<UserDto> getUserById(int id) async {
+  Future<UserDto> userById(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -69,7 +69,7 @@ class _OffsideApi implements OffsideApi {
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late UserDto _value;
     try {
-      _value = UserDto.fromJson(_result.data!);
+      _value = UserDtoMapper.fromMap(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -78,7 +78,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<List<TeamDto>> getTeams() async {
+  Future<List<TeamDto>> teams() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -97,7 +97,7 @@ class _OffsideApi implements OffsideApi {
     late List<TeamDto> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => TeamDto.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => TeamDtoMapper.fromMap(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -107,7 +107,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<TeamDto> getTeamById(int id) async {
+  Future<TeamDto> teamById(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -125,7 +125,7 @@ class _OffsideApi implements OffsideApi {
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late TeamDto _value;
     try {
-      _value = TeamDto.fromJson(_result.data!);
+      _value = TeamDtoMapper.fromMap(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -134,7 +134,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<List<MatchDto>> getMatches() async {
+  Future<List<MatchDto>> matches() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -153,7 +153,7 @@ class _OffsideApi implements OffsideApi {
     late List<MatchDto> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => MatchDto.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => MatchDtoMapper.fromMap(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -163,7 +163,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<MatchDto> getMatchById(int id) async {
+  Future<MatchDto> matchById(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -181,7 +181,7 @@ class _OffsideApi implements OffsideApi {
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late MatchDto _value;
     try {
-      _value = MatchDto.fromJson(_result.data!);
+      _value = MatchDtoMapper.fromMap(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -190,7 +190,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<List<BetDto>> getBets() async {
+  Future<List<BetDto>> bets() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -209,7 +209,7 @@ class _OffsideApi implements OffsideApi {
     late List<BetDto> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => BetDto.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => BetDtoMapper.fromMap(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -219,7 +219,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<List<BetDto>> getBetsByMatchId(int matchId) async {
+  Future<List<BetDto>> betsByMatchId(int matchId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -238,7 +238,7 @@ class _OffsideApi implements OffsideApi {
     late List<BetDto> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => BetDto.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => BetDtoMapper.fromMap(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -248,7 +248,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<List<BetDto>> getBetsByUserId(int userId) async {
+  Future<List<BetDto>> betsByUserId(int userId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -267,7 +267,7 @@ class _OffsideApi implements OffsideApi {
     late List<BetDto> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => BetDto.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => BetDtoMapper.fromMap(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -277,7 +277,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<List<PrivateTableDto>> getPrivateTables() async {
+  Future<List<PrivateTableDto>> privateTables() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -297,7 +297,8 @@ class _OffsideApi implements OffsideApi {
     try {
       _value = _result.data!
           .map(
-            (dynamic i) => PrivateTableDto.fromJson(i as Map<String, dynamic>),
+            (dynamic i) =>
+                PrivateTableDtoMapper.fromMap(i as Map<String, dynamic>),
           )
           .toList();
     } on Object catch (e, s) {
@@ -308,7 +309,7 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
-  Future<PrivateTableDto> getPrivateTableById(int id) async {
+  Future<PrivateTableDto> privateTableById(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -326,7 +327,7 @@ class _OffsideApi implements OffsideApi {
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late PrivateTableDto _value;
     try {
-      _value = PrivateTableDto.fromJson(_result.data!);
+      _value = PrivateTableDtoMapper.fromMap(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

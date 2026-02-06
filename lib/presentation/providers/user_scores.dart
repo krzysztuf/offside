@@ -27,7 +27,7 @@ class UserScores extends _$UserScores {
 
   Future<void> _loadUserBetsAndCalculatePoints() async {
     state = const AsyncLoading();
-    final winnerId = '';
+    final winnerId = 0;
 
     final matchesFuture = ref.read(matchesRepositoryProvider).all();
     final usersFuture = ref.read(getAllUsersUseCaseProvider).run();
@@ -59,7 +59,7 @@ class UserScores extends _$UserScores {
     return userBets;
   }
 
-  List<UserScoreSummary> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets, String winnerId) {
+  List<UserScoreSummary> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets, int winnerId) {
     final matchesWithResult = matches.where((match) => match.finished).toList();
 
     return userBets.entries.map((userAndBets) {

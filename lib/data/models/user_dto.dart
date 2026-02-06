@@ -1,38 +1,35 @@
-// ignore_for_file: invalid_annotation_target
-
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/user.dart';
 
-part 'user_dto.freezed.dart';
-part 'user_dto.g.dart';
+part 'user_dto.mapper.dart';
 
-@freezed
-sealed class UserDto with _$UserDto {
-  const factory UserDto({
-    required int id,
-    required String name,
-    required String surname,
-    String? nickname,
-    String? image,
-    @JsonKey(name: 'winner_prediction_id') int? winnerPredictionId,
-  }) = _UserDto;
+@MappableClass()
+class UserDto with UserDtoMappable {
+  final int id;
+  final String name;
+  final String surname;
+  final String? nickname;
+  final String? image;
+  @MappableField(key: 'winner_prediction_id')
+  final int? winnerPredictionId;
 
-  const UserDto._();
+  const UserDto({
+    required this.id,
+    required this.name,
+    required this.surname,
+    this.nickname,
+    this.image,
+    this.winnerPredictionId,
+  });
 
-  factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
-
-  User toEntity(Map<int, String>? teamIdToAbbreviation) {
-    String? winnerTeamAbbreviation;
-    if (winnerPredictionId != null && teamIdToAbbreviation != null) {
-      winnerTeamAbbreviation = teamIdToAbbreviation[winnerPredictionId]?.toLowerCase();
-    }
+  User toEntity() {
     return User(
       id: id,
       name: name,
       surname: surname,
       nickname: nickname,
       image: image,
-      winnerPredictionId: winnerTeamAbbreviation,
+      winnerPredictionId: winnerPredictionId,
     );
   }
 }

@@ -1,30 +1,31 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/presentation/widgets/avatar.dart';
 
-part 'user.freezed.dart';
-part 'user.g.dart';
+part 'user.mapper.dart';
 
-@freezed
-sealed class User with _$User {
-  const factory User({
-    // ignore: invalid_annotation_target
-    @Default(0) @JsonKey(includeToJson: false) int id,
-    required String name,
-    required String surname,
-    String? nickname,
-    String? image,
-    String? winnerPredictionId,
-  }) = _User;
+@MappableClass()
+class User with UserMappable {
+  final int id;
+  final String name;
+  final String surname;
+  final String? nickname;
+  final String? image;
+  final int? winnerPredictionId;
 
-  const User._();
-
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  const User({
+    this.id = 0,
+    required this.name,
+    required this.surname,
+    this.nickname,
+    this.image,
+    this.winnerPredictionId,
+  });
 }
 
 extension UserAvatar on User {

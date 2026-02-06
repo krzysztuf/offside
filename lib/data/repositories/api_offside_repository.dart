@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:offside/data/sources/offside_api.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
@@ -12,20 +14,18 @@ class ApiOffsideRepository implements OffsideRepository {
 
   @override
   Future<List<Bet>> userBets(User user) async {
-    final users = await _api.getUsers();
+    final users = await _api.users();
     final userDto = users.where((u) => u.id == user.id).firstOrNull;
     if (userDto == null) return [];
 
-    final teams = await _api.getTeams();
-    final teamsCache = {for (final team in teams) team.id: team};
-    final dtos = await _api.getBetsByUserId(userDto.id);
-    return dtos.map((dto) => dto.toEntity(teamsCache)).toList();
+    final dtos = await _api.betsByUserId(userDto.id);
+    return dtos.map((dto) => dto.toEntity()).toList();
   }
 
   @override
   Future<List<Match>> lastSixMatches() async {
-    final teams = await _api.getTeams();
-    final dtos = await _api.getMatches();
+    final teams = await _api.teams();
+    final dtos = await _api.matches();
     final allMatches = dtos.map((dto) => dto.toEntity(teams)).toList();
 
     final pastMatches = allMatches.where((match) => match.kickOffDate.isBefore(now)).toList();
@@ -37,18 +37,24 @@ class ApiOffsideRepository implements OffsideRepository {
 
   @override
   Future<List<Match>> upcomingMatches() async {
-    final teams = await _api.getTeams();
-    final dtos = await _api.getMatches();
+    final teams = await _api.teams();
+    final dtos = await _api.matches();
     final allMatches = dtos.map((dto) => dto.toEntity(teams)).toList();
     final midnight = now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0);
 
-    return allMatches.where((match) => match.kickOffDate.isAfter(midnight)).toList();
+    final upcoming = allMatches.where((match) => match.kickOffDate.isAfter(midnight)).toList();
+    log('--- matches count: ${upcoming.length}');
+    for (var match in upcoming) {
+      log('home: ${match.homeTeam?.name} ${match.awayTeam?.name}');
+    }
+
+    return upcoming;
   }
 
   @override
   Future<List<Match>> matchesHistory() async {
-    final teams = await _api.getTeams();
-    final dtos = await _api.getMatches();
+    final teams = await _api.teams();
+    final dtos = await _api.matches();
     final allMatches = dtos.map((dto) => dto.toEntity(teams)).toList();
     final midnight = now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0);
 

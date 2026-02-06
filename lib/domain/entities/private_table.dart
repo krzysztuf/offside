@@ -1,20 +1,18 @@
-// ignore_for_file: invalid_annotation_target
+import 'package:dart_mappable/dart_mappable.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+part 'private_table.mapper.dart';
 
-part 'private_table.freezed.dart';
-part 'private_table.g.dart';
+@MappableClass()
+class PrivateTable with PrivateTableMappable {
+  final int id;
+  final String name;
+  final int ownerId;
+  final List<int> memberIds;
 
-@freezed
-sealed class PrivateTable with _$PrivateTable {
-  const factory PrivateTable({
-    @Default(0) int id,
-    required String name,
-    required int ownerId,
-    required List<int> memberIds,
-  }) = _PrivateTable;
-
-  const PrivateTable._();
-
-  factory PrivateTable.fromJson(Map<String, dynamic> json) => _$PrivateTableFromJson(json);
+  const PrivateTable({
+    this.id = 0,
+    required this.name,
+    required this.ownerId,
+    required this.memberIds,
+  });
 }

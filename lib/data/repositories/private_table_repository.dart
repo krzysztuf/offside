@@ -9,7 +9,7 @@ class PrivateTableRepository implements Repository<PrivateTable> {
 
   @override
   Future<List<PrivateTable>> all() async {
-    final dtos = await _api.getPrivateTables();
+    final dtos = await _api.privateTables();
     return dtos.map((dto) => dto.toEntity()).toList();
   }
 
@@ -28,7 +28,7 @@ class PrivateTableRepository implements Repository<PrivateTable> {
   Future<PrivateTable?> byId(int id) async {
     if (id == 0) return null;
     try {
-      final dto = await _api.getPrivateTableById(id);
+      final dto = await _api.privateTableById(id);
       return dto.toEntity();
     } catch (e) {
       return null;

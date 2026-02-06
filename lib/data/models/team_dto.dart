@@ -1,23 +1,22 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/team.dart';
 
-part 'team_dto.freezed.dart';
-part 'team_dto.g.dart';
+part 'team_dto.mapper.dart';
 
-@freezed
-sealed class TeamDto with _$TeamDto {
-  const factory TeamDto({
-    required int id,
-    required String name,
-    required String abbreviation,
-  }) = _TeamDto;
+@MappableClass()
+class TeamDto with TeamDtoMappable {
+  final int id;
+  final String name;
+  final String abbreviation;
 
-  const TeamDto._();
-
-  factory TeamDto.fromJson(Map<String, dynamic> json) => _$TeamDtoFromJson(json);
+  const TeamDto({
+    required this.id,
+    required this.name,
+    required this.abbreviation,
+  });
 
   Team toEntity() => Team(
-    id: abbreviation.toLowerCase(),
+    id: id,
     name: name,
     abbreviation: abbreviation,
   );

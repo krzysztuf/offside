@@ -1,19 +1,22 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 
-part 'match_card_state.freezed.dart';
+part 'match_card_state.mapper.dart';
 
-@freezed
-sealed class MatchCardState with _$MatchCardState {
-  const factory MatchCardState({
-    required Match match,
-    Bet? bet,
-    @Default(BetState.notPlaced) BetState betState,
-    @Default(false) bool loading,
-  }) = _MatchCardState;
+@MappableClass()
+class MatchCardState with MatchCardStateMappable {
+  final Match match;
+  final Bet? bet;
+  final BetState betState;
+  final bool loading;
 
-  const MatchCardState._();
+  const MatchCardState({
+    required this.match,
+    this.bet,
+    this.betState = BetState.notPlaced,
+    this.loading = false,
+  });
 }
 
 enum BetState {

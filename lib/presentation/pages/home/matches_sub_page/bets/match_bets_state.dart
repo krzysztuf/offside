@@ -1,16 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user_prediction.dart';
 
-part 'match_bets_state.freezed.dart';
+part 'match_bets_state.mapper.dart';
 
-@freezed
-sealed class MatchBetsState with _$MatchBetsState {
-  const factory MatchBetsState({
-    required bool loading,
-    required Match match,
-    @Default([]) List<UserPrediction> bets,
-  }) = _MatchBetsState;
+@MappableClass()
+class MatchBetsState with MatchBetsStateMappable {
+  final bool loading;
+  final Match match;
+  final List<UserPrediction> bets;
 
-  const MatchBetsState._();
+  const MatchBetsState({
+    required this.loading,
+    required this.match,
+    this.bets = const [],
+  });
 }

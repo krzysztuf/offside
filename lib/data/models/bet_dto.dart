@@ -1,38 +1,40 @@
-// ignore_for_file: invalid_annotation_target
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:offside/data/models/team_dto.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/goals.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 
-part 'bet_dto.freezed.dart';
-part 'bet_dto.g.dart';
+part 'bet_dto.mapper.dart';
 
-@freezed
-sealed class BetDto with _$BetDto {
-  const factory BetDto({
-    required int id,
-    @JsonKey(name: 'match_id') required int matchId,
-    @JsonKey(name: 'user_id') required int userId,
-    @JsonKey(name: 'home_goals_prediction') required int homeGoalsPrediction,
-    @JsonKey(name: 'away_goals_prediction') required int awayGoalsPrediction,
-    @JsonKey(name: 'penalties_winner_id') int? penaltiesWinnerId,
-  }) = _BetDto;
+@MappableClass()
+class BetDto with BetDtoMappable {
+  final int id;
+  @MappableField(key: 'match_id')
+  final int matchId;
+  @MappableField(key: 'user_id')
+  final int userId;
+  @MappableField(key: 'home_goals_prediction')
+  final int homeGoalsPrediction;
+  @MappableField(key: 'away_goals_prediction')
+  final int awayGoalsPrediction;
+  @MappableField(key: 'penalties_winner_id')
+  final int? penaltiesWinnerId;
 
-  const BetDto._();
+  const BetDto({
+    required this.id,
+    required this.matchId,
+    required this.userId,
+    required this.homeGoalsPrediction,
+    required this.awayGoalsPrediction,
+    this.penaltiesWinnerId,
+  });
 
-  factory BetDto.fromJson(Map<String, dynamic> json) => _$BetDtoFromJson(json);
-
-  Bet toEntity(Map<int, TeamDto> teamsCache) => Bet(
+  Bet toEntity() => Bet(
     id: id,
     matchId: matchId,
     userId: userId,
     prediction: MatchOutcome(
       goals: Goals(home: homeGoalsPrediction, away: awayGoalsPrediction),
-      penaltiesWinnerId: penaltiesWinnerId != null
-          ? teamsCache[penaltiesWinnerId]?.abbreviation.toLowerCase()
-          : null,
+      penaltiesWinnerId: penaltiesWinnerId,
     ),
   );
 }

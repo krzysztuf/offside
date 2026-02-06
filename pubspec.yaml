@@ -15,7 +15,7 @@ dependencies:
   
   cupertino_icons: ^1.0.2
   riverpod: ^3.1.0
-  freezed_annotation: ^3.1.0
+  dart_mappable: ^4.3.0
   riverpod_annotation: ^4.0.0
   go_router: ^17.0.1
   flutter_riverpod: ^3.1.0
@@ -48,8 +48,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   riverpod_generator: ^4.0.0+1
   build_runner: ^2.4.6
-  freezed: ^3.2.3
-  json_serializable: ^6.7.1
+  dart_mappable_builder: ^4.3.0
   retrofit_generator: ^10.2.1
 
 flutter_launcher_icons:
@@ -63,29 +62,29 @@ flutter_launcher_icons:
 
 flutter:
   assets:
-    - assets/images/teams/germany.png
-    - assets/images/teams/scotland.png
-    - assets/images/teams/hungary.png
-    - assets/images/teams/switzerland.png
-    - assets/images/teams/spain.png
-    - assets/images/teams/croatia.png
-    - assets/images/teams/italy.png
-    - assets/images/teams/albania.png
-    - assets/images/teams/slovenia.png
-    - assets/images/teams/denmark.png
-    - assets/images/teams/serbia.png
-    - assets/images/teams/england.png
-    - assets/images/teams/netherlands.png
-    - assets/images/teams/france.png
-    - assets/images/teams/poland.png
-    - assets/images/teams/austria.png
-    - assets/images/teams/ukraine.png
-    - assets/images/teams/slovakia.png
-    - assets/images/teams/belgium.png
-    - assets/images/teams/romania.png
-    - assets/images/teams/portugal.png
-    - assets/images/teams/czech.png
-    - assets/images/teams/georgia.png
-    - assets/images/teams/turkey.png
+    - assets/images/teams/alb.png
+    - assets/images/teams/aut.png
+    - assets/images/teams/bel.png
+    - assets/images/teams/cro.png
+    - assets/images/teams/cze.png
+    - assets/images/teams/den.png
+    - assets/images/teams/eng.png
+    - assets/images/teams/esp.png
+    - assets/images/teams/fra.png
+    - assets/images/teams/geo.png
+    - assets/images/teams/ger.png
+    - assets/images/teams/hun.png
+    - assets/images/teams/ita.png
+    - assets/images/teams/ned.png
+    - assets/images/teams/pol.png
+    - assets/images/teams/por.png
+    - assets/images/teams/rou.png
+    - assets/images/teams/sco.png
+    - assets/images/teams/ser.png
+    - assets/images/teams/slo.png
+    - assets/images/teams/sui.png
+    - assets/images/teams/svk.png
+    - assets/images/teams/tur.png
+    - assets/images/teams/ukr.png
 
   uses-material-design: true

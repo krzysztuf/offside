@@ -1,13 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/private_table.dart';
 
-part 'private_tables_state.freezed.dart';
+part 'private_tables_state.mapper.dart';
 
-@freezed
-sealed class PrivateTablesState with _$PrivateTablesState {
-  const factory PrivateTablesState({
-    required List<PrivateTable> tables,
-  }) = _PrivateTablesState;
+@MappableClass()
+class PrivateTablesState with PrivateTablesStateMappable {
+  final List<PrivateTable> tables;
 
-  const PrivateTablesState._();
+  const PrivateTablesState({
+    required this.tables,
+  });
 }

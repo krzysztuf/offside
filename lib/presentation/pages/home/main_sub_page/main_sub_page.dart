@@ -23,8 +23,7 @@ class MainSubPage extends ConsumerStatefulWidget {
   ConsumerState<MainSubPage> createState() => MainSubPageState();
 }
 
-class MainSubPageState extends ConsumerState<MainSubPage>
-    with ScrollToTopMixin<MainSubPage> {
+class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<MainSubPage> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -49,10 +48,7 @@ class MainSubPageState extends ConsumerState<MainSubPage>
   Padding buildGreetingSubtitle(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Text(
-        'Witaj w Typowniku na EURO 2024',
-        style: context.textTheme.titleMedium,
-      ),
+      child: Text('Witaj w Typowniku na EURO 2024', style: context.textTheme.titleMedium),
     );
   }
 
@@ -62,32 +58,22 @@ class MainSubPageState extends ConsumerState<MainSubPage>
         .when(
           data: (user) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              'Hej ${user!.name} 👋',
-              style: context.textTheme.headlineLarge,
-            ),
+            child: Text('Hej ${user!.name} 👋', style: context.textTheme.headlineLarge),
           ),
-          loading: () => Skeletonizer(
-            enabled: true,
-            child: Text(
-              'Hej Użytkowniku 👋',
-              style: context.textTheme.headlineLarge,
-            ),
-          ),
-          error: (_, __) => const Center(child: Text('Error')),
+          loading: () {
+            return Skeletonizer(
+              enabled: true,
+              child: Text('Hej Użytkowniku 👋', style: context.textTheme.headlineLarge),
+            );
+          },
+          error: (_, _) => const Center(child: Text('Error')),
         );
   }
 
-  Widget _buildMainSubPage(
-    BuildContext context,
-    WidgetRef ref,
-    List<UserScoreSummary> userScores,
-  ) {
+  Widget _buildMainSubPage(BuildContext context, WidgetRef ref, List<UserScoreSummary> userScores) {
     return RefreshIndicator(
       onRefresh: () async {
-        await ref
-            .read(userScoresProvider.notifier)
-            .refresh(delay: 500.milliseconds);
+        await ref.read(userScoresProvider.notifier).refresh(delay: 500.milliseconds);
         await ref.read(privateTablesControllerProvider.notifier).refresh();
       },
       child: Padding(
@@ -102,24 +88,15 @@ class MainSubPageState extends ConsumerState<MainSubPage>
               children: [
                 const Gap(16),
                 buildUserGreeting(ref, context),
-                if (!ref.read(competitionStartedProvider)) ...[
-                  const Gap(16),
-                  const CompetitionWinnerPicker(),
-                ],
+                if (!ref.read(competitionStartedProvider)) ...[const Gap(16), const CompetitionWinnerPicker()],
                 if (ref.read(competitionStartedProvider)) ...[
                   const Gap(16),
-                  const SubtitledHeadline(
-                    title: 'Super typy',
-                    subtitle: 'Zdobywcy max punktów w ostatnich 6 meczach',
-                  ),
+                  const SubtitledHeadline(title: 'Super typy', subtitle: 'Zdobywcy max punktów w ostatnich 6 meczach'),
                   const Gap(16),
                   const SizedBox(height: 88, child: SuperBetsList()),
                 ],
                 const Gap(32),
-                const SubtitledHeadline(
-                  title: 'Tabela',
-                  subtitle: 'Główna tabela z wszystkimi użytkownikami',
-                ),
+                const SubtitledHeadline(title: 'Tabela', subtitle: 'Główna tabela z wszystkimi użytkownikami'),
                 const Gap(16),
                 UserScoresTable(userScores: userScores),
                 const Gap(32),

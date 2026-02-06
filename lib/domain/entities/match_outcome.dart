@@ -1,18 +1,16 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
 import 'goals.dart';
 
-part 'match_outcome.freezed.dart';
-part 'match_outcome.g.dart';
+part 'match_outcome.mapper.dart';
 
-@freezed
-sealed class MatchOutcome with _$MatchOutcome {
-  const factory MatchOutcome({
-    @Default(Goals()) Goals goals,
-    @Default(null) String? penaltiesWinnerId,
-  }) = _MatchOutcome;
+@MappableClass()
+class MatchOutcome with MatchOutcomeMappable {
+  final Goals goals;
+  final int? penaltiesWinnerId;
 
-  const MatchOutcome._();
-
-  factory MatchOutcome.fromJson(Map<String, dynamic> json) => _$MatchOutcomeFromJson(json);
+  const MatchOutcome({
+    this.goals = const Goals(),
+    this.penaltiesWinnerId,
+  });
 }

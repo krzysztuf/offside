@@ -17,7 +17,7 @@ class UserPageController extends _$UserPageController {
       user: user,
       bets: bets,
       matches: matches,
-      winnerId: '',
+      winnerId: 0,
     );
   }
 }

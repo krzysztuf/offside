@@ -1,15 +1,17 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/user.dart';
 
-part 'profile_sub_page_state.freezed.dart';
+part 'profile_sub_page_state.mapper.dart';
 
-@freezed
-sealed class ProfileSubPageState with _$ProfileSubPageState {
-  const factory ProfileSubPageState({
-    User? user,
-    required bool loading,
-    @Default(false) bool uploading,
-  }) = _ProfileSubPageState;
+@MappableClass()
+class ProfileSubPageState with ProfileSubPageStateMappable {
+  final User? user;
+  final bool loading;
+  final bool uploading;
 
-  const ProfileSubPageState._();
+  const ProfileSubPageState({
+    this.user,
+    required this.loading,
+    this.uploading = false,
+  });
 }

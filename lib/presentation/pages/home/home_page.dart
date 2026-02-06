@@ -22,15 +22,10 @@ class HomePage extends ConsumerStatefulWidget {
   }
 }
 
-enum HomePageTab {
-  home,
-  tables,
-  matches,
-  profile,
-}
+enum HomePageTab { home, tables, matches, profile }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  var currentTab = HomePageTab.home;
+  var currentTab = HomePageTab.matches;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +34,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: SafeArea(
         child: IndexedStack(
           index: currentTab.index,
-          children: const [
-            MainSubPage(),
-            TablesSubPage(),
-            MatchesSubPage(),
-            ProfileSubPage(),
-          ],
+          children: const [MainSubPage(), TablesSubPage(), MatchesSubPage(), ProfileSubPage()],
         ),
       ),
       floatingActionButton: Inflater(
@@ -59,21 +49,9 @@ class _HomePageState extends ConsumerState<HomePage> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentTab.index,
         destinations: [
-          const NavigationDestination(
-            icon: Icon(Icons.home),
-            label: 'Główna',
-            tooltip: '',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.leaderboard_outlined),
-            label: 'Tabele',
-            tooltip: '',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.sports_soccer),
-            label: 'Mecze',
-            tooltip: '',
-          ),
+          const NavigationDestination(icon: Icon(Icons.home), label: 'Główna', tooltip: ''),
+          const NavigationDestination(icon: Icon(Icons.leaderboard_outlined), label: 'Tabele', tooltip: ''),
+          const NavigationDestination(icon: Icon(Icons.sports_soccer), label: 'Mecze', tooltip: ''),
           NavigationDestination(
             icon: switch (ref.watch(currentUserProvider)) {
               AsyncData(value: final user) =>

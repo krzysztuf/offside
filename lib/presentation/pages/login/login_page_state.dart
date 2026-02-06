@@ -1,16 +1,19 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/user.dart';
 
-part 'login_page_state.freezed.dart';
+part 'login_page_state.mapper.dart';
 
-@freezed
-sealed class LoginPageState with _$LoginPageState {
-  const factory LoginPageState({
-    @Default(false) bool loggedIn,
-    @Default(false) bool loggingIn,
-    @Default(true) bool gettingUserInfo,
-    User? user,
-  }) = _LoginPageState;
+@MappableClass()
+class LoginPageState with LoginPageStateMappable {
+  final bool loggedIn;
+  final bool loggingIn;
+  final bool gettingUserInfo;
+  final User? user;
 
-  const LoginPageState._();
+  const LoginPageState({
+    this.loggedIn = false,
+    this.loggingIn = false,
+    this.gettingUserInfo = true,
+    this.user,
+  });
 }
