@@ -1,3 +1,5 @@
+import 'package:offside/data/repositories/providers.dart';
+import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
@@ -11,14 +13,31 @@ part 'super_bets_list_controller.g.dart';
 class SuperBetsListController extends _$SuperBetsListController {
   @override
   Future<Map<Match, List<User>>> build() async {
-    final usersList = await ref.read(getAllUsersUseCaseProvider).run();
-    final users = usersList.associateBy((user) => user.id);
+    final results = await Future.wait([
+      ref.read(getAllUsersUseCaseProvider).run(),
+      ref.read(getRecentMatchesUseCaseProvider).run(true),
+      ref.read(betsRepositoryProvider).all(),
+    ]);
 
-    final recentMatches = await ref.read(getRecentMatchesUseCaseProvider).run(true);
+    final usersList = results[0] as List<User>;
+    final recentMatches = results[1] as List<Match>;
+    final allBets = results[2] as List<Bet>;
+
+    final users = usersList.associateBy((user) => user.id);
+    final betsByMatchId = _groupBetsByMatchId(allBets);
+
     final result = recentMatches.associate((match) {
-      return MapEntry(match, match.superBets.map((b) => users[b.userId]!).toList());
+      final matchWithBets = match.copyWith(bets: betsByMatchId[match.id] ?? []);
+      return MapEntry(match, matchWithBets.superBets.map((b) => users[b.userId]!).toList());
     });
 
     return result;
+  }
+
+  Map<int, List<Bet>> _groupBetsByMatchId(List<Bet> bets) {
+    return bets.fold(<int, List<Bet>>{}, (map, bet) {
+      map.putIfAbsent(bet.matchId, () => []).add(bet);
+      return map;
+    });
   }
 }
