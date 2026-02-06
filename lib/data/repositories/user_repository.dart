@@ -36,15 +36,6 @@ class UserRepository implements Repository<User> {
   }
 
   @override
-  Future<List<User>> where(
-    Object field, {
-    Object? isEqualTo,
-    Object? isNotEqualTo,
-  }) async {
-    return all();
-  }
-
-  @override
   Future<void> remove(User item) async {}
 
   @override

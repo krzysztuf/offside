@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:offside/core/extensions/date_time_extensions.dart';
 import 'package:offside/data/repositories/providers.dart';
+import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -27,13 +28,29 @@ class MatchesSubPageController extends _$MatchesSubPageController {
     });
   }
 
+  Map<int, List<Bet>> _groupBetsByMatchId(List<Bet> bets) {
+    return bets.fold(<int, List<Bet>>{}, (map, bet) {
+      map.putIfAbsent(bet.matchId, () => []).add(bet);
+      return map;
+    });
+  }
+
   Future<void> refresh({Duration? delay}) async {
     if (delay != null) {
       await Future.delayed(delay);
     }
 
-    ref.read(offsideRepositoryProvider).upcomingMatches().then((matches) {
-      state = MatchesSubPageState(_groupMatchesByDay(matches));
-    });
+    final results = await Future.wait([
+      ref.read(offsideRepositoryProvider).upcomingMatches(),
+      ref.read(betsRepositoryProvider).all(),
+    ]);
+
+    final matches = results[0] as List<Match>;
+    final bets = results[1] as List<Bet>;
+
+    state = MatchesSubPageState(
+      _groupMatchesByDay(matches),
+      betsByMatchId: _groupBetsByMatchId(bets),
+    );
   }
 }

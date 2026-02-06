@@ -29,34 +29,32 @@ class UserScores extends _$UserScores {
     state = const AsyncLoading();
     final winnerId = 0;
 
-    final matchesFuture = ref.read(matchesRepositoryProvider).all();
-    final usersFuture = ref.read(getAllUsersUseCaseProvider).run();
+    final results = await Future.wait([
+      ref.read(matchesRepositoryProvider).all(),
+      ref.read(getAllUsersUseCaseProvider).run(),
+      ref.read(betsRepositoryProvider).all(),
+    ]);
 
-    await Future.wait([matchesFuture, usersFuture]).then((values) async {
-      final matches = values[0] as List<Match>;
-      final users = values[1] as List<User>;
+    final matches = results[0] as List<Match>;
+    final users = results[1] as List<User>;
+    final bets = results[2] as List<Bet>;
 
-      final sortedMatches = matches.sortedBy((m) => m.kickOffDate).toList();
-      final userBets = await _fetchBetsAndGroupByUser(users);
+    final sortedMatches = matches.sortedBy((m) => m.kickOffDate).toList();
+    final userBets = _groupBetsByUser(users, bets);
 
-      final sortedUserBets = sortBets(sortedMatches, userBets);
-      final userPoints = _calculateUserPoints(sortedMatches, sortedUserBets, winnerId);
+    final sortedUserBets = _sortBets(sortedMatches, userBets);
+    final userPoints = _calculateUserPoints(sortedMatches, sortedUserBets, winnerId);
 
-      state = AsyncData(_sortByPoints(userPoints));
-    });
+    state = AsyncData(_sortByPoints(userPoints));
   }
 
-  Future<Map<User, List<Bet>>> _fetchBetsAndGroupByUser(List<User> users) async {
-    final userBetsFutures = users.map((user) {
-      return Future.wait([Future.value(user), ref.read(offsideRepositoryProvider).userBets(user)]);
-    }).toList();
+  Map<User, List<Bet>> _groupBetsByUser(List<User> users, List<Bet> bets) {
+    final betsByUserId = <int, List<Bet>>{};
+    for (final bet in bets) {
+      betsByUserId.putIfAbsent(bet.userId, () => []).add(bet);
+    }
 
-    final userBetsResults = await Future.wait(userBetsFutures);
-
-    final Map<User, List<Bet>> userBets = {
-      for (var result in userBetsResults) result[0] as User: result[1] as List<Bet>,
-    };
-    return userBets;
+    return {for (final user in users) user: betsByUserId[user.id] ?? []};
   }
 
   List<UserScoreSummary> _calculateUserPoints(List<Match> matches, Map<User, List<Bet>> userBets, int winnerId) {
@@ -91,7 +89,7 @@ class UserScores extends _$UserScores {
     return [...userScore]..sort((a, b) => b.totalScore.compareTo(a.totalScore));
   }
 
-  Map<User, List<Bet>> sortBets(List<Match> sortedMatches, Map<User, List<Bet>> userBets) {
+  Map<User, List<Bet>> _sortBets(List<Match> sortedMatches, Map<User, List<Bet>> userBets) {
     final sortedUserBets = <User, List<Bet>>{};
     for (var userAndBets in userBets.entries) {
       final user = userAndBets.key;

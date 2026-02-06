@@ -38,15 +38,6 @@ class MatchRepository implements Repository<Match> {
   }
 
   @override
-  Future<List<Match>> where(
-    Object field, {
-    Object? isEqualTo,
-    Object? isNotEqualTo,
-  }) async {
-    return all();
-  }
-
-  @override
   Future<void> remove(Match item) async {}
 
   @override

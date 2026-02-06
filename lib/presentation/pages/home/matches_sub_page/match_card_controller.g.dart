@@ -42,7 +42,7 @@ final class MatchCardControllerProvider
 }
 
 String _$matchCardControllerHash() =>
-    r'7c992619c387d1cfb044b2d06e24ca83646be5be';
+    r'26709706b14573c7748de6ef1b69adc856a7893d';
 
 abstract class _$MatchCardController extends $Notifier<MatchCardState> {
   MatchCardState build();
@@ -101,4 +101,45 @@ final class CurrentCardMatchProvider
   }
 }
 
-String _$currentCardMatchHash() => r'2be412cc7dacc65e02517fb87d225d6fe1fe4ed2';
+String _$currentCardMatchHash() => r'd75ae32c54c8031e466ec996406490ccaee15826';
+
+@ProviderFor(currentCardBets)
+final currentCardBetsProvider = CurrentCardBetsProvider._();
+
+final class CurrentCardBetsProvider
+    extends $FunctionalProvider<List<Bet>, List<Bet>, List<Bet>>
+    with $Provider<List<Bet>> {
+  CurrentCardBetsProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'currentCardBetsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$currentCardBetsHash();
+
+  @$internal
+  @override
+  $ProviderElement<List<Bet>> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  List<Bet> create(Ref ref) {
+    return currentCardBets(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<Bet> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<Bet>>(value),
+    );
+  }
+}
+
+String _$currentCardBetsHash() => r'6491090b4789b487b0f77d90d4151e33b588001e';

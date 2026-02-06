@@ -1,9 +1,7 @@
 import 'dart:developer';
 
 import 'package:offside/data/sources/offside_api.dart';
-import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/offside_repository.dart';
 
 class ApiOffsideRepository implements OffsideRepository {
@@ -11,16 +9,6 @@ class ApiOffsideRepository implements OffsideRepository {
   final OffsideApi _api;
 
   ApiOffsideRepository(this.now, this._api);
-
-  @override
-  Future<List<Bet>> userBets(User user) async {
-    final users = await _api.users();
-    final userDto = users.where((u) => u.id == user.id).firstOrNull;
-    if (userDto == null) return [];
-
-    final dtos = await _api.betsByUserId(userDto.id);
-    return dtos.map((dto) => dto.toEntity()).toList();
-  }
 
   @override
   Future<List<Match>> lastSixMatches() async {

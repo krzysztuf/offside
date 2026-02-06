@@ -18,11 +18,27 @@ class MatchCardController extends _$MatchCardController {
   @override
   MatchCardState build() {
     final match = ref.read(currentCardMatchProvider);
+    final bets = ref.watch(currentCardBetsProvider);
     final userId = ref.watch(currentUserIdSettingProvider);
 
-    _fetchBets(match, userId);
+    return _buildState(match, bets, userId);
+  }
 
-    return MatchCardState(match: match, loading: true);
+  MatchCardState _buildState(Match match, List<Bet> bets, int userId) {
+    final currentTime = ref.read(dateTimeProvider);
+    final bet = bets.find((bet) => bet.userId == userId);
+
+    var betState = bet != null ? BetState.placed : BetState.notPlaced;
+    if (match.afterKickOff(currentTime) && bet == null) {
+      betState = BetState.expired;
+    }
+
+    return MatchCardState(
+      match: match.copyWith(bets: bets),
+      bet: bet,
+      betState: betState,
+      loading: false,
+    );
   }
 
   Future<void> setResult(MatchOutcome outcome) async {
@@ -32,25 +48,6 @@ class MatchCardController extends _$MatchCardController {
     ref.read(updateMatchUseCaseProvider).run(updatedMatch);
 
     state = state.copyWith(match: updatedMatch, loading: false);
-  }
-
-  Future<void> _fetchBets(Match match, int userId) async {
-    final currentTime = ref.read(dateTimeProvider);
-    final bets = await ref.read(matchBetsRepositoryProvider(match)).where('matchId', isEqualTo: match.id);
-    final bet = bets.find((bet) => bet.userId == userId);
-
-    var updatedState = state.copyWith(
-      match: match.copyWith(bets: bets),
-      bet: bet,
-      betState: bet != null ? BetState.placed : BetState.notPlaced,
-      loading: false,
-    );
-
-    if (match.afterKickOff(currentTime) && bet == null) {
-      updatedState = updatedState.copyWith(betState: BetState.expired);
-    }
-
-    state = updatedState;
   }
 
   Future<void> updatePrediction(MatchOutcome prediction) async {
@@ -110,5 +107,10 @@ class MatchCardController extends _$MatchCardController {
 
 @riverpod
 Match currentCardMatch(Ref ref) {
-  return throw UnimplementedError('currentCardMatch unimplemented');
+  throw UnimplementedError('currentCardMatch unimplemented');
+}
+
+@riverpod
+List<Bet> currentCardBets(Ref ref) {
+  throw UnimplementedError('currentCardBets unimplemented');
 }

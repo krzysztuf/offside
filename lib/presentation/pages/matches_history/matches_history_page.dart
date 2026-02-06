@@ -7,7 +7,6 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
-import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/match_card.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/match_card_controller.dart';
 
@@ -23,7 +22,7 @@ class MatchesHistoryPage extends ConsumerWidget {
           title: const Text('Zakończone mecze'),
         ),
         body: switch (ref.watch(matchesHistoryPageControllerProvider)) {
-          AsyncData(value: final matches) => _unfoldMatches(matches, context),
+          AsyncData(value: final state) => _unfoldMatches(state, context),
           AsyncError(error: final e) => buildErrorMessage(e),
           _ => const Center(child: CircularProgressIndicator()),
         });
@@ -34,13 +33,13 @@ class MatchesHistoryPage extends ConsumerWidget {
     return Center(child: e.toString().text);
   }
 
-  Widget _unfoldMatches(Map<DateTime, List<Match>> matches, BuildContext context) {
+  Widget _unfoldMatches(MatchesHistoryState state, BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           key: UniqueKey(),
-          children: matches.entries.toList().reversed.map((entry) {
+          children: state.matches.entries.toList().reversed.map((entry) {
             final kickOffDay = entry.key;
             final matchesThisDay = entry.value.sorted((a, b) => a.kickOffDate.compareTo(b.kickOffDate));
 
@@ -68,6 +67,7 @@ class MatchesHistoryPage extends ConsumerWidget {
                     overrides: [
                       matchCardControllerProvider.overrideWith(() => MatchCardController()),
                       currentCardMatchProvider.overrideWith((_) => match),
+                      currentCardBetsProvider.overrideWith((_) => state.betsByMatchId[match.id] ?? []),
                     ],
                     child: const Column(
                       children: [

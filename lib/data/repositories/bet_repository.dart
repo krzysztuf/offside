@@ -36,31 +36,6 @@ class BetRepository implements Repository<Bet> {
   }
 
   @override
-  Future<List<Bet>> where(
-    Object field, {
-    Object? isEqualTo,
-    Object? isNotEqualTo,
-  }) async {
-    if (field == 'userId' && isEqualTo != null) {
-      final userId = isEqualTo is int ? isEqualTo : int.tryParse(isEqualTo.toString());
-      if (userId != null) {
-        final dtos = await _api.betsByUserId(userId);
-        return dtos.map((dto) => dto.toEntity()).toList();
-      }
-    }
-
-    if (field == 'matchId' && isEqualTo != null) {
-      final matchId = isEqualTo is int ? isEqualTo : int.tryParse(isEqualTo.toString());
-      if (matchId != null) {
-        final dtos = await _api.betsByMatchId(matchId);
-        return dtos.map((dto) => dto.toEntity()).toList();
-      }
-    }
-
-    return all();
-  }
-
-  @override
   Future<void> remove(Bet item) async {}
 
   @override

@@ -36,15 +36,6 @@ class PrivateTableRepository implements Repository<PrivateTable> {
   }
 
   @override
-  Future<List<PrivateTable>> where(
-    Object field, {
-    Object? isEqualTo,
-    Object? isNotEqualTo,
-  }) async {
-    return all();
-  }
-
-  @override
   Future<void> remove(PrivateTable item) async {}
 
   @override

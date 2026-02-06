@@ -17,7 +17,7 @@ final class MatchesHistoryPageControllerProvider
     extends
         $AsyncNotifierProvider<
           MatchesHistoryPageController,
-          Map<DateTime, List<Match>>
+          MatchesHistoryState
         > {
   MatchesHistoryPageControllerProvider._()
     : super(
@@ -39,28 +39,21 @@ final class MatchesHistoryPageControllerProvider
 }
 
 String _$matchesHistoryPageControllerHash() =>
-    r'204fac2ffecc0cf4f5640b8b1d33ec0c86764f41';
+    r'50a82a4d66c34d90f4888476fc5a1b6c2031c50f';
 
 abstract class _$MatchesHistoryPageController
-    extends $AsyncNotifier<Map<DateTime, List<Match>>> {
-  FutureOr<Map<DateTime, List<Match>>> build();
+    extends $AsyncNotifier<MatchesHistoryState> {
+  FutureOr<MatchesHistoryState> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final ref =
-        this.ref
-            as $Ref<
-              AsyncValue<Map<DateTime, List<Match>>>,
-              Map<DateTime, List<Match>>
-            >;
+        this.ref as $Ref<AsyncValue<MatchesHistoryState>, MatchesHistoryState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<Map<DateTime, List<Match>>>,
-                Map<DateTime, List<Match>>
-              >,
-              AsyncValue<Map<DateTime, List<Match>>>,
+              AnyNotifier<AsyncValue<MatchesHistoryState>, MatchesHistoryState>,
+              AsyncValue<MatchesHistoryState>,
               Object?,
               Object?
             >;

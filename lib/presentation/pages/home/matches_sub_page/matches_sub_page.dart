@@ -78,6 +78,8 @@ class MatchesSubPageState extends ConsumerState<MatchesSubPage> with ScrollToTop
   }
 
   Widget unfoldMatches(Map<DateTime, List<Match>> matches) {
+    final state = ref.watch(matchesSubPageControllerProvider);
+
     return Column(
       key: UniqueKey(),
       children: matches.entries.map((entry) {
@@ -108,6 +110,7 @@ class MatchesSubPageState extends ConsumerState<MatchesSubPage> with ScrollToTop
                 overrides: [
                   matchCardControllerProvider.overrideWith(() => MatchCardController()),
                   currentCardMatchProvider.overrideWith((_) => match),
+                  currentCardBetsProvider.overrideWith((_) => state.betsByMatchId[match.id] ?? []),
                 ],
                 child: const Column(
                   children: [
