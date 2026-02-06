@@ -15,11 +15,6 @@ GetCurrentUserUseCase getCurrentUserUseCase(Ref ref) {
 }
 
 @riverpod
-GetAllUsersUseCase getAllUsersUseCase(Ref ref) {
-  return GetAllUsersUseCase(ref.read(usersRepositoryProvider));
-}
-
-@riverpod
 UploadUserAvatarUseCase uploadUserAvatarUseCase(Ref ref) {
   return UploadUserAvatarUseCase(
     ref.read(usersRepositoryProvider),

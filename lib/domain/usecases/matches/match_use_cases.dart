@@ -1,6 +1,5 @@
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
-import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/usecases/async_use_case.dart';
 
@@ -35,13 +34,45 @@ class UpdateMatchUseCase implements AsyncUseCaseWithParam<void, Match> {
   }
 }
 
-class GetRecentMatchesUseCase implements AsyncUseCaseWithParam<List<Match>, bool> {
-  final OffsideRepository offsideRepository;
+class RecentMatchesUseCase implements AsyncUseCase<List<Match>> {
+  final Repository<Match> matchesRepository;
+  final DateTime now;
 
-  GetRecentMatchesUseCase(this.offsideRepository);
+  RecentMatchesUseCase(this.matchesRepository, this.now);
 
   @override
-  Future<List<Match>> run(bool fetchData) async {
-    return await offsideRepository.lastSixMatches();
+  Future<List<Match>> run() async {
+    final allMatches = await matchesRepository.all();
+    final pastMatches = allMatches.where((match) => match.kickOffDate.isBefore(now)).toList();
+    pastMatches.sort((a, b) => b.kickOffDate.compareTo(a.kickOffDate));
+    return pastMatches.take(6).toList();
+  }
+}
+
+class UpcomingMatchesUseCase implements AsyncUseCase<List<Match>> {
+  final Repository<Match> matchesRepository;
+  final DateTime now;
+
+  UpcomingMatchesUseCase(this.matchesRepository, this.now);
+
+  @override
+  Future<List<Match>> run() async {
+    final allMatches = await matchesRepository.all();
+    final midnight = now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0);
+    return allMatches.where((match) => match.kickOffDate.isAfter(midnight)).toList();
+  }
+}
+
+class MatchesHistoryUseCase implements AsyncUseCase<List<Match>> {
+  final Repository<Match> matchesRepository;
+  final DateTime now;
+
+  MatchesHistoryUseCase(this.matchesRepository, this.now);
+
+  @override
+  Future<List<Match>> run() async {
+    final allMatches = await matchesRepository.all();
+    final midnight = now.copyWith(hour: 0, minute: 0, second: 0, millisecond: 0);
+    return allMatches.where((match) => match.kickOffDate.isBefore(midnight)).toList();
   }
 }

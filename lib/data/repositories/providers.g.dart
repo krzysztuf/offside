@@ -398,53 +398,6 @@ final class PrivateTablesRepositoryProvider
 String _$privateTablesRepositoryHash() =>
     r'34a43583cecd62eb7d67a3b7287d94b76cb1d19d';
 
-@ProviderFor(offsideRepository)
-final offsideRepositoryProvider = OffsideRepositoryProvider._();
-
-final class OffsideRepositoryProvider
-    extends
-        $FunctionalProvider<
-          OffsideRepository,
-          OffsideRepository,
-          OffsideRepository
-        >
-    with $Provider<OffsideRepository> {
-  OffsideRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'offsideRepositoryProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$offsideRepositoryHash();
-
-  @$internal
-  @override
-  $ProviderElement<OffsideRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  OffsideRepository create(Ref ref) {
-    return offsideRepository(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(OffsideRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<OffsideRepository>(value),
-    );
-  }
-}
-
-String _$offsideRepositoryHash() => r'e99cfee42acfd31e91f361f91e247e90daca323d';
-
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
 

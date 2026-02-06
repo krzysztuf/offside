@@ -57,54 +57,6 @@ final class GetCurrentUserUseCaseProvider
 String _$getCurrentUserUseCaseHash() =>
     r'ed1bf8dfa623a08b988900c5a449afaf947515e3';
 
-@ProviderFor(getAllUsersUseCase)
-final getAllUsersUseCaseProvider = GetAllUsersUseCaseProvider._();
-
-final class GetAllUsersUseCaseProvider
-    extends
-        $FunctionalProvider<
-          GetAllUsersUseCase,
-          GetAllUsersUseCase,
-          GetAllUsersUseCase
-        >
-    with $Provider<GetAllUsersUseCase> {
-  GetAllUsersUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'getAllUsersUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$getAllUsersUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<GetAllUsersUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  GetAllUsersUseCase create(Ref ref) {
-    return getAllUsersUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GetAllUsersUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<GetAllUsersUseCase>(value),
-    );
-  }
-}
-
-String _$getAllUsersUseCaseHash() =>
-    r'6f3d16c3d69c70bacb8c8f920b3cac530d11c1fd';
-
 @ProviderFor(uploadUserAvatarUseCase)
 final uploadUserAvatarUseCaseProvider = UploadUserAvatarUseCaseProvider._();
 

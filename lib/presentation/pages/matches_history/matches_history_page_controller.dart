@@ -1,6 +1,7 @@
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'matches_history_page_controller.g.dart';
@@ -17,7 +18,7 @@ class MatchesHistoryPageController extends _$MatchesHistoryPageController {
   @override
   Future<MatchesHistoryState> build() async {
     final results = await Future.wait([
-      ref.read(offsideRepositoryProvider).matchesHistory(),
+      ref.read(matchesHistoryUseCaseProvider).run(),
       ref.read(betsRepositoryProvider).all(),
     ]);
 

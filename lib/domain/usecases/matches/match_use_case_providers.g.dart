@@ -135,50 +135,146 @@ final class UpdateMatchUseCaseProvider
 String _$updateMatchUseCaseHash() =>
     r'c61291df774d51ab5ac20ed3a6fda8f69765f97f';
 
-@ProviderFor(getRecentMatchesUseCase)
-final getRecentMatchesUseCaseProvider = GetRecentMatchesUseCaseProvider._();
+@ProviderFor(recentMatchesUseCase)
+final recentMatchesUseCaseProvider = RecentMatchesUseCaseProvider._();
 
-final class GetRecentMatchesUseCaseProvider
+final class RecentMatchesUseCaseProvider
     extends
         $FunctionalProvider<
-          GetRecentMatchesUseCase,
-          GetRecentMatchesUseCase,
-          GetRecentMatchesUseCase
+          RecentMatchesUseCase,
+          RecentMatchesUseCase,
+          RecentMatchesUseCase
         >
-    with $Provider<GetRecentMatchesUseCase> {
-  GetRecentMatchesUseCaseProvider._()
+    with $Provider<RecentMatchesUseCase> {
+  RecentMatchesUseCaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'getRecentMatchesUseCaseProvider',
+        name: r'recentMatchesUseCaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$getRecentMatchesUseCaseHash();
+  String debugGetCreateSourceHash() => _$recentMatchesUseCaseHash();
 
   @$internal
   @override
-  $ProviderElement<GetRecentMatchesUseCase> $createElement(
+  $ProviderElement<RecentMatchesUseCase> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  GetRecentMatchesUseCase create(Ref ref) {
-    return getRecentMatchesUseCase(ref);
+  RecentMatchesUseCase create(Ref ref) {
+    return recentMatchesUseCase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GetRecentMatchesUseCase value) {
+  Override overrideWithValue(RecentMatchesUseCase value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<GetRecentMatchesUseCase>(value),
+      providerOverride: $SyncValueProvider<RecentMatchesUseCase>(value),
     );
   }
 }
 
-String _$getRecentMatchesUseCaseHash() =>
-    r'702b55841b1f78aba9be3bee753f5f499130cc38';
+String _$recentMatchesUseCaseHash() =>
+    r'fcbb2238361806cf669d126fdda1b61fc97047bc';
+
+@ProviderFor(upcomingMatchesUseCase)
+final upcomingMatchesUseCaseProvider = UpcomingMatchesUseCaseProvider._();
+
+final class UpcomingMatchesUseCaseProvider
+    extends
+        $FunctionalProvider<
+          UpcomingMatchesUseCase,
+          UpcomingMatchesUseCase,
+          UpcomingMatchesUseCase
+        >
+    with $Provider<UpcomingMatchesUseCase> {
+  UpcomingMatchesUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'upcomingMatchesUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$upcomingMatchesUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<UpcomingMatchesUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UpcomingMatchesUseCase create(Ref ref) {
+    return upcomingMatchesUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UpcomingMatchesUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UpcomingMatchesUseCase>(value),
+    );
+  }
+}
+
+String _$upcomingMatchesUseCaseHash() =>
+    r'5439eba23e4aae5c8937013d5686049e24eeb29d';
+
+@ProviderFor(matchesHistoryUseCase)
+final matchesHistoryUseCaseProvider = MatchesHistoryUseCaseProvider._();
+
+final class MatchesHistoryUseCaseProvider
+    extends
+        $FunctionalProvider<
+          MatchesHistoryUseCase,
+          MatchesHistoryUseCase,
+          MatchesHistoryUseCase
+        >
+    with $Provider<MatchesHistoryUseCase> {
+  MatchesHistoryUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'matchesHistoryUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$matchesHistoryUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<MatchesHistoryUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  MatchesHistoryUseCase create(Ref ref) {
+    return matchesHistoryUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MatchesHistoryUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MatchesHistoryUseCase>(value),
+    );
+  }
+}
+
+String _$matchesHistoryUseCaseHash() =>
+    r'b14907aa81638a07b2a3d509eb75f4e479893ad1';

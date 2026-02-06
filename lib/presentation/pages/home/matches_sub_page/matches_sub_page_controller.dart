@@ -1,6 +1,7 @@
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
+import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
 import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,7 +25,7 @@ class MatchesSubPageController extends _$MatchesSubPageController {
     }
 
     final results = await Future.wait([
-      ref.read(offsideRepositoryProvider).upcomingMatches(),
+      ref.read(upcomingMatchesUseCaseProvider).run(),
       ref.read(betsRepositoryProvider).all(),
     ]);
 

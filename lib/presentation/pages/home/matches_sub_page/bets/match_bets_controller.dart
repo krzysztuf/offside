@@ -1,7 +1,7 @@
 import 'package:offside/core/extensions/iterable_extensions.dart';
+import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user_prediction.dart';
-import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'match_bets_state.dart';
@@ -19,7 +19,7 @@ class MatchBetsController extends _$MatchBetsController {
   }
 
   Future<void> _buildUserPredictions(Match match) async {
-    final users = await ref.read(getAllUsersUseCaseProvider).run();
+    final users = await ref.read(usersRepositoryProvider).all();
     final userPredictions = users.map((user) {
       final bet = match.bets.find((bet) => bet.userId == user.id);
       return UserPrediction(user: user, prediction: bet?.prediction);

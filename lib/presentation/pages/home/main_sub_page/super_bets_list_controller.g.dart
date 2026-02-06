@@ -38,7 +38,7 @@ final class SuperBetsListControllerProvider
 }
 
 String _$superBetsListControllerHash() =>
-    r'67d25a70af7ceaf74de623dae2e849b3abb6ffd6';
+    r'e23cd5f8c7539be20319a7f4bf2945a92b062c1d';
 
 abstract class _$SuperBetsListController
     extends $AsyncNotifier<Map<Match, List<User>>> {

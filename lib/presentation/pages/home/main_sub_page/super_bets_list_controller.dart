@@ -3,7 +3,6 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
-import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -14,8 +13,8 @@ class SuperBetsListController extends _$SuperBetsListController {
   @override
   Future<Map<Match, List<User>>> build() async {
     final results = await Future.wait([
-      ref.read(getAllUsersUseCaseProvider).run(),
-      ref.read(getRecentMatchesUseCaseProvider).run(true),
+      ref.read(usersRepositoryProvider).all(),
+      ref.read(recentMatchesUseCaseProvider).run(),
       ref.read(betsRepositoryProvider).all(),
     ]);
 

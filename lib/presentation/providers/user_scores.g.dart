@@ -33,7 +33,7 @@ final class UserScoresProvider
   UserScores create() => UserScores();
 }
 
-String _$userScoresHash() => r'fa331fcc65bdec0b02d25f32f1b7c684be08949f';
+String _$userScoresHash() => r'57ee7734d3219119e886094c05b01abf9ae96d01';
 
 abstract class _$UserScores extends $AsyncNotifier<List<UserScoreSummary>> {
   FutureOr<List<UserScoreSummary>> build();

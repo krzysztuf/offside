@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:offside/data/repositories/api_offside_repository.dart';
 import 'package:offside/data/repositories/bet_repository.dart';
 import 'package:offside/data/repositories/match_repository.dart';
 import 'package:offside/data/repositories/private_table_repository.dart';
@@ -17,10 +16,8 @@ import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/repositories/auth_repository.dart';
 import 'package:offside/domain/repositories/image_repository.dart';
-import 'package:offside/domain/repositories/offside_repository.dart';
 import 'package:offside/domain/repositories/repository.dart';
 import 'package:offside/domain/repositories/settings_repository.dart';
-import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
@@ -63,14 +60,6 @@ Repository<User> usersRepository(Ref ref) {
 @riverpod
 Repository<PrivateTable> privateTablesRepository(Ref ref) {
   return PrivateTableRepository(ref.read(offsideApiProvider));
-}
-
-@riverpod
-OffsideRepository offsideRepository(Ref ref) {
-  return ApiOffsideRepository(
-    ref.read(dateTimeProvider),
-    ref.read(offsideApiProvider),
-  );
 }
 
 @riverpod

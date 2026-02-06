@@ -4,7 +4,6 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
-import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'user_scores.g.dart';
@@ -31,7 +30,7 @@ class UserScores extends _$UserScores {
 
     final results = await Future.wait([
       ref.read(matchesRepositoryProvider).all(),
-      ref.read(getAllUsersUseCaseProvider).run(),
+      ref.read(usersRepositoryProvider).all(),
       ref.read(betsRepositoryProvider).all(),
     ]);
 

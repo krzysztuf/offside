@@ -19,18 +19,6 @@ class GetCurrentUserUseCase implements AsyncUseCase<User?> {
   }
 }
 
-class GetAllUsersUseCase implements AsyncUseCase<List<User>> {
-  final Repository<User> usersRepository;
-
-  GetAllUsersUseCase(this.usersRepository);
-
-  @override
-  Future<List<User>> run() async {
-    final users = await usersRepository.all();
-    return users.toList();
-  }
-}
-
 class UploadUserAvatarUseCase implements AsyncUseCaseWithParams<User, User, String> {
   final Repository<User> users;
   final ImageRepository imageRepository;

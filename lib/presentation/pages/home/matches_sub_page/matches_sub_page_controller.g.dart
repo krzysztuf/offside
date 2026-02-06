@@ -42,7 +42,7 @@ final class MatchesSubPageControllerProvider
 }
 
 String _$matchesSubPageControllerHash() =>
-    r'ab01944f18cdc12dce6850acc65b8fd8e443a81a';
+    r'c0b0ed10fcf6694dcd0c506661053649be8a2278';
 
 abstract class _$MatchesSubPageController
     extends $Notifier<MatchesSubPageState> {
