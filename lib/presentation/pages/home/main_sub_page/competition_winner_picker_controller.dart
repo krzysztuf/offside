@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/team.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/presentation/providers/current_user_provider.dart';
+import 'package:offside/domain/usecases/user_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'competition_winner_picker_state.dart';

@@ -3,8 +3,8 @@ import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 import 'package:offside/domain/entities/match_outcome.dart';
 import 'package:offside/data/repositories/providers.dart';
-import 'package:offside/domain/usecases/matches/match_use_case_providers.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/domain/usecases/match_providers.dart';
+import 'package:offside/domain/usecases/settings_providers.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page_controller.dart';
 import 'package:offside/presentation/providers/date_time_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -45,7 +45,7 @@ class MatchCardController extends _$MatchCardController {
     setLoading(true);
 
     final updatedMatch = state.match.copyWith(outcome: outcome);
-    ref.read(updateMatchUseCaseProvider).run(updatedMatch);
+    await ref.read(updateMatchProvider(updatedMatch).future);
 
     state = state.copyWith(match: updatedMatch, loading: false);
   }
@@ -85,7 +85,7 @@ class MatchCardController extends _$MatchCardController {
 
   Future<Bet> _updateExistingBet(MatchOutcome prediction) async {
     final bet = state.bet!.copyWith(prediction: prediction);
-    await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
+    await ref.read(placeBetProvider(state.match, bet).future);
     return bet;
   }
 
@@ -96,7 +96,7 @@ class MatchCardController extends _$MatchCardController {
       prediction: prediction,
     );
 
-    final id = await ref.read(placeBetUseCaseProvider(state.match)).run(bet);
+    final id = await ref.read(placeBetProvider(state.match, bet).future);
     return bet.copyWith(id: id);
   }
 

@@ -39,7 +39,7 @@ final class MatchesHistoryPageControllerProvider
 }
 
 String _$matchesHistoryPageControllerHash() =>
-    r'124699cb54121b2eb0dc6d3ccfe00d686018226a';
+    r'25dedda3e0688410611f42e4184217267e7bc55b';
 
 abstract class _$MatchesHistoryPageController
     extends $AsyncNotifier<MatchesHistoryState> {

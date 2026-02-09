@@ -1,6 +1,8 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:offside/domain/entities/app_setting.dart';
 import 'package:offside/data/repositories/providers.dart';
+import 'package:offside/domain/entities/app_setting.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'settings_providers.g.dart';
 
 mixin ReactiveSetting<T> on $Notifier<T> {
   AppSetting get setting;
@@ -41,4 +43,22 @@ mixin ReactiveSetting<T> on $Notifier<T> {
 
     state = newValue;
   }
+}
+
+@riverpod
+class CurrentUserIdSetting extends _$CurrentUserIdSetting with ReactiveSetting<int> {
+  @override
+  int build() => value;
+
+  @override
+  AppSetting get setting => AppSetting.currentUserId;
+}
+
+@riverpod
+class ThemeModeSetting extends _$ThemeModeSetting with ReactiveSetting<int> {
+  @override
+  int build() => value;
+
+  @override
+  AppSetting get setting => AppSetting.themeMode;
 }

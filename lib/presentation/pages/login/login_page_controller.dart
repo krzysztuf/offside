@@ -1,7 +1,7 @@
 import 'package:offside/data/repositories/providers.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/domain/usecases/auth/auth_use_case_providers.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/domain/usecases/auth_providers.dart';
+import 'package:offside/domain/usecases/settings_providers.dart';
 import 'package:offside/presentation/pages/login/login_page_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -28,7 +28,7 @@ class LoginPageController extends _$LoginPageController {
   Future<void> login(String email, String password) async {
     state = state.copyWith(loggingIn: true);
     try {
-      final userId = await ref.read(logInUseCaseProvider).run(email, password);
+      final userId = await ref.read(logInProvider(email, password).future);
       _updateUserIdSetting(userId);
     } catch (e) {
       state = state.copyWith(loggingIn: false);

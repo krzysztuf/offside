@@ -8,7 +8,7 @@ import 'package:offside/presentation/pages/home/main_sub_page/competition_winner
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_controller.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/providers/competition_started_provider.dart';
-import 'package:offside/presentation/providers/current_user_provider.dart';
+import 'package:offside/domain/usecases/user_providers.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 

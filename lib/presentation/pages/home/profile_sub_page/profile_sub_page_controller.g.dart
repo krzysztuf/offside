@@ -42,7 +42,7 @@ final class ProfileSubPageControllerProvider
 }
 
 String _$profileSubPageControllerHash() =>
-    r'069d57c1a606a42b8efbac1a1fdadc1ba5ae27a1';
+    r'6ecc7067df62e3af21f80665db732d685a76e7c2';
 
 abstract class _$ProfileSubPageController
     extends $Notifier<ProfileSubPageState> {

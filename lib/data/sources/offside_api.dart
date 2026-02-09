@@ -33,6 +33,9 @@ abstract class OffsideApi {
   @GET("/bets")
   Future<List<BetDto>> bets();
 
+  @PUT("/bets")
+  Future<int> placeBet(@Body() BetDto bet);
+
   @GET("/matches/{matchId}/bets")
   Future<List<BetDto>> betsByMatchId(@Path("matchId") int matchId);
 

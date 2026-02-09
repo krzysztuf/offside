@@ -1,3 +1,4 @@
+import 'package:offside/data/models/bet_dto.dart';
 import 'package:offside/data/sources/offside_api.dart';
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/repositories/repository.dart';
@@ -20,8 +21,15 @@ class BetRepository implements Repository<Bet> {
   }
 
   @override
-  Future<int> add(Bet item) async {
-    return 0;
+  Future<int> add(Bet bet) async {
+    final betDto = BetDto(
+      matchId: bet.matchId,
+      userId: bet.userId,
+      homeGoalsPrediction: bet.prediction.goals.home,
+      awayGoalsPrediction: bet.prediction.goals.away,
+    );
+
+    return await _api.placeBet(betDto);
   }
 
   @override

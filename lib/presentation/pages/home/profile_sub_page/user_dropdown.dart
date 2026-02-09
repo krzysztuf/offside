@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/core/extensions/iterable_extensions.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/domain/usecases/settings_providers.dart';
 
 class UserDropdown extends ConsumerStatefulWidget {
   final List<User> users;

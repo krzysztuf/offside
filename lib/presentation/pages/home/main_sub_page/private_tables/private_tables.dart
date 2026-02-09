@@ -6,7 +6,7 @@ import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/domain/entities/private_table.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/domain/usecases/settings_providers.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/new_private_table_dialog.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_controller.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_state.dart';

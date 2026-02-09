@@ -8,19 +8,24 @@ part 'bet_dto.mapper.dart';
 @MappableClass()
 class BetDto with BetDtoMappable {
   final int id;
+
   @MappableField(key: 'match_id')
   final int matchId;
+
   @MappableField(key: 'user_id')
   final int userId;
+
   @MappableField(key: 'home_goals_prediction')
   final int homeGoalsPrediction;
+
   @MappableField(key: 'away_goals_prediction')
   final int awayGoalsPrediction;
+
   @MappableField(key: 'penalties_winner_id')
   final int? penaltiesWinnerId;
 
   const BetDto({
-    required this.id,
+    this.id = -1,
     required this.matchId,
     required this.userId,
     required this.homeGoalsPrediction,

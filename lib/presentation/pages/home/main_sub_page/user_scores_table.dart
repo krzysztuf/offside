@@ -7,7 +7,7 @@ import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/entities/user_score_summary.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/domain/usecases/settings_providers.dart';
 import 'package:offside/presentation/widgets/offside/recent_form_dots.dart';
 
 class UserScoresTable extends ConsumerWidget {

@@ -42,7 +42,7 @@ final class DeleteUserPageControllerProvider
 }
 
 String _$deleteUserPageControllerHash() =>
-    r'eadc52cfbcaa1228de6ac91ef2fd4eea61127ba7';
+    r'a0993a67e5a9c99703248a48ff578a8a61e38793';
 
 abstract class _$DeleteUserPageController extends $Notifier<void> {
   void build();

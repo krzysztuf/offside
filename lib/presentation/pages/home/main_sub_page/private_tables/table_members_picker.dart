@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/domain/entities/user.dart';
-import 'package:offside/domain/usecases/settings/reactive_settings_providers.dart';
+import 'package:offside/domain/usecases/settings_providers.dart';
 import 'package:offside/presentation/widgets/enabled.dart';
 import 'package:supercharged/supercharged.dart';
 

@@ -1,9 +1,8 @@
 import 'dart:developer';
 
 import 'package:offside/data/repositories/providers.dart';
-import 'package:offside/domain/usecases/users/user_use_case_providers.dart';
+import 'package:offside/domain/usecases/user_providers.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_state.dart';
-import 'package:offside/presentation/providers/current_user_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_sub_page_controller.g.dart';
@@ -17,15 +16,15 @@ class ProfileSubPageController extends _$ProfileSubPageController {
   }
 
   Future<void> _loadCurrentUser() async {
-    final currentUser = await ref.read(getCurrentUserUseCaseProvider).run();
-    state = state.copyWith(user: currentUser, loading: false);
+    final user = await ref.read(currentUserProvider.future);
+    state = state.copyWith(user: user, loading: false);
   }
 
   Future<void> updateProfileImage(String imagePath) async {
     state = state.copyWith(uploading: true);
 
     try {
-      final updatedUser = await ref.read(uploadUserAvatarUseCaseProvider).run(state.user!, imagePath);
+      final updatedUser = await ref.read(uploadUserAvatarProvider(state.user!, imagePath).future);
       ref.invalidate(currentUserProvider);
       state = state.copyWith(user: updatedUser, uploading: false);
     } catch (e) {

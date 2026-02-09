@@ -23,7 +23,7 @@ class BetDtoMapper extends ClassMapperBase<BetDto> {
   final String id = 'BetDto';
 
   static int _$id(BetDto v) => v.id;
-  static const Field<BetDto, int> _f$id = Field('id', _$id);
+  static const Field<BetDto, int> _f$id = Field('id', _$id, opt: true, def: -1);
   static int _$matchId(BetDto v) => v.matchId;
   static const Field<BetDto, int> _f$matchId = Field(
     'matchId',
