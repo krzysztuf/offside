@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:offside/data/models/id_dto.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:offside/data/models/user_dto.dart';
 import 'package:offside/data/models/team_dto.dart';
@@ -34,7 +35,7 @@ abstract class OffsideApi {
   Future<List<BetDto>> bets();
 
   @PUT("/bets")
-  Future<int> placeBet(@Body() BetDto bet);
+  Future<IdDto> placeBet(@Body() BetDto bet);
 
   @GET("/matches/{matchId}/bets")
   Future<List<BetDto>> betsByMatchId(@Path("matchId") int matchId);

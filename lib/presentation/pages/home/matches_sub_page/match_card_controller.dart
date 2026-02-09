@@ -42,7 +42,7 @@ class MatchCardController extends _$MatchCardController {
   }
 
   Future<void> setResult(MatchOutcome outcome) async {
-    setLoading(true);
+    _setLoading(true);
 
     final updatedMatch = state.match.copyWith(outcome: outcome);
     await ref.read(updateMatchProvider(updatedMatch).future);
@@ -60,14 +60,9 @@ class MatchCardController extends _$MatchCardController {
       return;
     }
 
-    setLoading(true);
-
-    state = state.copyWith(
-      bet: await _createOrUpdateBet(prediction),
-      betState: BetState.placed,
-    );
-
-    setLoading(false);
+    _setLoading(true);
+    state = state.copyWith(bet: await _placeBet(prediction), betState: BetState.placed);
+    _setLoading(false);
   }
 
   Future<void> removeMatch() async {
@@ -75,32 +70,18 @@ class MatchCardController extends _$MatchCardController {
     return ref.read(matchesRepositoryProvider).remove(state.match);
   }
 
-  Future<Bet> _createOrUpdateBet(MatchOutcome prediction) async {
-    if (state.bet != null) {
-      return await _updateExistingBet(prediction);
-    }
-
-    return await _createNewBet(prediction);
-  }
-
-  Future<Bet> _updateExistingBet(MatchOutcome prediction) async {
-    final bet = state.bet!.copyWith(prediction: prediction);
-    await ref.read(placeBetProvider(state.match, bet).future);
-    return bet;
-  }
-
-  Future<Bet> _createNewBet(MatchOutcome prediction) async {
+  Future<Bet> _placeBet(MatchOutcome prediction) async {
     final bet = Bet(
       matchId: state.match.id,
       userId: ref.read(currentUserIdSettingProvider),
       prediction: prediction,
     );
 
-    final id = await ref.read(placeBetProvider(state.match, bet).future);
-    return bet.copyWith(id: id);
+    await ref.read(placeBetProvider(state.match, bet).future);
+    return bet;
   }
 
-  void setLoading(bool loading) {
+  void _setLoading(bool loading) {
     state = state.copyWith(loading: loading);
   }
 }

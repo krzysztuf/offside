@@ -23,8 +23,6 @@ class BetMapper extends ClassMapperBase<Bet> {
   @override
   final String id = 'Bet';
 
-  static int _$id(Bet v) => v.id;
-  static const Field<Bet, int> _f$id = Field('id', _$id, opt: true, def: 0);
   static int _$matchId(Bet v) => v.matchId;
   static const Field<Bet, int> _f$matchId = Field('matchId', _$matchId);
   static int _$userId(Bet v) => v.userId;
@@ -37,7 +35,6 @@ class BetMapper extends ClassMapperBase<Bet> {
 
   @override
   final MappableFields<Bet> fields = const {
-    #id: _f$id,
     #matchId: _f$matchId,
     #userId: _f$userId,
     #prediction: _f$prediction,
@@ -45,7 +42,6 @@ class BetMapper extends ClassMapperBase<Bet> {
 
   static Bet _instantiate(DecodingData data) {
     return Bet(
-      id: data.dec(_f$id),
       matchId: data.dec(_f$matchId),
       userId: data.dec(_f$userId),
       prediction: data.dec(_f$prediction),
@@ -99,7 +95,7 @@ extension BetValueCopy<$R, $Out> on ObjectCopyWith<$R, Bet, $Out> {
 abstract class BetCopyWith<$R, $In extends Bet, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   MatchOutcomeCopyWith<$R, MatchOutcome, MatchOutcome> get prediction;
-  $R call({int? id, int? matchId, int? userId, MatchOutcome? prediction});
+  $R call({int? matchId, int? userId, MatchOutcome? prediction});
   BetCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -113,18 +109,15 @@ class _BetCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Bet, $Out>
   MatchOutcomeCopyWith<$R, MatchOutcome, MatchOutcome> get prediction =>
       $value.prediction.copyWith.$chain((v) => call(prediction: v));
   @override
-  $R call({int? id, int? matchId, int? userId, MatchOutcome? prediction}) =>
-      $apply(
-        FieldCopyWithData({
-          if (id != null) #id: id,
-          if (matchId != null) #matchId: matchId,
-          if (userId != null) #userId: userId,
-          if (prediction != null) #prediction: prediction,
-        }),
-      );
+  $R call({int? matchId, int? userId, MatchOutcome? prediction}) => $apply(
+    FieldCopyWithData({
+      if (matchId != null) #matchId: matchId,
+      if (userId != null) #userId: userId,
+      if (prediction != null) #prediction: prediction,
+    }),
+  );
   @override
   Bet $make(CopyWithData data) => Bet(
-    id: data.get(#id, or: $value.id),
     matchId: data.get(#matchId, or: $value.matchId),
     userId: data.get(#userId, or: $value.userId),
     prediction: data.get(#prediction, or: $value.prediction),

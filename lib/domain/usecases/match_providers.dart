@@ -39,14 +39,9 @@ Future<List<Match>> matchesHistory(Ref ref) async {
 }
 
 @riverpod
-Future<int> placeBet(Ref ref, Match match, Bet bet) async {
+Future<void> placeBet(Ref ref, Match match, Bet bet) async {
   final repository = ref.read(matchBetsRepositoryProvider(match));
-  if (bet.id != 0) {
-    await repository.update(bet);
-    return bet.id;
-  }
-
-  return await repository.add(bet);
+  await repository.update(bet);
 }
 
 @riverpod

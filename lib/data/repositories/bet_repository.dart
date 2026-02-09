@@ -22,6 +22,20 @@ class BetRepository implements Repository<Bet> {
 
   @override
   Future<int> add(Bet bet) async {
+    await update(bet);
+    return -1;
+  }
+
+  @override
+  Future<Bet?> byId(int id) async {
+    return null;
+  }
+
+  @override
+  Future<void> remove(Bet item) async {}
+
+  @override
+  Future<void> update(Bet bet) async {
     final betDto = BetDto(
       matchId: bet.matchId,
       userId: bet.userId,
@@ -29,25 +43,8 @@ class BetRepository implements Repository<Bet> {
       awayGoalsPrediction: bet.prediction.goals.away,
     );
 
-    return await _api.placeBet(betDto);
+    await _api.placeBet(betDto);
   }
-
-  @override
-  Future<Bet?> byId(int id) async {
-    if (id == 0) return null;
-    final bets = await all();
-    try {
-      return bets.firstWhere((bet) => bet.id == id);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  @override
-  Future<void> remove(Bet item) async {}
-
-  @override
-  Future<void> update(Bet item) async {}
 
   @override
   Future<void> clear() async {}

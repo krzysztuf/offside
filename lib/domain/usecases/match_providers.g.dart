@@ -130,8 +130,8 @@ String _$matchesHistoryHash() => r'2e321d868831e61e797e7b543043dc60b9b6e52e';
 final placeBetProvider = PlaceBetFamily._();
 
 final class PlaceBetProvider
-    extends $FunctionalProvider<AsyncValue<int>, int, FutureOr<int>>
-    with $FutureModifier<int>, $FutureProvider<int> {
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
   PlaceBetProvider._({
     required PlaceBetFamily super.from,
     required (Match, Bet) super.argument,
@@ -155,11 +155,11 @@ final class PlaceBetProvider
 
   @$internal
   @override
-  $FutureProviderElement<int> $createElement($ProviderPointer pointer) =>
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
       $FutureProviderElement(pointer);
 
   @override
-  FutureOr<int> create(Ref ref) {
+  FutureOr<void> create(Ref ref) {
     final argument = this.argument as (Match, Bet);
     return placeBet(ref, argument.$1, argument.$2);
   }
@@ -175,10 +175,10 @@ final class PlaceBetProvider
   }
 }
 
-String _$placeBetHash() => r'955f1a4ca452d7791ac291a59d107cd6893cfc1a';
+String _$placeBetHash() => r'11f26ae8a834763641eda82e27bfd4ceca14d7d1';
 
 final class PlaceBetFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<int>, (Match, Bet)> {
+    with $FunctionalFamilyOverride<FutureOr<void>, (Match, Bet)> {
   PlaceBetFamily._()
     : super(
         retry: null,

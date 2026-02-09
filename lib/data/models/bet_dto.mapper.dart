@@ -22,8 +22,6 @@ class BetDtoMapper extends ClassMapperBase<BetDto> {
   @override
   final String id = 'BetDto';
 
-  static int _$id(BetDto v) => v.id;
-  static const Field<BetDto, int> _f$id = Field('id', _$id, opt: true, def: -1);
   static int _$matchId(BetDto v) => v.matchId;
   static const Field<BetDto, int> _f$matchId = Field(
     'matchId',
@@ -58,7 +56,6 @@ class BetDtoMapper extends ClassMapperBase<BetDto> {
 
   @override
   final MappableFields<BetDto> fields = const {
-    #id: _f$id,
     #matchId: _f$matchId,
     #userId: _f$userId,
     #homeGoalsPrediction: _f$homeGoalsPrediction,
@@ -68,7 +65,6 @@ class BetDtoMapper extends ClassMapperBase<BetDto> {
 
   static BetDto _instantiate(DecodingData data) {
     return BetDto(
-      id: data.dec(_f$id),
       matchId: data.dec(_f$matchId),
       userId: data.dec(_f$userId),
       homeGoalsPrediction: data.dec(_f$homeGoalsPrediction),
@@ -124,7 +120,6 @@ extension BetDtoValueCopy<$R, $Out> on ObjectCopyWith<$R, BetDto, $Out> {
 abstract class BetDtoCopyWith<$R, $In extends BetDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call({
-    int? id,
     int? matchId,
     int? userId,
     int? homeGoalsPrediction,
@@ -142,7 +137,6 @@ class _BetDtoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, BetDto, $Out>
   late final ClassMapperBase<BetDto> $mapper = BetDtoMapper.ensureInitialized();
   @override
   $R call({
-    int? id,
     int? matchId,
     int? userId,
     int? homeGoalsPrediction,
@@ -150,7 +144,6 @@ class _BetDtoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, BetDto, $Out>
     Object? penaltiesWinnerId = $none,
   }) => $apply(
     FieldCopyWithData({
-      if (id != null) #id: id,
       if (matchId != null) #matchId: matchId,
       if (userId != null) #userId: userId,
       if (homeGoalsPrediction != null)
@@ -162,7 +155,6 @@ class _BetDtoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, BetDto, $Out>
   );
   @override
   BetDto $make(CopyWithData data) => BetDto(
-    id: data.get(#id, or: $value.id),
     matchId: data.get(#matchId, or: $value.matchId),
     userId: data.get(#userId, or: $value.userId),
     homeGoalsPrediction: data.get(
