@@ -4,7 +4,7 @@ import 'package:offside/data/repositories/match_repository.dart';
 import 'package:offside/data/repositories/private_table_repository.dart';
 import 'package:offside/data/repositories/shared_preferences_repository.dart';
 import 'package:offside/data/repositories/stub_auth_repository.dart';
-import 'package:offside/data/repositories/stub_image_repository.dart';
+import 'package:offside/data/repositories/api_image_repository.dart';
 import 'package:offside/data/repositories/team_repository.dart';
 import 'package:offside/data/repositories/user_repository.dart';
 import 'package:offside/data/sources/local/shared_preferences_holder.dart';
@@ -69,7 +69,7 @@ AuthRepository authRepository(Ref ref) {
 
 @riverpod
 ImageRepository imageRepository(Ref ref) {
-  return StubImageRepository();
+  return ApiImageRepository();
 }
 
 @Riverpod(keepAlive: true)

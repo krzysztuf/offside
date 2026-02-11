@@ -28,12 +28,6 @@ class UserMapper extends ClassMapperBase<User> {
   static const Field<User, String> _f$name = Field('name', _$name);
   static String _$surname(User v) => v.surname;
   static const Field<User, String> _f$surname = Field('surname', _$surname);
-  static String? _$nickname(User v) => v.nickname;
-  static const Field<User, String> _f$nickname = Field(
-    'nickname',
-    _$nickname,
-    opt: true,
-  );
   static String? _$image(User v) => v.image;
   static const Field<User, String> _f$image = Field(
     'image',
@@ -52,7 +46,6 @@ class UserMapper extends ClassMapperBase<User> {
     #id: _f$id,
     #name: _f$name,
     #surname: _f$surname,
-    #nickname: _f$nickname,
     #image: _f$image,
     #winnerPredictionId: _f$winnerPredictionId,
   };
@@ -62,7 +55,6 @@ class UserMapper extends ClassMapperBase<User> {
       id: data.dec(_f$id),
       name: data.dec(_f$name),
       surname: data.dec(_f$surname),
-      nickname: data.dec(_f$nickname),
       image: data.dec(_f$image),
       winnerPredictionId: data.dec(_f$winnerPredictionId),
     );
@@ -118,7 +110,6 @@ abstract class UserCopyWith<$R, $In extends User, $Out>
     int? id,
     String? name,
     String? surname,
-    String? nickname,
     String? image,
     int? winnerPredictionId,
   });
@@ -136,7 +127,6 @@ class _UserCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, User, $Out>
     int? id,
     String? name,
     String? surname,
-    Object? nickname = $none,
     Object? image = $none,
     Object? winnerPredictionId = $none,
   }) => $apply(
@@ -144,7 +134,6 @@ class _UserCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, User, $Out>
       if (id != null) #id: id,
       if (name != null) #name: name,
       if (surname != null) #surname: surname,
-      if (nickname != $none) #nickname: nickname,
       if (image != $none) #image: image,
       if (winnerPredictionId != $none) #winnerPredictionId: winnerPredictionId,
     }),
@@ -154,7 +143,6 @@ class _UserCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, User, $Out>
     id: data.get(#id, or: $value.id),
     name: data.get(#name, or: $value.name),
     surname: data.get(#surname, or: $value.surname),
-    nickname: data.get(#nickname, or: $value.nickname),
     image: data.get(#image, or: $value.image),
     winnerPredictionId: data.get(
       #winnerPredictionId,

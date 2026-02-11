@@ -479,7 +479,7 @@ final class ImageRepositoryProvider
   }
 }
 
-String _$imageRepositoryHash() => r'aa88355580f4de3ba66b41b3221f47f90d2ce720';
+String _$imageRepositoryHash() => r'332a09642014967d368f69d3d2b77652a3791eee';
 
 @ProviderFor(settingsRepository)
 final settingsRepositoryProvider = SettingsRepositoryProvider._();

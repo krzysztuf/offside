@@ -25,10 +25,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
     final state = ref.watch(profileSubPageControllerProvider);
     if (state.loading) {
       return Center(
-        child: LoadingAnimationWidget.fourRotatingDots(
-          color: context.colorScheme.primary,
-          size: 64,
-        ),
+        child: LoadingAnimationWidget.fourRotatingDots(color: context.colorScheme.primary, size: 64),
       );
     }
 
@@ -64,10 +61,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SubtitledHeadline(
-                  title: 'Profil',
-                  subtitle: 'Zarządzaj swoim profilem',
-                ),
+                const SubtitledHeadline(title: 'Profil', subtitle: 'Zarządzaj swoim profilem'),
                 ElevatedButton.icon(
                   onPressed: () {
                     ref.read(profileSubPageControllerProvider.notifier).logOut().then((_) {
@@ -123,10 +117,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
             ),
             const Gap(64),
             if (state.loading) ...[
-              LoadingAnimationWidget.fourRotatingDots(
-                color: context.colorScheme.primary,
-                size: 64,
-              ),
+              LoadingAnimationWidget.fourRotatingDots(color: context.colorScheme.primary, size: 64),
             ],
             ElevatedButton.icon(
               onPressed: () {
@@ -137,15 +128,16 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                       title: const Text('Usuwanie konta'),
                       content: const Text('Operacja jest nieodwracalna'),
                       actions: [
-                        TextButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          child: const Text('Anuluj'),
-                        ),
+                        TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Anuluj')),
                         ElevatedButton(
                           onPressed: () {
-                            ref.read(profileSubPageControllerProvider.notifier).removeUser().then((_) {
-                              context.goNamed('login');
-                            }).then((_) => context.goNamed('login'));
+                            ref
+                                .read(profileSubPageControllerProvider.notifier)
+                                .removeUser()
+                                .then((_) {
+                                  context.goNamed('login');
+                                })
+                                .then((_) => context.goNamed('login'));
                           },
                           child: const Text('Usuń konto'),
                         ),
@@ -174,27 +166,24 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
     required String text,
     required VoidCallback? onPressed,
   }) {
-    return FilledButton.tonalIcon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 18),
-      label: text.text,
-    );
+    return FilledButton.tonalIcon(onPressed: onPressed, icon: Icon(icon, size: 18), label: text.text);
   }
 
   Future<String?> pickImage() async {
     final image = await HLImagePicker().openPicker(
-        pickerOptions: const HLPickerOptions(
-          maxSelectedAssets: 1,
-          convertHeicToJPG: true,
-          convertLivePhotosToJPG: true,
-          enablePreview: false,
-          mediaType: MediaType.image,
-        ),
-        cropOptions: const HLCropOptions(
-          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-          compressFormat: CompressFormat.jpg,
-        ),
-        cropping: true);
+      pickerOptions: const HLPickerOptions(
+        maxSelectedAssets: 1,
+        convertHeicToJPG: true,
+        convertLivePhotosToJPG: true,
+        enablePreview: false,
+        mediaType: MediaType.image,
+      ),
+      cropOptions: const HLCropOptions(
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+        compressFormat: CompressFormat.jpg,
+      ),
+      cropping: true,
+    );
 
     return image.isNotEmpty ? image.first.path : null;
   }

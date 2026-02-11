@@ -28,23 +28,18 @@ class UserDtoMapper extends ClassMapperBase<UserDto> {
   static const Field<UserDto, String> _f$name = Field('name', _$name);
   static String _$surname(UserDto v) => v.surname;
   static const Field<UserDto, String> _f$surname = Field('surname', _$surname);
-  static String? _$nickname(UserDto v) => v.nickname;
-  static const Field<UserDto, String> _f$nickname = Field(
-    'nickname',
-    _$nickname,
-    opt: true,
-  );
-  static String? _$image(UserDto v) => v.image;
-  static const Field<UserDto, String> _f$image = Field(
-    'image',
-    _$image,
-    opt: true,
-  );
   static int? _$winnerPredictionId(UserDto v) => v.winnerPredictionId;
   static const Field<UserDto, int> _f$winnerPredictionId = Field(
     'winnerPredictionId',
     _$winnerPredictionId,
     key: r'winner_prediction_id',
+    opt: true,
+  );
+  static int? _$imageId(UserDto v) => v.imageId;
+  static const Field<UserDto, int> _f$imageId = Field(
+    'imageId',
+    _$imageId,
+    key: r'image_id',
     opt: true,
   );
 
@@ -53,9 +48,8 @@ class UserDtoMapper extends ClassMapperBase<UserDto> {
     #id: _f$id,
     #name: _f$name,
     #surname: _f$surname,
-    #nickname: _f$nickname,
-    #image: _f$image,
     #winnerPredictionId: _f$winnerPredictionId,
+    #imageId: _f$imageId,
   };
 
   static UserDto _instantiate(DecodingData data) {
@@ -63,9 +57,8 @@ class UserDtoMapper extends ClassMapperBase<UserDto> {
       id: data.dec(_f$id),
       name: data.dec(_f$name),
       surname: data.dec(_f$surname),
-      nickname: data.dec(_f$nickname),
-      image: data.dec(_f$image),
       winnerPredictionId: data.dec(_f$winnerPredictionId),
+      imageId: data.dec(_f$imageId),
     );
   }
 
@@ -130,9 +123,8 @@ abstract class UserDtoCopyWith<$R, $In extends UserDto, $Out>
     int? id,
     String? name,
     String? surname,
-    String? nickname,
-    String? image,
     int? winnerPredictionId,
+    int? imageId,
   });
   UserDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -150,17 +142,15 @@ class _UserDtoCopyWithImpl<$R, $Out>
     int? id,
     String? name,
     String? surname,
-    Object? nickname = $none,
-    Object? image = $none,
     Object? winnerPredictionId = $none,
+    Object? imageId = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
       if (name != null) #name: name,
       if (surname != null) #surname: surname,
-      if (nickname != $none) #nickname: nickname,
-      if (image != $none) #image: image,
       if (winnerPredictionId != $none) #winnerPredictionId: winnerPredictionId,
+      if (imageId != $none) #imageId: imageId,
     }),
   );
   @override
@@ -168,12 +158,11 @@ class _UserDtoCopyWithImpl<$R, $Out>
     id: data.get(#id, or: $value.id),
     name: data.get(#name, or: $value.name),
     surname: data.get(#surname, or: $value.surname),
-    nickname: data.get(#nickname, or: $value.nickname),
-    image: data.get(#image, or: $value.image),
     winnerPredictionId: data.get(
       #winnerPredictionId,
       or: $value.winnerPredictionId,
     ),
+    imageId: data.get(#imageId, or: $value.imageId),
   );
 
   @override

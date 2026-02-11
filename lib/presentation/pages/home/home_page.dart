@@ -25,7 +25,7 @@ class HomePage extends ConsumerStatefulWidget {
 enum HomePageTab { home, tables, matches, profile }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  var currentTab = HomePageTab.matches;
+  var currentTab = HomePageTab.profile;
 
   @override
   Widget build(BuildContext context) {

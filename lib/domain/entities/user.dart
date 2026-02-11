@@ -14,7 +14,6 @@ class User with UserMappable {
   final int id;
   final String name;
   final String surname;
-  final String? nickname;
   final String? image;
   final int? winnerPredictionId;
 
@@ -22,7 +21,6 @@ class User with UserMappable {
     this.id = 0,
     required this.name,
     required this.surname,
-    this.nickname,
     this.image,
     this.winnerPredictionId,
   });

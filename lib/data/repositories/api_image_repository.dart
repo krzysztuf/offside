@@ -1,6 +1,6 @@
 import 'package:offside/domain/repositories/image_repository.dart';
 
-class StubImageRepository implements ImageRepository {
+class ApiImageRepository implements ImageRepository {
   @override
   Future<String?> getDownloadUrl(String id) async {
     return 'https://picsum.photos/200/200?random=$id';
