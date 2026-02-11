@@ -1,12 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hl_image_picker/hl_image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:offside/core/extensions/future_extensions.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/user.dart';
+import 'package:offside/domain/usecases/image_picker_providers.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_controller.dart';
 
@@ -64,8 +67,9 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                 const SubtitledHeadline(title: 'Profil', subtitle: 'Zarządzaj swoim profilem'),
                 ElevatedButton.icon(
                   onPressed: () {
+                    final router = GoRouter.of(context);
                     ref.read(profileSubPageControllerProvider.notifier).logOut().then((_) {
-                      context.goNamed('login');
+                      router.goNamed('login');
                     });
                   },
                   icon: const Icon(Icons.logout),
@@ -103,9 +107,12 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                           icon: Icons.photo,
                           text: 'Zmień zdjęcie',
                           onPressed: () async {
-                            final path = await pickImage();
+                            final path = await ref.read(pickProfileImageProvider.future).expect(ref);
                             if (path != null) {
-                              ref.read(profileSubPageControllerProvider.notifier).updateProfileImage(path);
+                              await ref
+                                  .read(profileSubPageControllerProvider.notifier)
+                                  .updateProfileImage(path)
+                                  .expect(ref, "Wysyłanie zdjęcia profilowego nie powiodło się");
                             }
                           },
                         ),
@@ -131,13 +138,10 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                         TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Anuluj')),
                         ElevatedButton(
                           onPressed: () {
-                            ref
-                                .read(profileSubPageControllerProvider.notifier)
-                                .removeUser()
-                                .then((_) {
-                                  context.goNamed('login');
-                                })
-                                .then((_) => context.goNamed('login'));
+                            final router = GoRouter.of(context);
+                            ref.read(profileSubPageControllerProvider.notifier).removeUser().then((_) {
+                              router.goNamed('login');
+                            });
                           },
                           child: const Text('Usuń konto'),
                         ),
@@ -167,24 +171,5 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
     required VoidCallback? onPressed,
   }) {
     return FilledButton.tonalIcon(onPressed: onPressed, icon: Icon(icon, size: 18), label: text.text);
-  }
-
-  Future<String?> pickImage() async {
-    final image = await HLImagePicker().openPicker(
-      pickerOptions: const HLPickerOptions(
-        maxSelectedAssets: 1,
-        convertHeicToJPG: true,
-        convertLivePhotosToJPG: true,
-        enablePreview: false,
-        mediaType: MediaType.image,
-      ),
-      cropOptions: const HLCropOptions(
-        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-        compressFormat: CompressFormat.jpg,
-      ),
-      cropping: true,
-    );
-
-    return image.isNotEmpty ? image.first.path : null;
   }
 }

@@ -36,6 +36,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   collection: ^1.18.0
   hl_image_picker: ^1.2.13
+  image_picker: ^1.1.2
   cached_network_image: ^3.3.1
   uuid: ^4.4.0
   flutter_launcher_icons: ^0.14.4

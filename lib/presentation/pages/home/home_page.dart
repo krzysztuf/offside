@@ -8,6 +8,7 @@ import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_pag
 import 'package:offside/presentation/pages/home/tables_sub_page/tables_sub_page.dart';
 import 'package:offside/domain/usecases/user_providers.dart';
 import 'package:offside/presentation/providers/user_is_admin.dart';
+import 'package:offside/presentation/widgets/app_messages_announcer.dart';
 import 'package:offside/presentation/widgets/inflater.dart';
 
 import 'home_page_controller.dart';
@@ -32,9 +33,19 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Scaffold(
       backgroundColor: context.widgetThemes.sharedWidgets.mainPageBackgroundColor,
       body: SafeArea(
-        child: IndexedStack(
-          index: currentTab.index,
-          children: const [MainSubPage(), TablesSubPage(), MatchesSubPage(), ProfileSubPage()],
+        child: Stack(
+          children: [
+            IndexedStack(
+              index: currentTab.index,
+              children: const [
+                MainSubPage(),
+                TablesSubPage(),
+                MatchesSubPage(),
+                ProfileSubPage(),
+              ],
+            ),
+            const AppMessagesAnnouncer(),
+          ],
         ),
       ),
       floatingActionButton: Inflater(
