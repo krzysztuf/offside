@@ -6,6 +6,7 @@ import 'package:offside/domain/entities/user_score_summary.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/providers/user_scores.dart';
+import 'package:offside/presentation/widgets/connection_error_view.dart';
 import 'package:supercharged/supercharged.dart';
 
 class TablesSubPage extends ConsumerStatefulWidget {
@@ -27,7 +28,7 @@ class TablesSubPageState extends ConsumerState<TablesSubPage> with ScrollToTopMi
     return userScoresAsync.when(
       data: (userScores) => _buildTablesSubPage(context, ref, userScores),
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (_, __) => const Center(child: Text('Error')),
+      error: (_, _) => ConnectionErrorView(onRetry: () => ref.invalidate(userScoresProvider)),
     );
   }
 

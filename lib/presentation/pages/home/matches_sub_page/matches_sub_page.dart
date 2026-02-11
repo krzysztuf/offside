@@ -7,10 +7,11 @@ import 'package:intl/intl.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/core/mixin/scroll_to_top_mixin.dart';
-import 'package:offside/domain/entities/match.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/match_card_controller.dart';
 import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page_controller.dart';
+import 'package:offside/presentation/pages/home/matches_sub_page/matches_sub_page_states.dart';
 import 'package:offside/presentation/widgets/admin_visible.dart';
+import 'package:offside/presentation/widgets/connection_error_view.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'match_card.dart';
@@ -38,7 +39,17 @@ class MatchesSubPageState extends ConsumerState<MatchesSubPage> with ScrollToTop
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(matchesSubPageControllerProvider);
+    final asyncState = ref.watch(matchesSubPageControllerProvider);
+    return asyncState.when(
+      data: (state) => _buildContent(context, state),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (_, _) => ConnectionErrorView(
+        onRetry: () => ref.invalidate(matchesSubPageControllerProvider),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context, MatchesData state) {
     return RefreshIndicator(
       notificationPredicate: (_) => true,
       onRefresh: () => ref.read(matchesSubPageControllerProvider.notifier).refresh(delay: 500.milliseconds),
@@ -51,7 +62,7 @@ class MatchesSubPageState extends ConsumerState<MatchesSubPage> with ScrollToTop
             children: [
               const Gap(16),
               buildHeader(context),
-              unfoldMatches(state.matches),
+              unfoldMatches(state),
               const AdminVisible(child: SizedBox(height: 46)),
             ],
           ),
@@ -77,12 +88,10 @@ class MatchesSubPageState extends ConsumerState<MatchesSubPage> with ScrollToTop
     );
   }
 
-  Widget unfoldMatches(Map<DateTime, List<Match>> matches) {
-    final state = ref.watch(matchesSubPageControllerProvider);
-
+  Widget unfoldMatches(MatchesData state) {
     return Column(
       key: UniqueKey(),
-      children: matches.entries.map((entry) {
+      children: state.matches.entries.map((entry) {
         final kickOffDay = entry.key;
         final matchesThisDay = entry.value.sorted((a, b) => a.kickOffDate.compareTo(b.kickOffDate));
 

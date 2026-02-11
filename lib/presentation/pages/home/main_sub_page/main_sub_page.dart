@@ -13,6 +13,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../../../providers/user_scores.dart';
+import '../../../widgets/connection_error_view.dart';
 import 'super_bets_list.dart';
 import 'user_scores_table.dart';
 
@@ -35,7 +36,7 @@ class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<
     return userScoresAsync.when(
       data: (userScores) => _buildMainSubPage(context, ref, userScores),
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (_, _) => const Center(child: Text('Error')),
+      error: (_, _) => ConnectionErrorView(onRetry: () => ref.invalidate(userScoresProvider)),
     );
   }
 
@@ -58,7 +59,7 @@ class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<
         .when(
           data: (user) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text('Hej ${user!.name} 👋', style: context.textTheme.headlineLarge),
+            child: Text('Hej ${user?.name ?? ''} 👋', style: context.textTheme.headlineLarge),
           ),
           loading: () {
             return Skeletonizer(
@@ -66,7 +67,10 @@ class MainSubPageState extends ConsumerState<MainSubPage> with ScrollToTopMixin<
               child: Text('Hej Użytkowniku 👋', style: context.textTheme.headlineLarge),
             );
           },
-          error: (_, _) => const Center(child: Text('Error')),
+          error: (_, _) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text('Hej 👋', style: context.textTheme.headlineLarge),
+          ),
         );
   }
 

@@ -8,35 +8,52 @@ part 'private_tables_controller.g.dart';
 @riverpod
 class PrivateTablesController extends _$PrivateTablesController {
   @override
-  PrivateTablesState build() {
-    refresh();
-    return const PrivateTablesState(tables: []);
-  }
-
-  Future<void> updateMembers(PrivateTable table, Set<int> selectedMembers) async {
-    final updatedTable = table.copyWith(memberIds: selectedMembers.toList());
-    await ref.read(privateTablesRepositoryProvider).update(updatedTable);
-    state = state.copyWith(tables: state.tables.map((t) => t.id == table.id ? updatedTable : t).toList());
-  }
-
-  Future<void> add(PrivateTable table) async {
-    await ref.read(privateTablesRepositoryProvider).add(table);
-    state = state.copyWith(tables: [...state.tables, table]);
-  }
-
-  Future<void> remove(PrivateTable table) async {
-    await ref.read(privateTablesRepositoryProvider).remove(table);
-    state = state.copyWith(tables: state.tables.where((t) => t.id != table.id).toList());
+  Future<PrivateTablesData> build() async {
+    final tables = await ref.read(privateTablesRepositoryProvider).all();
+    return PrivateTablesData(tables: tables);
   }
 
   Future<void> refresh() async {
-    final tables = await ref.read(privateTablesRepositoryProvider).all();
-    state = state.copyWith(tables: tables);
+    ref.invalidateSelf();
+  }
+
+  Future<void> updateMembers(PrivateTable table, Set<int> selectedMembers) async {
+    final currentData = state.value;
+    if (currentData == null) return;
+
+    final updatedTable = table.copyWith(memberIds: selectedMembers.toList());
+    await ref.read(privateTablesRepositoryProvider).update(updatedTable);
+    state = AsyncData(currentData.copyWith(
+      tables: currentData.tables.map((t) => t.id == table.id ? updatedTable : t).toList(),
+    ));
+  }
+
+  Future<void> add(PrivateTable table) async {
+    final currentData = state.value;
+    if (currentData == null) return;
+
+    await ref.read(privateTablesRepositoryProvider).add(table);
+    state = AsyncData(currentData.copyWith(tables: [...currentData.tables, table]));
+  }
+
+  Future<void> remove(PrivateTable table) async {
+    final currentData = state.value;
+    if (currentData == null) return;
+
+    await ref.read(privateTablesRepositoryProvider).remove(table);
+    state = AsyncData(currentData.copyWith(
+      tables: currentData.tables.where((t) => t.id != table.id).toList(),
+    ));
   }
 
   Future<void> removeMember(int userId, PrivateTable table) async {
+    final currentData = state.value;
+    if (currentData == null) return;
+
     final updatedTable = table.copyWith(memberIds: table.memberIds.where((mid) => mid != userId).toList());
     await ref.read(privateTablesRepositoryProvider).update(updatedTable);
-    state = state.copyWith(tables: state.tables.map((t) => t.id == table.id ? updatedTable : t).toList());
+    state = AsyncData(currentData.copyWith(
+      tables: currentData.tables.map((t) => t.id == table.id ? updatedTable : t).toList(),
+    ));
   }
 }

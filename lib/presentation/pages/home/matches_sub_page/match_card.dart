@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:offside/core/extensions/future_extensions.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/goals.dart';
@@ -255,14 +256,19 @@ class _MatchCardState extends ConsumerState<MatchCard> {
     editedPrediction ??= const Goals();
     penaltiesWinner = editedPenaltiesWinner;
 
-    await ref.read(matchCardControllerProvider.notifier).updatePrediction(
+    final success = await ref
+        .read(matchCardControllerProvider.notifier)
+        .updatePrediction(
           MatchOutcome(
             goals: editedPrediction!,
             penaltiesWinnerId: editedPredictionIsDraw ? penaltiesWinner?.id : null,
           ),
-        );
+        )
+        .expectSuccess(ref, 'Nie udało się zapisać typu');
 
-    _finishEditing();
+    if (success) {
+      _finishEditing();
+    }
   }
 
   void _finishEditing() {

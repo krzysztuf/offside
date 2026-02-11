@@ -13,7 +13,7 @@ part of 'private_tables_controller.dart';
 final privateTablesControllerProvider = PrivateTablesControllerProvider._();
 
 final class PrivateTablesControllerProvider
-    extends $NotifierProvider<PrivateTablesController, PrivateTablesState> {
+    extends $AsyncNotifierProvider<PrivateTablesController, PrivateTablesData> {
   PrivateTablesControllerProvider._()
     : super(
         from: null,
@@ -31,30 +31,24 @@ final class PrivateTablesControllerProvider
   @$internal
   @override
   PrivateTablesController create() => PrivateTablesController();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(PrivateTablesState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<PrivateTablesState>(value),
-    );
-  }
 }
 
 String _$privateTablesControllerHash() =>
-    r'05bcc22763696b40fa93dad930193b5a2e5dba4b';
+    r'9ef25acdf373b1d0294704c08c9c329642b93ea2';
 
-abstract class _$PrivateTablesController extends $Notifier<PrivateTablesState> {
-  PrivateTablesState build();
+abstract class _$PrivateTablesController
+    extends $AsyncNotifier<PrivateTablesData> {
+  FutureOr<PrivateTablesData> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<PrivateTablesState, PrivateTablesState>;
+    final ref =
+        this.ref as $Ref<AsyncValue<PrivateTablesData>, PrivateTablesData>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<PrivateTablesState, PrivateTablesState>,
-              PrivateTablesState,
+              AnyNotifier<AsyncValue<PrivateTablesData>, PrivateTablesData>,
+              AsyncValue<PrivateTablesData>,
               Object?,
               Object?
             >;

@@ -12,17 +12,8 @@ part 'matches_sub_page_controller.g.dart';
 @riverpod
 class MatchesSubPageController extends _$MatchesSubPageController {
   @override
-  MatchesSubPageState build() {
+  Future<MatchesData> build() async {
     ref.watch(currentUserIdSettingProvider);
-    refresh();
-
-    return MatchesSubPageState({});
-  }
-
-  Future<void> refresh({Duration? delay}) async {
-    if (delay != null) {
-      await Future.delayed(delay);
-    }
 
     final results = await Future.wait([
       ref.read(upcomingMatchesProvider.future),
@@ -32,9 +23,16 @@ class MatchesSubPageController extends _$MatchesSubPageController {
     final matches = results[0] as List<Match>;
     final bets = results[1] as List<Bet>;
 
-    state = MatchesSubPageState(
+    return MatchesData(
       matches.groupByDay(),
       betsByMatchId: bets.groupByMatchId(),
     );
+  }
+
+  Future<void> refresh({Duration? delay}) async {
+    if (delay != null) {
+      await Future.delayed(delay);
+    }
+    ref.invalidateSelf();
   }
 }

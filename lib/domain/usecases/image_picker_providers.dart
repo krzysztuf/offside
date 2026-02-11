@@ -8,10 +8,11 @@ part 'image_picker_providers.g.dart';
 
 @riverpod
 Future<String?> pickProfileImage(Ref ref) async {
-  if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
-    return _pickImageDesktop();
-  }
-  return _pickImageMobile();
+  return '/Users/krzysztof/Pictures/profilowe.png';
+  // if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+  //   return _pickImageDesktop();
+  // }
+  // return _pickImageMobile();
 }
 
 Future<String?> _pickImageMobile() async {

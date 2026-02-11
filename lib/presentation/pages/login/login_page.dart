@@ -258,7 +258,9 @@ class _LoginPageState extends ConsumerState<LoginPage> with SingleTickerProvider
             Enabled(
               enabled: credentialsProvided && nameDetailsProvided,
               child: ElevatedButton(
-                onPressed: () => registerUser().then((_) => context.goNamed('home')),
+                onPressed: () => registerUser()
+                    .then((_) => context.goNamed('home'))
+                    .onError((error, _) => showErrorDialog(error!, context)),
                 child: const Text('Zarejestruj'),
               ),
             ),

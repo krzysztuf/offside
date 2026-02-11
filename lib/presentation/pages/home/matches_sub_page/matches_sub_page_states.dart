@@ -1,9 +1,9 @@
 import 'package:offside/domain/entities/bet.dart';
 import 'package:offside/domain/entities/match.dart';
 
-class MatchesSubPageState {
+class MatchesData {
   final Map<DateTime, List<Match>> matches;
   final Map<int, List<Bet>> betsByMatchId;
 
-  MatchesSubPageState(this.matches, {this.betsByMatchId = const {}});
+  MatchesData(this.matches, {this.betsByMatchId = const {}});
 }

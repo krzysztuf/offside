@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:offside/core/extensions/future_extensions.dart';
 import 'package:offside/core/extensions/string_suffix_extensions.dart';
 import 'package:offside/core/extensions/theme_context_extension.dart';
 import 'package:offside/domain/entities/team.dart';
@@ -73,22 +74,26 @@ class _CompetitionWinnerPickerState extends ConsumerState<CompetitionWinnerPicke
 
   FilledButton buildSaveButton(CompetitionWinnerPickerState state, BuildContext context) {
     return FilledButton.tonal(
-      onPressed: () {
-        ref.read(competitionWinnerPickerControllerProvider.notifier).selectWinner(selectedWinner!).then(
-          (_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    Icon(Icons.check, color: context.colorScheme.surface),
-                    const Gap(8),
-                    'ZWYCIĘZCA TURNIEJU ZAPISANY'.text,
-                  ],
-                ),
+      onPressed: () async {
+        final messenger = ScaffoldMessenger.of(context);
+        final surfaceColor = context.colorScheme.surface;
+        final success = await ref
+            .read(competitionWinnerPickerControllerProvider.notifier)
+            .selectWinner(selectedWinner!)
+            .expectSuccess(ref, 'Nie udało się zapisać zwycięzcy');
+        if (success) {
+          messenger.showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Icon(Icons.check, color: surfaceColor),
+                  const Gap(8),
+                  'ZWYCIĘZCA TURNIEJU ZAPISANY'.text,
+                ],
               ),
-            );
-          },
-        );
+            ),
+          );
+        }
       },
       child: SizedBox(
         width: 78,

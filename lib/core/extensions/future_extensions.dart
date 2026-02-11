@@ -14,10 +14,20 @@ extension FutureExtensions<T> on Future<T> {
     try {
       return await this;
     } catch (e) {
-      log('catch error $message ${e.toString()}');
+      log('expect caught exception ($message) ${e.toString()}');
       ref.read(appMessagesProvider.notifier).error(message ?? e.toString());
-      log(e.toString());
       return null;
+    }
+  }
+
+  Future<bool> expectSuccess(WidgetRef ref, [String? message]) async {
+    try {
+      await this;
+      return true;
+    } catch (e) {
+      log('expectSuccess caught exception ($message) ${e.toString()}');
+      ref.read(appMessagesProvider.notifier).error(message ?? e.toString());
+      return false;
     }
   }
 }

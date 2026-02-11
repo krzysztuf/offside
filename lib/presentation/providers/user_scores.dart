@@ -28,23 +28,27 @@ class UserScores extends _$UserScores {
     state = const AsyncLoading();
     final winnerId = 0;
 
-    final results = await Future.wait([
-      ref.read(matchesRepositoryProvider).all(),
-      ref.read(usersRepositoryProvider).all(),
-      ref.read(betsRepositoryProvider).all(),
-    ]);
+    try {
+      final results = await Future.wait([
+        ref.read(matchesRepositoryProvider).all(),
+        ref.read(usersRepositoryProvider).all(),
+        ref.read(betsRepositoryProvider).all(),
+      ]);
 
-    final matches = results[0] as List<Match>;
-    final users = results[1] as List<User>;
-    final bets = results[2] as List<Bet>;
+      final matches = results[0] as List<Match>;
+      final users = results[1] as List<User>;
+      final bets = results[2] as List<Bet>;
 
-    final sortedMatches = matches.sortedBy((m) => m.kickOffDate).toList();
-    final userBets = _groupBetsByUser(users, bets);
+      final sortedMatches = matches.sortedBy((m) => m.kickOffDate).toList();
+      final userBets = _groupBetsByUser(users, bets);
 
-    final sortedUserBets = _sortBets(sortedMatches, userBets);
-    final userPoints = _calculateUserPoints(sortedMatches, sortedUserBets, winnerId);
+      final sortedUserBets = _sortBets(sortedMatches, userBets);
+      final userPoints = _calculateUserPoints(sortedMatches, sortedUserBets, winnerId);
 
-    state = AsyncData(_sortByPoints(userPoints));
+      state = AsyncData(_sortByPoints(userPoints));
+    } catch (e, stackTrace) {
+      state = AsyncError(e, stackTrace);
+    }
   }
 
   Map<User, List<Bet>> _groupBetsByUser(List<User> users, List<Bet> bets) {

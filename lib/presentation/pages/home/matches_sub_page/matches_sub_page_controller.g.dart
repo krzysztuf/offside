@@ -13,7 +13,7 @@ part of 'matches_sub_page_controller.dart';
 final matchesSubPageControllerProvider = MatchesSubPageControllerProvider._();
 
 final class MatchesSubPageControllerProvider
-    extends $NotifierProvider<MatchesSubPageController, MatchesSubPageState> {
+    extends $AsyncNotifierProvider<MatchesSubPageController, MatchesData> {
   MatchesSubPageControllerProvider._()
     : super(
         from: null,
@@ -31,31 +31,22 @@ final class MatchesSubPageControllerProvider
   @$internal
   @override
   MatchesSubPageController create() => MatchesSubPageController();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(MatchesSubPageState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MatchesSubPageState>(value),
-    );
-  }
 }
 
 String _$matchesSubPageControllerHash() =>
-    r'2338b8bf3a05bce2c47e53e074d727a2f9e6e14f';
+    r'894ef57fbe7e3d732dc825760d3290528666b10e';
 
-abstract class _$MatchesSubPageController
-    extends $Notifier<MatchesSubPageState> {
-  MatchesSubPageState build();
+abstract class _$MatchesSubPageController extends $AsyncNotifier<MatchesData> {
+  FutureOr<MatchesData> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<MatchesSubPageState, MatchesSubPageState>;
+    final ref = this.ref as $Ref<AsyncValue<MatchesData>, MatchesData>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<MatchesSubPageState, MatchesSubPageState>,
-              MatchesSubPageState,
+              AnyNotifier<AsyncValue<MatchesData>, MatchesData>,
+              AsyncValue<MatchesData>,
               Object?,
               Object?
             >;

@@ -11,6 +11,7 @@ import 'package:offside/presentation/pages/home/main_sub_page/private_tables/new
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_controller.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/private_tables/private_tables_state.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/user_scores_table.dart';
+import 'package:offside/presentation/widgets/connection_error_view.dart';
 
 import 'table_members_picker.dart';
 
@@ -23,8 +24,18 @@ class PrivateTables extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(privateTablesControllerProvider);
+    final asyncState = ref.watch(privateTablesControllerProvider);
 
+    return asyncState.when(
+      data: (state) => _buildContent(context, ref, state),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (_, _) => ConnectionErrorView(
+        onRetry: () => ref.invalidate(privateTablesControllerProvider),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context, WidgetRef ref, PrivateTablesData state) {
     return Column(
       children: [
         ...buildPrivatesTables(context, ref, state),
@@ -43,7 +54,7 @@ class PrivateTables extends ConsumerWidget {
     );
   }
 
-  Iterable<Widget> buildPrivatesTables(BuildContext context, WidgetRef ref, PrivateTablesState state) {
+  Iterable<Widget> buildPrivatesTables(BuildContext context, WidgetRef ref, PrivateTablesData state) {
     final currentUserId = ref.read(currentUserIdSettingProvider);
 
     return state.tables.where((table) => table.memberIds.find((mid) => mid == currentUserId) != null).map((table) {

@@ -1,13 +1,11 @@
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:offside/domain/entities/private_table.dart';
 
-part 'private_tables_state.mapper.dart';
-
-@MappableClass()
-class PrivateTablesState with PrivateTablesStateMappable {
+class PrivateTablesData {
   final List<PrivateTable> tables;
 
-  const PrivateTablesState({
-    required this.tables,
-  });
+  const PrivateTablesData({required this.tables});
+
+  PrivateTablesData copyWith({List<PrivateTable>? tables}) {
+    return PrivateTablesData(tables: tables ?? this.tables);
+  }
 }

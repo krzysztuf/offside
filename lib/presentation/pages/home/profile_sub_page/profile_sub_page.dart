@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -12,6 +10,7 @@ import 'package:offside/domain/entities/user.dart';
 import 'package:offside/domain/usecases/image_picker_providers.dart';
 import 'package:offside/presentation/pages/home/main_sub_page/subtitled_headline.dart';
 import 'package:offside/presentation/pages/home/profile_sub_page/profile_sub_page_controller.dart';
+import 'package:offside/presentation/widgets/connection_error_view.dart';
 
 import 'profile_sub_page_state.dart';
 
@@ -30,6 +29,10 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
       return Center(
         child: LoadingAnimationWidget.fourRotatingDots(color: context.colorScheme.primary, size: 64),
       );
+    }
+
+    if (state.user == null) {
+      return ConnectionErrorView(onRetry: () => ref.invalidate(profileSubPageControllerProvider));
     }
 
     return buildProfilePage(state);

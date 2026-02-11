@@ -32,7 +32,8 @@ class CompetitionWinnerPickerController extends _$CompetitionWinnerPickerControl
   }
 
   Future<void> buildFinalState(User? currentUser) async {
-    user = currentUser!;
+    if (currentUser == null) return;
+    user = currentUser;
     final teams = await ref.read(teamsRepositoryProvider).all();
     final winnerPrediction = teams.firstWhereOrNull((team) => team.id == currentUser.winnerPredictionId);
     state = state.copyWith(teams: teams, loading: false, winnerPrediction: winnerPrediction);
