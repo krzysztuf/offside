@@ -28,10 +28,10 @@ class UserMapper extends ClassMapperBase<User> {
   static const Field<User, String> _f$name = Field('name', _$name);
   static String _$surname(User v) => v.surname;
   static const Field<User, String> _f$surname = Field('surname', _$surname);
-  static String? _$image(User v) => v.image;
-  static const Field<User, String> _f$image = Field(
-    'image',
-    _$image,
+  static int? _$imageId(User v) => v.imageId;
+  static const Field<User, int> _f$imageId = Field(
+    'imageId',
+    _$imageId,
     opt: true,
   );
   static int? _$winnerPredictionId(User v) => v.winnerPredictionId;
@@ -46,7 +46,7 @@ class UserMapper extends ClassMapperBase<User> {
     #id: _f$id,
     #name: _f$name,
     #surname: _f$surname,
-    #image: _f$image,
+    #imageId: _f$imageId,
     #winnerPredictionId: _f$winnerPredictionId,
   };
 
@@ -55,7 +55,7 @@ class UserMapper extends ClassMapperBase<User> {
       id: data.dec(_f$id),
       name: data.dec(_f$name),
       surname: data.dec(_f$surname),
-      image: data.dec(_f$image),
+      imageId: data.dec(_f$imageId),
       winnerPredictionId: data.dec(_f$winnerPredictionId),
     );
   }
@@ -110,7 +110,7 @@ abstract class UserCopyWith<$R, $In extends User, $Out>
     int? id,
     String? name,
     String? surname,
-    String? image,
+    int? imageId,
     int? winnerPredictionId,
   });
   UserCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
@@ -127,14 +127,14 @@ class _UserCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, User, $Out>
     int? id,
     String? name,
     String? surname,
-    Object? image = $none,
+    Object? imageId = $none,
     Object? winnerPredictionId = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
       if (name != null) #name: name,
       if (surname != null) #surname: surname,
-      if (image != $none) #image: image,
+      if (imageId != $none) #imageId: imageId,
       if (winnerPredictionId != $none) #winnerPredictionId: winnerPredictionId,
     }),
   );
@@ -143,7 +143,7 @@ class _UserCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, User, $Out>
     id: data.get(#id, or: $value.id),
     name: data.get(#name, or: $value.name),
     surname: data.get(#surname, or: $value.surname),
-    image: data.get(#image, or: $value.image),
+    imageId: data.get(#imageId, or: $value.imageId),
     winnerPredictionId: data.get(
       #winnerPredictionId,
       or: $value.winnerPredictionId,

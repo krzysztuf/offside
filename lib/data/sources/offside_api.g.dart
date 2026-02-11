@@ -305,6 +305,34 @@ class _OffsideApi implements OffsideApi {
   }
 
   @override
+  Future<IdDto> uploadImage(ImageDto image) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(image.toMap());
+    final _options = _setStreamType<IdDto>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/images',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late IdDto _value;
+    try {
+      _value = IdDtoMapper.fromMap(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<List<PrivateTableDto>> privateTables() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

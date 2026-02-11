@@ -14,14 +14,14 @@ class User with UserMappable {
   final int id;
   final String name;
   final String surname;
-  final String? image;
+  final int? imageId;
   final int? winnerPredictionId;
 
   const User({
     this.id = 0,
     required this.name,
     required this.surname,
-    this.image,
+    this.imageId,
     this.winnerPredictionId,
   });
 }
@@ -55,11 +55,12 @@ extension UserAvatar on User {
   }
 
   Future<String?> getDownloadableUrl(WidgetRef ref) async {
-    if (image == null) {
-      return null;
-    }
+    return null;
+    // if (imageId == null) {
+    //   return null;
+    // }
 
-    return await ref.read(imageRepositoryProvider).getDownloadUrl(image!);
+    // return await ref.read(imageRepositoryProvider).getDownloadUrl(image!);
   }
 
   Text? buildInitialsText(BuildContext context, double fontSize) {

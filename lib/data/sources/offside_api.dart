@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:offside/data/models/id_dto.dart';
+import 'package:offside/data/models/image_dto.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:offside/data/models/user_dto.dart';
 import 'package:offside/data/models/team_dto.dart';
@@ -42,6 +43,9 @@ abstract class OffsideApi {
 
   @GET("/users/{userId}/bets")
   Future<List<BetDto>> betsByUserId(@Path("userId") int userId);
+
+  @PUT("/images")
+  Future<IdDto> uploadImage(@Body() ImageDto image);
 
   @GET("/private-tables")
   Future<List<PrivateTableDto>> privateTables();

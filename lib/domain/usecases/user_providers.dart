@@ -15,15 +15,3 @@ Future<User?> currentUser(Ref ref) async {
   }
   return await usersRepository.byId(currentUserId);
 }
-
-@riverpod
-Future<User> uploadUserAvatar(Ref ref, User user, String imagePath) async {
-  final usersRepository = ref.read(usersRepositoryProvider);
-  final imageRepository = ref.read(imageRepositoryProvider);
-
-  final id = await imageRepository.upload(imagePath);
-  var updatedUser = user.copyWith(image: id);
-  usersRepository.update(updatedUser);
-
-  return updatedUser;
-}

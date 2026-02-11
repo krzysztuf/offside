@@ -69,7 +69,7 @@ AuthRepository authRepository(Ref ref) {
 
 @riverpod
 ImageRepository imageRepository(Ref ref) {
-  return ApiImageRepository();
+  return ApiImageRepository(ref.read(offsideApiProvider));
 }
 
 @Riverpod(keepAlive: true)

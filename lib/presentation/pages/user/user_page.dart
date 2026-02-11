@@ -29,11 +29,11 @@ class UserPage extends ConsumerWidget {
         AsyncData(value: final state) => _buildUserPage(state, ref, context),
         AsyncError() => const Center(child: Text('Error')),
         _ => Center(
-            child: LoadingAnimationWidget.fourRotatingDots(
-              color: context.colorScheme.primary,
-              size: 48,
-            ),
+          child: LoadingAnimationWidget.fourRotatingDots(
+            color: context.colorScheme.primary,
+            size: 48,
           ),
+        ),
       },
     );
   }
@@ -52,7 +52,7 @@ class UserPage extends ConsumerWidget {
                   child: state.user.avatar(context, ref, elevation: 6, radius: 80, fontSize: 48),
                 ),
                 onTap: () {
-                  if (state.user.image != null) {
+                  if (state.user.imageId != null) {
                     showUserProfilePictureSheet(context, ref, state.user);
                   }
                 },
@@ -96,10 +96,11 @@ class UserPage extends ConsumerWidget {
   }
 
   Future<String?> getDownloadableUrl(WidgetRef ref, User user) async {
-    if (user.image == null) {
-      return null;
-    }
+    return null;
+    // if (user.imageId == null) {
+    //   return null;
+    // }
 
-    return await ref.read(imageRepositoryProvider).getDownloadUrl(user.image!);
+    // return await ref.read(imageRepositoryProvider).getDownloadUrl(user.image!);
   }
 }

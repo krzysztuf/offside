@@ -24,16 +24,21 @@ class ProfileSubPageController extends _$ProfileSubPageController {
     state = state.copyWith(uploading: true);
 
     try {
-      final updatedUser = await ref.read(uploadUserAvatarProvider(state.user!, imagePath).future);
-      ref.invalidate(currentUserProvider);
-      state = state.copyWith(user: updatedUser, uploading: false);
+      final imageRepository = ref.read(imageRepositoryProvider);
+      final usersRepository = ref.read(usersRepositoryProvider);
+
+      final imageId = await imageRepository.upload(imagePath);
+      // final updatedUser = state.user!.copyWith(imageId: imageId);
+      // await usersRepository.update(updatedUser);
+
+      // ref.invalidate(currentUserProvider);
+      // state = state.copyWith(user: updatedUser, uploading: false);
+      state = state.copyWith(uploading: false);
     } catch (e) {
       log(e.toString());
       state = state.copyWith(uploading: false);
       rethrow;
     }
-
-    state = state.copyWith(uploading: false);
   }
 
   Future<void> removeUser() async {

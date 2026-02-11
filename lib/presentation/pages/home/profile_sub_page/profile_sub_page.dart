@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -111,6 +113,7 @@ class _ProfileSubPageState extends ConsumerState<ProfileSubPage> {
                           text: 'Zmień zdjęcie',
                           onPressed: () async {
                             final path = await ref.read(pickProfileImageProvider.future).expect(ref);
+                            log('uploading: $path');
                             if (path != null) {
                               await ref
                                   .read(profileSubPageControllerProvider.notifier)
